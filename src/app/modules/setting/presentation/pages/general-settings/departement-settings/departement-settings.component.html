@@ -1,0 +1,354 @@
+<div class="mb-3">
+  <!-- En-tête -->
+  <div class="pb-3 border-bottom mb-3">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h6 class="mb-0">Gestion des Départements</h6>
+      </div>
+      <div class="col-md-6 text-end">
+        <button type="button" class="btn btn-primary" (click)="openCreateModal()">
+          <i class="fas fa-plus me-2"></i>
+          Nouveau Département
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Messages d'alerte -->
+  <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="fas fa-check-circle me-2"></i>
+    {{ successMessage }}
+    <button type="button" class="btn-close" (click)="successMessage = ''"></button>
+  </div>
+  
+  <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <i class="fas fa-exclamation-circle me-2"></i>
+    {{ errorMessage }}
+    <button type="button" class="btn-close" (click)="errorMessage = ''"></button>
+  </div>
+
+  <!-- Statistiques -->
+  <div class="row mb-4">
+    <div class="col-xl-3 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <span class="d-block mb-1">Total Départements</span>
+              <h4 class="mb-0">{{ statistics.total }}</h4>
+            </div>
+            <div class="avatar avatar-lg bg-primary-light rounded-circle">
+              <i class="fas fa-building text-primary"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-xl-3 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <span class="d-block mb-1">Actifs</span>
+              <h4 class="mb-0">{{ statistics.actifs }}</h4>
+            </div>
+            <div class="avatar avatar-lg bg-success-light rounded-circle">
+              <i class="fas fa-check-circle text-success"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-xl-3 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <span class="d-block mb-1">Inactifs</span>
+              <h4 class="mb-0">{{ statistics.inactifs }}</h4>
+            </div>
+            <div class="avatar avatar-lg bg-danger-light rounded-circle">
+              <i class="fas fa-times-circle text-danger"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-xl-3 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <span class="d-block mb-1">Taux d'Activation</span>
+              <h4 class="mb-0">{{ statistics.total > 0 ? Math.round((statistics.actifs / statistics.total) * 100) : 0 }}%</h4>
+            </div>
+            <div class="avatar avatar-lg bg-info-light rounded-circle">
+              <i class="fas fa-percentage text-info"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtres -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Recherche</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Rechercher par nom..." 
+            [(ngModel)]="searchTerm"
+            (input)="onSearch($any($event.target).value)">
+        </div>
+        
+        
+        <div class="col-md-4">
+          <label class="form-label">Statut</label>
+          <select class="form-select" [(ngModel)]="filterStatus" (change)="onFilterChange()">
+            <option [value]="undefined">Tous les statuts</option>
+            <option [value]="true">Actifs</option>
+            <option [value]="false">Inactifs</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tableau des départements -->
+  <div class="card">
+    <div class="card-body">
+      <!-- Loader -->
+      <div *ngIf="isLoading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Chargement...</span>
+        </div>
+        <p class="mt-2">Chargement des départements...</p>
+      </div>
+
+      <!-- Table -->
+      <div *ngIf="!isLoading" class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Description</th>
+              <th>Société</th>
+              <th>Statut</th>
+              <th>Date Création</th>
+              <th class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="paginatedDepartements.length === 0">
+              <td colspan="6" class="text-center py-4">
+                <i class="fas fa-building fa-2x text-muted"></i>
+                <p class="mt-2 mb-0">Aucun département trouvé</p>
+                <p *ngIf="searchTerm || filterSocieteId || filterStatus !== undefined" class="text-muted small">
+                  Essayez de modifier vos filtres de recherche
+                </p>
+                <p *ngIf="!searchTerm && !filterSocieteId && filterStatus === undefined" class="text-muted small">
+                  Commencez par créer votre premier département
+                </p>
+              </td>
+            </tr>
+            
+            <tr *ngFor="let departement of paginatedDepartements">
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="avatar avatar-sm bg-primary-light me-2">
+                    <i class="fas fa-building text-primary"></i>
+                  </div>
+                  <div>
+                    <div class="fw-medium">{{ departement.nom }}</div>
+                    <small class="text-muted">ID: {{ departement.id }}</small>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="text-muted">{{ truncateText(departement.description || 'Non renseignée', 60) }}</span>
+              </td>
+              <td>{{ getSocieteName(departement.societeId) }}</td>
+              <td>
+                <span [ngClass]="getStatusBadge(departement.actif).class">
+                  {{ getStatusBadge(departement.actif).label }}
+                </span>
+              </td>
+              <td>{{ formatDate(departement.dateCreation) }}</td>
+              <td class="text-end">
+                <div class="dropdown">
+                  <button 
+                    class="btn btn-sm btn-outline-secondary dropdown-toggle" 
+                    type="button" 
+                    data-bs-toggle="dropdown"
+                  >
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" (click)="openEditModal(departement)">
+                        <i class="fas fa-edit me-2"></i>
+                        Modifier
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" (click)="toggleDepartementStatus(departement)">
+                        <i [class]="departement.actif ? 'fas fa-toggle-off me-2' : 'fas fa-toggle-on me-2'"></i>
+                        {{ departement.actif ? 'Désactiver' : 'Activer' }}
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item text-danger" (click)="deleteDepartement(departement)">
+                        <i class="fas fa-trash me-2"></i>
+                        Supprimer
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div *ngIf="!isLoading && paginatedDepartements.length > 0" class="d-flex justify-content-between align-items-center mt-3">
+        <div>
+          Affichage {{ (currentPage * pageSize) + 1 }} - 
+          {{ Math.min((currentPage + 1) * pageSize, totalElements) }} 
+          sur {{ totalElements }} départements
+        </div>
+        <nav>
+          <ul class="pagination mb-0">
+            <li class="page-item" [class.disabled]="currentPage === 0">
+              <a class="page-link" (click)="previousPage()">
+                <i class="fas fa-chevron-left"></i>
+              </a>
+            </li>
+            <li 
+              *ngFor="let page of paginationPages" 
+              class="page-item" 
+              [class.active]="page === currentPage"
+            >
+              <a class="page-link" (click)="goToPage(page)">{{ page + 1 }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage >= totalPages - 1">
+              <a class="page-link" (click)="nextPage()">
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal pour créer/modifier un département -->
+<div class="modal fade" [class.show]="showModal" [style.display]="showModal ? 'block' : 'none'" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ isEditMode ? 'Modifier le Département' : 'Nouveau Département' }}
+        </h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      
+      <form [formGroup]="departementForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <!-- Message d'erreur dans le modal -->
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            {{ errorMessage }}
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-12">
+              <label class="form-label">Nom <span class="text-danger">*</span></label>
+              <input 
+                type="text" 
+                class="form-control" 
+                formControlName="nom"
+                [class.is-invalid]="isFieldInvalid('nom')"
+                placeholder="Ex: Département Informatique">
+              
+              <div *ngIf="hasError('nom', 'required')" class="invalid-feedback">
+                Le nom est obligatoire
+              </div>
+              <div *ngIf="hasError('nom', 'minlength')" class="invalid-feedback">
+                Le nom doit contenir au moins 3 caractères
+              </div>
+              <div *ngIf="hasError('nom', 'maxlength')" class="invalid-feedback">
+                Le nom ne doit pas dépasser 100 caractères
+              </div>
+            </div>
+            
+            <div class="col-md-12">
+              <label class="form-label">Description</label>
+              <textarea 
+                class="form-control" 
+                formControlName="description"
+                [class.is-invalid]="isFieldInvalid('description')"
+                rows="3"
+                placeholder="Description du département..."
+                maxlength="500"></textarea>
+              
+              <small class="text-muted">
+                {{ departementForm.get('description')?.value?.length || 0 }} / 500 caractères
+              </small>
+              <div *ngIf="hasError('description', 'maxlength')" class="invalid-feedback">
+                La description ne doit pas dépasser 500 caractères
+              </div>
+            </div>
+         
+            
+            <div class="col-md-12">
+              <label class="form-label">Statut</label>
+              <div class="form-check form-switch">
+                <input 
+                  class="form-check-input" 
+                  type="checkbox" 
+                  formControlName="actif">
+                <label class="form-check-label">
+                  {{ departementForm.get('actif')?.value ? 'Actif' : 'Inactif' }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button 
+            type="button" 
+            class="btn btn-secondary" 
+            (click)="closeModal()"
+            [disabled]="isSaving">
+            Annuler
+          </button>
+          <button 
+            type="submit" 
+            class="btn btn-primary"
+            [disabled]="departementForm.invalid || isSaving">
+            <span *ngIf="!isSaving">
+              {{ isEditMode ? 'Mettre à jour' : 'Créer' }}
+            </span>
+            <span *ngIf="isSaving">
+              <span class="spinner-border spinner-border-sm me-1"></span>
+              {{ isEditMode ? 'Mise à jour...' : 'Création...' }}
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Backdrop du modal -->
+<div class="modal-backdrop fade" [class.show]="showModal" *ngIf="showModal"></div>

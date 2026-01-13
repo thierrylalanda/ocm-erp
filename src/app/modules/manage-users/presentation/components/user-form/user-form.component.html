@@ -1,0 +1,249 @@
+<div class="user-form">
+  <!-- Message de succès -->
+  <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="fas fa-check-circle me-2"></i>
+    {{ isEditMode ? ('forms.userForm.successEdit' | translate) : ('forms.userForm.successCreate' | translate) }}
+    <button type="button" class="btn-close" (click)="success = false" aria-label="Close"></button>
+  </div>
+
+  <!-- Message d'erreur -->
+  <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <i class="fas fa-exclamation-circle me-2"></i>
+    {{ error }}
+    <button type="button" class="btn-close" (click)="error = null" aria-label="Close"></button>
+  </div>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+    <div class="form-grid">
+      <!-- Colonne gauche -->
+      <div class="form-column">
+        <!-- Nom et Prénom -->
+        <div class="form-group">
+          <label for="nomPrenom" class="form-label">
+            {{ 'forms.userForm.fullName' | translate }} <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="nomPrenom"
+            class="form-control"
+            [class.is-invalid]="isFieldInvalid('nomPrenom')"
+            formControlName="nomPrenom"
+            placeholder="{{ 'forms.userForm.fullNamePlaceholder' | translate }}"
+          >
+          <div *ngIf="isFieldInvalid('nomPrenom')" class="invalid-feedback">
+            {{ getFieldError('nomPrenom') }}
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email" class="form-label">
+            {{ 'forms.userForm.email' | translate }} <span class="required">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            [class.is-invalid]="isFieldInvalid('email')"
+            formControlName="email"
+            placeholder="{{ 'forms.userForm.emailPlaceholder' | translate }}"
+            (blur)="generateUsername()"
+          >
+          <div *ngIf="isFieldInvalid('email')" class="invalid-feedback">
+            {{ getFieldError('email') }}
+          </div>
+        </div>
+
+        <!-- Nom d'utilisateur -->
+        <div class="form-group">
+          <label for="userName" class="form-label">
+            {{ 'forms.userForm.username' | translate }} <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="userName"
+            class="form-control"
+            [class.is-invalid]="isFieldInvalid('userName')"
+            formControlName="userName"
+            placeholder="{{ 'forms.userForm.usernamePlaceholder' | translate }}"
+          >
+          <div *ngIf="isFieldInvalid('userName')" class="invalid-feedback">
+            {{ getFieldError('userName') }}
+          </div>
+        </div>
+
+        <!-- Mot de passe -->
+        <div class="form-group" *ngIf="!isEditMode">
+          <label for="password" class="form-label">
+            {{ 'forms.userForm.password' | translate }} <span class="required">*</span>
+          </label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            [class.is-invalid]="isFieldInvalid('password')"
+            formControlName="password"
+            placeholder="{{ 'forms.userForm.passwordPlaceholder' | translate }}"
+          >
+          <div *ngIf="isFieldInvalid('password')" class="invalid-feedback">
+            {{ getFieldError('password') }}
+          </div>
+        </div>
+
+        <!-- Confirmation du mot de passe -->
+        <div class="form-group" *ngIf="!isEditMode">
+          <label for="confirmPassword" class="form-label">
+            {{ 'forms.userForm.confirmPassword' | translate }} <span class="required">*</span>
+          </label>
+          <input
+            type="password"
+            id="confirmPassword"
+            class="form-control"
+            [class.is-invalid]="isFieldInvalid('confirmPassword')"
+            formControlName="confirmPassword"
+            placeholder="{{ 'forms.userForm.confirmPasswordPlaceholder' | translate }}"
+          >
+          <div *ngIf="isFieldInvalid('confirmPassword')" class="invalid-feedback">
+            {{ getFieldError('confirmPassword') }}
+          </div>
+        </div>
+
+        <!-- Téléphone -->
+        <div class="form-group">
+          <label for="telephone" class="form-label">{{ 'forms.userForm.phone' | translate }}</label>
+          <input
+            type="tel"
+            id="telephone"
+            class="form-control"
+            [class.is-invalid]="isFieldInvalid('telephone')"
+            formControlName="telephone"
+            placeholder="{{ 'forms.userForm.phonePlaceholder' | translate }}"
+          >
+          <div *ngIf="isFieldInvalid('telephone')" class="invalid-feedback">
+            {{ getFieldError('telephone') }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne droite -->
+      <div class="form-column">
+       
+
+        <!-- Site -->
+        <div class="form-group">
+          <label class="form-label">{{ 'forms.userForm.site' | translate }} <span class="required">*</span></label>
+         
+            <mat-select
+              class="custom-mat-select select" 
+              id="siteId"
+              formControlName="siteId"
+              [class.is-invalid]="isFieldInvalid('siteId')"
+            >
+              <mat-option value="" disabled>{{ 'forms.userForm.sitePlaceholder' | translate }}</mat-option>
+              <mat-option *ngFor="let site of siteOptions" [value]="site.value">
+                {{ site.label }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="isFieldInvalid('siteId')">
+              {{ getFieldError('siteId') }}
+            </mat-error>
+        </div>
+
+        <!-- Département -->
+        <div class="form-group">
+          <label class="form-label">{{ 'forms.userForm.department' | translate }} <span class="required">*</span></label>
+           <mat-select
+              class="custom-mat-select select" 
+              id="departementId"
+              formControlName="departementId"
+              [class.is-invalid]="isFieldInvalid('departementId')"
+            >
+              <mat-option value="" disabled>{{ 'forms.userForm.departmentPlaceholder' | translate }}</mat-option>
+              <mat-option *ngFor="let dept of departmentOptions" [value]="dept.value">
+                {{ dept.label }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="isFieldInvalid('departementId')">
+              {{ getFieldError('departementId') }}
+            </mat-error>
+        </div>
+
+        <!-- Statut -->
+        <div class="form-group">
+          <label class="form-label">{{ 'forms.userForm.status' | translate }} <span class="required">*</span></label>
+         
+            <mat-select
+             class="custom-mat-select select" 
+              id="statut"
+              formControlName="statut"
+              [class.is-invalid]="isFieldInvalid('statut')"
+            >
+              <mat-option *ngFor="let status of statusOptions" [value]="status.value">
+                {{ status.label }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="isFieldInvalid('statut')">
+              {{ getFieldError('statut') }}
+            </mat-error>
+        </div>
+
+        <!-- Langue -->
+        <div class="form-group">
+           <label class="form-label">{{ 'forms.userForm.language' | translate }} <span class="required">*</span></label>
+           <mat-select  class="custom-mat-select select"  id="langue" formControlName="langue">
+              <mat-option value="fr">{{ 'forms.userForm.languages.fr' | translate }}</mat-option>
+              <mat-option value="en">{{ 'forms.userForm.languages.en' | translate }}</mat-option>
+              <mat-option value="es">{{ 'forms.userForm.languages.es' | translate }}</mat-option>
+            </mat-select>
+        </div>
+         <!-- Adresse -->
+        <div class="form-group">
+          <label for="adresse" class="form-label">{{ 'forms.userForm.address' | translate }}</label>
+          <textarea
+            id="adresse"
+            class="form-control"
+            formControlName="adresse"
+            rows="2"
+            placeholder="{{ 'forms.userForm.addressPlaceholder' | translate }}"
+          ></textarea>
+        </div>
+
+        <!-- Champs cachés -->
+        <input type="hidden" formControlName="societeId">
+        <input type="hidden" formControlName="pwdText">
+        <input type="hidden" formControlName="photo">
+        <input type="hidden" formControlName="signature">
+      </div>
+    </div>
+
+    <!-- Boutons d'action -->
+    <div class="form-actions ">
+      <div class="action-buttons d-flex align-items-center justify-content-between gap-1">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="onCancel()"
+          [disabled]="loading"
+        >
+          <i class="fas fa-times me-1"></i> {{ 'forms.userForm.cancel' | translate }}
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="userForm.invalid || loading"
+        >
+          <span *ngIf="loading" class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+          <i *ngIf="!loading" class="fas fa-save me-1"></i>
+          {{ loading ? ('forms.userForm.saving' | translate) : (isEditMode ? ('forms.userForm.edit' | translate) : ('forms.userForm.create' | translate)) }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Aide sur les champs obligatoires -->
+    <div class="form-help">
+      <p class="help-text">
+        <span class="required">*</span> {{ 'forms.userForm.requiredField' | translate }}
+      </p>
+    </div>
+  </form>
+</div>

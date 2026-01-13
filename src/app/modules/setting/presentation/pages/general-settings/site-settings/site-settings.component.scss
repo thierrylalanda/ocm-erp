@@ -1,0 +1,86 @@
+// Styles spécifiques au composant Site Settings
+// Ces styles complètent les styles du template existant
+
+// Ajustements pour la table
+.table-responsive {
+  .table {
+    min-width: 1000px;
+    
+    thead {
+      th {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+// Ajustements pour les badges
+.badge {
+  &.bg-info-light {
+    background-color: rgba(13, 110, 253, 0.1) !important;
+    color: #0d6efd;
+  }
+  
+  &.bg-secondary-light {
+    background-color: rgba(108, 117, 125, 0.1) !important;
+    color: #6c757d;
+  }
+}
+
+// Ajustements pour les avatars dans les cartes de statistiques
+.avatar {
+  &.avatar-lg {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    i {
+      font-size: 24px;
+    }
+  }
+
+  &.avatar-sm {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    i {
+      font-size: 18px;
+    }
+  }
+}
+
+// Backgrounds légers pour les avatars
+.bg-primary-light {
+  background-color: rgba(13, 110, 253, 0.1) !important;
+}
+
+.bg-success-light {
+  background-color: rgba(25, 135, 84, 0.1) !important;
+}
+
+.bg-danger-light {
+  background-color: rgba(220, 53, 69, 0.1) !important;
+}
+
+.bg-info-light {
+  background-color: rgba(13, 202, 240, 0.1) !important;
+}
+
+// Ajustements responsive
+@media (max-width: 768px) {
+  .table-responsive {
+    .table {
+      font-size: 0.875rem;
+      
+      td, th {
+        padding: 8px;
+      }
+    }
+  }
+}

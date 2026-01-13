@@ -1,0 +1,240 @@
+<div class="mb-3">
+    <div class="pb-3 border-bottom mb-3">
+        <h6 class="mb-0">Account Settings</h6>
+    </div>
+    
+    <!-- Loading indicator -->
+    <div *ngIf="isLoading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Chargement des données utilisateur...</p>
+    </div>
+    
+    <!-- Error message -->
+    <div *ngIf="errorMessage && !isLoading" class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+    
+    <!-- Success message -->
+    <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+    </div>
+    
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+        <div class="border-bottom mb-3 pb-2">
+            <div class="d-flex align-items-center mb-3">
+                <span class="bg-dark avatar avatar-sm me-2 flex-shrink-0"><i class="isax isax-info-circle fs-14"></i></span>
+                <h6 class="fs-16 fw-semibold mb-0">Informations générales</h6>
+            </div>
+
+            <!-- start row -->
+            <div class="row gx-3">
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Nom & Prénom <span class="text-danger">*</span></label>
+                        <input type="text" formControlName="nomPrenom" class="form-control" [class.is-invalid]="isFieldInvalid('nomPrenom')">
+                        <div *ngIf="hasError('nomPrenom', 'required')" class="invalid-feedback d-block">
+                            Le nom et prénom sont requis.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" formControlName="email" class="form-control" [class.is-invalid]="isFieldInvalid('email')">
+                        <div *ngIf="hasError('email', 'required')" class="invalid-feedback d-block">
+                            L'email est requis.
+                        </div>
+                        <div *ngIf="hasError('email', 'email')" class="invalid-feedback d-block">
+                            Veuillez entrer un email valide.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Téléphone <span class="text-danger">*</span></label>
+                        <input type="text" formControlName="telephone" class="form-control" [class.is-invalid]="isFieldInvalid('telephone')">
+                        <div *ngIf="hasError('telephone', 'required')" class="invalid-feedback d-block">
+                            Le téléphone est requis.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Statut</label>
+                        <mat-select formControlName="statut" class="custom-mat-select select" [class.is-invalid]="isFieldInvalid('statut')">
+                            <mat-option value="">Sélectionner</mat-option>
+                            <mat-option *ngFor="let statut of statutOptions" [value]="statut">{{ statut }}</mat-option>
+                        </mat-select>
+                        <div *ngIf="hasError('statut', 'required')" class="invalid-feedback d-block">
+                            Le statut est requis.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Langue</label>
+                        <mat-select formControlName="langue" class="custom-mat-select select" [class.is-invalid]="isFieldInvalid('langue')">
+                            <mat-option value="">Sélectionner</mat-option>
+                            <mat-option *ngFor="let langue of langueOptions" [value]="langue">{{ langue }}</mat-option>
+                        </mat-select>
+                        <div *ngIf="hasError('langue', 'required')" class="invalid-feedback d-block">
+                            La langue est requise.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Mot de passe</label>
+                        <input type="password" formControlName="pwdText" class="form-control" [class.is-invalid]="hasError('pwdText', 'minlength')">
+                        <div *ngIf="hasError('pwdText', 'minlength')" class="invalid-feedback d-block">
+                            Le mot de passe doit contenir au moins 6 caractères.
+                        </div>
+                        <small class="text-muted">Laissez vide pour ne pas modifier</small>
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div>
+        <div class="border-bottom mb-3">
+            <div class="d-flex align-items-center mb-3">
+                <span class="bg-dark avatar avatar-sm me-2 flex-shrink-0"><i class="isax isax-info-circle fs-14"></i></span>
+                <h6 class="fs-16 fw-semibold mb-0">Informations d'adresse</h6>
+            </div>
+
+            <!-- start row -->
+            <div class="row gx-3">
+                <div class="col-lg-12">
+                    <div class="mb-3">
+                        <label class="form-label">Adresse <span class="text-danger">*</span></label>
+                        <input type="text" formControlName="adresse" class="form-control" [class.is-invalid]="isFieldInvalid('adresse')">
+                        <div *ngIf="hasError('adresse', 'required')" class="invalid-feedback d-block">
+                            L'adresse est requise.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Société</label>
+                        <input type="text" formControlName="societeId" class="form-control" readonly>
+                        <small class="text-muted">ID: {{ user?.societeId }} - {{ user?.societeNom }}</small>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Site</label>
+                        <input type="text" formControlName="siteId" class="form-control" readonly>
+                        <small class="text-muted">ID: {{ user?.siteId }} - {{ user?.siteNom }}</small>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Département</label>
+                        <input type="text" formControlName="departementId" class="form-control" readonly>
+                        <small class="text-muted">ID: {{ user?.departementId }} - {{ user?.departementNom }}</small>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Photo</label>
+                        <input type="text" formControlName="photo" class="form-control">
+                        <small class="text-muted">URL de la photo de profil</small>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label">Signature</label>
+                        <input type="text" formControlName="signature" class="form-control">
+                        <small class="text-muted">URL de la signature</small>
+                    </div>
+                </div><!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        
+        <!-- Section changement de mot de passe -->
+        <div class="border-bottom mb-3 pb-3">
+            <div class="d-flex align-items-center mb-3">
+                <span class="bg-dark avatar avatar-sm me-2 flex-shrink-0"><i class="isax isax-lock fs-14"></i></span>
+                <h6 class="fs-16 fw-semibold mb-0">Changement de mot de passe</h6>
+            </div>
+            
+            <!-- Password error/success messages -->
+            <div *ngIf="passwordErrorMessage" class="alert alert-danger">
+                {{ passwordErrorMessage }}
+            </div>
+            <div *ngIf="passwordSuccessMessage" class="alert alert-success">
+                {{ passwordSuccessMessage }}
+            </div>
+            
+            <div [formGroup]="passwordForm">
+                <!-- start row -->
+                <div class="row gx-3">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label class="form-label">Mot de passe actuel <span class="text-danger">*</span></label>
+                            <input type="password" formControlName="currentPassword" class="form-control" [class.is-invalid]="isFieldInvalid('currentPassword', passwordForm)">
+                            <div *ngIf="hasError('currentPassword', 'required', passwordForm)" class="invalid-feedback d-block">
+                                Le mot de passe actuel est requis.
+                            </div>
+                            <div *ngIf="hasError('currentPassword', 'minlength', passwordForm)" class="invalid-feedback d-block">
+                                Au moins 6 caractères.
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label class="form-label">Nouveau mot de passe <span class="text-danger">*</span></label>
+                            <input type="password" formControlName="newPassword" class="form-control" [class.is-invalid]="isFieldInvalid('newPassword', passwordForm)">
+                            <div *ngIf="hasError('newPassword', 'required', passwordForm)" class="invalid-feedback d-block">
+                                Le nouveau mot de passe est requis.
+                            </div>
+                            <div *ngIf="hasError('newPassword', 'minlength', passwordForm)" class="invalid-feedback d-block">
+                                Au moins 6 caractères.
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label class="form-label">Confirmer le mot de passe <span class="text-danger">*</span></label>
+                            <input type="password" formControlName="confirmPassword" class="form-control" [class.is-invalid]="isFieldInvalid('confirmPassword', passwordForm) || getPasswordMismatchError()">
+                            <div *ngIf="hasError('confirmPassword', 'required', passwordForm)" class="invalid-feedback d-block">
+                                La confirmation est requise.
+                            </div>
+                            <div *ngIf="hasError('confirmPassword', 'minlength', passwordForm)" class="invalid-feedback d-block">
+                                Au moins 6 caractères.
+                            </div>
+                            <div *ngIf="getPasswordMismatchError()" class="invalid-feedback d-block">
+                                Les mots de passe ne correspondent pas.
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+                
+                <div class="d-flex align-items-center justify-content-between mt-3">
+                    <button type="button" class="btn btn-outline-secondary" (click)="onCancelPassword()" [disabled]="isChangingPassword">Annuler</button>
+                    <button type="button" class="btn btn-primary" (click)="onChangePassword()" [disabled]="passwordForm.invalid || isChangingPassword">
+                        <span *ngIf="!isChangingPassword">Changer le mot de passe</span>
+                        <span *ngIf="isChangingPassword">
+                            <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                            Changement...
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between mt-4">
+            <button type="button" class="btn btn-outline-white" (click)="onCancel()" [disabled]="isSaving">Annuler</button>
+            <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid || isSaving || !userForm.dirty">
+                <span *ngIf="!isSaving">Enregistrer les modifications</span>
+                <span *ngIf="isSaving">
+                    <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                    Enregistrement...
+                </span>
+            </button>
+        </div>
+        
+    </form>
+</div>

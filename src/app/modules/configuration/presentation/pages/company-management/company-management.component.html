@@ -1,0 +1,179 @@
+<div class="company-management">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1>Gestion des Sociétés</h1>
+      <p>Créez et gérez les sociétés de votre organisation</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-primary" (click)="showForm = !showForm">
+        {{ showForm ? 'Masquer le formulaire' : 'Nouvelle société' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">🏢</div>
+      <div class="stat-content">
+        <h3>{{ companies.length }}</h3>
+        <p>Sociétés totales</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">✅</div>
+      <div class="stat-content">
+        <h3>{{ activeCompanies }}</h3>
+        <p>Sociétés actives</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📅</div>
+      <div class="stat-content">
+        <h3>{{ todayCompanies }}</h3>
+        <p>Créées aujourd'hui</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🌍</div>
+      <div class="stat-content">
+        <h3>{{ uniqueCountries }}</h3>
+        <p>Pays différents</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Creation Form -->
+  <div *ngIf="showForm" class="modal-overlay" (click)="onCancel()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Créer une nouvelle société</h2>
+        <button class="modal-close" (click)="onCancel()">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-description">Remplissez le formulaire ci-dessous pour ajouter une nouvelle société à votre organisation</p>
+        <app-company-form
+          (companyCreated)="onCompanyCreated($event)"
+          (cancel)="onCancel()">
+        </app-company-form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Companies List -->
+  <div class="list-section">
+    <div class="section-header">
+      <h2>Liste des sociétés</h2>
+      <div class="list-controls">
+        <div class="search-box">
+          <input 
+            type="text" 
+            placeholder="Rechercher une société..." 
+            [(ngModel)]="searchTerm"
+            (input)="filterCompanies()"
+          >
+          <span class="search-icon">🔍</span>
+        </div>
+        <select [(ngModel)]="filterStatus" (change)="filterCompanies()">
+          <option value="">Tous les statuts</option>
+          <option value="active">Actives</option>
+          <option value="inactive">Inactives</option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="filteredCompanies.length === 0" class="empty-state">
+      <div class="empty-icon">🏢</div>
+      <h3>Aucune société trouvée</h3>
+      <p *ngIf="searchTerm || filterStatus">
+        Aucune société ne correspond à vos critères de recherche.
+      </p>
+      <p *ngIf="!searchTerm && !filterStatus">
+        Commencez par créer votre première société.
+      </p>
+      <button class="btn btn-primary" (click)="showForm = true">
+        Créer une société
+      </button>
+    </div>
+
+    <div *ngIf="filteredCompanies.length > 0" class="companies-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Activité</th>
+            <th>Email</th>
+            <th>NC/RCCM</th>
+            <th>Pays</th>
+            <th>Statut</th>
+            <th>Créée le</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let company of filteredCompanies">
+            <td>
+              <div class="company-info">
+                <div class="company-name">{{ company.nom }}</div>
+                <div class="company-id">ID: {{ company.id }}</div>
+              </div>
+            </td>
+            <td>{{ company.activite }}</td>
+            <td>{{ company.email }}</td>
+            <td>
+              <div class="tax-info">
+                <div>NC: {{ company.nc }}</div>
+                <div>RCCM: {{ company.rccm }}</div>
+              </div>
+            </td>
+            <td>{{ company.pays }}</td>
+            <td>
+              <span class="status-badge" [class.active]="company.actif">
+                {{ company.actif ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+            <td>{{ formatDate(company.createdAt) }}</td>
+            <td>
+              <div class="action-buttons">
+                <button class="btn-icon" title="Voir les détails">👁️</button>
+                <button class="btn-icon" title="Modifier">✏️</button>
+                <button class="btn-icon" title="Supprimer">🗑️</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div *ngIf="filteredCompanies.length > 0" class="pagination">
+      <button [disabled]="currentPage === 1" (click)="previousPage()">← Précédent</button>
+      <span>Page {{ currentPage }} sur {{ totalPages }}</span>
+      <button [disabled]="currentPage === totalPages" (click)="nextPage()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions">
+    <h3>Actions rapides</h3>
+    <div class="actions-grid">
+      <button class="action-card">
+        <span class="action-icon">📊</span>
+        <span class="action-text">Rapports</span>
+      </button>
+      <button class="action-card">
+        <span class="action-icon">📁</span>
+        <span class="action-text">Exporter</span>
+      </button>
+      <button class="action-card">
+        <span class="action-icon">🔄</span>
+        <span class="action-text">Synchroniser</span>
+      </button>
+      <button class="action-card">
+        <span class="action-icon">⚙️</span>
+        <span class="action-text">Paramètres</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,515 @@
+<div class="mb-3">
+  <!-- En-tête -->
+  <div class="pb-3 border-bottom mb-3">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h6 class="mb-0">Gestion des Sites</h6>
+      </div>
+      <div class="col-md-6 text-end">
+        <button type="button" class="btn btn-primary" (click)="openCreateModal()">
+          <i class="isax isax-add me-2"></i>
+          Nouveau Site
+        </button>
+      </div>
+    </div>
+  </div>
+
+    <!-- Messages -->
+    <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+      <i class="isax isax-tick-circle me-2"></i>
+      {{ successMessage }}
+      <button type="button" class="btn-close" (click)="successMessage = ''"></button>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="isax isax-close-circle me-2"></i>
+      {{ errorMessage }}
+      <button type="button" class="btn-close" (click)="errorMessage = ''"></button>
+    </div>
+
+    <!-- Statistiques -->
+    <div class="row mb-4">
+      <div class="col-xl-3 col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <span class="d-block mb-1">Total Sites</span>
+                <h4 class="mb-0">{{ statistics.total }}</h4>
+              </div>
+              <div class="avatar avatar-lg bg-primary-light rounded-circle">
+                <i class="isax isax-building-4 text-primary"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="col-xl-3 col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <span class="d-block mb-1">Sites Actifs</span>
+                <h4 class="mb-0">{{ statistics.actifs }}</h4>
+              </div>
+              <div class="avatar avatar-lg bg-success-light rounded-circle">
+                <i class="isax isax-tick-circle text-success"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <span class="d-block mb-1">Sites Inactifs</span>
+                <h4 class="mb-0">{{ statistics.inactifs }}</h4>
+              </div>
+              <div class="avatar avatar-lg bg-danger-light rounded-circle">
+                <i class="isax isax-close-circle text-danger"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <span class="d-block mb-1">Types</span>
+                <h4 class="mb-0">{{ Object.keys(statistics.parType).length }}</h4>
+              </div>
+              <div class="avatar avatar-lg bg-info-light rounded-circle">
+                <i class="isax isax-category text-info"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtres et Recherche -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Recherche</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Rechercher par nom, code, ville..."
+              [(ngModel)]="searchTerm"
+              (input)="onSearch($any($event.target).value)"
+            >
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Type</label>
+            <select class="form-select" [(ngModel)]="filterType" (change)="onFilterChange()">
+              <option value="">Tous les types</option>
+              <option *ngFor="let type of siteTypes" [value]="type.value">
+                {{ type.label }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Statut</label>
+            <select class="form-select" [(ngModel)]="filterStatus" (change)="onFilterChange()">
+              <option value="">Tous</option>
+              <option value="active">Actifs</option>
+              <option value="inactive">Inactifs</option>
+            </select>
+          </div>
+
+          <div class="col-md-2">
+            <label class="form-label">Pays</label>
+            <select class="form-select" [(ngModel)]="filterPays" (change)="onFilterChange()">
+              <option value="">Tous</option>
+              <option *ngFor="let country of countries" [value]="country.code">
+                {{ country.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table des sites -->
+    <div class="card">
+      <div class="card-body">
+        <!-- Loader -->
+        <div *ngIf="isLoading" class="text-center py-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Chargement...</span>
+          </div>
+          <p class="mt-2">Chargement des sites...</p>
+        </div>
+
+        <!-- Table -->
+        <div *ngIf="!isLoading" class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Responsable</th>
+                <th>Statut</th>
+                <th>Date Création</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="paginatedSites.length === 0">
+                <td colspan="9" class="text-center py-4">
+                  <i class="isax isax-search-normal-1 fs-1 text-muted"></i>
+                  <p class="mt-2 mb-0">Aucun site trouvé</p>
+                </td>
+              </tr>
+              <tr *ngFor="let site of paginatedSites">
+                <td><strong>{{ site.code }}</strong></td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-sm bg-primary-light me-2">
+                      <i class="isax isax-building-4 text-primary"></i>
+                    </div>
+                    <div>
+                      <div class="fw-medium">{{ site.nom }}</div>
+                      <small class="text-muted" *ngIf="site.description">
+                        {{ site.description | slice:0:50 }}{{ site.description.length > 50 ? '...' : '' }}
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="badge bg-info-light text-info">
+                    {{ getSiteTypeLabel(site.type) }}
+                  </span>
+                </td>
+                <td>{{ site.ville }}</td>
+                <td>
+                  <span class="badge bg-secondary-light text-secondary">
+                    {{ getCountryName(site.pays) }}
+                  </span>
+                </td>
+                <td>
+                  <span *ngIf="site.responsableNom" class="text-truncate d-inline-block" style="max-width: 150px;">
+                    {{ site.responsableNom }}
+                  </span>
+                  <span *ngIf="!site.responsableNom" class="text-muted">-</span>
+                </td>
+                <td>
+                  <div class="form-check form-switch">
+                    <input 
+                      class="form-check-input" 
+                      type="checkbox" 
+                      [checked]="site.actif"
+                      (change)="toggleSiteStatus(site)"
+                    >
+                  </div>
+                </td>
+                <td>{{ formatDate(site.dateCreation) }}</td>
+                <td class="text-end">
+                  <div class="dropdown">
+                    <button 
+                      class="btn btn-sm btn-outline-secondary dropdown-toggle" 
+                      type="button" 
+                      data-bs-toggle="dropdown"
+                    >
+                      <i class="isax isax-more"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="dropdown-item" (click)="openEditModal(site)">
+                          <i class="isax isax-edit me-2"></i>
+                          Modifier
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item text-danger" (click)="deleteSite(site)">
+                          <i class="isax isax-trash me-2"></i>
+                          Supprimer
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div *ngIf="!isLoading && paginatedSites.length > 0" class="d-flex justify-content-between align-items-center mt-3">
+          <div>
+            Affichage {{ (currentPage * pageSize) + 1 }} - 
+            {{ Math.min((currentPage + 1) * pageSize, totalElements) }} 
+            sur {{ totalElements }} sites
+          </div>
+          <nav>
+            <ul class="pagination mb-0">
+              <li class="page-item" [class.disabled]="currentPage === 0">
+                <a class="page-link" (click)="previousPage()">
+                  <i class="isax isax-arrow-left-2"></i>
+                </a>
+              </li>
+              <li 
+                *ngFor="let page of paginationPages" 
+                class="page-item" 
+                [class.active]="page === currentPage"
+              >
+                <a class="page-link" (click)="goToPage(page)">{{ page + 1 }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage >= totalPages - 1">
+                <a class="page-link" (click)="nextPage()">
+                  <i class="isax isax-arrow-right-3"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Modal Formulaire -->
+<div class="modal fade" [class.show]="showModal" [style.display]="showModal ? 'block' : 'none'" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ isEditMode ? 'Modifier le site' : 'Nouveau site' }}
+        </h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+
+      <form [formGroup]="siteForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <!-- Message d'erreur dans le modal -->
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            <i class="isax isax-close-circle me-2"></i>
+            {{ errorMessage }}
+          </div>
+
+          <div class="row g-3">
+            <!-- Nom -->
+            <div class="col-md-6">
+              <label class="form-label">
+                Nom <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                class="form-control" 
+                formControlName="nom"
+                [class.is-invalid]="isFieldInvalid('nom')"
+              >
+              <div class="invalid-feedback" *ngIf="hasError('nom', 'required')">
+                Le nom est requis.
+              </div>
+              <div class="invalid-feedback" *ngIf="hasError('nom', 'minlength')">
+                Le nom doit contenir au moins 3 caractères.
+              </div>
+            </div>
+
+            <!-- Code -->
+            <div class="col-md-6">
+              <label class="form-label">
+                Code <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                class="form-control text-uppercase" 
+                formControlName="code"
+                [class.is-invalid]="isFieldInvalid('code')"
+              >
+              <small class="text-muted">Généré automatiquement, modifiable</small>
+              <div class="invalid-feedback" *ngIf="hasError('code', 'required')">
+                Le code est requis.
+              </div>
+              <div class="invalid-feedback" *ngIf="hasError('code', 'pattern')">
+                Le code doit contenir uniquement des lettres et chiffres.
+              </div>
+            </div>
+
+            <!-- Type -->
+            <div class="col-md-6">
+              <label class="form-label">
+                Type <span class="text-danger">*</span>
+              </label>
+              <select 
+                class="form-select" 
+                formControlName="type"
+                [class.is-invalid]="isFieldInvalid('type')"
+              >
+                <option *ngFor="let type of siteTypes" [value]="type.value">
+                  {{ type.label }}
+                </option>
+              </select>
+              <div class="invalid-feedback" *ngIf="hasError('type', 'required')">
+                Le type est requis.
+              </div>
+            </div>
+
+            <!-- Statut -->
+            <div class="col-md-6">
+              <label class="form-label">Statut</label>
+              <div class="form-check form-switch mt-2">
+                <input 
+                  class="form-check-input" 
+                  type="checkbox" 
+                  formControlName="actif"
+                >
+                <label class="form-check-label">
+                  {{ siteForm.get('actif')?.value ? 'Actif' : 'Inactif' }}
+                </label>
+              </div>
+            </div>
+
+            <!-- Ville -->
+            <div class="col-md-6">
+              <label class="form-label">
+                Ville <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                class="form-control" 
+                formControlName="ville"
+                [class.is-invalid]="isFieldInvalid('ville')"
+              >
+              <div class="invalid-feedback" *ngIf="hasError('ville', 'required')">
+                La ville est requise.
+              </div>
+            </div>
+
+            <!-- Pays -->
+            <div class="col-md-6">
+              <label class="form-label">
+                Pays <span class="text-danger">*</span>
+              </label>
+              <select 
+                class="form-select" 
+                formControlName="pays"
+                [class.is-invalid]="isFieldInvalid('pays')"
+              >
+                <option value="">Sélectionner un pays</option>
+                <option *ngFor="let country of countries" [value]="country.code">
+                  {{ country.name }}
+                </option>
+              </select>
+              <div class="invalid-feedback" *ngIf="hasError('pays', 'required')">
+                Le pays est requis.
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input 
+                type="email" 
+                class="form-control" 
+                formControlName="email"
+                [class.is-invalid]="isFieldInvalid('email')"
+              >
+              <div class="invalid-feedback" *ngIf="hasError('email', 'email')">
+                Veuillez entrer un email valide.
+              </div>
+            </div>
+
+            <!-- Téléphone -->
+            <div class="col-md-6">
+              <label class="form-label">Téléphone</label>
+              <input 
+                type="tel" 
+                class="form-control" 
+                formControlName="telephone"
+                placeholder="+237 6 12 34 56 78"
+                [class.is-invalid]="isFieldInvalid('telephone')"
+              >
+              <div class="invalid-feedback" *ngIf="hasError('telephone', 'pattern')">
+                Format de téléphone invalide.
+              </div>
+            </div>
+
+            <!-- Superficie -->
+            <div class="col-md-6">
+              <label class="form-label">Superficie (m²)</label>
+              <input 
+                type="number" 
+                class="form-control" 
+                formControlName="superficie"
+                min="0"
+                [class.is-invalid]="isFieldInvalid('superficie')"
+              >
+              <div class="invalid-feedback" *ngIf="hasError('superficie', 'min')">
+                La superficie doit être positive.
+              </div>
+            </div>
+
+            <!-- Emplacement (optionnel) -->
+            <div class="col-md-6">
+              <label class="form-label">ID Emplacement</label>
+              <input 
+                type="number" 
+                class="form-control" 
+                formControlName="getEmplacement"
+                placeholder="Optionnel"
+              >
+              <small class="text-muted">ID d'emplacement géographique</small>
+            </div>
+
+            <!-- Description -->
+            <div class="col-12">
+              <label class="form-label">Description</label>
+              <textarea 
+                class="form-control" 
+                rows="3" 
+                formControlName="description"
+                maxlength="500"
+                [class.is-invalid]="isFieldInvalid('description')"
+              ></textarea>
+              <small class="text-muted">
+                {{ siteForm.get('description')?.value?.length || 0 }} / 500 caractères
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button 
+            type="button" 
+            class="btn btn-secondary" 
+            (click)="closeModal()"
+            [disabled]="isSaving"
+          >
+            Annuler
+          </button>
+          <button 
+            type="submit" 
+            class="btn btn-primary"
+            [disabled]="siteForm.invalid || isSaving"
+          >
+            <span *ngIf="!isSaving">
+              {{ isEditMode ? 'Mettre à jour' : 'Créer' }}
+            </span>
+            <span *ngIf="isSaving">
+              <span class="spinner-border spinner-border-sm me-1"></span>
+              {{ isEditMode ? 'Mise à jour...' : 'Création...' }}
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Backdrop du modal -->
+<div class="modal-backdrop fade" [class.show]="showModal" *ngIf="showModal"></div>

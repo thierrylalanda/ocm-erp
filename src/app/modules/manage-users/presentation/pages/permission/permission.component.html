@@ -1,0 +1,153 @@
+<!-- Start Content -->
+<div class="content-two">
+
+    <!-- Page Header -->
+    <div class="d-flex d-block align-items-center justify-content-between flex-wrap gap-3 mb-3">
+        <div>
+            <h6>
+                <a [routerLink]="routes.rolePermissions">
+                    <i class="isax isax-arrow-left me-1"></i>
+                    {{ 'permissions.permissionManagement.title' | translate }}
+                </a>
+            </h6>
+        </div>
+        <div class="d-flex my-xl-auto right-content align-items-center flex-wrap gap-2">
+            <div class="dropdown me-2">
+                <a href="javascript:void(0);" class="dropdown-toggle btn btn-outline-white d-inline-flex align-items-center" data-bs-toggle="dropdown">
+                    {{ 'permissions.permissionManagement.role' | translate }} : <span class="fw-normal ms-1">{{ roleNom || ('permissions.permissionManagement.roleLoading' | translate) }}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a href="javascript:void(0);" class="dropdown-item">{{ 'permissions.permissionManagement.roleCode' | translate }}: {{ roleCode }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+
+    <!-- Success Message -->
+    <div *ngIf="saveSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="isax isax-tick-circle me-2"></i> {{ 'permissions.permissionManagement.saveSuccess' | translate }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="dismissSaveSuccess()"></button>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="saveError" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="isax isax-danger me-2"></i> {{ saveError }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="dismissSaveError()"></button>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">{{ 'permissions.permissionManagement.loading' | translate }}</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error && !loading" class="alert alert-danger" role="alert">
+        <i class="isax isax-danger me-2"></i> {{ error }}
+        <button type="button" class="btn btn-sm btn-outline-danger ms-2" (click)="loadData()">{{ 'permissions.permissionManagement.retry' | translate }}</button>
+    </div>
+
+    <!-- Save Button -->
+    <div *ngIf="!loading && !error" class="d-flex justify-content-end mb-3">
+        <button type="button" class="btn btn-primary d-inline-flex align-items-center" (click)="savePermissions()" [disabled]="!hasChanges() || saving">
+            <span *ngIf="saving" class="spinner-border spinner-border-sm me-1"></span>
+            <i *ngIf="!saving" class="isax isax-save-2 me-1"></i>
+            {{ saving ? ('permissions.permissionManagement.saving' | translate) : ('permissions.permissionManagement.saveButton' | translate) }}
+        </button>
+    </div>
+
+    <!-- Start Table List -->
+    <div *ngIf="!loading && !error" class="">
+        <div class="accordion" id="permissionsAccordion">
+            <!-- Dynamic accordion items for each module -->
+            <div *ngFor="let module of getAvailableModules(); let i = index" class="accordion-item">
+                <h2 class="accordion-header" [id]="'heading' + i">
+                    <button class="accordion-button text-dark" 
+                            [class.collapsed]="i !== 0" 
+                            type="button" 
+                            data-bs-toggle="collapse" 
+                            [attr.data-bs-target]="'#collapse' + i" 
+                            [attr.aria-expanded]="i === 0 ? 'true' : 'false'" 
+                            [attr.aria-controls]="'collapse' + i">
+                        <span class="fs-18 fw-bold">{{ getModuleDisplayName(module) | translate }}</span>
+                    </button>
+                </h2>
+                <div [id]="'collapse' + i" 
+                     class="accordion-collapse collapse" 
+                     [class.show]="i === 0" 
+                     [attr.aria-labelledby]="'heading' + i" 
+                     data-bs-parent="#permissionsAccordion">
+                    <div class="accordion-body">
+                        <!-- Table List -->
+                        <div class="table-responsive table-nowrap">
+                            <table class="table border mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="w-50">{{ 'permissions.permissionManagement.subModule' | translate }}</th>
+                                        <th *ngFor="let action of [PermissionAction.CREATE, PermissionAction.READ, PermissionAction.UPDATE, PermissionAction.DELETE, PermissionAction.EXPORT, PermissionAction.IMPORT, PermissionAction.PRINT]">
+                                            {{ getActionDisplayName(action) | translate }}
+                                        </th>
+                                        <th>{{ 'permissions.permissionManagement.allowAll' | translate }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let subModuleEntry of getPermissionsBySubModule(module) | keyvalue">
+                                        <tr>
+                                            <td>{{ subModuleEntry.key }}</td>
+                                            <td *ngFor="let action of [PermissionAction.CREATE, PermissionAction.READ, PermissionAction.UPDATE, PermissionAction.DELETE, PermissionAction.EXPORT, PermissionAction.IMPORT, PermissionAction.PRINT]">
+                                                <ng-container *ngIf="subModuleEntry.value.has(action)">
+                                                    <div class="form-check" *ngFor="let permission of subModuleEntry.value.get(action)">
+                                                        <input class="form-check-input" 
+                                                               type="checkbox" 
+                                                               [id]="'permission-' + permission.id"
+                                                               [checked]="isPermissionAssigned(permission.id)"
+                                                               (change)="onPermissionChange(permission.id, $event)">
+                                                    </div>
+                                                </ng-container>
+                                                <ng-container *ngIf="!subModuleEntry.value.has(action)">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" disabled>
+                                                    </div>
+                                                </ng-container>
+                                            </td>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" 
+                                                           type="checkbox"
+                                                           [checked]="isAllPermissionsAssignedForSubModule(subModuleEntry.value)"
+                                                           (change)="toggleAllPermissionsForSubModule(subModuleEntry.value, $event)">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                    <tr *ngIf="getPermissionsBySubModule(module).size === 0">
+                                        <td colspan="9" class="text-center py-4">
+                                            <i class="isax isax-shield-slash fs-24 text-muted mb-2 d-block"></i>
+                                            <p class="text-muted mb-0">{{ 'permissions.permissionManagement.noModulePermissions' | translate }}</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /Table List -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- No permissions message -->
+            <div *ngIf="getAvailableModules().length === 0 && !loading" class="text-center py-5">
+                <i class="isax isax-shield-slash fs-48 text-muted mb-3 d-block"></i>
+                <h5 class="text-muted mb-2">{{ 'permissions.permissionManagement.noPermissions' | translate }}</h5>
+                <p class="text-muted mb-0">{{ 'permissions.permissionManagement.noPermissionsMessage' | translate }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- End Table List -->
+
+</div>
+<!-- End Content -->

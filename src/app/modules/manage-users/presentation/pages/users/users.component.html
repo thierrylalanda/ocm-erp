@@ -1,0 +1,322 @@
+<!-- Start Content -->
+<div class="content-two">
+
+    <!-- Page Header -->
+    <div class="d-flex d-block align-items-center justify-content-between flex-wrap gap-3 mb-3">
+        <div>
+            <h6>{{ 'manageUsers.title' | translate }}</h6>
+        </div>
+        <div class="d-flex my-xl-auto right-content align-items-center flex-wrap gap-2">
+            <div class="dropdown">
+                <a href="javascript:void(0);" class="btn btn-outline-white d-inline-flex align-items-center" data-bs-toggle="dropdown">
+                    <i class="isax isax-export-1 me-1"></i>{{ 'manageUsers.export' | translate }}
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="javascript:void(0);" (click)="exportUsers()">{{ 'manageUsers.exportPdf' | translate }}</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="javascript:void(0);" (click)="exportUsers()">{{ 'manageUsers.exportExcel' | translate }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <a href="javascript:void(0);" class="btn btn-primary d-flex align-items-center" (click)="openCreateUserModal()">
+                    <i class="isax isax-add-circle5 me-1"></i>{{ 'manageUsers.newUser' | translate }}
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+
+    <div class="mb-3">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div class="d-flex align-items-center flex-wrap gap-2">
+                <div class="table-search d-flex align-items-center mb-0">
+                    <div class="search-input">
+                        <a href="javascript:void(0);" class="btn-searchset"><i class="isax isax-search-normal fs-12"></i></a>
+                        <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                            <label>
+                                <input type="search" [(ngModel)]="searchQuery" [ngModelOptions]="{ standalone: true }" (ngModelChange)="onSearch()" class="form-control form-control-sm" placeholder="{{ 'manageUsers.search' | translate }}" aria-controls="DataTables_Table_0">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-outline-white fw-normal d-inline-flex align-items-center" href="javascript:void(0);" (click)="resetFilters()">
+                    <i class="isax isax-refresh me-1"></i>{{ 'manageUsers.reset' | translate }}
+                </a>
+            </div>
+            <div class="d-flex align-items-center flex-wrap gap-2">
+                <div class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle btn btn-outline-white d-inline-flex align-items-center" data-bs-toggle="dropdown">
+                        <i class="isax isax-sort me-1"></i>{{ 'manageUsers.sortBy' | translate }} <span class="fw-normal ms-1">Nom</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="changeSort('nomPrenom', 'asc')">{{ 'manageUsers.sortNameAsc' | translate }}</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="changeSort('nomPrenom', 'desc')">{{ 'manageUsers.sortNameDesc' | translate }}</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="changeSort('dateCreation', 'desc')">{{ 'manageUsers.sortRecent' | translate }}</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="changeSort('dateCreation', 'asc')">{{ 'manageUsers.sortOldest' | translate }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle btn btn-outline-white d-inline-flex align-items-center" data-bs-toggle="dropdown">
+                        <i class="isax isax-filter me-1"></i>{{ 'manageUsers.filterStatus' | translate }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="filterByStatus('')">{{ 'manageUsers.filterAll' | translate }}</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="filterByStatus('ACTIF')">{{ 'manageUsers.filterActive' | translate }}</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="filterByStatus('INACTIF')">{{ 'manageUsers.filterInactive' | translate }}</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="filterByStatus('EN_ATTENTE')">{{ 'manageUsers.filterPending' | translate }}</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Filtre par site -->
+                <div class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle btn btn-outline-white d-inline-flex align-items-center" data-bs-toggle="dropdown">
+                        <i class="isax isax-building me-1"></i>
+                        Site: {{ getSelectedSiteName() }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="filterBySite(null)">
+                                Tous les sites
+                            </a>
+                        </li>
+                        <li *ngIf="loadingFilters">
+                            <a href="javascript:void(0);" class="dropdown-item disabled">
+                                <i class="fas fa-spinner fa-spin me-2"></i>Chargement...
+                            </a>
+                        </li>
+                        <li *ngFor="let site of sites">
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="filterBySite(site.id)">
+                                {{ site.nom }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Filtre par département -->
+                <div class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle btn btn-outline-white d-inline-flex align-items-center" data-bs-toggle="dropdown">
+                        <i class="isax isax-building-3 me-1"></i>
+                        Département: {{ getSelectedDepartmentName() }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="filterByDepartment(null)">
+                                Tous les départements
+                            </a>
+                        </li>
+                        <li *ngIf="loadingFilters">
+                            <a href="javascript:void(0);" class="dropdown-item disabled">
+                                <i class="fas fa-spinner fa-spin me-2"></i>Chargement...
+                            </a>
+                        </li>
+                        <li *ngFor="let dept of departments">
+                            <a href="javascript:void(0);" class="dropdown-item" (click)="filterByDepartment(dept.id)">
+                                {{ dept.nom }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="loading" class="text-center py-4">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Chargement...</span>
+        </div>
+        <p class="mt-2">Chargement des utilisateurs...</p>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="error && !loading" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-circle me-2"></i>
+        {{ error }}
+        <button type="button" class="btn-close" (click)="error = null" aria-label="Close"></button>
+    </div>
+
+    <!-- Users Table -->
+    <div *ngIf="!loading && !error" class="table-responsive">
+        <table class="table table-nowrap dataTable datatable">
+            <thead class="thead-light">
+                <tr>
+                    <th>Utilisateur</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Site</th>
+                    <th>Département</th>
+                    <th>Dernière connexion</th>
+                    <th>Date de création</th>
+                    <th>Statut</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (user of users; track user.id) {
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="avatar avatar-sm rounded-circle me-2 flex-shrink-0">
+                                <img [src]="user.photo || 'assets/img/profiles/avatar-01.jpg'" class="rounded-circle" alt="Avatar">
+                            </div>
+                            <div>
+                                <h6 class="fs-14 fw-medium mb-0">{{ user.nomPrenom }}</h6>
+                                <small class="text-muted">{{ user.userName }}</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="mailto:{{ user.email }}" class="text-primary">{{ user.email }}</a>
+                        <button class="btn btn-sm btn-link text-muted p-0 ms-1" (click)="copyEmail(user)" title="Copier l'email">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </td>
+                    <td>{{ user.telephone || 'Non renseigné' }}</td>
+                    <td>{{ user.siteNom || 'Site ' + user.siteId }}</td>
+                    <td>{{ user.departementNom || 'Département ' + user.departementId }}</td>
+                    <td>{{ user.derniereConnexion ? formatDate(user.derniereConnexion) : 'Jamais' }}</td>
+                    <td>{{ formatDate(user.dateCreation) }}</td>
+                    <td>
+                        <span class="badge d-inline-flex align-items-center" [ngClass]="getStatusClass(user.statut)">
+                            {{ getStatusText(user.statut) }}
+                        </span>
+                    </td>
+                    <td class="text-end">
+                        <div class="dropdown">
+                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-white" data-bs-toggle="dropdown">
+                                <i class="isax isax-more"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" (click)="viewUserDetails(user)">
+                                        <i class="isax isax-eye me-2"></i>Voir détails
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" (click)="openEditUserModal(user)">
+                                        <i class="isax isax-edit me-2"></i>Modifier
+                                    </a>
+                                </li>
+                                <li *ngIf="user.statut === 'ACTIF'">
+                                    <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center text-warning" (click)="deactivateUser(user)">
+                                        <i class="isax isax-pause-circle me-2"></i>Désactiver
+                                    </a>
+                                </li>
+                                <li *ngIf="user.statut === 'INACTIF' || user.statut === 'EN_ATTENTE'">
+                                    <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center text-success" (click)="activateUser(user)">
+                                        <i class="isax isax-play-circle me-2"></i>Activer
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center text-danger" (click)="deleteUser(user)">
+                                        <i class="isax isax-trash me-2"></i>Supprimer
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td colspan="9" class="text-center py-4">
+                        <div class="empty-state">
+                            <i class="isax isax-user-square fs-48 text-muted mb-3"></i>
+                            <h6 class="mb-2">Aucun utilisateur trouvé</h6>
+                            <p class="text-muted mb-0">Aucun utilisateur ne correspond à vos critères de recherche.</p>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        @if (totalPages > 1) {
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div class="text-muted">
+                Affichage de {{ users.length }} utilisateur(s) sur {{ totalElements }}
+            </div>
+            <nav>
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item" [class.disabled]="currentPage === 0">
+                        <a class="page-link" href="javascript:void(0);" (click)="changePage(currentPage - 1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    
+                    @for (page of getPageNumbers(); track page) {
+                    <li class="page-item" [class.active]="page === currentPage">
+                        <a class="page-link" href="javascript:void(0);" (click)="changePage(page)">
+                            {{ page + 1 }}
+                        </a>
+                    </li>
+                    }
+                    
+                    <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+                        <a class="page-link" href="javascript:void(0);" (click)="changePage(currentPage + 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="dropdown">
+                <a href="javascript:void(0);" class="btn btn-outline-white btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+                    {{ pageSize }} par page
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0);" (click)="changePageSize(5)">5 par page</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" (click)="changePageSize(10)">10 par page</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" (click)="changePageSize(25)">25 par page</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" (click)="changePageSize(50)">50 par page</a></li>
+                </ul>
+            </div>
+        </div>
+        }
+    </div>
+
+</div>
+<!-- End Content -->
+
+<!-- Modal Formulaire Utilisateur -->
+<div #userFormModal class="modal fade" [class.show]="false" [style.display]="'none'" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ modalTitle }}
+        </h5>
+        <button type="button" class="btn-close" (click)="onFormCancelled()"></button>
+      </div>
+      <div class="modal-body">
+        <app-user-form 
+          [user]="selectedUser || undefined"
+          [isEditMode]="isEditMode"
+          (userSaved)="onUserSaved($event)" 
+          (cancelled)="onFormCancelled()">
+        </app-user-form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Backdrop du modal -->
+<div class="modal-backdrop fade" [class.show]="false" *ngIf="false"></div>

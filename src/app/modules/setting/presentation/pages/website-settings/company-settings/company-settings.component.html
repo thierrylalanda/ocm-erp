@@ -1,0 +1,397 @@
+<div class="mb-3 pb-2">
+    <div class="mb-3 pb-3 border-bottom">
+        <h6 class="fw-bold mb-0">Company Settings</h6>
+    </div>
+    
+    <!-- Loading indicator -->
+    <div *ngIf="isLoading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Chargement des données de la société...</p>
+    </div>
+    
+    <!-- Error message -->
+    <div *ngIf="errorMessage && !isLoading" class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+    
+    <!-- Success message -->
+    <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+    </div>
+    
+    <form [formGroup]="companyForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+        <div class="border-bottom mb-3">
+            <div class="card-title-head">
+                <h6 class="fs-16 fw-semibold mb-3 d-flex align-items-center">
+                    <span class="fs-16 me-2 p-1 rounded bg-dark text-white d-inline-flex align-items-center justify-content-center"><i class="isax isax-info-circle"></i></span> 
+                    General Information
+                </h6>
+            </div>
+
+            <!-- start row -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Nom de la société <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" formControlName="nom" class="form-control" [class.is-invalid]="isFieldInvalid('nom')">
+                        <div *ngIf="hasError('nom', 'required')" class="invalid-feedback d-block">
+                            Le nom de la société est requis.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-xl-6 col-lg-6 col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Email <span class="text-danger">*</span>
+                        </label>
+                        <input type="email" formControlName="email" class="form-control" [class.is-invalid]="isFieldInvalid('email')">
+                        <div *ngIf="hasError('email', 'required')" class="invalid-feedback d-block">
+                            L'email est requis.
+                        </div>
+                        <div *ngIf="hasError('email', 'email')" class="invalid-feedback d-block">
+                            Veuillez entrer un email valide.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Téléphone <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" formControlName="telephone" class="form-control" [class.is-invalid]="isFieldInvalid('telephone')">
+                        <div *ngIf="hasError('telephone', 'required')" class="invalid-feedback d-block">
+                            Le téléphone est requis.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Activité <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" formControlName="activite" class="form-control" [class.is-invalid]="isFieldInvalid('activite')">
+                        <div *ngIf="hasError('activite', 'required')" class="invalid-feedback d-block">
+                            L'activité est requise.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+            </div>
+            <!-- end row -->
+            
+            <!-- start row -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Numéro Comptable (NC)
+                        </label>
+                        <input type="text" formControlName="nc" class="form-control">
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            RCCM
+                        </label>
+                        <input type="text" formControlName="rccm" class="form-control">
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Régime Fiscal
+                        </label>
+                        <input type="text" formControlName="regimeFiscal" class="form-control">
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Forme Juridique
+                        </label>
+                        <input type="text" formControlName="formeJuridique" class="form-control">
+                    </div>
+                </div><!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <div class="border-bottom mb-3 pb-3">
+            <div class="card-title-head">
+                <h6 class="fs-16 fw-semibold mb-3 d-flex align-items-center">
+                    <span class="fs-16 me-2 p-1 rounded bg-dark text-white d-inline-flex align-items-center justify-content-center"><i class="isax isax-image"></i></span> 
+                    Gestion du Logo
+                </h6>
+            </div>
+
+            <!-- Logo preview and actions -->
+            <div class="row align-items-center pb-3 mb-3">
+                <div class="col-xl-9">
+                    <div class="row gy-3 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="logo-info">
+                                <h6 class="fs-14 fw-medium mb-1">Logo de la société</h6>
+                                <p class="fs-12">Téléchargez le logo de votre société (JPG, PNG, SVG)</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="profile-pic-upload mb-0 justify-content-lg-end">
+                                <div class="new-employee-field">
+                                    <div class="mb-0">
+                                        <div class="image-upload mb-1">
+                                            <input type="file" (change)="onLogoSelected($event)" accept=".jpg,.jpeg,.png,.svg,.gif" id="logoUpload">
+                                            <div class="image-uploads">
+                                                <h4><i class="ti ti-upload me-1"></i>Sélectionner un fichier</h4>
+                                            </div>
+                                        </div>
+                                        <span class="fs-12">Taille recommandée: 250px × 100px</span>
+                                        
+                                        <!-- File selected info -->
+                                        <div *ngIf="selectedLogoFile" class="mt-2">
+                                            <div class="alert alert-info py-2 mb-2">
+                                                <i class="isax isax-document me-1"></i>
+                                                {{ selectedLogoFile.name }} ({{ (selectedLogoFile.size / 1024).toFixed(2) }} KB)
+                                            </div>
+                                            <button type="button" class="btn btn-primary btn-sm me-2" (click)="uploadLogo()" [disabled]="isUploadingLogo">
+                                                <span *ngIf="!isUploadingLogo">Télécharger le logo</span>
+                                                <span *ngIf="isUploadingLogo">
+                                                    <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                                                    Téléchargement...
+                                                </span>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="selectedLogoFile = null; logoPreview = null; updateLogoPreview()">
+                                                Annuler
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-xl-3">
+                    <div class="new-logo ms-xl-auto bg-light border text-center p-3">
+                        <!-- Logo preview -->
+                        <div *ngIf="logoPreview; else noLogoTemplate" class="logo-preview-container">
+                            <img [src]="logoPreview" alt="Logo de la société" class="img-fluid" style="max-height: 100px;">
+                            <div class="mt-2">
+                                <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteLogo()" [disabled]="isDeletingLogo || !company?.logo">
+                                    <span *ngIf="!isDeletingLogo">
+                                        <i class="isax isax-trash me-1"></i>Supprimer
+                                    </span>
+                                    <span *ngIf="isDeletingLogo">
+                                        <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                                        Suppression...
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <ng-template #noLogoTemplate>
+                            <div class="text-muted py-4">
+                                <i class="isax isax-image fs-1"></i>
+                                <p class="mt-2 mb-0 fs-12">Aucun logo</p>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div><!-- end col -->
+            </div>
+            <!-- end row -->
+
+            <!-- Logo URL field (readonly) -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            URL du Logo
+                        </label>
+                        <div class="input-group">
+                            <input type="text" formControlName="logo" class="form-control" readonly>
+                            <button class="btn btn-outline-secondary" type="button" (click)="copyLogoUrl()" title="Copier l'URL">
+                                <i class="isax isax-copy"></i>
+                            </button>
+                        </div>
+                        <small class="text-muted">Cette URL est automatiquement mise à jour lorsque vous téléchargez ou supprimez un logo.</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="company-address pb-2 mb-3 border-bottom">
+            <div class="card-title-head">
+                <h6 class="fs-16 fw-bold mb-3 d-flex align-items-center">
+                    <span class="fs-16 me-2 p-1 rounded bg-dark text-white d-inline-flex align-items-center justify-content-center"><i class="isax isax-map"></i></span> 
+                    Informations d'adresse
+                </h6>
+            </div>
+
+            <!-- start row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Adresse <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" formControlName="adresse" class="form-control" [class.is-invalid]="isFieldInvalid('adresse')">
+                        <div *ngIf="hasError('adresse', 'required')" class="invalid-feedback d-block">
+                            L'adresse est requise.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Pays <span class="text-danger">*</span>
+                        </label>
+                        <mat-select formControlName="pays" class="custom-mat-select select" [class.is-invalid]="isFieldInvalid('pays')">
+                            <mat-option value="">Sélectionner</mat-option>
+                            <mat-option *ngFor="let pays of paysOptions" [value]="pays">{{ pays }}</mat-option>
+                        </mat-select>
+                        <div *ngIf="hasError('pays', 'required')" class="invalid-feedback d-block">
+                            Le pays est requis.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Région <span class="text-danger">*</span>
+                        </label>
+                        <mat-select formControlName="region" class="custom-mat-select select" [class.is-invalid]="isFieldInvalid('region')">
+                            <mat-option value="">Sélectionner</mat-option>
+                            <mat-option *ngFor="let region of regionOptions" [value]="region">{{ region }}</mat-option>
+                        </mat-select>
+                        <div *ngIf="hasError('region', 'required')" class="invalid-feedback d-block">
+                            La région est requise.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Boîte Postale
+                        </label>
+                        <input type="text" formControlName="boitePostal" class="form-control">
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Site Web
+                        </label>
+                        <input type="text" formControlName="siteWeb" class="form-control">
+                    </div>
+                </div><!-- end col -->
+            </div>
+            <!-- end row -->
+
+        </div>
+        
+        <div class="company-financial pb-2 mb-3 border-bottom">
+            <div class="card-title-head">
+                <h6 class="fs-16 fw-bold mb-3 d-flex align-items-center">
+                    <span class="fs-16 me-2 p-1 rounded bg-dark text-white d-inline-flex align-items-center justify-content-center"><i class="isax isax-dollar-circle"></i></span> 
+                    Informations financières
+                </h6>
+            </div>
+
+            <!-- start row -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Devise <span class="text-danger">*</span>
+                        </label>
+                        <mat-select formControlName="devise" class="custom-mat-select select" [class.is-invalid]="isFieldInvalid('devise')">
+                            <mat-option value="">Sélectionner</mat-option>
+                            <mat-option *ngFor="let devise of deviseOptions" [value]="devise">{{ devise }}</mat-option>
+                        </mat-select>
+                        <div *ngIf="hasError('devise', 'required')" class="invalid-feedback d-block">
+                            La devise est requise.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Devise Principale <span class="text-danger">*</span>
+                        </label>
+                        <mat-select formControlName="devisePrincipale" class="custom-mat-select select" [class.is-invalid]="isFieldInvalid('devisePrincipale')">
+                            <mat-option value="">Sélectionner</mat-option>
+                            <mat-option *ngFor="let devise of deviseOptions" [value]="devise">{{ devise }}</mat-option>
+                        </mat-select>
+                        <div *ngIf="hasError('devisePrincipale', 'required')" class="invalid-feedback d-block">
+                            La devise principale est requise.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Méthode de Valorisation <span class="text-danger">*</span>
+                        </label>
+                        <mat-select formControlName="methodeValorisation" class="custom-mat-select select" [class.is-invalid]="isFieldInvalid('methodeValorisation')">
+                            <mat-option value="">Sélectionner</mat-option>
+                            <mat-option *ngFor="let methode of methodeValorisationOptions" [value]="methode">{{ methode }}</mat-option>
+                        </mat-select>
+                        <div *ngIf="hasError('methodeValorisation', 'required')" class="invalid-feedback d-block">
+                            La méthode de valorisation est requise.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Exercice en Cours <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" formControlName="exerciceEnCours" class="form-control" [class.is-invalid]="isFieldInvalid('exerciceEnCours')">
+                        <div *ngIf="hasError('exerciceEnCours', 'required')" class="invalid-feedback d-block">
+                            L'exercice en cours est requis.
+                        </div>
+                        <div *ngIf="hasError('exerciceEnCours', 'min') || hasError('exerciceEnCours', 'max')" class="invalid-feedback d-block">
+                            L'exercice doit être entre 2000 et 2100.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Capital
+                        </label>
+                        <input type="number" formControlName="capital" class="form-control" [class.is-invalid]="hasError('capital', 'min')">
+                        <div *ngIf="hasError('capital', 'min')" class="invalid-feedback d-block">
+                            Le capital ne peut pas être négatif.
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                            <label class="form-label">
+                            Statut
+                        </label>
+                        <div class="form-check form-switch mt-2">
+                            <input class="form-check-input" type="checkbox" formControlName="actif" id="actifSwitch">
+                            <label class="form-check-label" for="actifSwitch">
+                                {{ companyForm.get('actif')?.value ? 'Actif' : 'Inactif' }}
+                            </label>
+                        </div>
+                    </div>
+                </div><!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        
+        <div class="d-flex align-items-center justify-content-between settings-bottom-btn mt-0">
+            <button type="button" class="btn btn-outline-white me-2" (click)="onCancel()" [disabled]="isSaving">Annuler</button>
+            <button type="submit" class="btn btn-primary" [disabled]="companyForm.invalid || isSaving || !companyForm.dirty">
+                <span *ngIf="!isSaving">Enregistrer les modifications</span>
+                <span *ngIf="isSaving">
+                    <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                    Enregistrement...
+                </span>
+            </button>
+        </div>
+    </form>
+</div><!-- end col -->
