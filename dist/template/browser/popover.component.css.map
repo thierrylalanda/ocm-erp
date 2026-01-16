@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/ui-interface/base-ui/popover/popover.component.scss"],
+  "sourcesContent": [".popover-list{\n    .example-popover{\n        margin-left:2px;\n    }\n}\n.popover-list .btn{\n    position: relative;\n    border-radius: 4px;\n}\n"],
+  "mappings": ";AACI,CAAA,aAAA,CAAA;AACI,eAAA;;AAGR,CAJI,aAIJ,CAAA;AACI,YAAA;AACA,iBAAA;;",
+  "names": []
+}

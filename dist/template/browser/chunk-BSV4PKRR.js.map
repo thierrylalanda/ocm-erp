@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/invantory-sales/quotations/quotations.component.ts", "src/app/features/invantory-sales/quotations/quotations.component.html"],
+  "sourcesContent": ["\nimport { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-quotations',\n  templateUrl: './quotations.component.html',\n  styleUrls: ['./quotations.component.scss'],\n  imports: [RouterModule],\n})\nexport class QuotationsComponent {\n\n}\n", "<router-outlet></router-outlet>"],
+  "mappings": ";;;;;;;;;;;;;;;;;AAUM,IAAO,sBAAP,MAAO,qBAAmB;;qCAAnB,sBAAmB;EAAA;yEAAnB,sBAAmB,WAAA,CAAA,CAAA,gBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,6BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACVhC,MAAA,oBAAA,GAAA,eAAA;;oBDQY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAEX,qBAAmB,CAAA;UAN/B;uBACW,kBAAgB,SAGjB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAEZ,qBAAmB,EAAA,WAAA,uBAAA,UAAA,uEAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

@@ -2,7 +2,6 @@ import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 // Import de la traduction
 import { TranslatePipe } from '../../../../../core/services/translation/translate.pipe';
@@ -10,16 +9,14 @@ import { TranslatePipe } from '../../../../../core/services/translation/translat
 // Import des DTOs
 import { 
   PermissionDto, 
-  RolePermissionsResponseDto,
   PermissionModule,
   PermissionAction 
 } from '../../../application/dto/permission.dto';
 
 // Import des use cases
 import { GET_PERMISSIONS_USE_CASE } from '../../../application/use-cases/get-permissions.use-case.token';
-import { GetPermissionsUseCase, GetPermissionsUseCaseImpl } from '../../../application/use-cases/get-permissions.use-case';
+import { GetPermissionsUseCaseImpl } from '../../../application/use-cases/get-permissions.use-case';
 import { PERMISSION_REPOSITORY } from '../../../domain/repositories/permission.repository.token';
-import { PermissionRepository } from '../../../domain/repositories/permission.repository';
 import { HttpPermissionRepository } from '../../../infrastructure/repositories/http-permission.repository';
 import { routes } from '../../../../../core/core.index';
 
@@ -29,21 +26,20 @@ import { routes } from '../../../../../core/core.index';
   templateUrl: './permission.component.html',
   styleUrls: ['./permission.component.scss'],
   providers: [
-      
-      {
-        provide: PERMISSION_REPOSITORY,
-        useClass: HttpPermissionRepository,
-      },
-      {
-        provide: GET_PERMISSIONS_USE_CASE,
-        useClass: GetPermissionsUseCaseImpl,
-      },
-      // Provider pour localStorage
-      {
-        provide: 'LOCAL_STORAGE',
-        useValue: localStorage
-      }
-    ]
+    {
+      provide: PERMISSION_REPOSITORY,
+      useClass: HttpPermissionRepository,
+    },
+    {
+      provide: GET_PERMISSIONS_USE_CASE,
+      useClass: GetPermissionsUseCaseImpl,
+    },
+    // Provider pour localStorage
+    {
+      provide: 'LOCAL_STORAGE',
+      useValue: localStorage
+    }
+  ]
 })
 export class PermissionComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -69,12 +65,14 @@ export class PermissionComponent implements OnInit {
   groupedPermissions: Map<PermissionModule, PermissionDto[]> = new Map();
   
   // Routes
- routes = routes
-
-
+  routes = routes;
 
   // Exposer PermissionAction au template
   PermissionAction = PermissionAction;
+
+  // Gestion de l'expansion des modules et sous-modules
+  private expandedModules: Set<number> = new Set();
+  private expandedSubModules: Map<number, Set<number>> = new Map();
 
   ngOnInit(): void {
     this.loadRoleId();
@@ -118,7 +116,6 @@ export class PermissionComponent implements OnInit {
         this.loadAllPermissions();
       },
       error: (error) => {
-        console.error('Erreur lors du chargement des permissions du rôle:', error);
         this.error = 'Erreur lors du chargement des permissions du rôle';
         this.loading = false;
       }
@@ -136,7 +133,6 @@ export class PermissionComponent implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        console.error('Erreur lors du chargement des permissions:', error);
         this.error = 'Erreur lors du chargement des permissions';
         this.loading = false;
       }
@@ -156,6 +152,7 @@ export class PermissionComponent implements OnInit {
       }
       this.groupedPermissions.get(module)!.push(permission);
     });
+    
   }
 
   /**
@@ -167,19 +164,6 @@ export class PermissionComponent implements OnInit {
     const parts = permCode.split(':');
     if (parts.length >= 2) {
       return parts[1]; // Le sous-module est la deuxième partie
-    }
-    return permCode; // Fallback: retourne le code complet
-  }
-
-  /**
-   * Extrait l'action d'un code de permission
-   * Format attendu: MODULE:SOUS_MODULE:ACTION
-   * Exemple: SECURITY:ROLE:CREATE -> action = CREATE
-   */
-  getActionFromPermissionCode(permCode: string): string {
-    const parts = permCode.split(':');
-    if (parts.length >= 3) {
-      return parts[2]; // L'action est la troisième partie
     }
     return permCode; // Fallback: retourne le code complet
   }
@@ -210,13 +194,6 @@ export class PermissionComponent implements OnInit {
     });
     
     return subModuleMap;
-  }
-
-  /**
-   * Récupère les actions disponibles pour un sous-module donné
-   */
-  getAvailableActionsForSubModule(subModuleMap: Map<PermissionAction, PermissionDto[]>): PermissionAction[] {
-    return Array.from(subModuleMap.keys());
   }
 
   /**
@@ -258,11 +235,17 @@ export class PermissionComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     const checked = target.checked;
 
+    // Créer un nouveau Set pour forcer la détection de changement
+    const newSelectedPermissions = new Set(this.selectedPermissions);
+
     if (checked) {
-      this.selectedPermissions.add(permissionId);
+      newSelectedPermissions.add(permissionId);
     } else {
-      this.selectedPermissions.delete(permissionId);
+      newSelectedPermissions.delete(permissionId);
     }
+
+    // Mettre à jour la référence pour forcer la détection de changement
+    this.selectedPermissions = newSelectedPermissions;
   }
 
   /**
@@ -298,7 +281,6 @@ export class PermissionComponent implements OnInit {
         }, 2000);
       },
       error: (error) => {
-        console.error('Erreur lors de l\'enregistrement des permissions:', error);
         this.saveError = error.message || 'Erreur lors de l\'enregistrement des permissions';
         this.saving = false;
       }
@@ -401,17 +383,82 @@ export class PermissionComponent implements OnInit {
       }
     }
 
+    // Créer un nouveau Set pour forcer la détection de changement
+    const newSelectedPermissions = new Set(this.selectedPermissions);
+
     // Appliquer le changement à toutes les permissions
     if (checked) {
       // Ajouter toutes les permissions
       allPermissionIds.forEach(permissionId => {
-        this.selectedPermissions.add(permissionId);
+        newSelectedPermissions.add(permissionId);
       });
     } else {
       // Retirer toutes les permissions
       allPermissionIds.forEach(permissionId => {
-        this.selectedPermissions.delete(permissionId);
+        newSelectedPermissions.delete(permissionId);
       });
     }
+
+    // Mettre à jour la référence pour forcer la détection de changement
+    this.selectedPermissions = newSelectedPermissions;
+  }
+
+  /**
+   * Bascule l'expansion d'un module
+   */
+  toggleModuleExpansion(moduleIndex: number): void {
+    if (this.expandedModules.has(moduleIndex)) {
+      this.expandedModules.delete(moduleIndex);
+    } else {
+      this.expandedModules.add(moduleIndex);
+    }
+  }
+
+  /**
+   * Vérifie si un module est expandé
+   */
+  isModuleExpanded(moduleIndex: number): boolean {
+    return this.expandedModules.has(moduleIndex);
+  }
+
+  /**
+   * Bascule l'expansion d'un sous-module
+   */
+  toggleSubModuleExpansion(moduleIndex: number, subModuleIndex: number): void {
+    if (!this.expandedSubModules.has(moduleIndex)) {
+      this.expandedSubModules.set(moduleIndex, new Set());
+    }
+    
+    const subModuleSet = this.expandedSubModules.get(moduleIndex)!;
+    if (subModuleSet.has(subModuleIndex)) {
+      subModuleSet.delete(subModuleIndex);
+    } else {
+      subModuleSet.add(subModuleIndex);
+    }
+  }
+
+  /**
+   * Vérifie si un sous-module est expandé
+   */
+  isSubModuleExpanded(moduleIndex: number, subModuleIndex: number): boolean {
+    const subModuleSet = this.expandedSubModules.get(moduleIndex);
+    return subModuleSet ? subModuleSet.has(subModuleIndex) : false;
+  }
+
+  /**
+   * Obtient la description d'une action
+   */
+  getActionDescription(action: PermissionAction): string {
+    const actionDescriptions: Record<PermissionAction, string> = {
+      [PermissionAction.CREATE]: 'Permet de créer de nouveaux éléments',
+      [PermissionAction.READ]: 'Permet de visualiser les éléments',
+      [PermissionAction.UPDATE]: 'Permet de modifier les éléments existants',
+      [PermissionAction.DELETE]: 'Permet de supprimer des éléments',
+      [PermissionAction.EXPORT]: 'Permet d\'exporter des données',
+      [PermissionAction.IMPORT]: 'Permet d\'importer des données',
+      [PermissionAction.PRINT]: 'Permet d\'imprimer des documents'
+    };
+    
+    return actionDescriptions[action] || 'Aucune description disponible';
   }
 }

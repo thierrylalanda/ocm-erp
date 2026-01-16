@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/ui-interface/tables/tables.component.ts", "src/app/features/ui-interface/tables/tables.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n    selector: 'app-tables',\n    templateUrl: './tables.component.html',\n    styleUrls: ['./tables.component.scss'],\n    imports: [RouterModule]\n})\nexport class TablesComponent {\n\n \n}\n", "\n  <router-outlet></router-outlet>\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,kBAAP,MAAO,iBAAe;;qCAAf,kBAAe;EAAA;yEAAf,kBAAe,WAAA,CAAA,CAAA,YAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,yBAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACR1B,MAAA,oBAAA,GAAA,eAAA;;oBDMY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAEb,iBAAe,CAAA;UAN3B;uBACa,cAAY,SAGb,CAAC,YAAY,GAAC,UAAA,wCAAA,CAAA;;;;6EAEd,iBAAe,EAAA,WAAA,mBAAA,UAAA,4DAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

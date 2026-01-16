@@ -18,6 +18,7 @@ import {
   getSiteTypeLabel,
   getCountryName
 } from '../../../../domain/dto/site.dto';
+import { TranslatePipe } from '../../../../../../core/services/translation/translate.pipe';
 
 @Component({
   selector: 'app-site-settings',
@@ -30,7 +31,8 @@ import {
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslatePipe
   ],
   templateUrl: './site-settings.component.html',
   styleUrls: ['./site-settings.component.scss']

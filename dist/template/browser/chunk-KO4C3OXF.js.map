@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/reports/user-reports/user-reports.component.ts", "src/app/features/reports/user-reports/user-reports.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-user-reports',\n  imports:[RouterModule],\n  templateUrl: './user-reports.component.html',\n  styleUrls: [ './user-reports.component.scss']\n})\nexport class UserReportsComponent {\n\n}\n", "<router-outlet></router-outlet>"],
+  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,uBAAP,MAAO,sBAAoB;;qCAApB,uBAAoB;EAAA;yEAApB,uBAAoB,WAAA,CAAA,CAAA,kBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,8BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACTjC,MAAA,oBAAA,GAAA,eAAA;;oBDKW,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIV,sBAAoB,CAAA;UANhC;uBACW,oBAAkB,SACpB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIX,sBAAoB,EAAA,WAAA,wBAAA,UAAA,mEAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

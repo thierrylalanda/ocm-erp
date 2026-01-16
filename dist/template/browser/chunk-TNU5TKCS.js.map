@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/purchases/purchase-orders/purchase-orders.component.ts", "src/app/features/purchases/purchase-orders/purchase-orders.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-purchase-orders',\n  imports:[RouterModule],\n  templateUrl: './purchase-orders.component.html',\n  styleUrls: [ './purchase-orders.component.scss']\n})\nexport class PurchaseOrdersComponent {\n\n}\n", "<router-outlet></router-outlet>"],
+  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,0BAAP,MAAO,yBAAuB;;qCAAvB,0BAAuB;EAAA;yEAAvB,0BAAuB,WAAA,CAAA,CAAA,qBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,iCAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACTpC,MAAA,oBAAA,GAAA,eAAA;;oBDKW,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIV,yBAAuB,CAAA;UANnC;uBACW,uBAAqB,SACvB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIX,yBAAuB,EAAA,WAAA,2BAAA,UAAA,2EAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

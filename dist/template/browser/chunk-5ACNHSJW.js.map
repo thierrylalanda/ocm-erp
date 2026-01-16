@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/ui-interface/base-ui/base-ui.component.ts", "src/app/features/ui-interface/base-ui/base-ui.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n    selector: 'app-base-ui',\n    templateUrl: './base-ui.component.html',\n    styleUrls: ['./base-ui.component.scss'],\n    imports: [RouterModule]\n})\nexport class BaseUIComponent {\n  public page = '';\n  public base = '';\n  public layoutPosition = '';\n\n  // constructor(private common: CommonService, private sideBar: SideBarService) {\n  //   this.common.pageRoute.subscribe((res: string) => {\n  //     this.page = res.replace('-', ' ');\n  //   });\n  //   this.common.baseRoute.subscribe((res: string) => {\n  //     this.base = res.replace('-', ' ');\n  //   });\n  //   // <* to check layout position *>\n  //   this.sideBar.layoutPosition.subscribe((res: string) => {\n  //     this.layoutPosition = res;\n  //   });\n  //   // <* to check layout position *>\n  // }\n\n  \n}\n", "\n  <router-outlet></router-outlet>\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,kBAAP,MAAO,iBAAe;EACnB,OAAO;EACP,OAAO;EACP,iBAAiB;;qCAHb,kBAAe;EAAA;yEAAf,kBAAe,WAAA,CAAA,CAAA,aAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,yBAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACR1B,MAAA,oBAAA,GAAA,eAAA;;oBDMY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAEb,iBAAe,CAAA;UAN3B;uBACa,eAAa,SAGd,CAAC,YAAY,GAAC,UAAA,wCAAA,CAAA;;;;6EAEd,iBAAe,EAAA,WAAA,mBAAA,UAAA,8DAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

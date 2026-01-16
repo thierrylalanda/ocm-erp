@@ -1,0 +1,253 @@
+import {
+  Component,
+  setClassMetadata,
+  ɵsetClassDebugInfo,
+  ɵɵdefineComponent,
+  ɵɵdomElement,
+  ɵɵdomElementEnd,
+  ɵɵdomElementStart,
+  ɵɵtext
+} from "./chunk-U4CEU3KS.js";
+import "./chunk-TXDUYLVM.js";
+
+// src/app/modules/setting/presentation/pages/app-settings/esignatures/esignatures.component.ts
+var EsignaturesComponent = class _EsignaturesComponent {
+  static \u0275fac = function EsignaturesComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _EsignaturesComponent)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EsignaturesComponent, selectors: [["app-esignatures"]], decls: 233, vars: 0, consts: [[1, ""], [1, "mb-3"], [1, "pb-3", "border-bottom", "mb-3"], [1, "mb-0"], [1, "d-flex", "align-items-center", "justify-content-between", "flex-wrap", "gap-3"], [1, "d-flex", "align-items-center", "flex-wrap", "gap-2"], [1, "input-group", "mb-1"], [1, "input-group-text", "bg-white", "border-end-0"], [1, "isax", "isax-search-normal", "fs-12"], ["type", "text", "placeholder", "Search", 1, "form-control", "border-start-0", "ps-0", "bg-white"], ["href", "javascript:void(0);", "data-bs-toggle", "modal", "data-bs-target", "#add_signatures", 1, "btn", "btn-primary", "d-flex", "align-items-center"], [1, "isax", "isax-add-circle5", "me-2"], [1, "table-responsive", "table-nowrap"], [1, "table", "border", "dataTable"], [1, "table-light"], [1, "no-sort"], ["href", "javascript:void(0);", 1, "text-dark"], ["src", "assets/img/icons/sign-01.svg", "alt", "User Img"], ["href", "javascript:void(0);", 1, "rounded-circle", "bg-light", "p-1"], [1, "isax", "isax-star", "icon-active"], [1, "form-check", "form-switch"], ["type", "checkbox", "role", "switch", "checked", "", 1, "form-check-input"], [1, "action-item"], ["href", "javascript:void(0);", "data-bs-toggle", "dropdown"], [1, "isax", "isax-more"], [1, "dropdown-menu"], ["href", "javascript:void(0);", "data-bs-toggle", "modal", "data-bs-target", "#edit_signatures", 1, "dropdown-item", "d-flex", "align-items-center"], [1, "isax", "isax-edit", "me-2"], ["href", "javascript:void(0);", "data-bs-toggle", "modal", "data-bs-target", "#delete_modal", 1, "dropdown-item", "d-flex", "align-items-center"], [1, "isax", "isax-trash", "me-2"], ["src", "assets/img/icons/sign-02.svg", "alt", "User Img"], ["src", "assets/img/icons/sign-03.svg", "alt", "User Img"], ["type", "checkbox", "role", "switch", 1, "form-check-input"], ["src", "assets/img/icons/sign-04.svg", "alt", "User Img"], ["id", "add_signatures", 1, "modal", "fade"], [1, "modal-dialog", "modal-dialog-centered"], [1, "modal-content"], [1, "modal-header"], [1, "modal-title"], ["type", "button", "data-bs-dismiss", "modal", "aria-label", "Close", 1, "btn-close", "btn-close-modal", "custom-btn-close"], [1, "fa-solid", "fa-x"], [1, "modal-body"], [1, "form-label"], [1, "text-danger"], ["type", "text", 1, "form-control"], [1, "input-block", "mb-3"], [1, "form-control", "p-4", "d-flex", "align-items-center", "justify-content-center"], [1, "isax", "isax-image", "me-2", "fs-14"], [1, "d-flex", "align-items-center", "justify-content-between"], [1, "modal-footer", "d-flex", "align-items-center", "justify-content-between", "gap-1"], ["type", "button", "data-bs-dismiss", "modal", 1, "btn", "btn-outline-white"], ["type", "submit", "data-bs-dismiss", "modal", 1, "btn", "btn-primary"], ["id", "edit_signatures", 1, "modal", "fade"], ["type", "text", "value", "Samuel Donatte", 1, "form-control"], [1, "avatar", "avatar-xxl", "border", "border-dashed", "bg-light", "flex-shrink-0"], [1, "position-relative", "d-flex", "align-items-center"], ["src", "assets/img/icons/sign-01.svg", "alt", "User Img", 1, "avatar", "avatar-xl"], ["href", "javascript:void(0);", 1, "rounded-trash", "trash-top", "d-flex", "align-items-center", "justify-content-center"], [1, "isax", "isax-trash"], ["id", "delete_modal", 1, "modal", "fade"], [1, "modal-dialog", "modal-dialog-centered", "modal-sm"], [1, "modal-body", "text-center"], ["src", "assets/img/icons/delete.svg", "alt", "img"], [1, "mb-1"], [1, "d-flex", "justify-content-center"], ["href", "javascript:void(0);", "data-bs-dismiss", "modal", 1, "btn", "btn-outline-white", "me-3"], ["href", "javascript:void(0);", "data-bs-dismiss", "modal", 1, "btn", "btn-primary"]], template: function EsignaturesComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275domElementStart(0, "div", 0)(1, "div", 1)(2, "div", 2)(3, "h6", 3);
+      \u0275\u0275text(4, "eSignatures");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(5, "form")(6, "div", 1)(7, "div", 4)(8, "div", 5)(9, "div", 6)(10, "span", 7);
+      \u0275\u0275domElement(11, "i", 8);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElement(12, "input", 9);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(13, "div", 5)(14, "a", 10);
+      \u0275\u0275domElement(15, "i", 11);
+      \u0275\u0275text(16, "New Signature");
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(17, "div", 12)(18, "table", 13)(19, "thead", 14)(20, "tr")(21, "th", 15);
+      \u0275\u0275text(22, "Signature Name");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(23, "th");
+      \u0275\u0275text(24, "Signature");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(25, "th");
+      \u0275\u0275text(26, "Default");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(27, "th");
+      \u0275\u0275text(28, "Status");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElement(29, "th", 15);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(30, "tbody")(31, "tr")(32, "td")(33, "a", 16);
+      \u0275\u0275text(34, "Samuel Donatte");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(35, "td");
+      \u0275\u0275domElement(36, "img", 17);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(37, "td")(38, "a", 18);
+      \u0275\u0275domElement(39, "i", 19);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(40, "td")(41, "div", 20);
+      \u0275\u0275domElement(42, "input", 21);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(43, "td", 22)(44, "a", 23);
+      \u0275\u0275domElement(45, "i", 24);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(46, "ul", 25)(47, "li")(48, "a", 26);
+      \u0275\u0275domElement(49, "i", 27);
+      \u0275\u0275text(50, "Edit");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(51, "li")(52, "a", 28);
+      \u0275\u0275domElement(53, "i", 29);
+      \u0275\u0275text(54, "Delete");
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(55, "tr")(56, "td")(57, "a", 16);
+      \u0275\u0275text(58, "Michael Smith");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(59, "td");
+      \u0275\u0275domElement(60, "img", 30);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(61, "td")(62, "a", 18);
+      \u0275\u0275domElement(63, "i", 19);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(64, "td")(65, "div", 20);
+      \u0275\u0275domElement(66, "input", 21);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(67, "td", 22)(68, "a", 23);
+      \u0275\u0275domElement(69, "i", 24);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(70, "ul", 25)(71, "li")(72, "a", 26);
+      \u0275\u0275domElement(73, "i", 27);
+      \u0275\u0275text(74, "Edit");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(75, "li")(76, "a", 28);
+      \u0275\u0275domElement(77, "i", 29);
+      \u0275\u0275text(78, "Delete");
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(79, "tr")(80, "td")(81, "a", 16);
+      \u0275\u0275text(82, "Alberto Alleo");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(83, "td");
+      \u0275\u0275domElement(84, "img", 31);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(85, "td")(86, "a", 18);
+      \u0275\u0275domElement(87, "i", 19);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(88, "td")(89, "div", 20);
+      \u0275\u0275domElement(90, "input", 32);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(91, "td", 22)(92, "a", 23);
+      \u0275\u0275domElement(93, "i", 24);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(94, "ul", 25)(95, "li")(96, "a", 26);
+      \u0275\u0275domElement(97, "i", 27);
+      \u0275\u0275text(98, "Edit");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(99, "li")(100, "a", 28);
+      \u0275\u0275domElement(101, "i", 29);
+      \u0275\u0275text(102, "Delete");
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(103, "tr")(104, "td")(105, "a", 16);
+      \u0275\u0275text(106, "Ernesto Janetts");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(107, "td");
+      \u0275\u0275domElement(108, "img", 33);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(109, "td")(110, "a", 18);
+      \u0275\u0275domElement(111, "i", 19);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(112, "td")(113, "div", 20);
+      \u0275\u0275domElement(114, "input", 21);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(115, "td", 22)(116, "a", 23);
+      \u0275\u0275domElement(117, "i", 24);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(118, "ul", 25)(119, "li")(120, "a", 26);
+      \u0275\u0275domElement(121, "i", 27);
+      \u0275\u0275text(122, "Edit");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(123, "li")(124, "a", 28);
+      \u0275\u0275domElement(125, "i", 29);
+      \u0275\u0275text(126, "Delete");
+      \u0275\u0275domElementEnd()()()()()()()()()()();
+      \u0275\u0275domElementStart(127, "div", 34)(128, "div", 35)(129, "div", 36)(130, "div", 37)(131, "h4", 38);
+      \u0275\u0275text(132, "Add Signature");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(133, "button", 39);
+      \u0275\u0275domElement(134, "i", 40);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(135, "form")(136, "div", 41)(137, "div", 1)(138, "label", 42);
+      \u0275\u0275text(139, "Signature Name ");
+      \u0275\u0275domElementStart(140, "span", 43);
+      \u0275\u0275text(141, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(142, "input", 44);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(143, "div", 1)(144, "label", 42);
+      \u0275\u0275text(145, "Signature Name ");
+      \u0275\u0275domElementStart(146, "span", 43);
+      \u0275\u0275text(147, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(148, "div", 45)(149, "div", 46)(150, "span");
+      \u0275\u0275domElement(151, "i", 47);
+      \u0275\u0275text(152, "Upload Signature");
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(153, "div")(154, "div", 48)(155, "label", 42);
+      \u0275\u0275text(156, "Make a Default ");
+      \u0275\u0275domElementStart(157, "span", 43);
+      \u0275\u0275text(158, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(159, "div", 20);
+      \u0275\u0275domElement(160, "input", 21);
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(161, "div", 49)(162, "button", 50);
+      \u0275\u0275text(163, "Cancel");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(164, "button", 51);
+      \u0275\u0275text(165, "Add New");
+      \u0275\u0275domElementEnd()()()()()();
+      \u0275\u0275domElementStart(166, "div", 52)(167, "div", 35)(168, "div", 36)(169, "div", 37)(170, "h4", 38);
+      \u0275\u0275text(171, "Edit Signature");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(172, "button", 39);
+      \u0275\u0275domElement(173, "i", 40);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(174, "form")(175, "div", 41)(176, "div", 1)(177, "label", 42);
+      \u0275\u0275text(178, "Name ");
+      \u0275\u0275domElementStart(179, "span", 43);
+      \u0275\u0275text(180, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(181, "input", 53);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(182, "div", 1)(183, "label", 42);
+      \u0275\u0275text(184, "Signature Name ");
+      \u0275\u0275domElementStart(185, "span", 43);
+      \u0275\u0275text(186, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(187, "div", 45)(188, "div", 46)(189, "span");
+      \u0275\u0275domElement(190, "i", 47);
+      \u0275\u0275text(191, "Upload Signature");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(192, "div", 54)(193, "div", 55);
+      \u0275\u0275domElement(194, "img", 56);
+      \u0275\u0275domElementStart(195, "a", 57);
+      \u0275\u0275domElement(196, "i", 58);
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(197, "div", 1)(198, "div", 48)(199, "label", 42);
+      \u0275\u0275text(200, "Make a Default ");
+      \u0275\u0275domElementStart(201, "span", 43);
+      \u0275\u0275text(202, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(203, "div", 20);
+      \u0275\u0275domElement(204, "input", 21);
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(205, "div")(206, "div", 48)(207, "label", 42);
+      \u0275\u0275text(208, "Status ");
+      \u0275\u0275domElementStart(209, "span", 43);
+      \u0275\u0275text(210, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(211, "div", 20);
+      \u0275\u0275domElement(212, "input", 21);
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(213, "div", 49)(214, "button", 50);
+      \u0275\u0275text(215, "Cancel");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(216, "button", 51);
+      \u0275\u0275text(217, "Save Changes");
+      \u0275\u0275domElementEnd()()()()()();
+      \u0275\u0275domElementStart(218, "div", 59)(219, "div", 60)(220, "div", 36)(221, "div", 61)(222, "div", 1);
+      \u0275\u0275domElement(223, "img", 62);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(224, "h6", 63);
+      \u0275\u0275text(225, "Delete eSignature");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(226, "p", 1);
+      \u0275\u0275text(227, "Are you sure, you want to delete eSignature?");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(228, "div", 64)(229, "a", 65);
+      \u0275\u0275text(230, "Cancel");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(231, "a", 66);
+      \u0275\u0275text(232, "Yes, Delete");
+      \u0275\u0275domElementEnd()()()()()();
+    }
+  }, encapsulation: 2 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(EsignaturesComponent, [{
+    type: Component,
+    args: [{ selector: "app-esignatures", imports: [], template: '<div class="">\n    <div class="mb-3">\n        <div class="pb-3 border-bottom mb-3">\n            <h6 class="mb-0">eSignatures</h6>\n        </div>\n        <form>\n            <div class="mb-3">\n                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">\n                    <div class="d-flex align-items-center flex-wrap gap-2">\n                        <div class="input-group mb-1">\n                            <span class="input-group-text bg-white border-end-0">\n                                <i class="isax isax-search-normal fs-12"></i>\n                            </span>\n                            <input type="text" class="form-control border-start-0 ps-0 bg-white" placeholder="Search">\n                        </div>\n                    </div>\n                    <div class="d-flex align-items-center flex-wrap gap-2">\n                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#add_signatures" class="btn btn-primary d-flex align-items-center"><i class="isax isax-add-circle5 me-2"></i>New Signature</a>\n                    </div>\n                </div>\n            </div>\n            <div class="table-responsive table-nowrap">\n                <table class="table border dataTable">\n                    <thead class="table-light">\n                        <tr>\n                            <th class="no-sort">Signature Name</th>\n                            <th>Signature</th>\n                            <th>Default</th>\n                            <th>Status</th>\n                            <th class="no-sort"></th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        <tr>\n                            <td>\n                                <a href="javascript:void(0);" class="text-dark">Samuel Donatte</a>\n                            </td>\n                            <td>\n                                <img src="assets/img/icons/sign-01.svg" alt="User Img">\n                            </td>\n                            <td><a class="rounded-circle bg-light p-1" href="javascript:void(0);"><i class="isax isax-star icon-active"></i></a></td>\n                            <td>\n                                <div class="form-check form-switch">\n                                    <input class="form-check-input" type="checkbox" role="switch" checked="">\n                                </div>\n                            </td>\n                            <td class="action-item">\n                                <a href="javascript:void(0);" data-bs-toggle="dropdown">\n                                    <i class="isax isax-more"></i>\n                                </a>\n                                <ul class="dropdown-menu">\n                                    <li>\n                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#edit_signatures"><i class="isax isax-edit me-2"></i>Edit</a>\n                                    </li>\n                                    <li>\n                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-2"></i>Delete</a>\n                                    </li>\n                                </ul>\n                            </td>\n                        </tr>\n                        <tr>\n                            <td>\n                                <a href="javascript:void(0);" class="text-dark">Michael Smith</a>\n                            </td>\n                            <td>\n                                <img src="assets/img/icons/sign-02.svg" alt="User Img">\n                            </td>\n                            <td><a class="rounded-circle bg-light p-1" href="javascript:void(0);"><i class="isax isax-star icon-active"></i></a></td>\n                            <td>\n                                <div class="form-check form-switch">\n                                    <input class="form-check-input" type="checkbox" role="switch" checked="">\n                                </div>\n                            </td>\n                            <td class="action-item">\n                                <a href="javascript:void(0);" data-bs-toggle="dropdown">\n                                    <i class="isax isax-more"></i>\n                                </a>\n                                <ul class="dropdown-menu">\n                                    <li>\n                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#edit_signatures"><i class="isax isax-edit me-2"></i>Edit</a>\n                                    </li>\n                                    <li>\n                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-2"></i>Delete</a>\n                                    </li>\n                                </ul>\n                            </td>\n                        </tr>\n                        <tr>\n                            <td>\n                                <a href="javascript:void(0);" class="text-dark">Alberto Alleo</a>\n                            </td>\n                            <td>\n                                <img src="assets/img/icons/sign-03.svg" alt="User Img">\n                            </td>\n                            <td><a class="rounded-circle bg-light p-1" href="javascript:void(0);"><i class="isax isax-star icon-active"></i></a></td>\n                            <td>\n                                <div class="form-check form-switch">\n                                    <input class="form-check-input" type="checkbox" role="switch">\n                                </div>\n                            </td>\n                            <td class="action-item">\n                                <a href="javascript:void(0);" data-bs-toggle="dropdown">\n                                    <i class="isax isax-more"></i>\n                                </a>\n                                <ul class="dropdown-menu">\n                                    <li>\n                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#edit_signatures"><i class="isax isax-edit me-2"></i>Edit</a>\n                                    </li>\n                                    <li>\n                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-2"></i>Delete</a>\n                                    </li>\n                                </ul>\n                            </td>\n                        </tr>\n                        <tr>\n                            <td>\n                                <a href="javascript:void(0);" class="text-dark">Ernesto Janetts</a>\n                            </td>\n                            <td>\n                                <img src="assets/img/icons/sign-04.svg" alt="User Img">\n                            </td>\n                            <td><a class="rounded-circle bg-light p-1" href="javascript:void(0);"><i class="isax isax-star icon-active"></i></a></td>\n                            <td>\n                                <div class="form-check form-switch">\n                                    <input class="form-check-input" type="checkbox" role="switch" checked="">\n                                </div>\n                            </td>\n                            <td class="action-item">\n                                <a href="javascript:void(0);" data-bs-toggle="dropdown">\n                                    <i class="isax isax-more"></i>\n                                </a>\n                                <ul class="dropdown-menu">\n                                    <li>\n                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#edit_signatures"><i class="isax isax-edit me-2"></i>Edit</a>\n                                    </li>\n                                    <li>\n                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-2"></i>Delete</a>\n                                    </li>\n                                </ul>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n        </form>\n    </div>\n</div><!-- end col -->\n\n\n        <!-- Start Add Modal  -->\n        <div id="add_signatures" class="modal fade">\n            <div class="modal-dialog modal-dialog-centered">\n                <div class="modal-content">\n                    <div class="modal-header">\n                        <h4 class="modal-title">Add Signature</h4>\n                        <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x"></i></button>\n                    </div>\n                    <form>\n                        <div class="modal-body">\n                            <div class="mb-3">\n                                <label class="form-label">Signature Name <span class="text-danger">*</span></label>\n                                <input type="text" class="form-control">\n                            </div>\n                            <div class="mb-3">\n                                <label class="form-label">Signature Name <span class="text-danger">*</span></label>\n                                <div class="input-block mb-3">\n                                    <div class="form-control p-4 d-flex align-items-center justify-content-center">\n                                        <span><i class="isax isax-image me-2 fs-14"></i>Upload Signature</span>\n                                    </div>\n                                </div>\n                            </div>\n                            <div>\n                                <div class="d-flex align-items-center justify-content-between">\n                                    <label class="form-label">Make a Default <span class="text-danger">*</span></label>\n                                    <div class="form-check form-switch">\n                                        <input class="form-check-input" type="checkbox" role="switch" checked="">\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <div class="modal-footer d-flex align-items-center justify-content-between gap-1">\n                            <button type="button" class="btn btn-outline-white" data-bs-dismiss="modal">Cancel</button>\n                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add New</button>\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </div>\n        <!-- End Add Modal -->\n\n        <!-- Start Edit Modal  -->\n        <div id="edit_signatures" class="modal fade">\n            <div class="modal-dialog modal-dialog-centered">\n                <div class="modal-content">\n                    <div class="modal-header">\n                        <h4 class="modal-title">Edit Signature</h4>\n                        <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x"></i></button>\n                    </div>\n                    <form>\n                        <div class="modal-body">\n                            <div class="mb-3">\n                                <label class="form-label">Name <span class="text-danger">*</span></label>\n                                <input type="text" class="form-control" value="Samuel Donatte">\n                            </div>\n                            <div class="mb-3">\n                                <label class="form-label">Signature Name <span class="text-danger">*</span></label>\n                                <div class="input-block mb-3">\n                                    <div class="form-control p-4 d-flex align-items-center justify-content-center">\n                                        <span><i class="isax isax-image me-2 fs-14"></i>Upload Signature</span>\n                                    </div>\n                                </div>\n                                <div class="avatar avatar-xxl border border-dashed bg-light flex-shrink-0">\n                                    <div class="position-relative d-flex align-items-center">\n                                        <img src="assets/img/icons/sign-01.svg" class="avatar avatar-xl " alt="User Img">\n                                        <a href="javascript:void(0);" class="rounded-trash trash-top d-flex align-items-center justify-content-center"><i class="isax isax-trash"></i></a>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class="mb-3">\n                                <div class="d-flex align-items-center justify-content-between">\n                                    <label class="form-label">Make a Default <span class="text-danger">*</span></label>\n                                    <div class="form-check form-switch">\n                                        <input class="form-check-input" type="checkbox" role="switch" checked="">\n                                    </div>\n                                </div>\n                            </div>\n                            <div>\n                                <div class="d-flex align-items-center justify-content-between">\n                                    <label class="form-label">Status <span class="text-danger">*</span></label>\n                                    <div class="form-check form-switch">\n                                        <input class="form-check-input" type="checkbox" role="switch" checked="">\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <div class="modal-footer d-flex align-items-center justify-content-between gap-1">\n                            <button type="button" class="btn btn-outline-white" data-bs-dismiss="modal">Cancel</button>\n                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save Changes</button>\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </div>\n        <!-- End Edit Modal -->\n\n        <!-- Start Delete Modal  -->\n        <div class="modal fade" id="delete_modal">\n            <div class="modal-dialog modal-dialog-centered modal-sm">\n                <div class="modal-content">\n                    <div class="modal-body text-center">\n                        <div class="mb-3">\n                            <img src="assets/img/icons/delete.svg" alt="img">\n                        </div>\n                        <h6 class="mb-1">Delete eSignature</h6>\n                        <p class="mb-3">Are you sure, you want to delete eSignature?</p>\n                        <div class="d-flex justify-content-center">\n                            <a href="javascript:void(0);" class="btn btn-outline-white me-3" data-bs-dismiss="modal">Cancel</a>\n                            <a href="javascript:void(0);" class="btn btn-primary" data-bs-dismiss="modal">Yes, Delete</a>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- End Delete Modal  -->' }]
+  }], null, null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(EsignaturesComponent, { className: "EsignaturesComponent", filePath: "src/app/modules/setting/presentation/pages/app-settings/esignatures/esignatures.component.ts", lineNumber: 9 });
+})();
+export {
+  EsignaturesComponent
+};
+//# sourceMappingURL=chunk-4MNRP47A.js.map

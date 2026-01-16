@@ -415,11 +415,13 @@ export const SettingRoute = [
               showSubRoute: false,
               page: 'other-settings',
               icon: 'document',
+              permissions:['LIST'],
               subMenus: [
                 {
                   menuValue: 'Custom Css',
                   route: routes.customCss,
                   base: 'custom-css',
+                  permissions:['LIST'],
                 },
                 {
                   menuValue: 'Custom Js',

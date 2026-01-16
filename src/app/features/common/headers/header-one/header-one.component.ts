@@ -78,8 +78,8 @@ export class HeaderOneComponent  {
     this.last = splitVal[3];
   }
 
-  public logOut(): void {
-    this.auth.logout();
+  public async logOut(): Promise<void> {
+  await  this.auth.logout();
   }
   public toggleSideBar(): void {
     this.sideBar.switchSideMenuPosition();

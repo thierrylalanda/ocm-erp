@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/application/email/email.component.scss"],
+  "sourcesContent": [".float-left .btn-group {\n    margin-right: 5px;\n}\n.text-right .d-md-inline-block {\n    margin-right: 5px;\n}\n.margin-right {\n    margin-right: 5px;\n}"],
+  "mappings": ";AAAA,CAAA,WAAA,CAAA;AACI,gBAAA;;AAEJ,CAAA,WAAA,CAAA;AACI,gBAAA;;AAEJ,CAAA;AACI,gBAAA;;",
+  "names": []
+}

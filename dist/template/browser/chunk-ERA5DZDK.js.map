@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/manage/manage-users/manage-users.component.ts", "src/app/features/manage/manage-users/manage-users.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-manage-users',\n  imports: [RouterModule],\n  templateUrl: './manage-users.component.html',\n  styleUrls: [ './manage-users.component.scss']\n})\nexport class ManageUsersComponent {\n\n}\n", "<router-outlet></router-outlet>"],
+  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,uBAAP,MAAO,sBAAoB;;qCAApB,uBAAoB;EAAA;yEAApB,uBAAoB,WAAA,CAAA,CAAA,kBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,8BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACTjC,MAAA,oBAAA,GAAA,eAAA;;oBDKY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIX,sBAAoB,CAAA;UANhC;uBACW,oBAAkB,SACnB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIZ,sBAAoB,EAAA,WAAA,wBAAA,UAAA,kEAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

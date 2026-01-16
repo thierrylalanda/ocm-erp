@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { SettingComponent } from './features/setting/setting.component';
 import { hasPermissions } from './core/guards/permission/has-permissions.guard';
+import { LoggedInGuard } from './core/guards/loggedIn/logged-in.guard';
 
 export const routes: Routes = [
   {
@@ -27,6 +28,8 @@ export const routes: Routes = [
     // Configuration Module - Gestion de la structure hiérarchique
   {
     path: 'app', loadComponent: () => import('./modules/modules').then(m => m.ModulesComponent),
+     canActivate: [LoggedInGuard],
+    canActivateChild: [LoggedInGuard],
     children:[
       {        
         path: 'gestion-societes',
@@ -41,6 +44,7 @@ export const routes: Routes = [
         path: 'manage-users', loadComponent: () => import('./modules/manage-users/manage-users.component').then(m => m.ManageUsersComponent),
         children: [
           { path: 'users', loadComponent: () => import('./modules/manage-users/presentation/pages/users/users.component').then(m => m.UsersComponent) },
+          { path: 'user-detail/:id', loadComponent: () => import('./modules/manage-users/presentation/pages/user-detail/user-detail.component').then(m => m.UserDetailComponent) },
           { path: 'roles-permissions', loadComponent: () => import('./modules/manage-users/presentation/pages/roles-permissions/roles-permissions.component').then(m => m.RolesPermissionsComponent) },
           { path: 'permission/:roleId', loadComponent: () => import('./modules/manage-users/presentation/pages/permission/permission.component').then(m => m.PermissionComponent) },
           { path: 'delete-account-request', loadComponent: () => import('./modules/manage-users/presentation/pages/delete-account-request/delete-account-request.component').then(m => m.DeleteAccountRequestComponent) }

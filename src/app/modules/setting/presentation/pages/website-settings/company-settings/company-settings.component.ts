@@ -6,15 +6,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CompanyService } from '../../../../application/services/company.service';
 import { CompanyDto, CompanyResponseDto } from '../../../../domain/dto/company.dto';
+import { TranslatePipe } from '../../../../../../core/services/translation';
 
 @Component({
   selector: 'app-company-settings',
+  standalone: true,
   imports: [
     CommonModule,
     MatSelectModule,
     MatInputModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslatePipe
   ],
   templateUrl: './company-settings.component.html',
   styleUrls: ['./company-settings.component.scss']

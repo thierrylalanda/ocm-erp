@@ -16,7 +16,7 @@ export type UserStatus = 'ACTIF' | 'INACTIF' | 'SUSPENDU' | 'BLOQUE';
  * Entité Utilisateur adaptée à l'API
  */
 export interface User {
-  id: UserId;
+  id: number;
   nomPrenom: string;
   telephone: string;
   adresse: string;
@@ -44,6 +44,7 @@ export interface User {
  * Commande pour créer un utilisateur (données à envoyer à l'API)
  */
 export interface UserCreateCommand {
+  id?:number,
   nomPrenom: string;
   telephone: string;
   adresse: string;
@@ -115,7 +116,7 @@ export type UsersPagedResponse = PagedResponse<UserResponse>;
  */
 export class UserEntity implements User {
   constructor(
-    public readonly id: UserId,
+    public readonly id: number,
     public readonly nomPrenom: string,
     public readonly telephone: string,
     public readonly adresse: string,
@@ -147,7 +148,7 @@ export class UserEntity implements User {
     const userId: UserId = { value: 0 }; // L'ID sera généré par l'API
 
     return new UserEntity(
-      userId,
+      command.id!,
       command.nomPrenom,
       command.telephone,
       command.adresse,
@@ -301,6 +302,6 @@ export class UserEntity implements User {
    * Obtient l'identifiant sous forme de nombre
    */
   getIdValue(): number {
-    return this.id.value;
+    return this.id;
   }
 }

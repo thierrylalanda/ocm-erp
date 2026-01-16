@@ -1,263 +1,294 @@
 <div class="">
     <div>
+        <!-- En-tête avec bouton d'ajout -->
         <div class="pb-3 d-flex align-items-center justify-content-between border-bottom mb-3">
-            <h6 class="mb-0">Email Settings</h6>
-            <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendgrid"><i class="isax isax-send-25 me-1"></i>Send Test Email</a>
+            <h6 class="mb-0">Paramètres Email</h6>
+            <button type="button" class="btn btn-primary" (click)="openCreateModal()">
+                <i class="isax isax-add me-1"></i>Ajouter une configuration
+            </button>
         </div>
-        <div class="mb-0">
 
-            <!-- start row -->
-            <div class="row">
-                <div class="col-md-6 d-flex">
+        <!-- Messages d'alerte -->
+        <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="isax isax-danger me-2"></i>{{ error }}
+            <button type="button" class="btn-close" (click)="error = null"></button>
+        </div>
+
+        <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="isax isax-tick-circle me-2"></i>{{ success }}
+            <button type="button" class="btn-close" (click)="success = null"></button>
+        </div>
+
+        <!-- Chargement -->
+        <div *ngIf="loading" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+            </div>
+            <p class="mt-2">Chargement des configurations email...</p>
+        </div>
+
+        <!-- Liste des configurations -->
+        <div *ngIf="!loading" class="mb-0">
+            <!-- Message si aucune configuration -->
+            <div *ngIf="emailConfigs.length === 0" class="text-center py-5">
+                <div class="mb-3">
+                    <img src="assets/img/icons/email.svg" alt="Aucune configuration" class="img-fluid" style="max-width: 100px;">
+                </div>
+                <h6 class="mb-2">Aucune configuration email</h6>
+                <p class="text-muted mb-4">Commencez par ajouter une configuration email pour envoyer des emails depuis votre application.</p>
+                <button type="button" class="btn btn-primary" (click)="openCreateModal()">
+                    <i class="isax isax-add me-1"></i>Ajouter une configuration
+                </button>
+            </div>
+
+            <!-- Grille des configurations -->
+            <div class="row" *ngIf="emailConfigs.length > 0">
+                <div class="col-md-6 d-flex" *ngFor="let config of emailConfigs">
                     <div class="card flex-fill">
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
                                 <div class="d-flex align-items-center">
                                     <span class="avatar avatar-lg bg-light me-2 p-2 flex-shrink-0">
-                                        <img src="assets/img/settings/phpmail.svg" class="img-fluid" alt="img">
+                                        <img [src]="getConfigIcon(config)" class="img-fluid" alt="img">
                                     </span>
-                                    <p class="text-gray-9 fw-medium">PHP Mailer</p>
+                                    <div>
+                                        <p class="text-gray-9 fw-medium mb-0">{{ getConfigType(config) }}</p>
+                                        <small class="text-muted">{{ config.host }}:{{ config.port }}</small>
+                                    </div>
                                 </div>
-                                <span class="badge badge-soft-success d-flex align-items-center">
-                                    <span class="badge-dot bg-success me-1"></span> Connected
+                                <span [class]="'badge ' + getStatusBadge(config).class + ' d-flex align-items-center'">
+                                    <span [class]="'badge-dot ' + (config.isActive ? 'bg-success' : 'bg-dark') + ' me-1'"></span>
+                                    {{ getStatusBadge(config).text }}
                                 </span>
                             </div>
-                            <p class="fs-13">Used to send emails safely and easily via PHP code from a web server.</p>
+                            <p class="fs-13 mb-2">
+                                <strong>Expéditeur :</strong> {{ config.fromName }} <{{ config.fromAdress }}>
+                            </p>
+                            <p class="fs-13 mb-2">
+                                <strong>Authentification :</strong> {{ config.authType }}
+                            </p>
+                            <p class="fs-13 mb-0">
+                                <strong>Créé le :</strong> {{ formatDate(config.dateCreation) }}
+                            </p>
                         </div>
                         <div class="card-footer bg-light">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" data-bs-toggle="modal" data-bs-target="#delete_modal">
+                                    <button type="button" class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" 
+                                            (click)="openDeleteModal(config)" title="Supprimer">
                                         <i class="isax isax-trash fs-14"></i>
-                                    </a>
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" data-bs-toggle="modal" data-bs-target="#phpmailersettings">
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" 
+                                            (click)="openEditModal(config)" title="Modifier">
                                         <i class="isax isax-setting-2 fs-14"></i>
-                                    </a>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" 
+                                            (click)="openTestModal(config)" title="Tester">
+                                        <i class="isax isax-send-25 fs-14"></i>
+                                    </button>
                                 </div>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input ms-0" type="checkbox" role="switch" checked>
+                                    <input class="form-check-input ms-0" type="checkbox" role="switch" 
+                                           [checked]="config.isActive"
+                                           (change)="toggleConfigStatus(config, $event)">
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div><!-- end col -->
-                <div class="col-md-6 d-flex">
-                    <div class="card flex-fill">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
-                                <div class="d-flex align-items-center">
-                                    <span class="avatar avatar-lg bg-light me-2 p-2 flex-shrink-0">
-                                        <img src="assets/img/settings/smtp.svg" class="img-fluid" alt="img">
-                                    </span>
-                                    <p class="text-gray-9 fw-medium">SMTP</p>
-                                </div>
-                                <span class="badge badge-soft-success d-flex align-items-center">
-                                    <span class="badge-dot bg-success me-1"></span> Connected
-                                </span>
-                            </div>
-                            <p class="fs-13">SMTP is used to send, relay or forward messages from a mail client.</p>
-                        </div><!-- end card body -->
-                        <div class="card-footer bg-light">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" data-bs-toggle="modal" data-bs-target="#delete_modal">
-                                        <i class="isax isax-trash fs-14"></i>
-                                    </a>
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" data-bs-toggle="modal" data-bs-target="#smtpsettings">
-                                        <i class="isax isax-setting-2 fs-14"></i>
-                                    </a>
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input ms-0" type="checkbox" role="switch" checked>
-                                </div>
-                            </div>
-                        </div><!-- end card footer -->
-                    </div><!-- end card -->
-                </div><!-- end col -->
-                <div class="col-md-6 d-flex">
-                    <div class="card flex-fill">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
-                                <div class="d-flex align-items-center">
-                                    <span class="avatar avatar-lg bg-light me-2 p-2 flex-shrink-0">
-                                        <img src="assets/img/settings/sendgrid.svg" class="img-fluid" alt="img">
-                                    </span>
-                                    <p class="text-gray-9 fw-medium">Send Grid</p>
-                                </div>
-                                <span class="badge badge-soft-primary d-flex align-items-center">
-                                    <span class="badge-dot bg-dark me-1"></span> Not Connected
-                                </span>
-                            </div>
-                            <p class="fs-13">Cloud-based email marketing tool that assists marketers and developers.</p>
-                        </div><!-- end card body -->
-                        <div class="card-footer bg-light">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" data-bs-toggle="modal" data-bs-target="#delete_modal">
-                                        <i class="isax isax-trash fs-14"></i>
-                                    </a>
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" data-bs-toggle="modal" data-bs-target="#phpmailersettings">
-                                        <i class="isax isax-setting-2 fs-14"></i>
-                                    </a>
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input ms-0" type="checkbox" role="switch" checked>
-                                </div>
-                            </div>
-                        </div><!-- end card footer -->
-                    </div><!-- end card -->
-                </div><!-- end col -->
-            </div>
-            <!-- end row -->
-
-        </div>
-    </div>
-</div><!-- end col -->
-
-
- <!-- Start Add Modal  -->
- <div id="phpmailersettings" class="modal fade">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">PHP Mailer</h4>
-                <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x"></i></button>
-            </div>
-            <form>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="form-label">From Email Address <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="form-label">Email Password <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div>
-                                <label class="form-label">From Email Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-
-                    </div>
-
-
                 </div>
-                <div class="modal-footer d-flex align-items-center justify-content-between gap-1">
-                    <button type="button" class="btn btn-outline-white" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-<!-- End Add Modal -->
 
-<!-- Start Add Modal  -->
-<div id="smtpsettings" class="modal fade">
-    <div class="modal-dialog modal-dialog-centered">
+<!-- Modal de configuration -->
+<div class="modal fade" [class.show]="showConfigModal" [style.display]="showConfigModal ? 'block' : 'none'" 
+     [class.d-block]="showConfigModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">SMTP</h4>
-                <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x"></i></button>
+                <h4 class="modal-title">{{ isEditMode ? 'Modifier la configuration' : 'Nouvelle configuration' }}</h4>
+                <button type="button" class="btn-close btn-close-modal custom-btn-close" (click)="closeModals()" aria-label="Close">
+                    <i class="fa-solid fa-x"></i>
+                </button>
             </div>
-            <form>
+            <form (ngSubmit)="submitConfig()" #configForm="ngForm">
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <!-- Serveur SMTP -->
+                        <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">From Email Address <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control">
+                                <label class="form-label">Serveur SMTP <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="formData.host" name="host" required>
+                                <small class="text-muted">Ex: smtp.gmail.com, smtp.office365.com</small>
                             </div>
                         </div>
-                        <div class="col-md-12">
+
+                        <!-- Port -->
+                        <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">Email Password <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="form-label">Email Host <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div>
                                 <label class="form-label">Port <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control">
+                                <input type="number" class="form-control" [(ngModel)]="formData.port" name="port" required min="1" max="65535">
+                                <small class="text-muted">Ex: 587 (TLS), 465 (SSL), 25 (standard)</small>
                             </div>
                         </div>
 
+                        <!-- Type de sécurité -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Sécurité SMTP <span class="text-danger">*</span></label>
+                                <select class="form-select" [(ngModel)]="formData.smtpSecure" name="smtpSecure" required>
+                                    <option *ngFor="let option of smtpSecureOptions" [value]="option.value">{{ option.label }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Type d'authentification -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Type d'authentification <span class="text-danger">*</span></label>
+                                <select class="form-select" [(ngModel)]="formData.authType" name="authType" required>
+                                    <option *ngFor="let option of authTypeOptions" [value]="option.value">{{ option.label }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Nom d'utilisateur -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Nom d'utilisateur <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="formData.username" name="username" required>
+                                <small class="text-muted">Généralement votre adresse email</small>
+                            </div>
+                        </div>
+
+                        <!-- Mot de passe -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Mot de passe <span class="text-danger">*</span></label>
+                                <input type="password" class="form-control" [(ngModel)]="formData.passwordTxt" name="passwordTxt" [required]="!isEditMode">
+                                <small class="text-muted" *ngIf="isEditMode">Laissez vide pour ne pas modifier</small>
+                            </div>
+                        </div>
+
+                        <!-- Adresse d'expédition -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Adresse d'expédition <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" [(ngModel)]="formData.fromAdress" name="fromAdress" required>
+                            </div>
+                        </div>
+
+                        <!-- Nom d'expéditeur -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Nom d'expéditeur <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="formData.fromName" name="fromName" required>
+                            </div>
+                        </div>
+
+                        <!-- Email de test -->
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Email de test</label>
+                                <input type="email" class="form-control" [(ngModel)]="formData.testEmail" name="testEmail">
+                                <small class="text-muted">Adresse email pour les tests de configuration</small>
+                            </div>
+                        </div>
+
+                        <!-- Statut actif -->
+                        <div class="col-md-12">
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch" 
+                                       [(ngModel)]="formData.isActive" name="isActive" id="isActive">
+                                <label class="form-check-label" for="isActive">Configuration active</label>
+                            </div>
+                        </div>
                     </div>
-
-
                 </div>
                 <div class="modal-footer d-flex align-items-center justify-content-between gap-1">
-                    <button type="button" class="btn btn-outline-white" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                    <button type="button" class="btn btn-outline-white" (click)="closeModals()" [disabled]="saving">Annuler</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="saving">
+                        <span *ngIf="saving" class="spinner-border spinner-border-sm me-1"></span>
+                        {{ isEditMode ? 'Mettre à jour' : 'Créer' }}
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<!-- End Add Modal -->
 
-<!-- Start Add Modal  -->
-<div id="sendgrid" class="modal fade">
+<!-- Modal de test d'email -->
+<div class="modal fade" [class.show]="showTestModal" [style.display]="showTestModal ? 'block' : 'none'" 
+     [class.d-block]="showTestModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Test Mail</h4>
-                <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x"></i></button>
+                <h4 class="modal-title">Test d'envoi d'email</h4>
+                <button type="button" class="btn-close btn-close-modal custom-btn-close" (click)="closeModals()" aria-label="Close">
+                    <i class="fa-solid fa-x"></i>
+                </button>
             </div>
-            <form>
+            <form (ngSubmit)="sendTestEmail()" #testForm="ngForm">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <div>
-                                <label class="form-label">Email Address <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control">
+                            <div class="mb-3">
+                                <label class="form-label">Adresse email de test <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" [(ngModel)]="testEmailData.emailAddress" name="emailAddress" required>
+                                <small class="text-muted">L'email de test sera envoyé à cette adresse</small>
                             </div>
                         </div>
-
-
+                        <div class="col-md-12" *ngIf="emailConfigs.length > 1">
+                            <div class="mb-3">
+                                <label class="form-label">Configuration à tester</label>
+                                <select class="form-select" [(ngModel)]="testEmailData.configId" name="configId">
+                                    <option [value]="undefined">Configuration par défaut</option>
+                                    <option *ngFor="let config of emailConfigs" [value]="config.id">
+                                        {{ getConfigType(config) }} ({{ config.host }})
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-
-
                 </div>
                 <div class="modal-footer d-flex align-items-center justify-content-between gap-1">
-                    <button type="button" class="btn btn-outline-white" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                    <button type="button" class="btn btn-outline-white" (click)="closeModals()" [disabled]="testing">Annuler</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="testing">
+                        <span *ngIf="testing" class="spinner-border spinner-border-sm me-1"></span>
+                        Envoyer le test
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<!-- End Add Modal -->
 
-<!-- Start Delete Modal  -->
-<div class="modal fade" id="delete_modal">
+<!-- Modal de confirmation de suppression -->
+<div class="modal fade" [class.show]="showDeleteModal" [style.display]="showDeleteModal ? 'block' : 'none'" 
+     [class.d-block]="showDeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
             <div class="modal-body text-center">
                 <div class="mb-3">
-                    <img src="assets/img/icons/delete.svg" alt="img">
+                    <img src="assets/img/icons/delete.svg" alt="Suppression">
                 </div>
-                <h6 class="mb-1">Delete</h6>
-                <p class="mb-3">Are you sure, you want to delete?</p>
+                <h6 class="mb-1">Confirmer la suppression</h6>
+                <p class="mb-3" *ngIf="configToDelete">
+                    Êtes-vous sûr de vouloir supprimer la configuration <strong>{{ configToDelete.host }}</strong> ?
+                </p>
                 <div class="d-flex justify-content-center">
-                    <a href="javascript:void(0);" class="btn btn-outline-white me-3" data-bs-dismiss="modal">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-primary" data-bs-dismiss="modal">Yes, Delete</a>
+                    <button type="button" class="btn btn-outline-white me-3" (click)="closeModals()" [disabled]="saving">Annuler</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteConfig()" [disabled]="saving">
+                        <span *ngIf="saving" class="spinner-border spinner-border-sm me-1"></span>
+                        Supprimer
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- End Delete Modal  -->
+
+<!-- Overlay pour les modals -->
+<div class="modal-backdrop fade" [class.show]="showConfigModal || showTestModal || showDeleteModal" 
+     [style.display]="(showConfigModal || showTestModal || showDeleteModal) ? 'block' : 'none'"></div>

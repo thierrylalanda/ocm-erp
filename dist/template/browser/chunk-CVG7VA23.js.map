@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/application/calls/calls.component.ts", "src/app/features/application/calls/calls.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-calls',\n  templateUrl: './calls.component.html',\n  styleUrls: ['./calls.component.scss'],\n  imports: [RouterModule]\n})\nexport class CallsComponent {\n\n}\n", "<router-outlet></router-outlet>"],
+  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,iBAAP,MAAO,gBAAc;;qCAAd,iBAAc;EAAA;yEAAd,iBAAc,WAAA,CAAA,CAAA,WAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,wBAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACT3B,MAAA,oBAAA,GAAA,eAAA;;oBDOY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAEX,gBAAc,CAAA;UAN1B;uBACW,aAAW,SAGZ,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAEZ,gBAAc,EAAA,WAAA,kBAAA,UAAA,yDAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

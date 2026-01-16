@@ -61,93 +61,196 @@
         </button>
     </div>
 
-    <!-- Start Table List -->
-    <div *ngIf="!loading && !error" class="">
-        <div class="accordion" id="permissionsAccordion">
-            <!-- Dynamic accordion items for each module -->
-            <div *ngFor="let module of getAvailableModules(); let i = index" class="accordion-item">
-                <h2 class="accordion-header" [id]="'heading' + i">
-                    <button class="accordion-button text-dark" 
-                            [class.collapsed]="i !== 0" 
-                            type="button" 
-                            data-bs-toggle="collapse" 
-                            [attr.data-bs-target]="'#collapse' + i" 
-                            [attr.aria-expanded]="i === 0 ? 'true' : 'false'" 
-                            [attr.aria-controls]="'collapse' + i">
-                        <span class="fs-18 fw-bold">{{ getModuleDisplayName(module) | translate }}</span>
-                    </button>
-                </h2>
-                <div [id]="'collapse' + i" 
-                     class="accordion-collapse collapse" 
-                     [class.show]="i === 0" 
-                     [attr.aria-labelledby]="'heading' + i" 
-                     data-bs-parent="#permissionsAccordion">
-                    <div class="accordion-body">
-                        <!-- Table List -->
-                        <div class="table-responsive table-nowrap">
-                            <table class="table border mb-0">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th class="w-50">{{ 'permissions.permissionManagement.subModule' | translate }}</th>
-                                        <th *ngFor="let action of [PermissionAction.CREATE, PermissionAction.READ, PermissionAction.UPDATE, PermissionAction.DELETE, PermissionAction.EXPORT, PermissionAction.IMPORT, PermissionAction.PRINT]">
-                                            {{ getActionDisplayName(action) | translate }}
-                                        </th>
-                                        <th>{{ 'permissions.permissionManagement.allowAll' | translate }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <ng-container *ngFor="let subModuleEntry of getPermissionsBySubModule(module) | keyvalue">
-                                        <tr>
-                                            <td>{{ subModuleEntry.key }}</td>
-                                            <td *ngFor="let action of [PermissionAction.CREATE, PermissionAction.READ, PermissionAction.UPDATE, PermissionAction.DELETE, PermissionAction.EXPORT, PermissionAction.IMPORT, PermissionAction.PRINT]">
-                                                <ng-container *ngIf="subModuleEntry.value.has(action)">
-                                                    <div class="form-check" *ngFor="let permission of subModuleEntry.value.get(action)">
-                                                        <input class="form-check-input" 
-                                                               type="checkbox" 
-                                                               [id]="'permission-' + permission.id"
-                                                               [checked]="isPermissionAssigned(permission.id)"
-                                                               (change)="onPermissionChange(permission.id, $event)">
-                                                    </div>
-                                                </ng-container>
-                                                <ng-container *ngIf="!subModuleEntry.value.has(action)">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" disabled>
-                                                    </div>
-                                                </ng-container>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" 
-                                                           type="checkbox"
-                                                           [checked]="isAllPermissionsAssignedForSubModule(subModuleEntry.value)"
-                                                           (change)="toggleAllPermissionsForSubModule(subModuleEntry.value, $event)">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </ng-container>
-                                    <tr *ngIf="getPermissionsBySubModule(module).size === 0">
-                                        <td colspan="9" class="text-center py-4">
-                                            <i class="isax isax-shield-slash fs-24 text-muted mb-2 d-block"></i>
-                                            <p class="text-muted mb-0">{{ 'permissions.permissionManagement.noModulePermissions' | translate }}</p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /Table List -->
+    <!-- Start Treeview Structure -->
+    <div *ngIf="!loading && !error" class="treeview-container">
+        <!-- Modules List -->
+        <ul class="treeview">
+            <ng-container *ngFor="let module of getAvailableModules(); let moduleIndex = index">
+                <li class="treeview-item">
+                    <!-- Module Header -->
+                    <div class="treeview-header d-flex align-items-center cursor-pointer" 
+                         (click)="toggleModuleExpansion(moduleIndex)">
+                        <i class="isax isax-arrow-down-1 me-2 transition-icon" 
+                           [class.rotate-90]="isModuleExpanded(moduleIndex)"></i>
+                        <span class="fw-bold">{{ getModuleDisplayName(module) | translate }}</span>
+                        <span class="badge bg-primary rounded-pill ms-2">{{ getPermissionsBySubModule(module).size }}</span>
                     </div>
-                </div>
-            </div>
+                    
+                    <!-- Module Content (Collapsible) -->
+                    <ul *ngIf="isModuleExpanded(moduleIndex)" class="treeview-submenu">
+                        <ng-container *ngFor="let subModuleEntry of getPermissionsBySubModule(module) | keyvalue; let subModuleIndex = index">
+                            <li class="treeview-item">
+                                <!-- Sub-module Header -->
+                                <div class="treeview-header d-flex align-items-center">
+                                    <!-- Zone cliquable pour l'expansion (flèche + texte) -->
+                                    <div class="d-flex align-items-center flex-grow-1 cursor-pointer"
+                                         (click)="toggleSubModuleExpansion(moduleIndex, subModuleIndex)">
+                                        <i class="isax isax-arrow-right-1 me-2 transition-icon" 
+                                           [class.rotate-90]="isSubModuleExpanded(moduleIndex, subModuleIndex)"></i>
+                                        <span class="fw-semibold">{{ subModuleEntry.key }}</span>
+                                    </div>
+                                    <!-- Zone de la checkbox "Allow All" (séparée) -->
+                                    <div class="form-check m-0">
+                                        <input class="form-check-input" 
+                                               type="checkbox"
+                                               [checked]="isAllPermissionsAssignedForSubModule(subModuleEntry.value)"
+                                               (change)="toggleAllPermissionsForSubModule(subModuleEntry.value, $event)">
+                                        <label class="form-check-label small ms-1">
+                                            {{ 'permissions.permissionManagement.allowAll' | translate }}
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Sub-module Content (Collapsible) -->
+                                <ul *ngIf="isSubModuleExpanded(moduleIndex, subModuleIndex)" class="treeview-submenu">
+                                    <ng-container *ngFor="let actionEntry of subModuleEntry.value | keyvalue">
+                                        <li *ngIf="actionEntry.value.length > 0" class="treeview-item">
+                                            <!-- Action Header -->
+                                          
+                                            
+                                            <!-- Permissions List -->
+                                            <ul class="treeview-permissions">
+                                                <ng-container *ngFor="let permission of actionEntry.value">
+                                                    <li class="treeview-permission-item">
+                                                        <div class="form-check d-flex align-items-center">
+                                                            <input class="form-check-input me-2" 
+                                                                   type="checkbox" 
+                                                                   [id]="'permission-' + permission.id"
+                                                                   [checked]="isPermissionAssigned(permission.id)"
+                                                                   (change)="onPermissionChange(permission.id, $event)">
+                                                            <label class="form-check-label flex-grow-1" [for]="'permission-' + permission.id">
+                                                                {{ permission.permNom || permission.permCode }}
+                                                            </label>
+                                                            <!-- Permission Help Icon -->
+                                                            <i *ngIf="permission.permDescription" 
+                                                               class="isax isax-info-circle ms-2 text-muted cursor-help"
+                                                               [attr.data-bs-toggle]="'popover'"
+                                                               [attr.data-bs-trigger]="'hover focus'"
+                                                               [attr.data-bs-placement]="'top'"
+                                                               [attr.data-bs-content]="permission.permDescription"
+                                                               [title]="permission.permDescription"></i>
+                                                        </div>
+                                                    </li>
+                                                </ng-container>
+                                            </ul>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+                            </li>
+                        </ng-container>
+
+                        <!-- No sub-modules message -->
+                        <li *ngIf="getPermissionsBySubModule(module).size === 0" class="treeview-item text-center py-3">
+                            <i class="isax isax-shield-slash fs-24 text-muted mb-2 d-block"></i>
+                            <p class="text-muted mb-0 small">{{ 'permissions.permissionManagement.noModulePermissions' | translate }}</p>
+                        </li>
+                    </ul>
+                </li>
+            </ng-container>
 
             <!-- No permissions message -->
-            <div *ngIf="getAvailableModules().length === 0 && !loading" class="text-center py-5">
+            <li *ngIf="getAvailableModules().length === 0 && !loading" class="treeview-item text-center py-5">
                 <i class="isax isax-shield-slash fs-48 text-muted mb-3 d-block"></i>
                 <h5 class="text-muted mb-2">{{ 'permissions.permissionManagement.noPermissions' | translate }}</h5>
                 <p class="text-muted mb-0">{{ 'permissions.permissionManagement.noPermissionsMessage' | translate }}</p>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
-    <!-- End Table List -->
+    <!-- End Treeview Structure -->
 
 </div>
 <!-- End Content -->
+
+<style>
+.treeview-container {
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.treeview {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.treeview-item {
+    margin-bottom: 0.5rem;
+}
+
+.treeview-header {
+    padding: 0.75rem 1rem;
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.treeview-header:hover {
+    background-color: #f8f9fa;
+    border-color: #0d6efd;
+}
+
+.treeview-submenu {
+    list-style: none;
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-left: 2px solid #dee2e6;
+}
+
+.treeview-action-header {
+    padding: 0.5rem 0.75rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.treeview-permissions {
+    list-style: none;
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.treeview-permission-item {
+    padding: 0.5rem 0.75rem;
+    background-color: white;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    margin-bottom: 0.25rem;
+}
+
+.treeview-permission-item:hover {
+    background-color: #f8f9fa;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-help {
+    cursor: help;
+}
+
+.transition-icon {
+    transition: transform 0.3s ease;
+}
+
+.rotate-90 {
+    transform: rotate(90deg);
+}
+
+.rotate-90.isax-arrow-down-1 {
+    transform: rotate(180deg);
+}
+
+.form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+</style>

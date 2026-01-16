@@ -33,6 +33,7 @@ export class UserService {
     const user = this.authService.user;
     if (!user || !user.id) {
       throw new Error('User not authenticated or user ID not found');
+      
     }
     return this.getUser(user.id);
   }

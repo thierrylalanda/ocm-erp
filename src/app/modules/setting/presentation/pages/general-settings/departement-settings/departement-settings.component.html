@@ -3,12 +3,12 @@
   <div class="pb-3 border-bottom mb-3">
     <div class="row align-items-center">
       <div class="col-md-6">
-        <h6 class="mb-0">Gestion des Départements</h6>
+        <h6 class="mb-0">{{ 'departementSettings.title' | translate }}</h6>
       </div>
       <div class="col-md-6 text-end">
         <button type="button" class="btn btn-primary" (click)="openCreateModal()">
           <i class="fas fa-plus me-2"></i>
-          Nouveau Département
+          {{ 'departementSettings.newDepartement' | translate }}
         </button>
       </div>
     </div>
@@ -34,7 +34,7 @@
         <div class="card-body">
           <div class="d-flex align-items-center justify-content-between">
             <div>
-              <span class="d-block mb-1">Total Départements</span>
+              <span class="d-block mb-1">{{ 'departementSettings.totalDepartements' | translate }}</span>
               <h4 class="mb-0">{{ statistics.total }}</h4>
             </div>
             <div class="avatar avatar-lg bg-primary-light rounded-circle">
@@ -50,7 +50,7 @@
         <div class="card-body">
           <div class="d-flex align-items-center justify-content-between">
             <div>
-              <span class="d-block mb-1">Actifs</span>
+              <span class="d-block mb-1">{{ 'departementSettings.activeDepartements' | translate }}</span>
               <h4 class="mb-0">{{ statistics.actifs }}</h4>
             </div>
             <div class="avatar avatar-lg bg-success-light rounded-circle">
@@ -66,7 +66,7 @@
         <div class="card-body">
           <div class="d-flex align-items-center justify-content-between">
             <div>
-              <span class="d-block mb-1">Inactifs</span>
+              <span class="d-block mb-1">{{ 'departementSettings.inactiveDepartements' | translate }}</span>
               <h4 class="mb-0">{{ statistics.inactifs }}</h4>
             </div>
             <div class="avatar avatar-lg bg-danger-light rounded-circle">
@@ -82,7 +82,7 @@
         <div class="card-body">
           <div class="d-flex align-items-center justify-content-between">
             <div>
-              <span class="d-block mb-1">Taux d'Activation</span>
+              <span class="d-block mb-1">{{ 'departementSettings.activationRate' | translate }}</span>
               <h4 class="mb-0">{{ statistics.total > 0 ? Math.round((statistics.actifs / statistics.total) * 100) : 0 }}%</h4>
             </div>
             <div class="avatar avatar-lg bg-info-light rounded-circle">
@@ -99,22 +99,22 @@
     <div class="card-body">
       <div class="row g-3">
         <div class="col-md-4">
-          <label class="form-label">Recherche</label>
+          <label class="form-label">{{ 'common.search' | translate }}</label>
           <input 
             type="text" 
             class="form-control" 
-            placeholder="Rechercher par nom..." 
+            placeholder="{{ 'departementSettings.search' | translate }}" 
             [(ngModel)]="searchTerm"
             (input)="onSearch($any($event.target).value)">
         </div>
         
         
         <div class="col-md-4">
-          <label class="form-label">Statut</label>
+          <label class="form-label">{{ 'departementSettings.status' | translate }}</label>
           <select class="form-select" [(ngModel)]="filterStatus" (change)="onFilterChange()">
-            <option [value]="undefined">Tous les statuts</option>
-            <option [value]="true">Actifs</option>
-            <option [value]="false">Inactifs</option>
+            <option [value]="undefined">{{ 'departementSettings.allStatus' | translate }}</option>
+            <option [value]="true">{{ 'departementSettings.active' | translate }}</option>
+            <option [value]="false">{{ 'departementSettings.inactive' | translate }}</option>
           </select>
         </div>
       </div>
@@ -127,9 +127,9 @@
       <!-- Loader -->
       <div *ngIf="isLoading" class="text-center py-5">
         <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">Chargement...</span>
+          <span class="visually-hidden">{{ 'common.loading' | translate }}</span>
         </div>
-        <p class="mt-2">Chargement des départements...</p>
+        <p class="mt-2">{{ 'departementSettings.loader' | translate }}</p>
       </div>
 
       <!-- Table -->
@@ -137,24 +137,24 @@
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>Nom</th>
-              <th>Description</th>
-              <th>Société</th>
-              <th>Statut</th>
-              <th>Date Création</th>
-              <th class="text-end">Actions</th>
+              <th>{{ 'departementSettings.name' | translate }}</th>
+              <th>{{ 'departementSettings.description' | translate }}</th>
+              <th>{{ 'departementSettings.company' | translate }}</th>
+              <th>{{ 'departementSettings.status' | translate }}</th>
+              <th>{{ 'departementSettings.creationDate' | translate }}</th>
+              <th class="text-end">{{ 'departementSettings.actions' | translate }}</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngIf="paginatedDepartements.length === 0">
               <td colspan="6" class="text-center py-4">
                 <i class="fas fa-building fa-2x text-muted"></i>
-                <p class="mt-2 mb-0">Aucun département trouvé</p>
+                <p class="mt-2 mb-0">{{ 'departementSettings.noResults' | translate }}</p>
                 <p *ngIf="searchTerm || filterSocieteId || filterStatus !== undefined" class="text-muted small">
-                  Essayez de modifier vos filtres de recherche
+                  {{ 'departementSettings.tryFilters' | translate }}
                 </p>
                 <p *ngIf="!searchTerm && !filterSocieteId && filterStatus === undefined" class="text-muted small">
-                  Commencez par créer votre premier département
+                  {{ 'departementSettings.startCreating' | translate }}
                 </p>
               </td>
             </tr>
@@ -194,19 +194,19 @@
                     <li>
                       <a class="dropdown-item" (click)="openEditModal(departement)">
                         <i class="fas fa-edit me-2"></i>
-                        Modifier
+                        {{ 'departementSettings.dropdownActions.edit' | translate }}
                       </a>
                     </li>
                     <li>
                       <a class="dropdown-item" (click)="toggleDepartementStatus(departement)">
                         <i [class]="departement.actif ? 'fas fa-toggle-off me-2' : 'fas fa-toggle-on me-2'"></i>
-                        {{ departement.actif ? 'Désactiver' : 'Activer' }}
+                        {{ departement.actif ? ('departementSettings.dropdownActions.deactivate' | translate) : ('departementSettings.dropdownActions.activate' | translate) }}
                       </a>
                     </li>
                     <li>
                       <a class="dropdown-item text-danger" (click)="deleteDepartement(departement)">
                         <i class="fas fa-trash me-2"></i>
-                        Supprimer
+                        {{ 'departementSettings.dropdownActions.delete' | translate }}
                       </a>
                     </li>
                   </ul>
@@ -220,9 +220,7 @@
       <!-- Pagination -->
       <div *ngIf="!isLoading && paginatedDepartements.length > 0" class="d-flex justify-content-between align-items-center mt-3">
         <div>
-          Affichage {{ (currentPage * pageSize) + 1 }} - 
-          {{ Math.min((currentPage + 1) * pageSize, totalElements) }} 
-          sur {{ totalElements }} départements
+          {{ 'departementSettings.paginationText' | translate:{start: (currentPage * pageSize) + 1, end: Math.min((currentPage + 1) * pageSize, totalElements), total: totalElements} }}
         </div>
         <nav>
           <ul class="pagination mb-0">
@@ -256,7 +254,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
-          {{ isEditMode ? 'Modifier le Département' : 'Nouveau Département' }}
+          {{ isEditMode ? ('departementSettings.modal.editTitle' | translate) : ('departementSettings.modal.createTitle' | translate) }}
         </h5>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
@@ -271,53 +269,53 @@
 
           <div class="row g-3">
             <div class="col-md-12">
-              <label class="form-label">Nom <span class="text-danger">*</span></label>
+              <label class="form-label">{{ 'departementSettings.modal.nameLabel' | translate }} <span class="text-danger">*</span></label>
               <input 
                 type="text" 
                 class="form-control" 
                 formControlName="nom"
                 [class.is-invalid]="isFieldInvalid('nom')"
-                placeholder="Ex: Département Informatique">
+                placeholder="{{ 'departementSettings.modal.namePlaceholder' | translate }}">
               
               <div *ngIf="hasError('nom', 'required')" class="invalid-feedback">
-                Le nom est obligatoire
+                {{ 'departementSettings.modal.nameRequired' | translate }}
               </div>
               <div *ngIf="hasError('nom', 'minlength')" class="invalid-feedback">
-                Le nom doit contenir au moins 3 caractères
+                {{ 'departementSettings.modal.nameMinLength' | translate }}
               </div>
               <div *ngIf="hasError('nom', 'maxlength')" class="invalid-feedback">
-                Le nom ne doit pas dépasser 100 caractères
+                {{ 'departementSettings.modal.nameMaxLength' | translate }}
               </div>
             </div>
             
             <div class="col-md-12">
-              <label class="form-label">Description</label>
+              <label class="form-label">{{ 'departementSettings.modal.descriptionLabel' | translate }}</label>
               <textarea 
                 class="form-control" 
                 formControlName="description"
                 [class.is-invalid]="isFieldInvalid('description')"
                 rows="3"
-                placeholder="Description du département..."
+                placeholder="{{ 'departementSettings.modal.descriptionPlaceholder' | translate }}"
                 maxlength="500"></textarea>
               
               <small class="text-muted">
-                {{ departementForm.get('description')?.value?.length || 0 }} / 500 caractères
+                {{ departementForm.get('description')?.value?.length || 0 }} / 500 {{ 'common.characters' | translate }}
               </small>
               <div *ngIf="hasError('description', 'maxlength')" class="invalid-feedback">
-                La description ne doit pas dépasser 500 caractères
+                {{ 'departementSettings.modal.descriptionMaxLength' | translate }}
               </div>
             </div>
          
             
             <div class="col-md-12">
-              <label class="form-label">Statut</label>
+              <label class="form-label">{{ 'departementSettings.modal.statusLabel' | translate }}</label>
               <div class="form-check form-switch">
                 <input 
                   class="form-check-input" 
                   type="checkbox" 
                   formControlName="actif">
                 <label class="form-check-label">
-                  {{ departementForm.get('actif')?.value ? 'Actif' : 'Inactif' }}
+                  {{ departementForm.get('actif')?.value ? ('departementSettings.modal.active' | translate) : ('departementSettings.modal.inactive' | translate) }}
                 </label>
               </div>
             </div>
@@ -330,18 +328,18 @@
             class="btn btn-secondary" 
             (click)="closeModal()"
             [disabled]="isSaving">
-            Annuler
+            {{ 'departementSettings.modal.cancel' | translate }}
           </button>
           <button 
             type="submit" 
             class="btn btn-primary"
             [disabled]="departementForm.invalid || isSaving">
             <span *ngIf="!isSaving">
-              {{ isEditMode ? 'Mettre à jour' : 'Créer' }}
+              {{ isEditMode ? ('departementSettings.modal.update' | translate) : ('departementSettings.modal.create' | translate) }}
             </span>
             <span *ngIf="isSaving">
               <span class="spinner-border spinner-border-sm me-1"></span>
-              {{ isEditMode ? 'Mise à jour...' : 'Création...' }}
+              {{ isEditMode ? ('departementSettings.modal.updating' | translate) : ('departementSettings.modal.creating' | translate) }}
             </span>
           </button>
         </div>

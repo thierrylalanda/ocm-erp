@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/reports/transaction-report/transaction-report.component.ts", "src/app/features/reports/transaction-report/transaction-report.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-transaction-report',\n  imports:[RouterModule],\n  templateUrl: './transaction-report.component.html',\n  styleUrls: [ './transaction-report.component.scss']\n})\nexport class TransactionReportComponent {\n\n}\n", "<router-outlet></router-outlet>"],
+  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,6BAAP,MAAO,4BAA0B;;qCAA1B,6BAA0B;EAAA;yEAA1B,6BAA0B,WAAA,CAAA,CAAA,wBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,oCAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACTvC,MAAA,oBAAA,GAAA,eAAA;;oBDKW,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIV,4BAA0B,CAAA;UANtC;uBACW,0BAAwB,SAC1B,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIX,4BAA0B,EAAA,WAAA,8BAAA,UAAA,+EAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

@@ -1,26 +1,84 @@
 import { Injectable } from '@angular/core';
-import { Router, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { routes } from '../../core.index';
+import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+import { Observable, of, switchMap } from 'rxjs';
+import { AuthService, routes } from '../../core.index';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoggedInGuard {
-  constructor(private router: Router) {}
+  constructor(private router: Router,private authService:AuthService) {}
 
-  canActivate(
-  
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    if (localStorage.getItem('authenticated')) {
-      this.router.navigate([routes.index]);
-      return false;
-    } else {
-      return true;
+   // -----------------------------------------------------------------------------------------------------
+    // @ Public methods
+    // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * Can activate
+     *
+     * @param route
+     * @param state
+     */
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean
+    {
+        const redirectUrl = state.url === routes.login ? routes.login : state.url;
+        return this._check(redirectUrl);
     }
-  }
+
+  /**
+     * Can activate child
+     *
+     * @param childRoute
+     * @param state
+     */
+    canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
+    {
+        const redirectUrl = state.url === routes.login ? routes.login : state.url;
+        return this._check(redirectUrl);
+    }
+
+    /**
+     * Can load
+     *
+     * @param route
+     * @param segments
+     */
+    canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean
+    {
+        return this._check('/');
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Private methods
+    // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * Check the authenticated status
+     *
+     * @param redirectURL
+     * @private
+     */
+    private _check(redirectURL: string): Observable<boolean>
+    {
+        // Check the authentication status
+        return this.authService.check()
+                   .pipe(
+                       switchMap((authenticated) => {
+
+                           // If the user is not authenticated...
+                           if ( !authenticated )
+                           {
+                               // Redirect to the sign-in page
+                               this.router.navigate([routes.login], {queryParams: {redirectURL}});
+
+                               // Prevent the access
+                               return of(false);
+                           }
+                         
+
+                           // Allow the access
+                           return of(true);
+                       })
+                   );
+    }
 }

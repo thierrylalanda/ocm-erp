@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/super-admin/packages/packages.component.scss"],
+  "sourcesContent": [".edit-delete-content {\n    margin-left: -5px;\n}"],
+  "mappings": ";AAAA,CAAA;AACI,eAAA;;",
+  "names": []
+}

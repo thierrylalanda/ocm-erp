@@ -3,12 +3,12 @@
   <div class="pb-3 border-bottom mb-3">
     <div class="row align-items-center">
       <div class="col-md-6">
-        <h6 class="mb-0">Gestion des Sites</h6>
+        <h6 class="mb-0">{{ 'siteSettings.title' | translate }}</h6>
       </div>
       <div class="col-md-6 text-end">
         <button type="button" class="btn btn-primary" (click)="openCreateModal()">
           <i class="isax isax-add me-2"></i>
-          Nouveau Site
+          {{ 'siteSettings.newSite' | translate }}
         </button>
       </div>
     </div>
@@ -33,10 +33,10 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between">
-              <div>
-                <span class="d-block mb-1">Total Sites</span>
-                <h4 class="mb-0">{{ statistics.total }}</h4>
-              </div>
+                <div>
+                  <span class="d-block mb-1">{{ 'siteSettings.totalSites' | translate }}</span>
+                  <h4 class="mb-0">{{ statistics.total }}</h4>
+                </div>
               <div class="avatar avatar-lg bg-primary-light rounded-circle">
                 <i class="isax isax-building-4 text-primary"></i>
               </div>
@@ -49,10 +49,10 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between">
-              <div>
-                <span class="d-block mb-1">Sites Actifs</span>
-                <h4 class="mb-0">{{ statistics.actifs }}</h4>
-              </div>
+                <div>
+                  <span class="d-block mb-1">{{ 'siteSettings.activeSites' | translate }}</span>
+                  <h4 class="mb-0">{{ statistics.actifs }}</h4>
+                </div>
               <div class="avatar avatar-lg bg-success-light rounded-circle">
                 <i class="isax isax-tick-circle text-success"></i>
               </div>
@@ -65,10 +65,10 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between">
-              <div>
-                <span class="d-block mb-1">Sites Inactifs</span>
-                <h4 class="mb-0">{{ statistics.inactifs }}</h4>
-              </div>
+                <div>
+                  <span class="d-block mb-1">{{ 'siteSettings.inactiveSites' | translate }}</span>
+                  <h4 class="mb-0">{{ statistics.inactifs }}</h4>
+                </div>
               <div class="avatar avatar-lg bg-danger-light rounded-circle">
                 <i class="isax isax-close-circle text-danger"></i>
               </div>
@@ -81,10 +81,10 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between">
-              <div>
-                <span class="d-block mb-1">Types</span>
-                <h4 class="mb-0">{{ Object.keys(statistics.parType).length }}</h4>
-              </div>
+                <div>
+                  <span class="d-block mb-1">{{ 'siteSettings.types' | translate }}</span>
+                  <h4 class="mb-0">{{ Object.keys(statistics.parType).length }}</h4>
+                </div>
               <div class="avatar avatar-lg bg-info-light rounded-circle">
                 <i class="isax isax-category text-info"></i>
               </div>
@@ -99,39 +99,39 @@
       <div class="card-body">
         <div class="row g-3">
           <div class="col-md-4">
-            <label class="form-label">Recherche</label>
+            <label class="form-label">{{ 'common.search' | translate }}</label>
             <input 
               type="text" 
               class="form-control" 
-              placeholder="Rechercher par nom, code, ville..."
+              placeholder="{{ 'siteSettings.search' | translate }}"
               [(ngModel)]="searchTerm"
               (input)="onSearch($any($event.target).value)"
             >
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Type</label>
+            <label class="form-label">{{ 'siteSettings.type' | translate }}</label>
             <select class="form-select" [(ngModel)]="filterType" (change)="onFilterChange()">
-              <option value="">Tous les types</option>
+              <option value="">{{ 'siteSettings.allTypes' | translate }}</option>
               <option *ngFor="let type of siteTypes" [value]="type.value">
-                {{ type.label }}
+                {{ 'siteSettings.siteTypes.' + type.value | translate }}
               </option>
             </select>
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Statut</label>
+            <label class="form-label">{{ 'siteSettings.status' | translate }}</label>
             <select class="form-select" [(ngModel)]="filterStatus" (change)="onFilterChange()">
-              <option value="">Tous</option>
-              <option value="active">Actifs</option>
-              <option value="inactive">Inactifs</option>
+              <option value="">{{ 'siteSettings.allStatus' | translate }}</option>
+              <option value="active">{{ 'siteSettings.active' | translate }}</option>
+              <option value="inactive">{{ 'siteSettings.inactive' | translate }}</option>
             </select>
           </div>
 
           <div class="col-md-2">
-            <label class="form-label">Pays</label>
+            <label class="form-label">{{ 'siteSettings.country' | translate }}</label>
             <select class="form-select" [(ngModel)]="filterPays" (change)="onFilterChange()">
-              <option value="">Tous</option>
+              <option value="">{{ 'siteSettings.allCountries' | translate }}</option>
               <option *ngFor="let country of countries" [value]="country.code">
                 {{ country.name }}
               </option>
@@ -149,7 +149,7 @@
           <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">Chargement...</span>
           </div>
-          <p class="mt-2">Chargement des sites...</p>
+          <p class="mt-2">{{ 'siteSettings.loading' | translate }}</p>
         </div>
 
         <!-- Table -->
@@ -157,22 +157,22 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>Code</th>
-                <th>Nom</th>
-                <th>Type</th>
-                <th>Ville</th>
-                <th>Pays</th>
-                <th>Responsable</th>
-                <th>Statut</th>
-                <th>Date Création</th>
-                <th class="text-end">Actions</th>
+                <th>{{ 'siteSettings.code' | translate }}</th>
+                <th>{{ 'siteSettings.name' | translate }}</th>
+                <th>{{ 'siteSettings.type' | translate }}</th>
+                <th>{{ 'siteSettings.city' | translate }}</th>
+                <th>{{ 'siteSettings.country' | translate }}</th>
+                <th>{{ 'siteSettings.manager' | translate }}</th>
+                <th>{{ 'siteSettings.status' | translate }}</th>
+                <th>{{ 'siteSettings.creationDate' | translate }}</th>
+                <th class="text-end">{{ 'siteSettings.actions' | translate }}</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngIf="paginatedSites.length === 0">
                 <td colspan="9" class="text-center py-4">
                   <i class="isax isax-search-normal-1 fs-1 text-muted"></i>
-                  <p class="mt-2 mb-0">Aucun site trouvé</p>
+                  <p class="mt-2 mb-0">{{ 'siteSettings.noSites' | translate }}</p>
                 </td>
               </tr>
               <tr *ngFor="let site of paginatedSites">
@@ -192,7 +192,7 @@
                 </td>
                 <td>
                   <span class="badge bg-info-light text-info">
-                    {{ getSiteTypeLabel(site.type) }}
+                    {{ 'siteSettings.siteTypes.' + site.type | translate }}
                   </span>
                 </td>
                 <td>{{ site.ville }}</td>
@@ -231,13 +231,13 @@
                       <li>
                         <a class="dropdown-item" (click)="openEditModal(site)">
                           <i class="isax isax-edit me-2"></i>
-                          Modifier
+                          {{ 'siteSettings.edit' | translate }}
                         </a>
                       </li>
                       <li>
                         <a class="dropdown-item text-danger" (click)="deleteSite(site)">
                           <i class="isax isax-trash me-2"></i>
-                          Supprimer
+                          {{ 'siteSettings.delete' | translate }}
                         </a>
                       </li>
                     </ul>
@@ -251,9 +251,9 @@
         <!-- Pagination -->
         <div *ngIf="!isLoading && paginatedSites.length > 0" class="d-flex justify-content-between align-items-center mt-3">
           <div>
-            Affichage {{ (currentPage * pageSize) + 1 }} - 
+            {{ 'siteSettings.showing' | translate }} {{ (currentPage * pageSize) + 1 }} - 
             {{ Math.min((currentPage + 1) * pageSize, totalElements) }} 
-            sur {{ totalElements }} sites
+            {{ 'siteSettings.of' | translate }} {{ totalElements }} {{ 'siteSettings.sites' | translate }}
           </div>
           <nav>
             <ul class="pagination mb-0">
@@ -287,7 +287,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
-          {{ isEditMode ? 'Modifier le site' : 'Nouveau site' }}
+          {{ isEditMode ? ('siteSettings.editSite' | translate) : ('siteSettings.newSiteModal' | translate) }}
         </h5>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
@@ -304,7 +304,7 @@
             <!-- Nom -->
             <div class="col-md-6">
               <label class="form-label">
-                Nom <span class="text-danger">*</span>
+                {{ 'siteSettings.siteForm.name' | translate }} <span class="text-danger">*</span>
               </label>
               <input 
                 type="text" 
@@ -313,17 +313,17 @@
                 [class.is-invalid]="isFieldInvalid('nom')"
               >
               <div class="invalid-feedback" *ngIf="hasError('nom', 'required')">
-                Le nom est requis.
+                {{ 'siteSettings.siteForm.nameRequired' | translate }}
               </div>
               <div class="invalid-feedback" *ngIf="hasError('nom', 'minlength')">
-                Le nom doit contenir au moins 3 caractères.
+                {{ 'siteSettings.siteForm.nameMinLength' | translate }}
               </div>
             </div>
 
             <!-- Code -->
             <div class="col-md-6">
               <label class="form-label">
-                Code <span class="text-danger">*</span>
+                {{ 'siteSettings.siteForm.code' | translate }} <span class="text-danger">*</span>
               </label>
               <input 
                 type="text" 
@@ -331,19 +331,19 @@
                 formControlName="code"
                 [class.is-invalid]="isFieldInvalid('code')"
               >
-              <small class="text-muted">Généré automatiquement, modifiable</small>
+              <small class="text-muted">{{ 'siteSettings.siteForm.optional' | translate }}</small>
               <div class="invalid-feedback" *ngIf="hasError('code', 'required')">
-                Le code est requis.
+                {{ 'siteSettings.siteForm.codeRequired' | translate }}
               </div>
               <div class="invalid-feedback" *ngIf="hasError('code', 'pattern')">
-                Le code doit contenir uniquement des lettres et chiffres.
+                {{ 'siteSettings.siteForm.codePattern' | translate }}
               </div>
             </div>
 
             <!-- Type -->
             <div class="col-md-6">
               <label class="form-label">
-                Type <span class="text-danger">*</span>
+                {{ 'siteSettings.siteForm.type' | translate }} <span class="text-danger">*</span>
               </label>
               <select 
                 class="form-select" 
@@ -351,17 +351,17 @@
                 [class.is-invalid]="isFieldInvalid('type')"
               >
                 <option *ngFor="let type of siteTypes" [value]="type.value">
-                  {{ type.label }}
+                  {{ 'siteSettings.siteTypes.' + type.value | translate }}
                 </option>
               </select>
               <div class="invalid-feedback" *ngIf="hasError('type', 'required')">
-                Le type est requis.
+                {{ 'siteSettings.siteForm.typeRequired' | translate }}
               </div>
             </div>
 
             <!-- Statut -->
             <div class="col-md-6">
-              <label class="form-label">Statut</label>
+              <label class="form-label">{{ 'siteSettings.siteForm.status' | translate }}</label>
               <div class="form-check form-switch mt-2">
                 <input 
                   class="form-check-input" 
@@ -369,7 +369,7 @@
                   formControlName="actif"
                 >
                 <label class="form-check-label">
-                  {{ siteForm.get('actif')?.value ? 'Actif' : 'Inactif' }}
+                  {{ siteForm.get('actif')?.value ? ('siteSettings.siteForm.active' | translate) : ('siteSettings.siteForm.inactive' | translate) }}
                 </label>
               </div>
             </div>
@@ -377,7 +377,7 @@
             <!-- Ville -->
             <div class="col-md-6">
               <label class="form-label">
-                Ville <span class="text-danger">*</span>
+                {{ 'siteSettings.siteForm.city' | translate }} <span class="text-danger">*</span>
               </label>
               <input 
                 type="text" 
@@ -386,33 +386,33 @@
                 [class.is-invalid]="isFieldInvalid('ville')"
               >
               <div class="invalid-feedback" *ngIf="hasError('ville', 'required')">
-                La ville est requise.
+                {{ 'siteSettings.siteForm.cityRequired' | translate }}
               </div>
             </div>
 
             <!-- Pays -->
             <div class="col-md-6">
               <label class="form-label">
-                Pays <span class="text-danger">*</span>
+                {{ 'siteSettings.siteForm.country' | translate }} <span class="text-danger">*</span>
               </label>
               <select 
                 class="form-select" 
                 formControlName="pays"
                 [class.is-invalid]="isFieldInvalid('pays')"
               >
-                <option value="">Sélectionner un pays</option>
+                <option value="">{{ 'siteSettings.siteForm.selectCountry' | translate }}</option>
                 <option *ngFor="let country of countries" [value]="country.code">
                   {{ country.name }}
                 </option>
               </select>
               <div class="invalid-feedback" *ngIf="hasError('pays', 'required')">
-                Le pays est requis.
+                {{ 'siteSettings.siteForm.countryRequired' | translate }}
               </div>
             </div>
 
             <!-- Email -->
             <div class="col-md-6">
-              <label class="form-label">Email</label>
+              <label class="form-label">{{ 'siteSettings.siteForm.email' | translate }}</label>
               <input 
                 type="email" 
                 class="form-control" 
@@ -420,13 +420,13 @@
                 [class.is-invalid]="isFieldInvalid('email')"
               >
               <div class="invalid-feedback" *ngIf="hasError('email', 'email')">
-                Veuillez entrer un email valide.
+                {{ 'siteSettings.siteForm.emailInvalid' | translate }}
               </div>
             </div>
 
             <!-- Téléphone -->
             <div class="col-md-6">
-              <label class="form-label">Téléphone</label>
+              <label class="form-label">{{ 'siteSettings.siteForm.phone' | translate }}</label>
               <input 
                 type="tel" 
                 class="form-control" 
@@ -435,13 +435,13 @@
                 [class.is-invalid]="isFieldInvalid('telephone')"
               >
               <div class="invalid-feedback" *ngIf="hasError('telephone', 'pattern')">
-                Format de téléphone invalide.
+                {{ 'siteSettings.siteForm.phoneInvalid' | translate }}
               </div>
             </div>
 
             <!-- Superficie -->
             <div class="col-md-6">
-              <label class="form-label">Superficie (m²)</label>
+              <label class="form-label">{{ 'siteSettings.siteForm.area' | translate }}</label>
               <input 
                 type="number" 
                 class="form-control" 

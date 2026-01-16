@@ -13,12 +13,13 @@ import {
   truncateText,
   getStatusBadge 
 } from '../../../../domain/dto/departement.dto';
+import { TranslatePipe } from '../../../../../../core/services/translation/translate.pipe';
 
 @Component({
   selector: 'app-departement-settings',
   templateUrl: './departement-settings.component.html',
   styleUrls: ['./departement-settings.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule]
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, TranslatePipe]
 })
 export class DepartementSettingsComponent implements OnInit {
   // États

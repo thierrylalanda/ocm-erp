@@ -1,0 +1,272 @@
+import {
+  CommonModule
+} from "./chunk-ZV6UYXXV.js";
+import {
+  Component,
+  setClassMetadata,
+  ɵsetClassDebugInfo,
+  ɵɵdefineComponent,
+  ɵɵdomElement,
+  ɵɵdomElementEnd,
+  ɵɵdomElementStart,
+  ɵɵtext
+} from "./chunk-U4CEU3KS.js";
+import "./chunk-TXDUYLVM.js";
+
+// src/app/features/ui-interface/base-ui/avatar/avatar.component.ts
+var AvatarComponent = class _AvatarComponent {
+  static \u0275fac = function AvatarComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _AvatarComponent)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AvatarComponent, selectors: [["app-avatar"]], decls: 223, vars: 0, consts: [[1, ""], [1, "d-flex", "align-items-sm-center", "flex-sm-row", "flex-column", "gap-2", "pb-3"], [1, "flex-grow-1"], [1, "fs-18", "fw-semibold", "mb-0"], [1, "text-end"], [1, "breadcrumb", "m-0", "py-0"], [1, "breadcrumb-item"], ["href", "javascript: void(0);"], [1, "breadcrumb-item", "active"], [1, "row"], [1, "col-xl-6"], [1, "card", "card-h-100"], [1, "card-header"], [1, "card-title"], [1, "card-body"], [1, "d-flex", "align", "flex-wrap", "gap-2"], [1, "avatar", "avatar-xl", "me-2", "avatar-rounded"], ["src", "assets/img/profiles/avatar-02.jpg", "alt", "img"], [1, "avatar", "avatar-xl", "me-2", "avatar-radius-0"], [1, "avatar", "avatar-xl", "me-2"], [1, "avatar", "avatar-xl", "bg-primary", "avatar-rounded"], [1, "avatar-title"], [1, "avatar", "avatar-xl", "bg-success", "avatar-radius-0"], [1, "avatar", "avatar-xl", "bg-danger"], [1, "card"], [1, "avatar", "avatar-xss", "me-2"], [1, "avatar", "avatar-xs", "me-2"], [1, "avatar", "avatar-sm", "me-2"], [1, "avatar", "avatar-md", "me-2"], [1, "avatar", "avatar-lg", "me-2"], [1, "avatar", "avatar-xxl", "me-2"], [1, "avatar", "avatar-xxxl", "me-2"], [1, "avatar", "avatar-xs", "me-2", "online", "avatar-rounded"], ["src", "assets/img/profiles/avatar-03.jpg", "alt", "img"], [1, "avatar", "avatar-sm", "online", "me-2", "avatar-rounded"], [1, "avatar", "avatar-md", "me-2", "online", "avatar-rounded"], [1, "avatar", "avatar-lg", "me-2", "away", "avatar-rounded"], [1, "avatar", "avatar-xl", "me-2", "online", "avatar-rounded"], [1, "avatar", "avatar-xxl", "me-2", "offline", "avatar-rounded"], [1, "avatar", "avatar-xs", "me-2", "avatar-rounded"], [1, "badge", "rounded-pill", "bg-primary", "avatar-badge"], [1, "avatar", "avatar-sm", "me-2", "avatar-rounded"], [1, "badge", "rounded-pill", "bg-secondary", "avatar-badge"], [1, "avatar", "avatar-md", "me-2", "avatar-rounded"], [1, "badge", "rounded-pill", "bg-warning", "avatar-badge"], [1, "avatar", "avatar-lg", "me-2", "avatar-rounded"], [1, "badge", "rounded-pill", "bg-info", "avatar-badge"], [1, "badge", "rounded-pill", "bg-success", "avatar-badge"], [1, "avatar", "avatar-xxl", "me-2", "avatar-rounded"], [1, "badge", "rounded-pill", "bg-danger", "avatar-badge"], [1, "avatar", "bg-primary", "avatar-rounded"], [1, "avatar", "bg-secondary", "avatar-rounded"], [1, "avatar", "bg-success", "avatar-rounded"], [1, "avatar", "bg-info", "avatar-rounded"], [1, "avatar", "bg-warning", "avatar-rounded"], [1, "avatar", "bg-danger", "avatar-rounded"], [1, "avatar", "bg-primary-subtle", "rounded"], [1, "avatar-title", "text-primary"], [1, "avatar", "bg-secondary-subtle", "rounded"], [1, "avatar-title", "text-secondary"], [1, "avatar", "bg-success-subtle", "rounded"], [1, "avatar-title", "text-success"], [1, "avatar", "bg-info-subtle", "rounded"], [1, "avatar-title", "text-info"], [1, "avatar", "bg-warning-subtle", "rounded"], [1, "avatar-title", "text-warning"], [1, "avatar", "bg-danger-subtle", "rounded"], [1, "avatar-title", "text-danger"], [1, "avatar-list-stacked", "avatar-group-lg", "mb-3"], [1, "avatar"], ["src", "assets/img/profiles/avatar-04.jpg", "alt", "img", 1, "border", "border-white"], ["href", "javascript:void(0);", 1, "avatar", "bg-primary"], [1, "avatar-list-stacked", "mb-3"], [1, "avatar-list-stacked", "avatar-group-sm"], [1, "avatar", "avatar-rounded"], ["src", "assets/img/profiles/avatar-05.jpg", "alt", "img", 1, "border", "border-white"], ["href", "javascript:void(0);", 1, "avatar", "bg-primary", "avatar-rounded"]], template: function AvatarComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275domElementStart(0, "div", 0)(1, "div", 1)(2, "div", 2)(3, "h4", 3);
+      \u0275\u0275text(4, "Avatars");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(5, "div", 4)(6, "ol", 5)(7, "li", 6)(8, "a", 7);
+      \u0275\u0275text(9, "Home");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(10, "li", 6)(11, "a", 7);
+      \u0275\u0275text(12, "Base UI");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(13, "li", 8);
+      \u0275\u0275text(14, "Avatars");
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(15, "div", 9)(16, "div", 10)(17, "div", 11)(18, "div", 12)(19, "h5", 13);
+      \u0275\u0275text(20, "Avatars");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(21, "div", 14)(22, "div", 15)(23, "span", 16);
+      \u0275\u0275domElement(24, "img", 17);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(25, "span", 18);
+      \u0275\u0275domElement(26, "img", 17);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(27, "span", 19);
+      \u0275\u0275domElement(28, "img", 17);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(29, "span", 20)(30, "span", 21);
+      \u0275\u0275text(31, "SR");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(32, "span", 22)(33, "span", 21);
+      \u0275\u0275text(34, "SR");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(35, "span", 23)(36, "span", 21);
+      \u0275\u0275text(37, "SR");
+      \u0275\u0275domElementEnd()()()()()();
+      \u0275\u0275domElementStart(38, "div", 10)(39, "div", 24)(40, "div", 12)(41, "h5", 13);
+      \u0275\u0275text(42, "Avatar Sizes");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(43, "div", 14)(44, "span", 25);
+      \u0275\u0275domElement(45, "img", 17);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(46, "span", 26);
+      \u0275\u0275domElement(47, "img", 17);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(48, "span", 27);
+      \u0275\u0275domElement(49, "img", 17);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(50, "span", 28);
+      \u0275\u0275domElement(51, "img", 17);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(52, "span", 29);
+      \u0275\u0275domElement(53, "img", 17);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(54, "span", 19);
+      \u0275\u0275domElement(55, "img", 17);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(56, "span", 30);
+      \u0275\u0275domElement(57, "img", 17);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(58, "span", 31);
+      \u0275\u0275domElement(59, "img", 17);
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(60, "div", 9)(61, "div", 10)(62, "div", 24)(63, "div", 12)(64, "h5", 13);
+      \u0275\u0275text(65, "Avatar with Status");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(66, "div", 14)(67, "span", 32);
+      \u0275\u0275domElement(68, "img", 33);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(69, "span", 34);
+      \u0275\u0275domElement(70, "img", 33);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(71, "span", 35);
+      \u0275\u0275domElement(72, "img", 33);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(73, "span", 36);
+      \u0275\u0275domElement(74, "img", 33);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(75, "span", 37);
+      \u0275\u0275domElement(76, "img", 33);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(77, "span", 38);
+      \u0275\u0275domElement(78, "img", 33);
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(79, "div", 10)(80, "div", 24)(81, "div", 12)(82, "h5", 13);
+      \u0275\u0275text(83, "Avatar with Badge");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(84, "div", 14)(85, "span", 39);
+      \u0275\u0275domElement(86, "img", 17);
+      \u0275\u0275domElementStart(87, "span", 40);
+      \u0275\u0275text(88, "2");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(89, "span", 41);
+      \u0275\u0275domElement(90, "img", 17);
+      \u0275\u0275domElementStart(91, "span", 42);
+      \u0275\u0275text(92, "5");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(93, "span", 43);
+      \u0275\u0275domElement(94, "img", 17);
+      \u0275\u0275domElementStart(95, "span", 44);
+      \u0275\u0275text(96, "1");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(97, "span", 45);
+      \u0275\u0275domElement(98, "img", 17);
+      \u0275\u0275domElementStart(99, "span", 46);
+      \u0275\u0275text(100, "7");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(101, "span", 16);
+      \u0275\u0275domElement(102, "img", 17);
+      \u0275\u0275domElementStart(103, "span", 47);
+      \u0275\u0275text(104, "3");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(105, "span", 48);
+      \u0275\u0275domElement(106, "img", 17);
+      \u0275\u0275domElementStart(107, "span", 49);
+      \u0275\u0275text(108, "9");
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(109, "div", 10)(110, "div", 24)(111, "div", 12)(112, "h5", 13);
+      \u0275\u0275text(113, "Solid Background Color");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(114, "div", 14)(115, "span", 50)(116, "span", 21);
+      \u0275\u0275text(117, "JD");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(118, "span", 51)(119, "span", 21);
+      \u0275\u0275text(120, "SR");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(121, "span", 52)(122, "span", 21);
+      \u0275\u0275text(123, "BJ");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(124, "span", 53)(125, "span", 21);
+      \u0275\u0275text(126, "AD");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(127, "span", 54)(128, "span", 21);
+      \u0275\u0275text(129, "CB");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(130, "span", 55)(131, "span", 21);
+      \u0275\u0275text(132, "KL");
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(133, "div", 10)(134, "div", 24)(135, "div", 12)(136, "h5", 13);
+      \u0275\u0275text(137, "Soft Background Color");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(138, "div", 14)(139, "span", 56)(140, "span", 57);
+      \u0275\u0275text(141, "JD");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(142, "span", 58)(143, "span", 59);
+      \u0275\u0275text(144, "SR");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(145, "span", 60)(146, "span", 61);
+      \u0275\u0275text(147, "BJ");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(148, "span", 62)(149, "span", 63);
+      \u0275\u0275text(150, "AD");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(151, "span", 64)(152, "span", 65);
+      \u0275\u0275text(153, "CB");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(154, "span", 66)(155, "span", 67);
+      \u0275\u0275text(156, "KL");
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(157, "div", 10)(158, "div", 24)(159, "div", 12)(160, "h5", 13);
+      \u0275\u0275text(161, "Avatar Group - Square");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(162, "div", 14)(163, "div", 68)(164, "span", 69);
+      \u0275\u0275domElement(165, "img", 70);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(166, "span", 69);
+      \u0275\u0275domElement(167, "img", 70);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(168, "span", 69);
+      \u0275\u0275domElement(169, "img", 70);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(170, "a", 71);
+      \u0275\u0275text(171, " +8 ");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(172, "div", 72)(173, "span", 69);
+      \u0275\u0275domElement(174, "img", 70);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(175, "span", 69);
+      \u0275\u0275domElement(176, "img", 70);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(177, "span", 69);
+      \u0275\u0275domElement(178, "img", 70);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(179, "a", 71);
+      \u0275\u0275text(180, " +8 ");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(181, "div", 73)(182, "span", 69);
+      \u0275\u0275domElement(183, "img", 70);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(184, "span", 69);
+      \u0275\u0275domElement(185, "img", 70);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(186, "span", 69);
+      \u0275\u0275domElement(187, "img", 70);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(188, "a", 71);
+      \u0275\u0275text(189, " +8 ");
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(190, "div", 10)(191, "div", 24)(192, "div", 12)(193, "h5", 13);
+      \u0275\u0275text(194, "Avatar Group - Rounded");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(195, "div", 14)(196, "div", 68)(197, "span", 74);
+      \u0275\u0275domElement(198, "img", 75);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(199, "span", 74);
+      \u0275\u0275domElement(200, "img", 75);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(201, "span", 74);
+      \u0275\u0275domElement(202, "img", 75);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(203, "a", 76);
+      \u0275\u0275text(204, " +8 ");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(205, "div", 72)(206, "span", 74);
+      \u0275\u0275domElement(207, "img", 75);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(208, "span", 74);
+      \u0275\u0275domElement(209, "img", 75);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(210, "span", 74);
+      \u0275\u0275domElement(211, "img", 75);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(212, "a", 76);
+      \u0275\u0275text(213, " +8 ");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(214, "div", 73)(215, "span", 74);
+      \u0275\u0275domElement(216, "img", 75);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(217, "span", 74);
+      \u0275\u0275domElement(218, "img", 75);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(219, "span", 74);
+      \u0275\u0275domElement(220, "img", 75);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(221, "a", 76);
+      \u0275\u0275text(222, " +8 ");
+      \u0275\u0275domElementEnd()()()()()()();
+    }
+  }, dependencies: [CommonModule], encapsulation: 2 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AvatarComponent, [{
+    type: Component,
+    args: [{ selector: "app-avatar", imports: [CommonModule], template: '			<!-- Start Content -->\n      <div class="">\n\n        <!-- Page Header -->\n        <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3">\n            <div class="flex-grow-1">\n                <h4 class="fs-18 fw-semibold mb-0">Avatars</h4>\n            </div>\n\n            <div class="text-end">\n                <ol class="breadcrumb m-0 py-0">\n                    <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>\n                    \n                    <li class="breadcrumb-item"><a href="javascript: void(0);">Base UI</a></li>\n                    \n                    <li class="breadcrumb-item active">Avatars</li>\n                </ol>\n            </div>\n</div>\n<!-- End Page Header -->\n        \n<!-- start row -->\n        <div class="row">\n            <div class="col-xl-6">\n                <div class="card card-h-100">\n                    <div class="card-header">\n                        <h5 class="card-title">Avatars</h5>\n                    </div>\n                    <div class="card-body">\n        <div class="d-flex align flex-wrap gap-2">\n          <span class="avatar avatar-xl me-2 avatar-rounded">\n            <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n          </span>\n          <span class="avatar avatar-xl me-2 avatar-radius-0">\n            <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n          </span>\n          <span class="avatar avatar-xl me-2">\n            <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n          </span>\n          <span class="avatar avatar-xl bg-primary avatar-rounded">\n            <span class="avatar-title">SR</span>\n          </span>\n          <span class="avatar avatar-xl bg-success avatar-radius-0">\n            <span class="avatar-title">SR</span>\n          </span>\n          <span class="avatar avatar-xl bg-danger">\n            <span class="avatar-title">SR</span>\n          </span>\n        </div>\n                    </div> <!-- end card body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Avatar Sizes</h5>\n                    </div>\n                    <div class="card-body">\n                        <span class="avatar avatar-xss me-2">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-xs me-2">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-sm me-2">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-md me-2">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-lg me-2">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-xl me-2">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-xxl me-2">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-xxxl me-2">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n        </span>\n                    </div> <!-- end card body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n        </div>\n<!-- end row -->\n  \n<!-- start row -->\n<div class="row">\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Avatar with Status</h5>\n                    </div>\n                    <div class="card-body">\n                        <span class="avatar avatar-xs me-2 online avatar-rounded">\n          <img src="assets/img/profiles/avatar-03.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-sm online me-2 avatar-rounded">\n          <img src="assets/img/profiles/avatar-03.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-md me-2 online avatar-rounded">\n          <img src="assets/img/profiles/avatar-03.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-lg me-2 away avatar-rounded">\n          <img src="assets/img/profiles/avatar-03.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-xl me-2 online avatar-rounded">\n          <img src="assets/img/profiles/avatar-03.jpg" alt="img">\n        </span>\n                        <span class="avatar avatar-xxl me-2 offline avatar-rounded">\n          <img src="assets/img/profiles/avatar-03.jpg" alt="img">\n        </span>\n        \n                    </div> <!-- end card body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Avatar with Badge</h5>\n                    </div>\n                    <div class="card-body">\n                        <span class="avatar avatar-xs me-2 avatar-rounded">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n          <span class="badge rounded-pill bg-primary avatar-badge">2</span>\n                        </span>\n                        <span class="avatar avatar-sm me-2 avatar-rounded">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n          <span class="badge rounded-pill bg-secondary avatar-badge">5</span>\n                        </span>\n                        <span class="avatar avatar-md me-2 avatar-rounded">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n          <span class="badge rounded-pill bg-warning avatar-badge">1</span>\n                        </span>\n                        <span class="avatar avatar-lg me-2 avatar-rounded">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n          <span class="badge rounded-pill bg-info avatar-badge">7</span>\n                        </span>\n                        <span class="avatar avatar-xl me-2 avatar-rounded">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n          <span class="badge rounded-pill bg-success avatar-badge">3</span>\n                        </span>\n                        <span class="avatar avatar-xxl me-2 avatar-rounded">\n          <img src="assets/img/profiles/avatar-02.jpg" alt="img">\n          <span class="badge rounded-pill bg-danger avatar-badge">9</span>\n                        </span>\n                    </div> <!-- end card body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Solid Background Color</h5>\n                    </div>\n                    <div class="card-body">\n                        <span class="avatar bg-primary avatar-rounded">\n          <span class="avatar-title">JD</span>\n                        </span>\n                        <span class="avatar bg-secondary avatar-rounded">\n          <span class="avatar-title">SR</span>\n                        </span>\n                        <span class="avatar bg-success avatar-rounded">\n          <span class="avatar-title">BJ</span>\n                        </span>\n                        <span class="avatar bg-info avatar-rounded">\n          <span class="avatar-title">AD</span>\n                        </span>\n                        <span class="avatar bg-warning avatar-rounded">\n          <span class="avatar-title">CB</span>\n                        </span>\n                        <span class="avatar bg-danger avatar-rounded">\n          <span class="avatar-title">KL</span>\n                        </span>\n                    </div> <!-- end card body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Soft Background Color</h5>\n                    </div>\n                    <div class="card-body">\n        <span class="avatar bg-primary-subtle rounded">\n          <span class="avatar-title text-primary">JD</span>\n        </span>\n        <span class="avatar bg-secondary-subtle rounded">\n          <span class="avatar-title text-secondary">SR</span>\n        </span>\n        <span class="avatar bg-success-subtle rounded">\n          <span class="avatar-title text-success">BJ</span>\n        </span>\n        <span class="avatar bg-info-subtle rounded">\n          <span class="avatar-title text-info">AD</span>\n        </span>\n        <span class="avatar bg-warning-subtle rounded">\n          <span class="avatar-title text-warning">CB</span>\n        </span>\n        <span class="avatar bg-danger-subtle rounded">\n          <span class="avatar-title text-danger">KL</span>\n        </span>\n                    </div> <!-- end card body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Avatar Group - Square</h5>\n                    </div>\n                    <div class="card-body">\n                        <div class="avatar-list-stacked avatar-group-lg mb-3">\n                            <span class="avatar">\n            <img class="border border-white" src="assets/img/profiles/avatar-04.jpg" alt="img">\n          </span>\n                            <span class="avatar">\n            <img class="border border-white" src="assets/img/profiles/avatar-04.jpg" alt="img">\n          </span>\n                            <span class="avatar">\n            <img class="border border-white" src="assets/img/profiles/avatar-04.jpg" alt="img">\n          </span>\n                            <a class="avatar bg-primary" href="javascript:void(0);">\n            +8\n          </a>\n                        </div>\n                        <div class="avatar-list-stacked mb-3">\n                            <span class="avatar">\n            <img class="border border-white" src="assets/img/profiles/avatar-04.jpg" alt="img">\n          </span>\n                            <span class="avatar">\n            <img class="border border-white" src="assets/img/profiles/avatar-04.jpg" alt="img">\n          </span>\n                            <span class="avatar">\n            <img class="border border-white" src="assets/img/profiles/avatar-04.jpg" alt="img">\n          </span>\n                            <a class="avatar bg-primary" href="javascript:void(0);">\n            +8\n          </a>\n                        </div>\n                        <div class="avatar-list-stacked avatar-group-sm">\n                            <span class="avatar">\n            <img class="border border-white" src="assets/img/profiles/avatar-04.jpg" alt="img">\n          </span>\n                            <span class="avatar">\n            <img class="border border-white" src="assets/img/profiles/avatar-04.jpg" alt="img">\n          </span>\n                            <span class="avatar">\n            <img class="border border-white" src="assets/img/profiles/avatar-04.jpg" alt="img">\n          </span>\n                            <a class="avatar bg-primary" href="javascript:void(0);">\n            +8\n          </a>\n                        </div>\n                    </div> <!-- end card body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Avatar Group - Rounded</h5>\n                    </div>\n                    <div class="card-body">\n                        <div class="avatar-list-stacked avatar-group-lg mb-3">\n                            <span class="avatar avatar-rounded">\n            <img class="border border-white" src="assets/img/profiles/avatar-05.jpg" alt="img">\n          </span>\n                            <span class="avatar avatar-rounded">\n            <img class="border border-white" src="assets/img/profiles/avatar-05.jpg" alt="img">\n          </span>\n                            <span class="avatar avatar-rounded">\n            <img class="border border-white" src="assets/img/profiles/avatar-05.jpg" alt="img">\n          </span>\n                            <a class="avatar bg-primary avatar-rounded" href="javascript:void(0);">\n            +8\n          </a>\n                        </div>\n                        <div class="avatar-list-stacked mb-3">\n                            <span class="avatar avatar-rounded">\n            <img class="border border-white" src="assets/img/profiles/avatar-05.jpg" alt="img">\n          </span>\n                            <span class="avatar avatar-rounded">\n            <img class="border border-white" src="assets/img/profiles/avatar-05.jpg" alt="img">\n          </span>\n                            <span class="avatar avatar-rounded">\n            <img class="border border-white" src="assets/img/profiles/avatar-05.jpg" alt="img">\n          </span>\n                            <a class="avatar bg-primary avatar-rounded" href="javascript:void(0);">\n            +8\n          </a>\n                        </div>\n                        <div class="avatar-list-stacked avatar-group-sm">\n                            <span class="avatar avatar-rounded">\n            <img class="border border-white" src="assets/img/profiles/avatar-05.jpg" alt="img">\n          </span>\n                            <span class="avatar avatar-rounded">\n            <img class="border border-white" src="assets/img/profiles/avatar-05.jpg" alt="img">\n          </span>\n                            <span class="avatar avatar-rounded">\n            <img class="border border-white" src="assets/img/profiles/avatar-05.jpg" alt="img">\n          </span>\n                            <a class="avatar bg-primary avatar-rounded" href="javascript:void(0);">\n            +8\n          </a>\n                        </div>\n                    </div> <!-- end card body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n\n        </div>\n<!-- end row -->\n\n    </div>\n<!-- End Content -->' }]
+  }], null, null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AvatarComponent, { className: "AvatarComponent", filePath: "src/app/features/ui-interface/base-ui/avatar/avatar.component.ts", lineNumber: 10 });
+})();
+export {
+  AvatarComponent
+};
+//# sourceMappingURL=chunk-SPAKWX4O.js.map

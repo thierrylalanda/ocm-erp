@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/purchases/purchases/purchases.component.ts", "src/app/features/purchases/purchases/purchases.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-purchases',\n  imports:[RouterModule],\n  templateUrl: './purchases.component.html',\n  styleUrls: [ './purchases.component.scss']\n})\nexport class PurchasesComponent {\n\n}\n", "<router-outlet></router-outlet>"],
+  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,qBAAP,MAAO,oBAAkB;;qCAAlB,qBAAkB;EAAA;yEAAlB,qBAAkB,WAAA,CAAA,CAAA,eAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,4BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACT/B,MAAA,oBAAA,GAAA,eAAA;;oBDKW,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIV,oBAAkB,CAAA;UAN9B;uBACW,iBAAe,SACjB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIX,oBAAkB,EAAA,WAAA,sBAAA,UAAA,+DAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

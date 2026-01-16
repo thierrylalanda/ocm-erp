@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/purchases/debit-notes/debit-notes.component.ts", "src/app/features/purchases/debit-notes/debit-notes.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-debit-notes',\n  imports:[RouterModule],\n  templateUrl: './debit-notes.component.html',\n  styleUrls: [ './debit-notes.component.scss']\n})\nexport class DebitNotesComponent {\n\n}\n", "<router-outlet></router-outlet>"],
+  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,sBAAP,MAAO,qBAAmB;;qCAAnB,sBAAmB;EAAA;yEAAnB,sBAAmB,WAAA,CAAA,CAAA,iBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,6BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACThC,MAAA,oBAAA,GAAA,eAAA;;oBDKW,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIV,qBAAmB,CAAA;UAN/B;uBACW,mBAAiB,SACnB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIX,qBAAmB,EAAA,WAAA,uBAAA,UAAA,mEAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/setting/website-settings/website-settings.component.ts", "src/app/features/setting/website-settings/website-settings.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-website-settings',\n  imports:[RouterModule],\n  templateUrl: './website-settings.component.html',\n  styleUrls: [ './website-settings.component.scss']\n})\nexport class WebsiteSettingsComponent {\n\n}\n", "<router-outlet></router-outlet>"],
+  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,2BAAP,MAAO,0BAAwB;;qCAAxB,2BAAwB;EAAA;yEAAxB,2BAAwB,WAAA,CAAA,CAAA,sBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,kCAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACTrC,MAAA,oBAAA,GAAA,eAAA;;oBDKW,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIV,0BAAwB,CAAA;UANpC;uBACW,wBAAsB,SACxB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIX,0BAAwB,EAAA,WAAA,4BAAA,UAAA,2EAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

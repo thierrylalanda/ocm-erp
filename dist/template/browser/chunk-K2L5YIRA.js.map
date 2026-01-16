@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/ui-interface/advanced-ui/advanced-ui.component.ts", "src/app/features/ui-interface/advanced-ui/advanced-ui.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-advanced-ui',\n  templateUrl: './advanced-ui.component.html',\n  styleUrls: ['./advanced-ui.component.scss'],\n  imports: [RouterModule]\n})\nexport class AdvancedUiComponent {\n\n}\n", "<router-outlet></router-outlet>"],
+  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,sBAAP,MAAO,qBAAmB;;qCAAnB,sBAAmB;EAAA;yEAAnB,sBAAmB,WAAA,CAAA,CAAA,iBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,6BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACThC,MAAA,oBAAA,GAAA,eAAA;;oBDOY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAEX,qBAAmB,CAAA;UAN/B;uBACW,mBAAiB,SAGlB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAEZ,qBAAmB,EAAA,WAAA,uBAAA,UAAA,sEAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

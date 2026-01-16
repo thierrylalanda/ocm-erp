@@ -247,7 +247,8 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
 
   async activateUser(id: UserId): Promise<User> {
     try {
-      const response = await this.http.patch<any>(`${this.baseUrl}/${id.value}/activate`, {}).toPromise();
+      // Utiliser l'API spécifiée: /api/hierarchie/utilisateurs/{userId}/{actif}
+      const response = await this.http.patch<any>(`${this.baseUrl}/${id.value}/1`, {}).toPromise();
       const userResponse = UserMapper.fromApiResponse(response);
       return UserMapper.fromResponseToEntity(userResponse);
     } catch (error) {
@@ -258,11 +259,24 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
 
   async deactivateUser(id: UserId): Promise<User> {
     try {
-      const response = await this.http.patch<any>(`${this.baseUrl}/${id.value}/deactivate`, {}).toPromise();
+      // Utiliser l'API spécifiée: /api/hierarchie/utilisateurs/{userId}/{actif}
+      const response = await this.http.patch<any>(`${this.baseUrl}/${id.value}/0`, {}).toPromise();
       const userResponse = UserMapper.fromApiResponse(response);
       return UserMapper.fromResponseToEntity(userResponse);
     } catch (error) {
       console.error('Erreur désactivation utilisateur:', error);
+      throw error;
+    }
+  }
+
+  async toggleUserStatus(id: UserId, actif: boolean): Promise<User> {
+    try {
+      // Utiliser l'API spécifiée: /api/hierarchie/utilisateurs/{userId}/{actif}
+      const response = await this.http.patch<any>(`${this.baseUrl}/${id.value}/${actif}`, {}).toPromise();
+      const userResponse = UserMapper.fromApiResponse(response);
+      return UserMapper.fromResponseToEntity(userResponse);
+    } catch (error) {
+      console.error('Erreur changement statut utilisateur:', error);
       throw error;
     }
   }

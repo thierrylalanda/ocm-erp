@@ -2,12 +2,16 @@ import { Component, OnInit, inject, ViewChild, ElementRef } from '@angular/core'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 // Import des use cases
 import { GetUsersUseCase } from '../../../application/use-cases/get-users.use-case';
 import { CreateUserUseCase } from '../../../application/use-cases/create-user.use-case';
 import { CREATE_USER_USE_CASE } from '../../../application/use-cases/create-user.use-case.token';
 import { GET_USERS_USE_CASE } from '../../../application/use-cases/get-users.use-case.token';
+
+// Import du repository
+import { USER_REPOSITORY, UserRepository } from '../../../domain/repositories/user.repository';
 
 // Import des DTOs
 import { UserResponseDto, UsersPaginationOptionsDto } from '../../../application/dto/create-user.dto';
@@ -40,11 +44,15 @@ export class UsersComponent implements OnInit {
   // Use cases injectés
   private getUsersUseCase = inject(GET_USERS_USE_CASE);
   private createUserUseCase = inject(CREATE_USER_USE_CASE);
+  
+  // Repository injecté
+  private userRepository = inject<UserRepository>(USER_REPOSITORY);
 
   // Services injectés
   private siteService = inject(SiteService);
   private departementService = inject(DepartementService);
   private authService = inject(AuthService);
+  private router = inject(Router);
 
   // Référence à la modale
   @ViewChild('userFormModal') userFormModal!: ElementRef;
@@ -301,12 +309,16 @@ export class UsersComponent implements OnInit {
    */
   async activateUser(user: UserResponseDto): Promise<void> {
     try {
-      // TODO: Implémenter l'activation via un use case dédié
-      console.log('Activer utilisateur:', user);
+      // Utiliser le repository pour activer l'utilisateur
+      await this.userRepository.activateUser({ value: user.id });
       await this.loadUsers(); // Recharger la liste
+      
+      // Afficher un message de succès
+      alert(`L'utilisateur ${user.nomPrenom} a été activé avec succès.`);
     } catch (error) {
       console.error('Erreur lors de l\'activation:', error);
       this.error = 'Impossible d\'activer l\'utilisateur.';
+      alert('Erreur lors de l\'activation de l\'utilisateur.');
     }
   }
 
@@ -315,12 +327,16 @@ export class UsersComponent implements OnInit {
    */
   async deactivateUser(user: UserResponseDto): Promise<void> {
     try {
-      // TODO: Implémenter la désactivation via un use case dédié
-      console.log('Désactiver utilisateur:', user);
+      // Utiliser le repository pour désactiver l'utilisateur
+      await this.userRepository.deactivateUser({ value: user.id });
       await this.loadUsers(); // Recharger la liste
+      
+      // Afficher un message de succès
+      alert(`L'utilisateur ${user.nomPrenom} a été désactivé avec succès.`);
     } catch (error) {
       console.error('Erreur lors de la désactivation:', error);
       this.error = 'Impossible de désactiver l\'utilisateur.';
+      alert('Erreur lors de la désactivation de l\'utilisateur.');
     }
   }
 
@@ -371,9 +387,8 @@ export class UsersComponent implements OnInit {
    * Ouvre les détails d'un utilisateur
    */
   viewUserDetails(user: UserResponseDto): void {
-    // TODO: Implémenter la navigation vers les détails
-    console.log('Voir les détails de:', user);
-    alert(`Détails de l'utilisateur: ${user.nomPrenom}\nEmail: ${user.email}\nStatut: ${user.statut}`);
+    // Navigation vers la page de détail de l'utilisateur
+    this.router.navigate(['/app/manage-users/user-detail', user.id]);
   }
 
   /**

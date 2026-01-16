@@ -46,6 +46,68 @@ export class AuthUtils
         return !(date.valueOf() > new Date().valueOf() + offsetSeconds * 1000);
     }
 
+    /**
+     * Check if token is expired based on expiresAt date string
+     * @param expiresAt ISO date string
+     * @param offsetSeconds Offset in seconds before actual expiration
+     */
+    static isTokenExpiredByDate(expiresAt: string, offsetSeconds?: number): boolean
+    {
+        // Return if there is no expiresAt date
+        if ( !expiresAt || expiresAt === '' )
+        {
+            return true;
+        }
+
+        try {
+            const expirationDate = new Date(expiresAt);
+            offsetSeconds = offsetSeconds || 0;
+            
+            // Check if the date is valid
+            if ( isNaN(expirationDate.getTime()) )
+            {
+                return true;
+            }
+
+            // Check if the token is expired (with optional offset)
+            return !(expirationDate.valueOf() > new Date().valueOf() + offsetSeconds * 1000);
+        } catch (error) {
+            console.error('Error parsing expiresAt date:', error);
+            return true;
+        }
+    }
+
+    /**
+     * Check if token is about to expire (within threshold)
+     * @param expiresAt ISO date string
+     * @param thresholdSeconds Threshold in seconds before expiration
+     */
+    static isTokenAboutToExpire(expiresAt: string, thresholdSeconds: number = 300): boolean
+    {
+        // Return if there is no expiresAt date
+        if ( !expiresAt || expiresAt === '' )
+        {
+            return true;
+        }
+
+        try {
+            const expirationDate = new Date(expiresAt);
+            
+            // Check if the date is valid
+            if ( isNaN(expirationDate.getTime()) )
+            {
+                return true;
+            }
+
+            // Check if the token will expire within the threshold
+            const timeUntilExpiration = expirationDate.valueOf() - new Date().valueOf();
+            return timeUntilExpiration <= thresholdSeconds * 1000 && timeUntilExpiration > 0;
+        } catch (error) {
+            console.error('Error parsing expiresAt date:', error);
+            return true;
+        }
+    }
+
     // -----------------------------------------------------------------------------------------------------
     // @ Private methods
     // -----------------------------------------------------------------------------------------------------

@@ -32,7 +32,7 @@ export class UpdateUserUseCaseImpl implements UpdateUserUseCase {
     // Vérifier si un autre utilisateur avec le même email existe déjà
     if (dto.email !== existingUser.email) {
       const existingByEmail = await this.userRepository.findByEmail(dto.email);
-      if (existingByEmail && existingByEmail.id.value !== id) {
+      if (existingByEmail && existingByEmail.id !== id) {
         throw new Error(`Un autre utilisateur avec l'email ${dto.email} existe déjà`);
       }
     }
@@ -40,7 +40,7 @@ export class UpdateUserUseCaseImpl implements UpdateUserUseCase {
     // Vérifier si un autre utilisateur avec le même nom d'utilisateur existe déjà
     if (dto.userName !== existingUser.userName) {
       const existingByUsername = await this.userRepository.findByUsername(dto.userName);
-      if (existingByUsername && existingByUsername.id.value !== id) {
+      if (existingByUsername && existingByUsername.id !== id) {
         throw new Error(`Un autre utilisateur avec le nom d'utilisateur ${dto.userName} existe déjà`);
       }
     }

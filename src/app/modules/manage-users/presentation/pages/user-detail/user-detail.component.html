@@ -1,0 +1,328 @@
+<div class="content-two">
+
+<!-- Page Header -->
+    <div class="d-flex d-block align-items-center justify-content-between flex-wrap gap-3 mb-3">
+        <div>
+            <h6>
+                <a [routerLink]="routes.usersList">
+                    <i class="isax isax-arrow-left me-1"></i>
+                    <h1 *ngIf="user">{{ user.nomPrenom }}</h1>
+                </a>
+            </h6>
+        </div>
+        <!-- Chargement -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="spinner"></div>
+    <p>{{ 'pages.userDetail.loading' | translate }}</p>
+  </div>
+
+    </div>
+    <!-- End Page Header -->
+  <!-- En-tête avec bouton retour -->
+
+
+
+  <!-- Chargement -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Chargement en cours...</p>
+  </div>
+
+  <!-- Erreur -->
+  <div *ngIf="error && !loading" class="error-container">
+    <div class="error-icon">!</div>
+    <p>{{ error }}</p>
+    <button class="btn btn-primary" [routerLink]="routes.usersList">
+      Retour à la liste
+    </button>
+  </div>
+
+    <!-- Contenu principal -->
+    <div *ngIf="!loading && !error && user" class="content">
+      <!-- Onglets Bootstrap -->
+      <ul class="nav nav-tabs nav-tabs-bottom border-bottom mb-3" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" [class.active]="selectedTabIndex === 0" 
+             (click)="selectedTabIndex = 0" href="javascript:void(0);">
+            {{ 'pages.userDetail.tabs.basicInfo' | translate }}
+          </a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" [class.active]="selectedTabIndex === 1" 
+             (click)="selectedTabIndex = 1" href="javascript:void(0);">
+            {{ 'pages.userDetail.tabs.passwordChange' | translate }}
+          </a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" [class.active]="selectedTabIndex === 2" 
+             (click)="selectedTabIndex = 2" href="javascript:void(0);">
+            {{ 'pages.userDetail.tabs.roleManagement' | translate }}
+          </a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <!-- Onglet 1: Informations de base -->
+        <div class="tab-pane" [class.active]="selectedTabIndex === 0">
+          <form [formGroup]="basicInfoForm" (ngSubmit)="saveBasicInfo()" class="basic-info-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>{{ 'forms.userForm.fullName' | translate }} *</label>
+                <input type="text" formControlName="nomPrenom" class="form-control" 
+                       [class.is-invalid]="isFieldInvalid(basicInfoForm, 'nomPrenom')">
+                <div *ngIf="isFieldInvalid(basicInfoForm, 'nomPrenom')" class="invalid-feedback">
+                  {{ 'forms.validation.required' | translate }}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>{{ 'forms.userForm.email' | translate }} *</label>
+                <input type="email" formControlName="email" class="form-control"
+                       [class.is-invalid]="isFieldInvalid(basicInfoForm, 'email')">
+                <div *ngIf="isFieldInvalid(basicInfoForm, 'email')" class="invalid-feedback">
+                  {{ basicInfoForm.get('email')?.errors?.['required'] ? ('forms.validation.required' | translate) : 
+                     basicInfoForm.get('email')?.errors?.['email'] ? ('forms.validation.email' | translate) : '' }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>{{ 'forms.userForm.phone' | translate }}</label>
+                <input type="tel" formControlName="telephone" class="form-control"
+                       [class.is-invalid]="isFieldInvalid(basicInfoForm, 'telephone')">
+                <div *ngIf="isFieldInvalid(basicInfoForm, 'telephone')" class="invalid-feedback">
+                  {{ 'forms.validation.invalidPhone' | translate }}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>{{ 'forms.userForm.username' | translate }} *</label>
+                <input type="text" formControlName="userName" class="form-control"
+                       [class.is-invalid]="isFieldInvalid(basicInfoForm, 'userName')">
+                <div *ngIf="isFieldInvalid(basicInfoForm, 'userName')" class="invalid-feedback">
+                  {{ 'forms.validation.required' | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>{{ 'forms.userForm.site' | translate }} *</label>
+                <select formControlName="siteId" class="form-control"
+                        [class.is-invalid]="isFieldInvalid(basicInfoForm, 'siteId')">
+                  <option value="">{{ 'forms.userForm.selectOption' | translate }}</option>
+                  <option *ngFor="let site of siteOptions" [value]="site.value">
+                    {{ site.label }}
+                  </option>
+                </select>
+                <div *ngIf="isFieldInvalid(basicInfoForm, 'siteId')" class="invalid-feedback">
+                  {{ 'forms.validation.required' | translate }}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>{{ 'forms.userForm.department' | translate }} *</label>
+                <select formControlName="departementId" class="form-control"
+                        [class.is-invalid]="isFieldInvalid(basicInfoForm, 'departementId')">
+                  <option value="">{{ 'forms.userForm.selectOption' | translate }}</option>
+                  <option *ngFor="let dept of departmentOptions" [value]="dept.value">
+                    {{ dept.label }}
+                  </option>
+                </select>
+                <div *ngIf="isFieldInvalid(basicInfoForm, 'departementId')" class="invalid-feedback">
+                  {{ 'forms.validation.required' | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>{{ 'forms.userForm.status' | translate }} *</label>
+                <select formControlName="statut" class="form-control"
+                        [class.is-invalid]="isFieldInvalid(basicInfoForm, 'statut')">
+                  <option *ngFor="let status of statusOptions" [value]="status.value">
+                    {{ status.label | translate }}
+                  </option>
+                </select>
+                <div *ngIf="isFieldInvalid(basicInfoForm, 'statut')" class="invalid-feedback">
+                  {{ 'forms.validation.required' | translate }}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Société ID</label>
+                <input type="number" formControlName="societeId" class="form-control" readonly>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label>{{ 'forms.userForm.address' | translate }}</label>
+                <textarea formControlName="adresse" class="form-control" rows="2"></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions action-buttons d-flex align-items-center  gap-1" >
+              <button type="button" class="btn btn-secondary mr-3" (click)="goBack()">{{ 'common.cancel' | translate }}</button>
+              <button type="submit" class="btn btn-primary" [disabled]="basicInfoForm.invalid">
+                {{ 'pages.userDetail.basicInfo.save' | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Onglet 2: Modification du mot de passe -->
+        <div class="tab-pane" [class.active]="selectedTabIndex === 1">
+          <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" class="password-form">
+            <div class="form-group">
+              <label>{{ 'pages.userDetail.passwordChange.currentPassword' | translate }} *</label>
+              <input type="password" formControlName="currentPassword" class="form-control"
+                     [class.is-invalid]="isFieldInvalid(passwordForm, 'currentPassword')">
+              <div *ngIf="isFieldInvalid(passwordForm, 'currentPassword')" class="invalid-feedback">
+                {{ 'forms.validation.required' | translate }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>{{ 'pages.userDetail.passwordChange.newPassword' | translate }} *</label>
+              <input type="password" formControlName="newPassword" class="form-control"
+                     [class.is-invalid]="isFieldInvalid(passwordForm, 'newPassword')">
+              <div *ngIf="isFieldInvalid(passwordForm, 'newPassword')" class="invalid-feedback">
+                {{ passwordForm.get('newPassword')?.errors?.['required'] ? ('forms.validation.required' | translate) : 
+                   passwordForm.get('newPassword')?.errors?.['minlength'] ? ('forms.validation.minLength' | translate:{min: 6}) : '' }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>{{ 'pages.userDetail.passwordChange.confirmPassword' | translate }} *</label>
+              <input type="password" formControlName="confirmPassword" class="form-control"
+                     [class.is-invalid]="isFieldInvalid(passwordForm, 'confirmPassword') || passwordForm.errors?.['passwordMismatch']">
+              <div *ngIf="isFieldInvalid(passwordForm, 'confirmPassword')" class="invalid-feedback">
+                {{ 'forms.validation.required' | translate }}
+              </div>
+              <div *ngIf="passwordForm.errors?.['passwordMismatch'] && (passwordForm.get('confirmPassword')?.dirty || passwordForm.get('confirmPassword')?.touched)"
+                   class="invalid-feedback">
+                {{ 'forms.validation.passwordMismatch' | translate }}
+              </div>
+            </div>
+
+            <div class="form-actions action-buttons d-flex align-items-center  gap-1">
+              <button type="button" class="btn btn-secondary" (click)="passwordForm.reset()">{{ 'pages.userDetail.passwordChange.reset' | translate }}</button>
+              <button type="submit" class="btn btn-primary" [disabled]="passwordForm.invalid">
+                {{ 'pages.userDetail.passwordChange.change' | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Onglet 3: Gestion des rôles -->
+        <div class="tab-pane" [class.active]="selectedTabIndex === 2">
+          <!-- Formulaire d'ajout de rôle -->
+          <div class="card add-role-card">
+            <div class="card-header">
+              <h3>{{ 'pages.userDetail.roleManagement.addRole' | translate }}</h3>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="roleForm" (ngSubmit)="addRole()" class="role-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>{{ 'pages.userDetail.roleManagement.role' | translate }} *</label>
+                    <select formControlName="roleId" class="form-control"
+                            [class.is-invalid]="isFieldInvalid(roleForm, 'roleId')">
+                      <option value="">{{ 'forms.userForm.selectOption' | translate }}</option>
+                      <option *ngFor="let role of availableRoles" [value]="role.id">
+                        {{ role.nom }} ({{ role.code }})
+                      </option>
+                    </select>
+                    <div *ngIf="isFieldInvalid(roleForm, 'roleId')" class="invalid-feedback">
+                      {{ 'forms.validation.required' | translate }}
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>{{ 'pages.userDetail.roleManagement.expirationDate' | translate }} *</label>
+                    <input type="date" formControlName="dateExpiration" class="form-control"
+                           [class.is-invalid]="isFieldInvalid(roleForm, 'dateExpiration')">
+                    <div *ngIf="isFieldInvalid(roleForm, 'dateExpiration')" class="invalid-feedback">
+                      {{ 'forms.validation.required' | translate }}
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox" formControlName="actif">
+                      {{ 'pages.userDetail.roleManagement.active' | translate }}
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary" [disabled]="roleForm.invalid">
+                    {{ 'pages.userDetail.roleManagement.add' | translate }}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Liste des rôles actuels -->
+          <div class="card roles-list-card">
+            <div class="card-header">
+              <h3>{{ 'pages.userDetail.roleManagement.assignedRoles' | translate }}</h3>
+            </div>
+            <div class="card-body">
+              <div *ngIf="loadingRoles" class="loading-roles">
+                <div class="spinner small"></div>
+                <p>{{ 'pages.userDetail.roleManagement.loading' | translate }}</p>
+              </div>
+
+              <div *ngIf="!loadingRoles && userRoles.length === 0" class="no-roles">
+                <p>{{ 'pages.userDetail.roleManagement.noRoles' | translate }}</p>
+              </div>
+
+              <div *ngIf="!loadingRoles && userRoles.length > 0" class="roles-table">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>{{ 'pages.userDetail.roleManagement.roleName' | translate }}</th>
+                      <th>{{ 'pages.userDetail.roleManagement.code' | translate }}</th>
+                      <th>{{ 'pages.userDetail.roleManagement.assignmentDate' | translate }}</th>
+                      <th>{{ 'pages.userDetail.roleManagement.expirationDateCol' | translate }}</th>
+                      <th>{{ 'pages.userDetail.roleManagement.status' | translate }}</th>
+                      <th>{{ 'pages.userDetail.roleManagement.assignedBy' | translate }}</th>
+                      <th>{{ 'pages.userDetail.roleManagement.actions' | translate }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let role of userRoles">
+                      <td>{{ role.roleNom }}</td>
+                      <td><span class="role-code">{{ role.roleCode }}</span></td>
+                      <td>{{ formatDate(role.dateAttribution) }}</td>
+                      <td>{{ formatDate(role.dateExpiration) }}</td>
+                      <td>
+                        <span class="badge" [class.badge-success]="role.actif" [class.badge-danger]="!role.actif">
+                          {{ role.actif ? ('common.active' | translate) : ('common.inactive' | translate) }}
+                        </span>
+                      </td>
+                      <td>{{ role.attribueParNomPrenom }}</td>
+                      <td class="actions">
+                        <button *ngIf="role.actif" class="btn btn-sm btn-warning" 
+                                (click)="deactivateRole(role.id)" [title]="'pages.userDetail.roleManagement.deactivate' | translate">
+                          {{ 'pages.userDetail.roleManagement.deactivate' | translate }}
+                        </button>
+                        <button *ngIf="!role.actif" class="btn btn-sm btn-success"
+                                (click)="activateRole(role.id)" [title]="'pages.userDetail.roleManagement.activate' | translate">
+                          {{ 'pages.userDetail.roleManagement.activate' | translate }}
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

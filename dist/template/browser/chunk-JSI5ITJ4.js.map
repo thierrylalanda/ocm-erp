@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/pages/starter/starter.component.ts", "src/app/features/pages/starter/starter.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-starter',\n  imports:[],\n  templateUrl: './starter.component.html',\n  styleUrls: [ './starter.component.scss']\n})\nexport class StarterComponent {\n\n}\n", "<div class=\"content-two\">\n    <h6 class=\"mb-0\">Starter Page</h6>\n  </div>"],
+  "mappings": ";;;;;;;;;;;;AAQM,IAAO,mBAAP,MAAO,kBAAgB;;qCAAhB,mBAAgB;EAAA;yEAAhB,mBAAgB,WAAA,CAAA,CAAA,aAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,GAAA,aAAA,GAAA,CAAA,GAAA,MAAA,CAAA,GAAA,UAAA,SAAA,0BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACR7B,MAAA,4BAAA,GAAA,OAAA,CAAA,EAAyB,GAAA,MAAA,CAAA;AACJ,MAAA,iBAAA,GAAA,cAAA;AAAY,MAAA,0BAAA,EAAK;;;;;sEDOzB,kBAAgB,CAAA;UAN5B;uBACW,eAAa,SACf,CAAA,GAAE,UAAA,8EAAA,CAAA;;;;6EAIC,kBAAgB,EAAA,WAAA,oBAAA,UAAA,uDAAA,YAAA,EAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

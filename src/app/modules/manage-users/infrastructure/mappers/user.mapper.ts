@@ -12,7 +12,7 @@ export class UserMapper {
     const userId: UserId = { value: dto.id };
 
     return new UserEntity(
-      userId,
+      dto.id,
       dto.nomPrenom,
       dto.telephone,
       dto.adresse,
@@ -44,7 +44,7 @@ export class UserMapper {
     const userId: UserId = { value: response.id };
 
     return new UserEntity(
-      userId,
+      response.id,
       response.nomPrenom,
       response.telephone,
       response.adresse,
