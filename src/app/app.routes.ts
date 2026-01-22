@@ -130,6 +130,9 @@ export const routes: Routes = [
 
         ],
       },
+
+      //Layout
+      { path: 'notifications', loadComponent: () => import('./modules/notifications/notifications.component').then(m => m.NotificationsComponent) }
     ],
   },
   //Features Routes//

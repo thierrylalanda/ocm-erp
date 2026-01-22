@@ -17,7 +17,9 @@
     "yes": "Yes",
     "no": "No",
     "ok": "OK",
-    "retry": "Retry"
+    "retry": "Retry",
+    "active":"Activate",
+    "inactive":"Deactivate"
   },
   "login": {
     "title": "Sign In",

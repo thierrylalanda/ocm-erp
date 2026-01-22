@@ -8,7 +8,7 @@ import {
   SendTestEmailRequestDto
 } from '../../../../domain/dto/email-config.dto';
 import { EmailConfigService } from '../../../../application/services/email-config.service';
-import { AuthService } from '../../../../../../core/core.index';
+import { AuthService, routes, ToasterService } from '../../../../../../core/core.index';
 
 @Component({
   selector: 'app-email-settings',
@@ -19,6 +19,7 @@ import { AuthService } from '../../../../../../core/core.index';
 export class EmailSettingsComponent implements OnInit {
   private emailConfigService = inject(EmailConfigService);
   private authService = inject(AuthService);
+  private toasterService = inject(ToasterService);
 
   // États
   loading = false;
@@ -55,7 +56,7 @@ export class EmailSettingsComponent implements OnInit {
   // Options
   smtpSecureOptions: Array<{ value: 'SSL' | 'TLS' | 'NONE', label: string }> = this.emailConfigService.getSmtpSecureOptions();
   authTypeOptions: Array<{ value: string, label: string }> = this.emailConfigService.getAuthTypeOptions();
-
+routes=routes;
   // Modals
   showConfigModal = false;
   showTestModal = false;
@@ -180,7 +181,7 @@ export class EmailSettingsComponent implements OnInit {
     setTimeout(()=>{
      this.error = null;
     this.success = null;
-    },300);
+    },5000);
     
   }
 
@@ -221,12 +222,14 @@ export class EmailSettingsComponent implements OnInit {
           this.loadEmailConfigs();
           this.closeModals();
           this.saving = false;
+          this.toasterService.typeSuccess(this.success,"Mis a jour config");
         },
         error: (error: any) => {
           console.error('Erreur lors de la mise à jour:', error);
           this.error = error.message || 'Erreur lors de la mise à jour';
           this.saving = false;
           this.closeModals();
+          this.toasterService.typeError(this.error!,"Mise a jour config");
         }
       });
     } else {
@@ -237,12 +240,14 @@ export class EmailSettingsComponent implements OnInit {
           this.loadEmailConfigs();
           this.closeModals();
           this.saving = false;
+          this.toasterService.typeSuccess(this.success,"Creation Config Email");
         },
         error: (error: any) => {
           console.error('Erreur lors de la création:', error);
           this.error = error.message || 'Erreur lors de la création';
           this.saving = false;
           this.closeModals();
+          this.toasterService.typeError(this.error!,"Creation Config Email");
         }
       });
     }
@@ -261,11 +266,13 @@ export class EmailSettingsComponent implements OnInit {
         this.loadEmailConfigs();
         this.closeModals();
         this.saving = false;
+          this.toasterService.typeSuccess(this.success,"Suppression Config");
+
       },
         error: (error: any) => {
-          console.error('Erreur lors de la suppression:', error);
           this.error = error.message || 'Erreur lors de la suppression';
           this.saving = false;
+          this.toasterService.typeError(this.error!,"Suppression Config");
         }
     });
   }
@@ -287,6 +294,7 @@ export class EmailSettingsComponent implements OnInit {
       next: (response) => {
         this.success = response.message || 'Email de test envoyé avec succès';
         this.testing = false;
+        this.toasterService.typeSuccess(this.success,"Email Test");
         setTimeout(() => {
           this.closeModals();
         }, 2000);
@@ -295,6 +303,7 @@ export class EmailSettingsComponent implements OnInit {
           console.error('Erreur lors de l\'envoi de l\'email de test:', error);
           this.error = error.message || 'Erreur lors de l\'envoi de l\'email de test';
           this.testing = false;
+          this.toasterService.typeError(this.error!,"Email Test");
         }
     });
   }
@@ -311,12 +320,14 @@ export class EmailSettingsComponent implements OnInit {
       next: (response) => {
         config.isActive = response.isActive;
         this.success = `Configuration ${isActive ? 'activée' : 'désactivée'} avec succès`;
+        this.toasterService.typeSuccess(this.success,"Status Config");
       },
         error: (error: any) => {
           console.error('Erreur lors du changement de statut:', error);
           this.error = error.message || 'Erreur lors du changement de statut';
           // Revert the checkbox
           target.checked = !isActive;
+          this.toasterService.typeError(this.error!,"Status config");
         }
     });
   }

@@ -1,19 +1,21 @@
 import {
   NgxMaskModule
-} from "./chunk-DBHLDJ4D.js";
+} from "./chunk-NHK6RMYZ.js";
 import {
   BsDatepickerModule
-} from "./chunk-6H2KZBXU.js";
-import "./chunk-KKWHEPUK.js";
+} from "./chunk-MR3VQUUR.js";
+import "./chunk-F375ST7H.js";
 import {
   SettingComponent
-} from "./chunk-YDFU6DKK.js";
-import "./chunk-BLAAMQ2R.js";
+} from "./chunk-ZP7FH52R.js";
+import "./chunk-NAWYXTZ5.js";
 import {
   AuthService,
   SpinnerService,
+  ToasterService,
+  provideToastr,
   routes
-} from "./chunk-U2VXEBUE.js";
+} from "./chunk-YJY3UYMJ.js";
 import {
   AUTO_STYLE,
   AnimationGroupPlayer,
@@ -22,29 +24,29 @@ import {
   sequence,
   style,
   ɵPRE_STYLE
-} from "./chunk-SCUCSJ4X.js";
+} from "./chunk-AWXYRVJS.js";
 import {
   NavigationEnd,
   NavigationStart,
   Router,
   RouterOutlet,
   provideRouter
-} from "./chunk-PCRWA3NK.js";
+} from "./chunk-WOBWH5QA.js";
 import {
   BrowserModule,
   DomRendererFactory2,
   bootstrapApplication
-} from "./chunk-ZM5T2PIK.js";
+} from "./chunk-KYBWVUSB.js";
 import {
   HTTP_INTERCEPTORS,
   HttpErrorResponse,
   provideHttpClient,
   withInterceptorsFromDi
-} from "./chunk-PQZYD7EB.js";
+} from "./chunk-ZCJVS2AD.js";
 import {
   CommonModule,
   TitleCasePipe
-} from "./chunk-ZV6UYXXV.js";
+} from "./chunk-LNSVVXVJ.js";
 import {
   ANIMATION_MODULE_TYPE,
   BehaviorSubject,
@@ -81,7 +83,7 @@ import {
   ɵɵpipeBind1,
   ɵɵtext,
   ɵɵtextInterpolate1
-} from "./chunk-U4CEU3KS.js";
+} from "./chunk-HKG6HBOI.js";
 import {
   __async,
   __objRest,
@@ -2551,171 +2553,173 @@ var routes2 = [
   //Auth Routes//
   {
     path: "auth",
-    loadComponent: () => import("./chunk-3EFUNOQF.js").then((m) => m.AuthComponent),
+    loadComponent: () => import("./chunk-YQIYF7ZC.js").then((m) => m.AuthComponent),
     children: [
-      { path: "login", loadComponent: () => import("./chunk-J6WG63SZ.js").then((m) => m.LoginComponent) },
-      { path: "register", loadComponent: () => import("./chunk-P6KJMCVJ.js").then((m) => m.RegisterComponent) },
-      { path: "lock-screen", loadComponent: () => import("./chunk-PLC3OAB4.js").then((m) => m.LockScreenComponent) },
-      { path: "forgot-password", loadComponent: () => import("./chunk-UIZRDPNK.js").then((m) => m.ForgotPasswordComponent) },
-      { path: "email-verification", loadComponent: () => import("./chunk-GWFM3R35.js").then((m) => m.EmailVerificationComponent) },
-      { path: "two-step-verification", loadComponent: () => import("./chunk-ZZHCRT42.js").then((m) => m.TwoStepVerificationComponent) },
-      { path: "reset-password", loadComponent: () => import("./chunk-NE7QGZBT.js").then((m) => m.ResetPasswordComponent) },
-      { path: "success", loadComponent: () => import("./chunk-BWXZBIVD.js").then((m) => m.SuccessComponent) }
+      { path: "login", loadComponent: () => import("./chunk-GUQTKGLI.js").then((m) => m.LoginComponent) },
+      { path: "register", loadComponent: () => import("./chunk-6F26J2H5.js").then((m) => m.RegisterComponent) },
+      { path: "lock-screen", loadComponent: () => import("./chunk-GGJYFONQ.js").then((m) => m.LockScreenComponent) },
+      { path: "forgot-password", loadComponent: () => import("./chunk-E5SXKV4Z.js").then((m) => m.ForgotPasswordComponent) },
+      { path: "email-verification", loadComponent: () => import("./chunk-PE2OR5XB.js").then((m) => m.EmailVerificationComponent) },
+      { path: "two-step-verification", loadComponent: () => import("./chunk-6DT4YDDP.js").then((m) => m.TwoStepVerificationComponent) },
+      { path: "reset-password", loadComponent: () => import("./chunk-5FBXZOGK.js").then((m) => m.ResetPasswordComponent) },
+      { path: "success", loadComponent: () => import("./chunk-IGWVM7JQ.js").then((m) => m.SuccessComponent) }
     ]
   },
   // Configuration Module - Gestion de la structure hiérarchique
   {
     path: "app",
-    loadComponent: () => import("./chunk-KJRQMTXJ.js").then((m) => m.ModulesComponent),
+    loadComponent: () => import("./chunk-IAMSW5EC.js").then((m) => m.ModulesComponent),
     canActivate: [LoggedInGuard],
     canActivateChild: [LoggedInGuard],
     children: [
       {
         path: "gestion-societes",
-        loadComponent: () => import("./chunk-SPGZGJD2.js").then((m) => m.CompanyDemoComponent)
+        loadComponent: () => import("./chunk-KZ3R3YLA.js").then((m) => m.CompanyDemoComponent)
       },
       {
         path: "societe",
-        loadComponent: () => import("./chunk-EQNAGDB3.js").then((m) => m.CompanyManagementComponent)
+        loadComponent: () => import("./chunk-S3FXSQS5.js").then((m) => m.CompanyManagementComponent)
       },
       //Manage
       {
         path: "manage-users",
-        loadComponent: () => import("./chunk-Z25WRQDW.js").then((m) => m.ManageUsersComponent),
+        loadComponent: () => import("./chunk-PVBW2KO6.js").then((m) => m.ManageUsersComponent),
         children: [
-          { path: "users", loadComponent: () => import("./chunk-TQZQXSQ7.js").then((m) => m.UsersComponent) },
-          { path: "user-detail/:id", loadComponent: () => import("./chunk-TPGREDP7.js").then((m) => m.UserDetailComponent) },
-          { path: "roles-permissions", loadComponent: () => import("./chunk-Q5YLELPG.js").then((m) => m.RolesPermissionsComponent) },
-          { path: "permission/:roleId", loadComponent: () => import("./chunk-UYUJ2ZQA.js").then((m) => m.PermissionComponent) },
-          { path: "delete-account-request", loadComponent: () => import("./chunk-SN3IAFN6.js").then((m) => m.DeleteAccountRequestComponent) }
+          { path: "users", loadComponent: () => import("./chunk-ECITW4V4.js").then((m) => m.UsersComponent) },
+          { path: "user-detail/:id", loadComponent: () => import("./chunk-6HCIQYLD.js").then((m) => m.UserDetailComponent) },
+          { path: "roles-permissions", loadComponent: () => import("./chunk-RC63EIM5.js").then((m) => m.RolesPermissionsComponent) },
+          { path: "permission/:roleId", loadComponent: () => import("./chunk-YM3UMEQ2.js").then((m) => m.PermissionComponent) },
+          { path: "delete-account-request", loadComponent: () => import("./chunk-4RSSXZ4J.js").then((m) => m.DeleteAccountRequestComponent) }
         ]
       },
       //Settings
       {
         path: "settings",
-        loadComponent: () => import("./chunk-PUDFZZ4Y.js").then((m) => SettingComponent),
+        loadComponent: () => import("./chunk-ALUHO7EY.js").then((m) => SettingComponent),
         children: [
           {
             path: "general-settings",
-            loadComponent: () => import("./chunk-QZT5LORO.js").then((m) => m.GeneralSettingsComponent),
+            loadComponent: () => import("./chunk-SDNDC3YV.js").then((m) => m.GeneralSettingsComponent),
             children: [
-              { path: "account-settings", loadComponent: () => import("./chunk-FAOILDDL.js").then((m) => m.AccountSettingsComponent) },
-              { path: "site-settings", loadComponent: () => import("./chunk-DJBRQYD4.js").then((m) => m.SiteSettingsComponent) },
-              { path: "departement-settings", loadComponent: () => import("./chunk-MRM4XJSH.js").then((m) => m.DepartementSettingsComponent) },
-              { path: "security-settings", loadComponent: () => import("./chunk-5GDPFG5J.js").then((m) => m.SecuritySettingsComponent) },
-              { path: "plans-billings", loadComponent: () => import("./chunk-BOPG2L5B.js").then((m) => m.PlansBillingsComponent) },
-              { path: "notifications-settings", loadComponent: () => import("./chunk-I3TXC5A4.js").then((m) => m.NotificationsSettingsComponent) },
-              { path: "integrations-settings", loadComponent: () => import("./chunk-TFXRHBX5.js").then((m) => m.IntegrationsSettingsComponent) }
+              { path: "account-settings", loadComponent: () => import("./chunk-TOQJXOLL.js").then((m) => m.AccountSettingsComponent) },
+              { path: "site-settings", loadComponent: () => import("./chunk-AVERCP3G.js").then((m) => m.SiteSettingsComponent) },
+              { path: "departement-settings", loadComponent: () => import("./chunk-UUTH7Z3Z.js").then((m) => m.DepartementSettingsComponent) },
+              { path: "security-settings", loadComponent: () => import("./chunk-P5EOXV4R.js").then((m) => m.SecuritySettingsComponent) },
+              { path: "plans-billings", loadComponent: () => import("./chunk-R3ETOEJL.js").then((m) => m.PlansBillingsComponent) },
+              { path: "notifications-settings", loadComponent: () => import("./chunk-2VHTEXXZ.js").then((m) => m.NotificationsSettingsComponent) },
+              { path: "integrations-settings", loadComponent: () => import("./chunk-RJFOZJTV.js").then((m) => m.IntegrationsSettingsComponent) }
             ]
           },
           {
             path: "website-settings",
-            loadComponent: () => import("./chunk-7YTSNLVC.js").then((m) => m.WebsiteSettingsComponent),
+            loadComponent: () => import("./chunk-JW5GFWOS.js").then((m) => m.WebsiteSettingsComponent),
             children: [
-              { path: "company-settings", loadComponent: () => import("./chunk-TFWCKXKL.js").then((m) => m.CompanySettingsComponent) },
-              { path: "localization-settings", loadComponent: () => import("./chunk-P6LYHSII.js").then((m) => m.LocalizationSettingsComponent) },
-              { path: "prefixes-settings", loadComponent: () => import("./chunk-5LEPLUXJ.js").then((m) => m.PrefixesSettingsComponent) },
-              { path: "preference-settings", loadComponent: () => import("./chunk-6MFVIWY4.js").then((m) => m.PreferenceSettingsComponent) },
-              { path: "seo-setup", loadComponent: () => import("./chunk-VWZL3X7K.js").then((m) => m.SeoSetupComponent) },
-              { path: "language-settings", loadComponent: () => import("./chunk-EEEEWH3H.js").then((m) => m.LanguageSettingsComponent) },
-              { path: "language-settings2", loadComponent: () => import("./chunk-WB6UHZI4.js").then((m) => m.LanguageSettings2Component) },
-              { path: "maintenance-mode", loadComponent: () => import("./chunk-UZ7UOLPB.js").then((m) => m.MaintenanceModeComponent) },
-              { path: "authentication-settings", loadComponent: () => import("./chunk-2W6XT33F.js").then((m) => m.AuthenticationSettingsComponent) },
-              { path: "ai-configuration-settings", loadComponent: () => import("./chunk-YOZE3DHW.js").then((m) => m.AiConfigurationSettingsComponent) },
-              { path: "appearance-settings", loadComponent: () => import("./chunk-WNNATR25.js").then((m) => m.AppearanceSettingsComponent) },
-              { path: "plugin-manager", loadComponent: () => import("./chunk-ZNM2J7DL.js").then((m) => m.PluginManagerComponent) }
+              { path: "company-settings", loadComponent: () => import("./chunk-7K6QLBTY.js").then((m) => m.CompanySettingsComponent) },
+              { path: "localization-settings", loadComponent: () => import("./chunk-ISS3I2FY.js").then((m) => m.LocalizationSettingsComponent) },
+              { path: "prefixes-settings", loadComponent: () => import("./chunk-DENV4F2I.js").then((m) => m.PrefixesSettingsComponent) },
+              { path: "preference-settings", loadComponent: () => import("./chunk-4CI4WMP5.js").then((m) => m.PreferenceSettingsComponent) },
+              { path: "seo-setup", loadComponent: () => import("./chunk-PCHAUTPS.js").then((m) => m.SeoSetupComponent) },
+              { path: "language-settings", loadComponent: () => import("./chunk-Z7VSBRTG.js").then((m) => m.LanguageSettingsComponent) },
+              { path: "language-settings2", loadComponent: () => import("./chunk-L2GJCYDB.js").then((m) => m.LanguageSettings2Component) },
+              { path: "maintenance-mode", loadComponent: () => import("./chunk-ME6ZV267.js").then((m) => m.MaintenanceModeComponent) },
+              { path: "authentication-settings", loadComponent: () => import("./chunk-3P2T7OX3.js").then((m) => m.AuthenticationSettingsComponent) },
+              { path: "ai-configuration-settings", loadComponent: () => import("./chunk-72OXJOZ3.js").then((m) => m.AiConfigurationSettingsComponent) },
+              { path: "appearance-settings", loadComponent: () => import("./chunk-5HYLTN5A.js").then((m) => m.AppearanceSettingsComponent) },
+              { path: "plugin-manager", loadComponent: () => import("./chunk-KNLRKIRE.js").then((m) => m.PluginManagerComponent) }
             ]
           },
           {
             path: "app-settings",
-            loadComponent: () => import("./chunk-TTEWOFMK.js").then((m) => m.AppSettingsComponent),
+            loadComponent: () => import("./chunk-AI4TDUYN.js").then((m) => m.AppSettingsComponent),
             children: [
-              { path: "invoice-settings", loadComponent: () => import("./chunk-LBARTXKW.js").then((m) => m.InvoiceSettingsComponent) },
-              { path: "invoice-templates", loadComponent: () => import("./chunk-LLZVR37W.js").then((m) => m.InvoiceTemplatesComponent) },
-              { path: "esignatures", loadComponent: () => import("./chunk-4MNRP47A.js").then((m) => m.EsignaturesComponent) },
-              { path: "barcode-settings", loadComponent: () => import("./chunk-GZ2GQRFC.js").then((m) => m.BarcodeSettingsComponent) },
-              { path: "thermal-printer", loadComponent: () => import("./chunk-6KAURHHC.js").then((m) => m.ThermalPrinterComponent) },
-              { path: "custom-fields", loadComponent: () => import("./chunk-6EFW5HUU.js").then((m) => m.CustomFieldsComponent) },
-              { path: "saas-settings", loadComponent: () => import("./chunk-JDDPMYP6.js").then((m) => m.SaasSettingsComponent) }
+              { path: "invoice-settings", loadComponent: () => import("./chunk-4LGKZEUJ.js").then((m) => m.InvoiceSettingsComponent) },
+              { path: "invoice-templates", loadComponent: () => import("./chunk-VJELLUAF.js").then((m) => m.InvoiceTemplatesComponent) },
+              { path: "esignatures", loadComponent: () => import("./chunk-XJKISA4Z.js").then((m) => m.EsignaturesComponent) },
+              { path: "barcode-settings", loadComponent: () => import("./chunk-NDPSV22F.js").then((m) => m.BarcodeSettingsComponent) },
+              { path: "thermal-printer", loadComponent: () => import("./chunk-BGABYVOH.js").then((m) => m.ThermalPrinterComponent) },
+              { path: "custom-fields", loadComponent: () => import("./chunk-IBD4YZGD.js").then((m) => m.CustomFieldsComponent) },
+              { path: "saas-settings", loadComponent: () => import("./chunk-IZOGO3CD.js").then((m) => m.SaasSettingsComponent) }
             ]
           },
           {
             path: "finance-settings",
-            loadComponent: () => import("./chunk-BMRFBSGL.js").then((m) => m.FinanceSettingsComponent),
+            loadComponent: () => import("./chunk-Z6NBY6XA.js").then((m) => m.FinanceSettingsComponent),
             children: [
-              { path: "payment-methods", loadComponent: () => import("./chunk-OPD5P3U6.js").then((m) => m.PaymentMethodsComponent) },
-              { path: "bank-accounts-settings", loadComponent: () => import("./chunk-HBJLHTN3.js").then((m) => m.BankAccountsSettingsComponent) },
-              { path: "tax-rates", loadComponent: () => import("./chunk-OYU66XOV.js").then((m) => m.TaxRatesComponent) },
-              { path: "currencies", loadComponent: () => import("./chunk-5WPFX3CP.js").then((m) => m.CurrenciesComponent) }
+              { path: "payment-methods", loadComponent: () => import("./chunk-OFRXMCRC.js").then((m) => m.PaymentMethodsComponent) },
+              { path: "bank-accounts-settings", loadComponent: () => import("./chunk-HFTWXTI3.js").then((m) => m.BankAccountsSettingsComponent) },
+              { path: "tax-rates", loadComponent: () => import("./chunk-M4WV765B.js").then((m) => m.TaxRatesComponent) },
+              { path: "currencies", loadComponent: () => import("./chunk-HZEF3GLL.js").then((m) => m.CurrenciesComponent) }
             ]
           },
           {
             path: "system-settings",
-            loadComponent: () => import("./chunk-NJ4SOWWD.js").then((m) => m.SystemSettingsComponent),
+            loadComponent: () => import("./chunk-DROTCL6D.js").then((m) => m.SystemSettingsComponent),
             children: [
-              { path: "email-settings", loadComponent: () => import("./chunk-MZJI47JR.js").then((m) => m.EmailSettingsComponent) },
-              { path: "email-templates", loadComponent: () => import("./chunk-FTRTY7SU.js").then((m) => m.EmailTemplatesComponent) },
-              { path: "sms-gateways", loadComponent: () => import("./chunk-ASEF3HOY.js").then((m) => m.SmsGatewaysComponent) },
-              { path: "gdpr-cookies", loadComponent: () => import("./chunk-DOWLQRIP.js").then((m) => m.GdprCookiesComponent) }
+              { path: "email-settings", loadComponent: () => import("./chunk-CG4CMDON.js").then((m) => m.EmailSettingsComponent) },
+              { path: "email-templates", loadComponent: () => import("./chunk-RMAJTR3E.js").then((m) => m.EmailTemplatesComponent) },
+              { path: "sms-gateways", loadComponent: () => import("./chunk-EUBUSZSM.js").then((m) => m.SmsGatewaysComponent) },
+              { path: "gdpr-cookies", loadComponent: () => import("./chunk-3S6WZX5N.js").then((m) => m.GdprCookiesComponent) }
             ]
           },
           {
             path: "other-settings",
-            loadComponent: () => import("./chunk-MQEBXGME.js").then((m) => m.OtherSettingsComponent),
+            loadComponent: () => import("./chunk-YSVPCVCZ.js").then((m) => m.OtherSettingsComponent),
             children: [
-              { path: "custom-css", loadComponent: () => import("./chunk-3XG56UY3.js").then((m) => m.CustomCssComponent) },
-              { path: "custom-js", loadComponent: () => import("./chunk-Y6VESM5U.js").then((m) => m.CustomJsComponent) },
-              { path: "sitemap", loadComponent: () => import("./chunk-AFHPYIMR.js").then((m) => m.SitemapComponent) },
-              { path: "clear-cache", loadComponent: () => import("./chunk-SOESXXIX.js").then((m) => m.ClearCacheComponent) },
-              { path: "storage", loadComponent: () => import("./chunk-DRVUMFYD.js").then((m) => m.StorageComponent) },
-              { path: "cronjob", loadComponent: () => import("./chunk-FEMIUQRR.js").then((m) => m.CronjobComponent) },
-              { path: "system-backup", loadComponent: () => import("./chunk-MYMPFYEN.js").then((m) => m.SystemBackupComponent) },
-              { path: "database-backup", loadComponent: () => import("./chunk-7J5GA3V2.js").then((m) => m.DatabaseBackupComponent) },
-              { path: "system-update", loadComponent: () => import("./chunk-JYG5HLRA.js").then((m) => m.SystemUpdateComponent) }
+              { path: "custom-css", loadComponent: () => import("./chunk-RQECNARD.js").then((m) => m.CustomCssComponent) },
+              { path: "custom-js", loadComponent: () => import("./chunk-KVD3PIBF.js").then((m) => m.CustomJsComponent) },
+              { path: "sitemap", loadComponent: () => import("./chunk-ENX5423I.js").then((m) => m.SitemapComponent) },
+              { path: "clear-cache", loadComponent: () => import("./chunk-MEN4272W.js").then((m) => m.ClearCacheComponent) },
+              { path: "storage", loadComponent: () => import("./chunk-DBNVCMDF.js").then((m) => m.StorageComponent) },
+              { path: "cronjob", loadComponent: () => import("./chunk-3RR2J762.js").then((m) => m.CronjobComponent) },
+              { path: "system-backup", loadComponent: () => import("./chunk-3FBMOQYW.js").then((m) => m.SystemBackupComponent) },
+              { path: "database-backup", loadComponent: () => import("./chunk-XBXWDZEE.js").then((m) => m.DatabaseBackupComponent) },
+              { path: "system-update", loadComponent: () => import("./chunk-PFGYRV57.js").then((m) => m.SystemUpdateComponent) }
             ]
           }
         ]
-      }
+      },
+      //Layout
+      { path: "notifications", loadComponent: () => import("./chunk-ZL52BPYT.js").then((m) => m.NotificationsComponent) }
     ]
   },
   //Features Routes//
   {
     path: "",
-    loadComponent: () => import("./chunk-SIREQJDO.js").then((m) => m.FeaturesComponent),
+    loadComponent: () => import("./chunk-UHDNX4PW.js").then((m) => m.FeaturesComponent),
     children: [
       {
         path: "index",
         // canActivate: [hasPermissions(['CLIENT_CREATE', 'CLIENT_VALIDATE'], 'AND')],
-        loadComponent: () => import("./chunk-W6MGJLHG.js").then((m) => m.AdminDashboardComponent)
+        loadComponent: () => import("./chunk-KCRHKEMQ.js").then((m) => m.AdminDashboardComponent)
       },
-      { path: "admin-dashboard", loadComponent: () => import("./chunk-TNR3SJJ7.js").then((m) => m.AdminDashboard2Component) },
+      { path: "admin-dashboard", loadComponent: () => import("./chunk-P6TX36XZ.js").then((m) => m.AdminDashboard2Component) },
       //Application//
       {
         path: "application",
-        loadComponent: () => import("./chunk-7VQLDPTV.js").then((m) => m.ApplicationComponent),
+        loadComponent: () => import("./chunk-G4GAV666.js").then((m) => m.ApplicationComponent),
         children: [
-          { path: "chat", loadComponent: () => import("./chunk-7ZKK6XFH.js").then((m) => m.ChatComponent) },
-          { path: "calender", loadComponent: () => import("./chunk-2UPWE3F3.js").then((m) => m.CalenderComponent) },
-          { path: "email", loadComponent: () => import("./chunk-D2URCPO6.js").then((m) => m.EmailComponent) },
-          { path: "email-reply", loadComponent: () => import("./chunk-23V3Z3HK.js").then((m) => m.EmailReplyComponent) },
-          { path: "todo", loadComponent: () => import("./chunk-ITUIZRXD.js").then((m) => m.TodoComponent) },
-          { path: "notes", loadComponent: () => import("./chunk-CVTQBDPO.js").then((m) => m.NotesComponent) },
-          { path: "social-feed", loadComponent: () => import("./chunk-OGDQ5MHC.js").then((m) => m.SocialFeedComponent) },
-          { path: "file-manager", loadComponent: () => import("./chunk-5XTB65A5.js").then((m) => m.FileManagerComponent) },
-          { path: "kanban-view", loadComponent: () => import("./chunk-BT3XYZ3T.js").then((m) => m.KanbanViewComponent) },
-          { path: "contacts", loadComponent: () => import("./chunk-EVBCKL7L.js").then((m) => m.ContactsComponent) },
-          { path: "invoice", loadComponent: () => import("./chunk-SAIYU3XD.js").then((m) => m.InvoiceComponent) },
-          { path: "search-list", loadComponent: () => import("./chunk-M67LGU4L.js").then((m) => m.SearchListComponent) },
-          { path: "todo-list", loadComponent: () => import("./chunk-EQI5SH3F.js").then((m) => m.TodoListComponent) },
+          { path: "chat", loadComponent: () => import("./chunk-B6VYHMYT.js").then((m) => m.ChatComponent) },
+          { path: "calender", loadComponent: () => import("./chunk-QY4C4TFZ.js").then((m) => m.CalenderComponent) },
+          { path: "email", loadComponent: () => import("./chunk-7XVSTZSG.js").then((m) => m.EmailComponent) },
+          { path: "email-reply", loadComponent: () => import("./chunk-YZ2K5OZE.js").then((m) => m.EmailReplyComponent) },
+          { path: "todo", loadComponent: () => import("./chunk-SSE73NX6.js").then((m) => m.TodoComponent) },
+          { path: "notes", loadComponent: () => import("./chunk-SYRH3UD5.js").then((m) => m.NotesComponent) },
+          { path: "social-feed", loadComponent: () => import("./chunk-EG5GUMD5.js").then((m) => m.SocialFeedComponent) },
+          { path: "file-manager", loadComponent: () => import("./chunk-NMBAEPVI.js").then((m) => m.FileManagerComponent) },
+          { path: "kanban-view", loadComponent: () => import("./chunk-FKK3QKRK.js").then((m) => m.KanbanViewComponent) },
+          { path: "contacts", loadComponent: () => import("./chunk-KZTPEWDC.js").then((m) => m.ContactsComponent) },
+          { path: "invoice", loadComponent: () => import("./chunk-5XF2QN2E.js").then((m) => m.InvoiceComponent) },
+          { path: "search-list", loadComponent: () => import("./chunk-EHBOHAGH.js").then((m) => m.SearchListComponent) },
+          { path: "todo-list", loadComponent: () => import("./chunk-E5522TLM.js").then((m) => m.TodoListComponent) },
           {
             path: "calls",
-            loadComponent: () => import("./chunk-CVG7VA23.js").then((m) => m.CallsComponent),
+            loadComponent: () => import("./chunk-VLS2KX7M.js").then((m) => m.CallsComponent),
             children: [
-              { path: "voice-call", loadComponent: () => import("./chunk-BXXPPGZG.js").then((m) => m.VoiceCallComponent) },
-              { path: "video-call", loadComponent: () => import("./chunk-4YZ53PTH.js").then((m) => m.VideoCallComponent) },
-              { path: "outgoing-call", loadComponent: () => import("./chunk-IWO3LMTE.js").then((m) => m.OutgoingCallComponent) },
-              { path: "incoming-call", loadComponent: () => import("./chunk-UPZAUGBZ.js").then((m) => m.IncomingCallComponent) },
-              { path: "call-history", loadComponent: () => import("./chunk-7K4NADZM.js").then((m) => m.CallHistoryComponent) }
+              { path: "voice-call", loadComponent: () => import("./chunk-D2LRR2GN.js").then((m) => m.VoiceCallComponent) },
+              { path: "video-call", loadComponent: () => import("./chunk-ZUTKV3Q7.js").then((m) => m.VideoCallComponent) },
+              { path: "outgoing-call", loadComponent: () => import("./chunk-BSCTEEN6.js").then((m) => m.OutgoingCallComponent) },
+              { path: "incoming-call", loadComponent: () => import("./chunk-DOEMOEZ2.js").then((m) => m.IncomingCallComponent) },
+              { path: "call-history", loadComponent: () => import("./chunk-DAZK7C6V.js").then((m) => m.CallHistoryComponent) }
             ]
           }
         ]
@@ -2723,441 +2727,441 @@ var routes2 = [
       //Super Admin//
       {
         path: "super-admin",
-        loadComponent: () => import("./chunk-NC5FVJNS.js").then((m) => m.SuperAdminComponent),
+        loadComponent: () => import("./chunk-LMTGK6DO.js").then((m) => m.SuperAdminComponent),
         children: [
-          { path: "companies", loadComponent: () => import("./chunk-RCAUKGNA.js").then((m) => m.CompaniesComponent) },
-          { path: "subscriptions", loadComponent: () => import("./chunk-EG2EJL4T.js").then((m) => m.SubscriptionComponent) },
-          { path: "packages", loadComponent: () => import("./chunk-OE3RXBFY.js").then((m) => m.PackagesComponent) },
-          { path: "domain-request", loadComponent: () => import("./chunk-FXS2WO76.js").then((m) => m.DomainRequestComponent) },
-          { path: "domain", loadComponent: () => import("./chunk-LCHQIWTS.js").then((m) => m.DomainComponent) },
-          { path: "purchase-transaction", loadComponent: () => import("./chunk-B243Y24G.js").then((m) => m.PurchaseTransactionComponent) },
-          { path: "dashboard", loadComponent: () => import("./chunk-VCON3Z5X.js").then((m) => m.DashboardComponent) },
-          { path: "plans-list", loadComponent: () => import("./chunk-KJQQILKV.js").then((m) => m.PlansListComponent) },
-          { path: "packages-grid", loadComponent: () => import("./chunk-ETUHJVOE.js").then((m) => m.PackagesGridComponent) }
+          { path: "companies", loadComponent: () => import("./chunk-MGTU6H36.js").then((m) => m.CompaniesComponent) },
+          { path: "subscriptions", loadComponent: () => import("./chunk-XA5ECHJI.js").then((m) => m.SubscriptionComponent) },
+          { path: "packages", loadComponent: () => import("./chunk-C6HV7IDU.js").then((m) => m.PackagesComponent) },
+          { path: "domain-request", loadComponent: () => import("./chunk-YMUCMEDH.js").then((m) => m.DomainRequestComponent) },
+          { path: "domain", loadComponent: () => import("./chunk-WCWYN6U6.js").then((m) => m.DomainComponent) },
+          { path: "purchase-transaction", loadComponent: () => import("./chunk-6YG7QTKX.js").then((m) => m.PurchaseTransactionComponent) },
+          { path: "dashboard", loadComponent: () => import("./chunk-74W3OO2J.js").then((m) => m.DashboardComponent) },
+          { path: "plans-list", loadComponent: () => import("./chunk-GLNFUVJJ.js").then((m) => m.PlansListComponent) },
+          { path: "packages-grid", loadComponent: () => import("./chunk-I6KBA2X3.js").then((m) => m.PackagesGridComponent) }
         ]
       },
       //Customers
       {
         path: "customer",
-        loadComponent: () => import("./chunk-47IVZRRH.js").then((m) => m.CustomersComponent),
+        loadComponent: () => import("./chunk-Z2IVKDVC.js").then((m) => m.CustomersComponent),
         children: [
-          { path: "dashboard", loadComponent: () => import("./chunk-Z6ZPDVYO.js").then((m) => m.DashboardComponent) },
-          { path: "quotations", loadComponent: () => import("./chunk-JUJID5V7.js").then((m) => m.CustomerQuotationsComponent) },
-          { path: "add-quotations", loadComponent: () => import("./chunk-4GJ3QGTV.js").then((m) => m.AddQuotationsComponent) },
-          { path: "invoices", loadComponent: () => import("./chunk-XPIK5E4K.js").then((m) => m.InvoicesComponent) },
-          { path: "recurring-invoices", loadComponent: () => import("./chunk-FXMENIBV.js").then((m) => m.RecurringInvoicesComponent) },
-          { path: "transactions", loadComponent: () => import("./chunk-BVXBFTEQ.js").then((m) => m.TransactionsComponent) },
-          { path: "payment-summary", loadComponent: () => import("./chunk-PX4XPCUQ.js").then((m) => m.PaymentSummaryComponent) },
-          { path: "invoice-report", loadComponent: () => import("./chunk-FRDOQGJJ.js").then((m) => m.InvoiceReportComponent) },
+          { path: "dashboard", loadComponent: () => import("./chunk-QFASQ2ZG.js").then((m) => m.DashboardComponent) },
+          { path: "quotations", loadComponent: () => import("./chunk-JNI73GKF.js").then((m) => m.CustomerQuotationsComponent) },
+          { path: "add-quotations", loadComponent: () => import("./chunk-65LBSYKK.js").then((m) => m.AddQuotationsComponent) },
+          { path: "invoices", loadComponent: () => import("./chunk-KAKWBNBK.js").then((m) => m.InvoicesComponent) },
+          { path: "recurring-invoices", loadComponent: () => import("./chunk-EWOYRH5A.js").then((m) => m.RecurringInvoicesComponent) },
+          { path: "transactions", loadComponent: () => import("./chunk-VZ54ZHLQ.js").then((m) => m.TransactionsComponent) },
+          { path: "payment-summary", loadComponent: () => import("./chunk-AVK6JQUV.js").then((m) => m.PaymentSummaryComponent) },
+          { path: "invoice-report", loadComponent: () => import("./chunk-Z3WWH6O5.js").then((m) => m.InvoiceReportComponent) },
           {
             path: "settings",
-            loadComponent: () => import("./chunk-DDPYI2LT.js").then((m) => m.SettingsComponent),
+            loadComponent: () => import("./chunk-WF3XK6G3.js").then((m) => m.SettingsComponent),
             children: [
-              { path: "account-settings", loadComponent: () => import("./chunk-X3AYW5HE.js").then((m) => m.AccountSettingsComponent) },
-              { path: "security-settings", loadComponent: () => import("./chunk-NI4CXOWG.js").then((m) => m.SecuritySettingsComponent) },
-              { path: "plans-billing", loadComponent: () => import("./chunk-DMXTGCWU.js").then((m) => m.PlansSettingsComponent) },
-              { path: "notification-settings", loadComponent: () => import("./chunk-FMHK46OK.js").then((m) => m.NotificationSettingsComponent) }
+              { path: "account-settings", loadComponent: () => import("./chunk-ITDGCWBB.js").then((m) => m.AccountSettingsComponent) },
+              { path: "security-settings", loadComponent: () => import("./chunk-KQQD6WSM.js").then((m) => m.SecuritySettingsComponent) },
+              { path: "plans-billing", loadComponent: () => import("./chunk-M2CE7QVT.js").then((m) => m.PlansSettingsComponent) },
+              { path: "notification-settings", loadComponent: () => import("./chunk-NFUJNOVI.js").then((m) => m.NotificationSettingsComponent) }
             ]
           },
-          { path: "invoice-details", loadComponent: () => import("./chunk-JTCYGJ3E.js").then((m) => m.InvoiceDetailsComponent) }
+          { path: "invoice-details", loadComponent: () => import("./chunk-YDQON4NE.js").then((m) => m.InvoiceDetailsComponent) }
         ]
       },
       //Inventroy
       {
         path: "invoices",
-        loadComponent: () => import("./chunk-WQRPHY5G.js").then((m) => m.InvoicesComponent),
+        loadComponent: () => import("./chunk-EQP3JZJO.js").then((m) => m.InvoicesComponent),
         children: [
-          { path: "invoice-list", loadComponent: () => import("./chunk-QDNGJWYB.js").then((m) => m.InvoiceListComponent) },
-          { path: "add-invoice", loadComponent: () => import("./chunk-VXLVCQGH.js").then((m) => m.AddInvoiceComponent) },
-          { path: "edit-invoice", loadComponent: () => import("./chunk-72LRNZ33.js").then((m) => m.EditInvoiceComponent) },
-          { path: "invoice-details", loadComponent: () => import("./chunk-QIMA7TWE.js").then((m) => m.InvoiceDetailsComponent) },
-          { path: "recurring-invoices", loadComponent: () => import("./chunk-FVA6NVEQ.js").then((m) => m.RecurringInvoicesComponent) },
-          { path: "invoice-templates", loadComponent: () => import("./chunk-IDCIR5US.js").then((m) => m.InvoiceTemplatesComponent) }
+          { path: "invoice-list", loadComponent: () => import("./chunk-QUD3IXVM.js").then((m) => m.InvoiceListComponent) },
+          { path: "add-invoice", loadComponent: () => import("./chunk-POPG5YEA.js").then((m) => m.AddInvoiceComponent) },
+          { path: "edit-invoice", loadComponent: () => import("./chunk-TIS7BXY5.js").then((m) => m.EditInvoiceComponent) },
+          { path: "invoice-details", loadComponent: () => import("./chunk-PIDNW4CQ.js").then((m) => m.InvoiceDetailsComponent) },
+          { path: "recurring-invoices", loadComponent: () => import("./chunk-Q7UA4SEG.js").then((m) => m.RecurringInvoicesComponent) },
+          { path: "invoice-templates", loadComponent: () => import("./chunk-LEAAXIKD.js").then((m) => m.InvoiceTemplatesComponent) }
         ]
       },
       {
         path: "product-service",
-        loadComponent: () => import("./chunk-OTCWIDOF.js").then((m) => m.ProductsServiceComponent),
+        loadComponent: () => import("./chunk-MBPT2U7L.js").then((m) => m.ProductsServiceComponent),
         children: [
-          { path: "product-list", loadComponent: () => import("./chunk-A4J4ZDOW.js").then((m) => m.ProductListComponent) },
-          { path: "category", loadComponent: () => import("./chunk-6P6GUBJ4.js").then((m) => m.CategoryComponent) },
-          { path: "units", loadComponent: () => import("./chunk-HSUZ7LH6.js").then((m) => m.UnitsComponent) },
-          { path: "add-products", loadComponent: () => import("./chunk-5LDH3PXI.js").then((m) => m.AddProductsComponent) },
-          { path: "edit-products", loadComponent: () => import("./chunk-OUA3Z47C.js").then((m) => m.EditProductsComponent) }
+          { path: "product-list", loadComponent: () => import("./chunk-IRUYJPXU.js").then((m) => m.ProductListComponent) },
+          { path: "category", loadComponent: () => import("./chunk-DUVLR47F.js").then((m) => m.CategoryComponent) },
+          { path: "units", loadComponent: () => import("./chunk-OBSGYUYB.js").then((m) => m.UnitsComponent) },
+          { path: "add-products", loadComponent: () => import("./chunk-YLWBPVUC.js").then((m) => m.AddProductsComponent) },
+          { path: "edit-products", loadComponent: () => import("./chunk-HS2MSP7B.js").then((m) => m.EditProductsComponent) }
         ]
       },
-      { path: "inventory", loadComponent: () => import("./chunk-RIFZQXCA.js").then((m) => m.InventoryComponent) },
+      { path: "inventory", loadComponent: () => import("./chunk-SGGT4EGR.js").then((m) => m.InventoryComponent) },
       {
         path: "credit-notes",
-        loadComponent: () => import("./chunk-A4YBM6HX.js").then((m) => m.CreditNotesComponent),
+        loadComponent: () => import("./chunk-H4L3DKMC.js").then((m) => m.CreditNotesComponent),
         children: [
-          { path: "add-credit-notes", loadComponent: () => import("./chunk-KHE3OCKK.js").then((m) => m.AddCreditNotesComponent) },
-          { path: "edit-credit-notes", loadComponent: () => import("./chunk-GX5ZTPCP.js").then((m) => m.EditCreditNotesComponent) },
-          { path: "credit-note-list", loadComponent: () => import("./chunk-RADOR5JF.js").then((m) => m.CreditNoteListComponent) }
+          { path: "add-credit-notes", loadComponent: () => import("./chunk-GUFHPRU5.js").then((m) => m.AddCreditNotesComponent) },
+          { path: "edit-credit-notes", loadComponent: () => import("./chunk-6P6DG6W2.js").then((m) => m.EditCreditNotesComponent) },
+          { path: "credit-note-list", loadComponent: () => import("./chunk-PY27NCTH.js").then((m) => m.CreditNoteListComponent) }
         ]
       },
       {
         path: "quotations",
-        loadComponent: () => import("./chunk-BSV4PKRR.js").then((m) => m.QuotationsComponent),
+        loadComponent: () => import("./chunk-7PAVBZHE.js").then((m) => m.QuotationsComponent),
         children: [
-          { path: "add-quotation", loadComponent: () => import("./chunk-JP22HZNL.js").then((m) => m.AddQuotationComponent) },
-          { path: "edit-quotation", loadComponent: () => import("./chunk-PFPGQF2S.js").then((m) => m.EditQuotationComponent) },
-          { path: "quotation-list", loadComponent: () => import("./chunk-RLUZHCSL.js").then((m) => m.QuotationListComponent) }
+          { path: "add-quotation", loadComponent: () => import("./chunk-KFWS3DQM.js").then((m) => m.AddQuotationComponent) },
+          { path: "edit-quotation", loadComponent: () => import("./chunk-YHFFMENC.js").then((m) => m.EditQuotationComponent) },
+          { path: "quotation-list", loadComponent: () => import("./chunk-WKQWM5E7.js").then((m) => m.QuotationListComponent) }
         ]
       },
       {
         path: "customers",
-        loadComponent: () => import("./chunk-YL6HBJK4.js").then((m) => m.CustomersComponent),
+        loadComponent: () => import("./chunk-Q7UONXSH.js").then((m) => m.CustomersComponent),
         children: [
-          { path: "customer-list", loadComponent: () => import("./chunk-UNP4HZ4B.js").then((m) => m.CustomerListComponent) },
-          { path: "customer-details", loadComponent: () => import("./chunk-S5AE23J5.js").then((m) => m.CustomerDetailsComponent) },
-          { path: "add-customer", loadComponent: () => import("./chunk-FLNY52Q3.js").then((m) => m.AddCustomerComponent) },
-          { path: "edit-customer", loadComponent: () => import("./chunk-LAKBKZPM.js").then((m) => m.EditCustomerComponent) }
+          { path: "customer-list", loadComponent: () => import("./chunk-JQP5EGQV.js").then((m) => m.CustomerListComponent) },
+          { path: "customer-details", loadComponent: () => import("./chunk-CVYLSHCI.js").then((m) => m.CustomerDetailsComponent) },
+          { path: "add-customer", loadComponent: () => import("./chunk-JR7F33XT.js").then((m) => m.AddCustomerComponent) },
+          { path: "edit-customer", loadComponent: () => import("./chunk-ZBNST4I6.js").then((m) => m.EditCustomerComponent) }
         ]
       },
       {
         path: "delivery-challans",
-        loadComponent: () => import("./chunk-IJOIGAIQ.js").then((m) => m.DeliveryChallansComponent),
+        loadComponent: () => import("./chunk-LRM4MJNW.js").then((m) => m.DeliveryChallansComponent),
         children: [
-          { path: "delivery-challan-list", loadComponent: () => import("./chunk-JLNBNDJB.js").then((m) => m.DeliveryChallanListComponent) },
-          { path: "add-delivery-challan", loadComponent: () => import("./chunk-F5ZR5QCY.js").then((m) => m.AddDeliveryChallanComponent) },
-          { path: "edit-delivery-challan", loadComponent: () => import("./chunk-PVLMDLF6.js").then((m) => m.EditDeliveryChallanComponent) }
+          { path: "delivery-challan-list", loadComponent: () => import("./chunk-BK5NH5CJ.js").then((m) => m.DeliveryChallanListComponent) },
+          { path: "add-delivery-challan", loadComponent: () => import("./chunk-G76AV6A6.js").then((m) => m.AddDeliveryChallanComponent) },
+          { path: "edit-delivery-challan", loadComponent: () => import("./chunk-XCXC7R55.js").then((m) => m.EditDeliveryChallanComponent) }
         ]
       },
       //Purchase
       {
         path: "purchases",
-        loadComponent: () => import("./chunk-FYR2ZZID.js").then((m) => m.PurchasesComponent),
+        loadComponent: () => import("./chunk-5UEOY6RA.js").then((m) => m.PurchasesComponent),
         children: [
-          { path: "purchase-list", loadComponent: () => import("./chunk-RX5LDVTN.js").then((m) => m.PurchaseListComponent) },
-          { path: "add-purchase", loadComponent: () => import("./chunk-HOW4KMFU.js").then((m) => m.AddPurchaseComponent) },
-          { path: "edit-purchase", loadComponent: () => import("./chunk-7TRM3T3H.js").then((m) => m.EditPurchaseComponent) }
+          { path: "purchase-list", loadComponent: () => import("./chunk-5A76HCCI.js").then((m) => m.PurchaseListComponent) },
+          { path: "add-purchase", loadComponent: () => import("./chunk-6UFH5EV3.js").then((m) => m.AddPurchaseComponent) },
+          { path: "edit-purchase", loadComponent: () => import("./chunk-SNB3723F.js").then((m) => m.EditPurchaseComponent) }
         ]
       },
       {
         path: "purchase-orders",
-        loadComponent: () => import("./chunk-TNU5TKCS.js").then((m) => m.PurchaseOrdersComponent),
+        loadComponent: () => import("./chunk-NNRD3AE4.js").then((m) => m.PurchaseOrdersComponent),
         children: [
-          { path: "add-purchases-orders", loadComponent: () => import("./chunk-JFMSR4MN.js").then((m) => m.AddPurchasesOrdersComponent) },
-          { path: "edit-purchases-orders", loadComponent: () => import("./chunk-LO2PXLEP.js").then((m) => m.EditPurchasesOrdersComponent) },
-          { path: "purchases-order-list", loadComponent: () => import("./chunk-JRCEYGUO.js").then((m) => m.PurchasesOrderListComponent) }
+          { path: "add-purchases-orders", loadComponent: () => import("./chunk-62IS5WKS.js").then((m) => m.AddPurchasesOrdersComponent) },
+          { path: "edit-purchases-orders", loadComponent: () => import("./chunk-LWNCES6P.js").then((m) => m.EditPurchasesOrdersComponent) },
+          { path: "purchases-order-list", loadComponent: () => import("./chunk-7J3ZPJTM.js").then((m) => m.PurchasesOrderListComponent) }
         ]
       },
       {
         path: "debit-notes",
-        loadComponent: () => import("./chunk-FFIALK4G.js").then((m) => m.DebitNotesComponent),
+        loadComponent: () => import("./chunk-K4EQWJR5.js").then((m) => m.DebitNotesComponent),
         children: [
-          { path: "add-debit-notes", loadComponent: () => import("./chunk-DVF2COFE.js").then((m) => m.AddDebitNotesComponent) },
-          { path: "edit-debit-notes", loadComponent: () => import("./chunk-4HBCI7AH.js").then((m) => m.EditDebitNotesComponent) },
-          { path: "debit-note-list", loadComponent: () => import("./chunk-NSAOKJWM.js").then((m) => m.DebitNoteListComponent) }
+          { path: "add-debit-notes", loadComponent: () => import("./chunk-LGV4ISSN.js").then((m) => m.AddDebitNotesComponent) },
+          { path: "edit-debit-notes", loadComponent: () => import("./chunk-JIUPIGTH.js").then((m) => m.EditDebitNotesComponent) },
+          { path: "debit-note-list", loadComponent: () => import("./chunk-RC3H5WVY.js").then((m) => m.DebitNoteListComponent) }
         ]
       },
-      { path: "suppliers", loadComponent: () => import("./chunk-JW5QLANK.js").then((m) => m.SuppliersComponent) },
-      { path: "supplier-payments", loadComponent: () => import("./chunk-Y2MTA3UN.js").then((m) => m.SupplierPaymentsComponent) },
+      { path: "suppliers", loadComponent: () => import("./chunk-DVDGH5I2.js").then((m) => m.SuppliersComponent) },
+      { path: "supplier-payments", loadComponent: () => import("./chunk-YZTXW5QJ.js").then((m) => m.SupplierPaymentsComponent) },
       //Finance
-      { path: "expense", loadComponent: () => import("./chunk-PRU2C5VU.js").then((m) => m.ExpenseComponent) },
-      { path: "incomes", loadComponent: () => import("./chunk-UA4YBNNC.js").then((m) => m.IncomesComponent) },
-      { path: "payments", loadComponent: () => import("./chunk-R3OLPQI6.js").then((m) => m.PaymentsComponent) },
-      { path: "transactions", loadComponent: () => import("./chunk-J6WASFK4.js").then((m) => m.TransactionsComponent) },
+      { path: "expense", loadComponent: () => import("./chunk-WTCZOCEC.js").then((m) => m.ExpenseComponent) },
+      { path: "incomes", loadComponent: () => import("./chunk-72BDXHIZ.js").then((m) => m.IncomesComponent) },
+      { path: "payments", loadComponent: () => import("./chunk-AHFJCVEU.js").then((m) => m.PaymentsComponent) },
+      { path: "transactions", loadComponent: () => import("./chunk-ZCIQ3GWG.js").then((m) => m.TransactionsComponent) },
       {
         path: "bank-accounts",
-        loadComponent: () => import("./chunk-HVHBPXPD.js").then((m) => m.BankAccountsComponent),
+        loadComponent: () => import("./chunk-GLEJD2GX.js").then((m) => m.BankAccountsComponent),
         children: [
-          { path: "bank-accounts-type", loadComponent: () => import("./chunk-ZJH2QB2N.js").then((m) => m.BankAccountsTypeComponent) },
-          { path: "bank-accounts-list", loadComponent: () => import("./chunk-VFGEASQD.js").then((m) => m.BankAccountsListComponent) }
+          { path: "bank-accounts-type", loadComponent: () => import("./chunk-KHBFI2QF.js").then((m) => m.BankAccountsTypeComponent) },
+          { path: "bank-accounts-list", loadComponent: () => import("./chunk-XZJ6MKUS.js").then((m) => m.BankAccountsListComponent) }
         ]
       },
-      { path: "money-transfer", loadComponent: () => import("./chunk-EEAKNM47.js").then((m) => m.MoneyTransferComponent) },
+      { path: "money-transfer", loadComponent: () => import("./chunk-TRWTOHCN.js").then((m) => m.MoneyTransferComponent) },
       //Manage
       {
         path: "manage-users",
-        loadComponent: () => import("./chunk-ERA5DZDK.js").then((m) => m.ManageUsersComponent),
+        loadComponent: () => import("./chunk-ISK5LNQR.js").then((m) => m.ManageUsersComponent),
         children: [
-          { path: "users", loadComponent: () => import("./chunk-RJC6LAZV.js").then((m) => m.UsersComponent) },
-          { path: "roles-permissions", loadComponent: () => import("./chunk-3YPKUZ2J.js").then((m) => m.RolesPermissionsComponent) },
-          { path: "permission/:roleId", loadComponent: () => import("./chunk-OHAOR27X.js").then((m) => m.PermissionComponent) },
-          { path: "delete-account-request", loadComponent: () => import("./chunk-5NUAFDR6.js").then((m) => m.DeleteAccountRequestComponent) }
+          { path: "users", loadComponent: () => import("./chunk-26ILLKTZ.js").then((m) => m.UsersComponent) },
+          { path: "roles-permissions", loadComponent: () => import("./chunk-ZR3MVFRG.js").then((m) => m.RolesPermissionsComponent) },
+          { path: "permission/:roleId", loadComponent: () => import("./chunk-LRCBCJ5P.js").then((m) => m.PermissionComponent) },
+          { path: "delete-account-request", loadComponent: () => import("./chunk-C6XGCBXO.js").then((m) => m.DeleteAccountRequestComponent) }
         ]
       },
       {
         path: "membership",
-        loadComponent: () => import("./chunk-QJLW6V6X.js").then((m) => m.MembershipComponent),
+        loadComponent: () => import("./chunk-EHBEMRXW.js").then((m) => m.MembershipComponent),
         children: [
-          { path: "membership-plans", loadComponent: () => import("./chunk-PZMPLDG4.js").then((m) => m.MembershipPlansComponent) },
-          { path: "membership-addons", loadComponent: () => import("./chunk-5FDGOTUV.js").then((m) => m.MembershipAddonsComponent) },
-          { path: "subscribers", loadComponent: () => import("./chunk-SFRI3V44.js").then((m) => m.SubscribersComponent) },
-          { path: "membership-transactions", loadComponent: () => import("./chunk-JVDGHI2Q.js").then((m) => m.MembershipTransactionsComponent) }
+          { path: "membership-plans", loadComponent: () => import("./chunk-JIZE3MO7.js").then((m) => m.MembershipPlansComponent) },
+          { path: "membership-addons", loadComponent: () => import("./chunk-U4PD23MT.js").then((m) => m.MembershipAddonsComponent) },
+          { path: "subscribers", loadComponent: () => import("./chunk-3O4UOJ3Y.js").then((m) => m.SubscribersComponent) },
+          { path: "membership-transactions", loadComponent: () => import("./chunk-HMRMUK7V.js").then((m) => m.MembershipTransactionsComponent) }
         ]
       },
-      { path: "contact-messages", loadComponent: () => import("./chunk-ZTXDHKXX.js").then((m) => m.ContactMessagesComponent) },
+      { path: "contact-messages", loadComponent: () => import("./chunk-WJI2WZAL.js").then((m) => m.ContactMessagesComponent) },
       {
         path: "tickets",
-        loadComponent: () => import("./chunk-CJOP24NL.js").then((m) => m.TicketsComponent),
+        loadComponent: () => import("./chunk-2D6U2GXL.js").then((m) => m.TicketsComponent),
         children: [
-          { path: "ticket-list", loadComponent: () => import("./chunk-FYAN2LRO.js").then((m) => m.TicketsListComponent) },
-          { path: "ticket-kanban", loadComponent: () => import("./chunk-ISYOF3DE.js").then((m) => m.TicketKanbanComponent) },
-          { path: "ticket-details", loadComponent: () => import("./chunk-SUJ7Q7HV.js").then((m) => m.TicketDetailsComponent) },
-          { path: "ticket-lists", loadComponent: () => import("./chunk-4AB2RDZB.js").then((m) => m.TicketListsComponent) }
+          { path: "ticket-list", loadComponent: () => import("./chunk-Q2EMJ4TI.js").then((m) => m.TicketsListComponent) },
+          { path: "ticket-kanban", loadComponent: () => import("./chunk-AZLUKZQB.js").then((m) => m.TicketKanbanComponent) },
+          { path: "ticket-details", loadComponent: () => import("./chunk-XVE2MX3T.js").then((m) => m.TicketDetailsComponent) },
+          { path: "ticket-lists", loadComponent: () => import("./chunk-JUWSNLTH.js").then((m) => m.TicketListsComponent) }
         ]
       },
       //Reports
       {
         path: "reports",
-        loadComponent: () => import("./chunk-33M7XUM4.js").then((m) => m.ReportsComponent),
+        loadComponent: () => import("./chunk-4VRQP6YU.js").then((m) => m.ReportsComponent),
         children: [
           {
             path: "item-report",
-            loadComponent: () => import("./chunk-4OF46EPB.js").then((m) => m.ItemReportComponent),
+            loadComponent: () => import("./chunk-F2QWQ2VF.js").then((m) => m.ItemReportComponent),
             children: [
-              { path: "stock-summary", loadComponent: () => import("./chunk-FUFM3TZ5.js").then((m) => m.StockSummaryComponent) },
-              { path: "inventory-report", loadComponent: () => import("./chunk-ULEOU2P3.js").then((m) => m.InventoryReportComponent) },
-              { path: "best-seller", loadComponent: () => import("./chunk-A3N4HOTB.js").then((m) => m.BestSellerComponent) },
-              { path: "low-stock", loadComponent: () => import("./chunk-LVNU27LV.js").then((m) => m.LowStockComponent) },
-              { path: "stock-history", loadComponent: () => import("./chunk-ST56H5DB.js").then((m) => m.StockHistoryComponent) },
-              { path: "sold-stock", loadComponent: () => import("./chunk-UVUB7FH7.js").then((m) => m.SoldStockComponent) }
+              { path: "stock-summary", loadComponent: () => import("./chunk-75AYJY4A.js").then((m) => m.StockSummaryComponent) },
+              { path: "inventory-report", loadComponent: () => import("./chunk-RY565ZAJ.js").then((m) => m.InventoryReportComponent) },
+              { path: "best-seller", loadComponent: () => import("./chunk-7RCCJBJF.js").then((m) => m.BestSellerComponent) },
+              { path: "low-stock", loadComponent: () => import("./chunk-7B5GJLVK.js").then((m) => m.LowStockComponent) },
+              { path: "stock-history", loadComponent: () => import("./chunk-YURICCLG.js").then((m) => m.StockHistoryComponent) },
+              { path: "sold-stock", loadComponent: () => import("./chunk-EWQBVZND.js").then((m) => m.SoldStockComponent) }
             ]
           },
           {
             path: "finance-reports",
-            loadComponent: () => import("./chunk-7T3FYXUG.js").then((m) => m.FinanceReportsComponent),
+            loadComponent: () => import("./chunk-XTS2UMY2.js").then((m) => m.FinanceReportsComponent),
             children: [
-              { path: "payment-summary", loadComponent: () => import("./chunk-ZLGTFQN3.js").then((m) => m.PaymentSummaryComponent) },
-              { path: "tax-report", loadComponent: () => import("./chunk-3T5FRBAB.js").then((m) => m.TaxReportComponent) }
+              { path: "payment-summary", loadComponent: () => import("./chunk-CWTOOR35.js").then((m) => m.PaymentSummaryComponent) },
+              { path: "tax-report", loadComponent: () => import("./chunk-K4BLFVV2.js").then((m) => m.TaxReportComponent) }
             ]
           },
           {
             path: "user-reports",
-            loadComponent: () => import("./chunk-KO4C3OXF.js").then((m) => m.UserReportsComponent),
+            loadComponent: () => import("./chunk-Z6UKVYVV.js").then((m) => m.UserReportsComponent),
             children: [
-              { path: "customer-due-reports", loadComponent: () => import("./chunk-KUYYWQXJ.js").then((m) => m.CustomerDueReportsComponent) },
-              { path: "supplier-reports", loadComponent: () => import("./chunk-WOMT6W2H.js").then((m) => m.SupplierReportsComponent) },
-              { path: "customers-report", loadComponent: () => import("./chunk-OAPIWDZS.js").then((m) => m.CustomersReportComponent) }
+              { path: "customer-due-reports", loadComponent: () => import("./chunk-MYGDOJQQ.js").then((m) => m.CustomerDueReportsComponent) },
+              { path: "supplier-reports", loadComponent: () => import("./chunk-UYEGCCRX.js").then((m) => m.SupplierReportsComponent) },
+              { path: "customers-report", loadComponent: () => import("./chunk-U64FBTZI.js").then((m) => m.CustomersReportComponent) }
             ]
           },
           {
             path: "transaction-report",
-            loadComponent: () => import("./chunk-B5LPTWAY.js").then((m) => m.TransactionReportComponent),
+            loadComponent: () => import("./chunk-SW7RJDK6.js").then((m) => m.TransactionReportComponent),
             children: [
-              { path: "sales-report", loadComponent: () => import("./chunk-OVCKMKUD.js").then((m) => m.SalesReportComponent) },
-              { path: "sales-returns", loadComponent: () => import("./chunk-P33BVD7F.js").then((m) => m.SalesReturnsComponent) },
-              { path: "sales-orders", loadComponent: () => import("./chunk-VX3XEHKV.js").then((m) => m.SalesOrdersComponent) },
-              { path: "purchases-report", loadComponent: () => import("./chunk-OJSNIO67.js").then((m) => m.PurchasesReportComponent) },
-              { path: "purchase-return-report", loadComponent: () => import("./chunk-3HUGEU3U.js").then((m) => m.PurchaseReturnReportComponent) },
-              { path: "quotation-report", loadComponent: () => import("./chunk-6XNMF3B6.js").then((m) => m.QuotationReportComponent) },
-              { path: "purchase-orders-reports", loadComponent: () => import("./chunk-57OCPBZ5.js").then((m) => m.PurchaseOrdersReportsComponent) }
+              { path: "sales-report", loadComponent: () => import("./chunk-PZK6BT2I.js").then((m) => m.SalesReportComponent) },
+              { path: "sales-returns", loadComponent: () => import("./chunk-EIFI5Z6V.js").then((m) => m.SalesReturnsComponent) },
+              { path: "sales-orders", loadComponent: () => import("./chunk-XOVUNSIL.js").then((m) => m.SalesOrdersComponent) },
+              { path: "purchases-report", loadComponent: () => import("./chunk-HPFMIPS7.js").then((m) => m.PurchasesReportComponent) },
+              { path: "purchase-return-report", loadComponent: () => import("./chunk-RNOTVWAM.js").then((m) => m.PurchaseReturnReportComponent) },
+              { path: "quotation-report", loadComponent: () => import("./chunk-3CO3KCRA.js").then((m) => m.QuotationReportComponent) },
+              { path: "purchase-orders-reports", loadComponent: () => import("./chunk-CDAI3N75.js").then((m) => m.PurchaseOrdersReportsComponent) }
             ]
           },
           {
             path: "accounting-report",
-            loadComponent: () => import("./chunk-SQ4DF3AR.js").then((m) => m.AccountingReportComponent),
+            loadComponent: () => import("./chunk-LUIGSEUB.js").then((m) => m.AccountingReportComponent),
             children: [
-              { path: "expense-report", loadComponent: () => import("./chunk-PRG5LUO6.js").then((m) => m.ExpenseReportComponent) },
-              { path: "income-report", loadComponent: () => import("./chunk-AROL5FMV.js").then((m) => m.IncomeReportComponent) },
-              { path: "profit-loss-report", loadComponent: () => import("./chunk-COJRFP25.js").then((m) => m.ProfitLossReportComponent) },
-              { path: "annual-report", loadComponent: () => import("./chunk-7HPAB7DY.js").then((m) => m.AnnualReportComponent) },
-              { path: "balance-sheet", loadComponent: () => import("./chunk-32ERVLMU.js").then((m) => m.BalanceSheetComponent) },
-              { path: "trial-balance", loadComponent: () => import("./chunk-XPBCHTD6.js").then((m) => m.TrialBalanceComponent) },
-              { path: "cash-flow", loadComponent: () => import("./chunk-2WINXKVD.js").then((m) => m.CashFlowComponent) },
-              { path: "account-statement", loadComponent: () => import("./chunk-X67QK253.js").then((m) => m.AccountStatementComponent) }
+              { path: "expense-report", loadComponent: () => import("./chunk-PZOFCU4P.js").then((m) => m.ExpenseReportComponent) },
+              { path: "income-report", loadComponent: () => import("./chunk-A7EFMXIU.js").then((m) => m.IncomeReportComponent) },
+              { path: "profit-loss-report", loadComponent: () => import("./chunk-RVC6NU7P.js").then((m) => m.ProfitLossReportComponent) },
+              { path: "annual-report", loadComponent: () => import("./chunk-UX2A3VT5.js").then((m) => m.AnnualReportComponent) },
+              { path: "balance-sheet", loadComponent: () => import("./chunk-ZYDNP5N3.js").then((m) => m.BalanceSheetComponent) },
+              { path: "trial-balance", loadComponent: () => import("./chunk-VFVEXOJV.js").then((m) => m.TrialBalanceComponent) },
+              { path: "cash-flow", loadComponent: () => import("./chunk-OZYJZDFF.js").then((m) => m.CashFlowComponent) },
+              { path: "account-statement", loadComponent: () => import("./chunk-IHDM4AJZ.js").then((m) => m.AccountStatementComponent) }
             ]
           }
         ]
       },
       //Content
-      { path: "pages", loadComponent: () => import("./chunk-SJXOWL6J.js").then((m) => m.PagesComponent) },
+      { path: "pages", loadComponent: () => import("./chunk-EPWZDFSA.js").then((m) => m.PagesComponent) },
       {
         path: "blogs",
-        loadComponent: () => import("./chunk-G2ZMO7CW.js").then((m) => m.BlogsComponent),
+        loadComponent: () => import("./chunk-OKPN37G2.js").then((m) => m.BlogsComponent),
         children: [
-          { path: "all-blogs", loadComponent: () => import("./chunk-W27ESUDD.js").then((m) => m.AllBlogsComponent) },
-          { path: "blog-tags", loadComponent: () => import("./chunk-LJX3VM5R.js").then((m) => m.BlogTagsComponent) },
-          { path: "blog-categories", loadComponent: () => import("./chunk-2E4BWXYD.js").then((m) => m.BlogCategoriesComponent) },
-          { path: "blog-comments", loadComponent: () => import("./chunk-POQIWI6J.js").then((m) => m.BlogCommentsComponent) },
-          { path: "add-blogs", loadComponent: () => import("./chunk-GMUR6DAE.js").then((m) => m.AddBlogsComponent) },
-          { path: "edit-blogs", loadComponent: () => import("./chunk-4MKGXJSE.js").then((m) => m.EditBlogsComponent) },
-          { path: "blog-details", loadComponent: () => import("./chunk-NOADGIOW.js").then((m) => m.BlogDetailsComponent) }
+          { path: "all-blogs", loadComponent: () => import("./chunk-EXVEGCGE.js").then((m) => m.AllBlogsComponent) },
+          { path: "blog-tags", loadComponent: () => import("./chunk-TDXRQD2N.js").then((m) => m.BlogTagsComponent) },
+          { path: "blog-categories", loadComponent: () => import("./chunk-JOJTX3HG.js").then((m) => m.BlogCategoriesComponent) },
+          { path: "blog-comments", loadComponent: () => import("./chunk-2T73WWJ5.js").then((m) => m.BlogCommentsComponent) },
+          { path: "add-blogs", loadComponent: () => import("./chunk-6BJ5YP5U.js").then((m) => m.AddBlogsComponent) },
+          { path: "edit-blogs", loadComponent: () => import("./chunk-JBS2VKA5.js").then((m) => m.EditBlogsComponent) },
+          { path: "blog-details", loadComponent: () => import("./chunk-KUPRHUUZ.js").then((m) => m.BlogDetailsComponent) }
         ]
       },
       {
         path: "location",
-        loadComponent: () => import("./chunk-XEHEELAZ.js").then((m) => m.LocationComponent),
+        loadComponent: () => import("./chunk-VKGWWA74.js").then((m) => m.LocationComponent),
         children: [
-          { path: "cities", loadComponent: () => import("./chunk-TO3INWTH.js").then((m) => m.CitiesComponent) },
-          { path: "states", loadComponent: () => import("./chunk-YOYJQW2H.js").then((m) => m.StatesComponent) },
-          { path: "countries", loadComponent: () => import("./chunk-DOSXOEB5.js").then((m) => m.CountriesComponent) }
+          { path: "cities", loadComponent: () => import("./chunk-QAZSSUHA.js").then((m) => m.CitiesComponent) },
+          { path: "states", loadComponent: () => import("./chunk-O5TADPAX.js").then((m) => m.StatesComponent) },
+          { path: "countries", loadComponent: () => import("./chunk-KBFYML2E.js").then((m) => m.CountriesComponent) }
         ]
       },
-      { path: "testimonials", loadComponent: () => import("./chunk-GJO4JNKE.js").then((m) => m.TestimonialsComponent) },
-      { path: "faq", loadComponent: () => import("./chunk-Y2TNN53W.js").then((m) => m.FaqComponent) },
+      { path: "testimonials", loadComponent: () => import("./chunk-KYA7UNCA.js").then((m) => m.TestimonialsComponent) },
+      { path: "faq", loadComponent: () => import("./chunk-KVKHSBXN.js").then((m) => m.FaqComponent) },
       //pages
-      { path: "profile", loadComponent: () => import("./chunk-JNTWX3YU.js").then((m) => m.ProfileComponent) },
-      { path: "starter", loadComponent: () => import("./chunk-JSI5ITJ4.js").then((m) => m.StarterComponent) },
-      { path: "gallery", loadComponent: () => import("./chunk-6NJXHZOE.js").then((m) => m.GalleryComponent) },
-      { path: "pricing", loadComponent: () => import("./chunk-WIRH2WQ4.js").then((m) => m.PricingComponent) },
-      { path: "timeline", loadComponent: () => import("./chunk-D7NOD2B5.js").then((m) => m.TimelineComponent) },
-      { path: "api-keys", loadComponent: () => import("./chunk-NVB3Y3QY.js").then((m) => m.ApiKeysComponent) },
-      { path: "privacy-policy", loadComponent: () => import("./chunk-DU23XFPL.js").then((m) => m.PrivacyPolicyComponent) },
-      { path: "terms-condition", loadComponent: () => import("./chunk-MBSHLPFX.js").then((m) => m.TermsConditionComponent) },
+      { path: "profile", loadComponent: () => import("./chunk-ITSQNLWG.js").then((m) => m.ProfileComponent) },
+      { path: "starter", loadComponent: () => import("./chunk-FCUSWNLK.js").then((m) => m.StarterComponent) },
+      { path: "gallery", loadComponent: () => import("./chunk-CBEBNAX4.js").then((m) => m.GalleryComponent) },
+      { path: "pricing", loadComponent: () => import("./chunk-ISIZWVS7.js").then((m) => m.PricingComponent) },
+      { path: "timeline", loadComponent: () => import("./chunk-RCSXH6G5.js").then((m) => m.TimelineComponent) },
+      { path: "api-keys", loadComponent: () => import("./chunk-AGNIGU7X.js").then((m) => m.ApiKeysComponent) },
+      { path: "privacy-policy", loadComponent: () => import("./chunk-YHWVAINN.js").then((m) => m.PrivacyPolicyComponent) },
+      { path: "terms-condition", loadComponent: () => import("./chunk-NP62GAUP.js").then((m) => m.TermsConditionComponent) },
       //UI Interface
       {
         path: "base-ui",
-        loadComponent: () => import("./chunk-5ACNHSJW.js").then((m) => m.BaseUIComponent),
+        loadComponent: () => import("./chunk-36HIM4FK.js").then((m) => m.BaseUIComponent),
         children: [
-          { path: "alert", loadComponent: () => import("./chunk-2MYNRVVZ.js").then((m) => m.AlertsComponent) },
-          { path: "accordions", loadComponent: () => import("./chunk-SLDILZGT.js").then((m) => m.AccordionsComponent) },
-          { path: "avatar", loadComponent: () => import("./chunk-SPAKWX4O.js").then((m) => m.AvatarComponent) },
-          { path: "badges", loadComponent: () => import("./chunk-Z3K7MK4P.js").then((m) => m.BadgesComponent) },
-          { path: "buttons", loadComponent: () => import("./chunk-GXIGZSIA.js").then((m) => m.ButtonsComponent) },
-          { path: "button-group", loadComponent: () => import("./chunk-2YLRPU5B.js").then((m) => m.ButtonGroupComponent) },
-          { path: "breadcrumb", loadComponent: () => import("./chunk-M7CADNDE.js").then((m) => m.BreadcrumbComponent) },
-          { path: "cards", loadComponent: () => import("./chunk-EUBXWVQ5.js").then((m) => m.CardsComponent) },
-          { path: "carousel", loadComponent: () => import("./chunk-26DXZDOZ.js").then((m) => m.CarouselComponent) },
-          { path: "drop-down", loadComponent: () => import("./chunk-5T53S4RR.js").then((m) => m.DropdownsComponent) },
-          { path: "grid", loadComponent: () => import("./chunk-RKPILMQI.js").then((m) => m.GridComponent) },
-          { path: "images", loadComponent: () => import("./chunk-AP7Z4GKL.js").then((m) => m.ImagesComponent) },
-          { path: "modal", loadComponent: () => import("./chunk-ZAU7FZUJ.js").then((m) => m.ModalsComponent) },
-          { path: "offcanvas", loadComponent: () => import("./chunk-EJ3BQ6GB.js").then((m) => m.OffcanvasComponent) },
-          { path: "pagination", loadComponent: () => import("./chunk-4OZ4KBLE.js").then((m) => m.PaginationComponent) },
-          { path: "placeholder", loadComponent: () => import("./chunk-2MGDWFJS.js").then((m) => m.PlaceholdersComponent) },
-          { path: "popover", loadComponent: () => import("./chunk-LYZFCGJI.js").then((m) => m.PopoverComponent) },
-          { path: "progress-bars", loadComponent: () => import("./chunk-CO7YX7YZ.js").then((m) => m.ProgressBarsComponent) },
-          { path: "spinner", loadComponent: () => import("./chunk-UYDRPXP5.js").then((m) => m.SpinnerComponent) },
-          { path: "tabs", loadComponent: () => import("./chunk-7QFDBLYR.js").then((m) => m.TabsComponent) },
-          { path: "toasts", loadComponent: () => import("./chunk-6YK6Z64W.js").then((m) => m.ToastsComponent) },
-          { path: "tooltip", loadComponent: () => import("./chunk-E3RWWORI.js").then((m) => m.TooltipComponent) },
-          { path: "typography", loadComponent: () => import("./chunk-IRZSISFL.js").then((m) => m.TypographyComponent) },
-          { path: "collapse", loadComponent: () => import("./chunk-BRNK5P6X.js").then((m) => m.CollapseComponent) },
-          { path: "ratio", loadComponent: () => import("./chunk-3T447MRI.js").then((m) => m.RatioComponent) },
-          { path: "links", loadComponent: () => import("./chunk-IR65237I.js").then((m) => m.LinksComponent) },
-          { path: "list-group", loadComponent: () => import("./chunk-VIPWHY2J.js").then((m) => m.ListGroupComponent) },
-          { path: "utilities", loadComponent: () => import("./chunk-X5WIHSEB.js").then((m) => m.UtlitiesComponent) }
+          { path: "alert", loadComponent: () => import("./chunk-JTCJD524.js").then((m) => m.AlertsComponent) },
+          { path: "accordions", loadComponent: () => import("./chunk-HERFNMTH.js").then((m) => m.AccordionsComponent) },
+          { path: "avatar", loadComponent: () => import("./chunk-V6C6HZCL.js").then((m) => m.AvatarComponent) },
+          { path: "badges", loadComponent: () => import("./chunk-LOL6X2YJ.js").then((m) => m.BadgesComponent) },
+          { path: "buttons", loadComponent: () => import("./chunk-ER24IPVK.js").then((m) => m.ButtonsComponent) },
+          { path: "button-group", loadComponent: () => import("./chunk-4QF7UGUD.js").then((m) => m.ButtonGroupComponent) },
+          { path: "breadcrumb", loadComponent: () => import("./chunk-CKBOZEVJ.js").then((m) => m.BreadcrumbComponent) },
+          { path: "cards", loadComponent: () => import("./chunk-FDTSVONK.js").then((m) => m.CardsComponent) },
+          { path: "carousel", loadComponent: () => import("./chunk-2X4M7CCN.js").then((m) => m.CarouselComponent) },
+          { path: "drop-down", loadComponent: () => import("./chunk-6TDVSUDS.js").then((m) => m.DropdownsComponent) },
+          { path: "grid", loadComponent: () => import("./chunk-S3APD5SB.js").then((m) => m.GridComponent) },
+          { path: "images", loadComponent: () => import("./chunk-RTSVT3XQ.js").then((m) => m.ImagesComponent) },
+          { path: "modal", loadComponent: () => import("./chunk-SVBRP2HZ.js").then((m) => m.ModalsComponent) },
+          { path: "offcanvas", loadComponent: () => import("./chunk-PC3HLGMY.js").then((m) => m.OffcanvasComponent) },
+          { path: "pagination", loadComponent: () => import("./chunk-ZRZM7JH5.js").then((m) => m.PaginationComponent) },
+          { path: "placeholder", loadComponent: () => import("./chunk-EJN45HON.js").then((m) => m.PlaceholdersComponent) },
+          { path: "popover", loadComponent: () => import("./chunk-E3P74HDS.js").then((m) => m.PopoverComponent) },
+          { path: "progress-bars", loadComponent: () => import("./chunk-DIDL6ATN.js").then((m) => m.ProgressBarsComponent) },
+          { path: "spinner", loadComponent: () => import("./chunk-N6MTERK4.js").then((m) => m.SpinnerComponent) },
+          { path: "tabs", loadComponent: () => import("./chunk-FYKCIXOW.js").then((m) => m.TabsComponent) },
+          { path: "toasts", loadComponent: () => import("./chunk-WROGJ5AK.js").then((m) => m.ToastsComponent) },
+          { path: "tooltip", loadComponent: () => import("./chunk-6HJNINCG.js").then((m) => m.TooltipComponent) },
+          { path: "typography", loadComponent: () => import("./chunk-P3KH54TK.js").then((m) => m.TypographyComponent) },
+          { path: "collapse", loadComponent: () => import("./chunk-4SNSBPNK.js").then((m) => m.CollapseComponent) },
+          { path: "ratio", loadComponent: () => import("./chunk-ZL5SHFQZ.js").then((m) => m.RatioComponent) },
+          { path: "links", loadComponent: () => import("./chunk-S3KZPVYS.js").then((m) => m.LinksComponent) },
+          { path: "list-group", loadComponent: () => import("./chunk-CG33UVAZ.js").then((m) => m.ListGroupComponent) },
+          { path: "utilities", loadComponent: () => import("./chunk-UIEMKKE6.js").then((m) => m.UtlitiesComponent) }
         ]
       },
       {
         path: "advanced-ui",
-        loadComponent: () => import("./chunk-K2L5YIRA.js").then((m) => m.AdvancedUiComponent),
+        loadComponent: () => import("./chunk-NOYWVPX5.js").then((m) => m.AdvancedUiComponent),
         children: [
-          { path: "clipboards", loadComponent: () => import("./chunk-RV6SDI7T.js").then((m) => m.ClipboardsComponent) },
-          { path: "drag-drop", loadComponent: () => import("./chunk-F4XHWMS4.js").then((m) => m.DrapDropComponent) },
-          { path: "rating", loadComponent: () => import("./chunk-DA47LZES.js").then((m) => m.RatingComponent) },
-          { path: "text-editor", loadComponent: () => import("./chunk-C4HH7NO2.js").then((m) => m.TextEditorComponent) },
-          { path: "counter", loadComponent: () => import("./chunk-7N2HJQDX.js").then((m) => m.CounterComponent) },
-          { path: "scrollbar", loadComponent: () => import("./chunk-U26AAODI.js").then((m) => m.ScrollbarComponent) },
-          { path: "light-box", loadComponent: () => import("./chunk-ESS5PKSY.js").then((m) => m.LightboxComponent) },
-          { path: "range-slider", loadComponent: () => import("./chunk-SKJD4LHQ.js").then((m) => m.RangesliderComponent) }
+          { path: "clipboards", loadComponent: () => import("./chunk-EBSFIFD6.js").then((m) => m.ClipboardsComponent) },
+          { path: "drag-drop", loadComponent: () => import("./chunk-HXPSGZJC.js").then((m) => m.DrapDropComponent) },
+          { path: "rating", loadComponent: () => import("./chunk-TNKHP6JG.js").then((m) => m.RatingComponent) },
+          { path: "text-editor", loadComponent: () => import("./chunk-NP57IRHA.js").then((m) => m.TextEditorComponent) },
+          { path: "counter", loadComponent: () => import("./chunk-NCTLBUG3.js").then((m) => m.CounterComponent) },
+          { path: "scrollbar", loadComponent: () => import("./chunk-ZNUINVLD.js").then((m) => m.ScrollbarComponent) },
+          { path: "light-box", loadComponent: () => import("./chunk-WUVA7EIC.js").then((m) => m.LightboxComponent) },
+          { path: "range-slider", loadComponent: () => import("./chunk-LTBB4HHJ.js").then((m) => m.RangesliderComponent) }
         ]
       },
       {
         path: "maps",
-        loadComponent: () => import("./chunk-QDWOURQK.js").then((m) => m.MapsComponent),
+        loadComponent: () => import("./chunk-A3QBI7W3.js").then((m) => m.MapsComponent),
         children: [
-          { path: "leaflets", loadComponent: () => import("./chunk-COFLR2NQ.js").then((m) => m.LeafletComponent) }
+          { path: "leaflets", loadComponent: () => import("./chunk-PQYVLBTI.js").then((m) => m.LeafletComponent) }
         ]
       },
       {
         path: "tables",
-        loadComponent: () => import("./chunk-R3KVYRSV.js").then((m) => m.TablesComponent),
+        loadComponent: () => import("./chunk-DS2AMTNN.js").then((m) => m.TablesComponent),
         children: [
-          { path: "data-table", loadComponent: () => import("./chunk-YWTJ2UFJ.js").then((m) => m.DataTablesComponent) },
-          { path: "basic", loadComponent: () => import("./chunk-VJESJ33Y.js").then((m) => m.BasicTablesComponent) }
+          { path: "data-table", loadComponent: () => import("./chunk-ZMK7I6FF.js").then((m) => m.DataTablesComponent) },
+          { path: "basic", loadComponent: () => import("./chunk-36NZLN3X.js").then((m) => m.BasicTablesComponent) }
         ]
       },
       {
         path: "icon",
-        loadComponent: () => import("./chunk-TZILWG6O.js").then((m) => m.IconComponent),
+        loadComponent: () => import("./chunk-AOVSCX3Y.js").then((m) => m.IconComponent),
         children: [
-          { path: "fontawesome", loadComponent: () => import("./chunk-MW22EBT3.js").then((m) => m.FontawesomeComponent) },
-          { path: "feather", loadComponent: () => import("./chunk-EFBEJADQ.js").then((m) => m.FeathersComponent) },
-          { path: "ionic", loadComponent: () => import("./chunk-VWLRYFY6.js").then((m) => m.IonicComponent) },
-          { path: "material", loadComponent: () => import("./chunk-ITCQMDS6.js").then((m) => m.MaterialComponent) },
-          { path: "pe7", loadComponent: () => import("./chunk-Q4H6FLYQ.js").then((m) => m.Pe7Component) },
-          { path: "simple-line", loadComponent: () => import("./chunk-PLARZKM4.js").then((m) => m.SimplineComponent) },
-          { path: "themify", loadComponent: () => import("./chunk-DLQGGLTR.js").then((m) => m.ThemifyComponent) },
-          { path: "typicon", loadComponent: () => import("./chunk-O7BQKMNU.js").then((m) => m.TypiconComponent) },
-          { path: "weather", loadComponent: () => import("./chunk-56EOGXMZ.js").then((m) => m.WeatherComponent) },
-          { path: "flag", loadComponent: () => import("./chunk-ORTSUIJN.js").then((m) => m.FlagComponent) }
+          { path: "fontawesome", loadComponent: () => import("./chunk-BBHTEWKP.js").then((m) => m.FontawesomeComponent) },
+          { path: "feather", loadComponent: () => import("./chunk-SS656XXC.js").then((m) => m.FeathersComponent) },
+          { path: "ionic", loadComponent: () => import("./chunk-IE7PT5TZ.js").then((m) => m.IonicComponent) },
+          { path: "material", loadComponent: () => import("./chunk-CBXKJTTC.js").then((m) => m.MaterialComponent) },
+          { path: "pe7", loadComponent: () => import("./chunk-R6SSMUSS.js").then((m) => m.Pe7Component) },
+          { path: "simple-line", loadComponent: () => import("./chunk-AD5SDJFH.js").then((m) => m.SimplineComponent) },
+          { path: "themify", loadComponent: () => import("./chunk-4AWAT6UB.js").then((m) => m.ThemifyComponent) },
+          { path: "typicon", loadComponent: () => import("./chunk-IIY4PVYN.js").then((m) => m.TypiconComponent) },
+          { path: "weather", loadComponent: () => import("./chunk-7AGQB6ZU.js").then((m) => m.WeatherComponent) },
+          { path: "flag", loadComponent: () => import("./chunk-5QZC75SZ.js").then((m) => m.FlagComponent) }
         ]
       },
       {
         path: "forms",
-        loadComponent: () => import("./chunk-VNDWGV6C.js").then((m) => m.FormsComponent),
+        loadComponent: () => import("./chunk-RAIBU256.js").then((m) => m.FormsComponent),
         children: [
-          { path: "basic-inputs", loadComponent: () => import("./chunk-D4UPQJDH.js").then((m) => m.BasicInputsComponent) },
-          { path: "horizontal-form", loadComponent: () => import("./chunk-VMAMGOKA.js").then((m) => m.HorizontalFormComponent) },
-          { path: "vertical-form", loadComponent: () => import("./chunk-WU5LKE4O.js").then((m) => m.VerticalFormComponent) },
-          { path: "form-mask", loadComponent: () => import("./chunk-X4XVRYUE.js").then((m) => m.FormMaskComponent) },
-          { path: "form-validation", loadComponent: () => import("./chunk-V2XKERY3.js").then((m) => m.FormValidationComponent) },
-          { path: "input-groups", loadComponent: () => import("./chunk-XAENU2ID.js").then((m) => m.InputGroupsComponent) },
-          { path: "file-upload", loadComponent: () => import("./chunk-VUWRH2H5.js").then((m) => m.FormFileuploadComponent) },
-          { path: "form-checkbox-radios", loadComponent: () => import("./chunk-ILHNZF5C.js").then((m) => m.FormCheckboxRadiosComponent) },
-          { path: "form-grid-gutters", loadComponent: () => import("./chunk-YDTLXAMH.js").then((m) => m.FormGridGuttersComponent) },
-          { path: "form-pickers", loadComponent: () => import("./chunk-KYQLJOT2.js").then((m) => m.FormPickersComponent) }
+          { path: "basic-inputs", loadComponent: () => import("./chunk-CIIHV7FF.js").then((m) => m.BasicInputsComponent) },
+          { path: "horizontal-form", loadComponent: () => import("./chunk-OJMRVG5H.js").then((m) => m.HorizontalFormComponent) },
+          { path: "vertical-form", loadComponent: () => import("./chunk-6LLPS3KO.js").then((m) => m.VerticalFormComponent) },
+          { path: "form-mask", loadComponent: () => import("./chunk-HCIDD6UD.js").then((m) => m.FormMaskComponent) },
+          { path: "form-validation", loadComponent: () => import("./chunk-CSNBDBQX.js").then((m) => m.FormValidationComponent) },
+          { path: "input-groups", loadComponent: () => import("./chunk-35IUJ45M.js").then((m) => m.InputGroupsComponent) },
+          { path: "file-upload", loadComponent: () => import("./chunk-WEOSG6Z5.js").then((m) => m.FormFileuploadComponent) },
+          { path: "form-checkbox-radios", loadComponent: () => import("./chunk-KO6YRH6Y.js").then((m) => m.FormCheckboxRadiosComponent) },
+          { path: "form-grid-gutters", loadComponent: () => import("./chunk-WOZ2WCC7.js").then((m) => m.FormGridGuttersComponent) },
+          { path: "form-pickers", loadComponent: () => import("./chunk-F6B7ER43.js").then((m) => m.FormPickersComponent) }
         ]
       },
       {
         path: "chart",
-        loadComponent: () => import("./chunk-FAHD2FL2.js").then((m) => m.ChartsComponent),
+        loadComponent: () => import("./chunk-XTKC6KIC.js").then((m) => m.ChartsComponent),
         children: [
-          { path: "apex-charts", loadComponent: () => import("./chunk-PB73CFAT.js").then((m) => m.ApexchartsComponent) },
-          { path: "prime-ng", loadComponent: () => import("./chunk-WKKOHBW7.js").then((m) => m.PrimeNgComponent) }
+          { path: "apex-charts", loadComponent: () => import("./chunk-U57AKJNY.js").then((m) => m.ApexchartsComponent) },
+          { path: "prime-ng", loadComponent: () => import("./chunk-KK52HTPB.js").then((m) => m.PrimeNgComponent) }
         ]
       },
       //Layout
-      { path: "layout-default", loadComponent: () => import("./chunk-TWVG6QH5.js").then((m) => m.ModalDashboardComponent) },
-      { path: "layout-single", loadComponent: () => import("./chunk-TWVG6QH5.js").then((m) => m.ModalDashboardComponent) },
-      { path: "layout-rtl", loadComponent: () => import("./chunk-TWVG6QH5.js").then((m) => m.ModalDashboardComponent) },
-      { path: "layout-mini", loadComponent: () => import("./chunk-TWVG6QH5.js").then((m) => m.ModalDashboardComponent) },
-      { path: "layout-transparent", loadComponent: () => import("./chunk-TWVG6QH5.js").then((m) => m.ModalDashboardComponent) },
-      { path: "layout-without-header", loadComponent: () => import("./chunk-TWVG6QH5.js").then((m) => m.ModalDashboardComponent) },
-      { path: "layout-boxed", loadComponent: () => import("./chunk-TWVG6QH5.js").then((m) => m.ModalDashboardComponent) },
-      { path: "layout-dark", loadComponent: () => import("./chunk-TWVG6QH5.js").then((m) => m.ModalDashboardComponent) },
-      { path: "notifications", loadComponent: () => import("./chunk-R4QZPLMM.js").then((m) => m.NotificationsComponent) }
+      { path: "layout-default", loadComponent: () => import("./chunk-IKFAU4YN.js").then((m) => m.ModalDashboardComponent) },
+      { path: "layout-single", loadComponent: () => import("./chunk-IKFAU4YN.js").then((m) => m.ModalDashboardComponent) },
+      { path: "layout-rtl", loadComponent: () => import("./chunk-IKFAU4YN.js").then((m) => m.ModalDashboardComponent) },
+      { path: "layout-mini", loadComponent: () => import("./chunk-IKFAU4YN.js").then((m) => m.ModalDashboardComponent) },
+      { path: "layout-transparent", loadComponent: () => import("./chunk-IKFAU4YN.js").then((m) => m.ModalDashboardComponent) },
+      { path: "layout-without-header", loadComponent: () => import("./chunk-IKFAU4YN.js").then((m) => m.ModalDashboardComponent) },
+      { path: "layout-boxed", loadComponent: () => import("./chunk-IKFAU4YN.js").then((m) => m.ModalDashboardComponent) },
+      { path: "layout-dark", loadComponent: () => import("./chunk-IKFAU4YN.js").then((m) => m.ModalDashboardComponent) },
+      { path: "notifications", loadComponent: () => import("./chunk-5DVZT5S3.js").then((m) => m.NotificationsComponent) }
     ]
   },
   {
     path: "invoice-modals",
-    loadComponent: () => import("./chunk-YIOTRVY2.js").then((m) => m.InvoiceModalsComponent),
+    loadComponent: () => import("./chunk-GDLENXJC.js").then((m) => m.InvoiceModalsComponent),
     children: [
-      { path: "general-invoice-1", loadComponent: () => import("./chunk-IS5CNMQX.js").then((m) => m.GeneralInvoice1Component) },
-      { path: "general-invoice-2", loadComponent: () => import("./chunk-XXE227JU.js").then((m) => m.GeneralInvoice2Component) },
-      { path: "general-invoice-3", loadComponent: () => import("./chunk-WUHYNFMF.js").then((m) => m.GeneralInvoice3Component) },
-      { path: "general-invoice-4", loadComponent: () => import("./chunk-2XD67YUO.js").then((m) => m.GeneralInvoice4Component) },
-      { path: "general-invoice-5", loadComponent: () => import("./chunk-FOBVXXDW.js").then((m) => m.GeneralInvoice5Component) },
-      { path: "general-invoice-6", loadComponent: () => import("./chunk-KNBHQSNP.js").then((m) => m.GeneralInvoice6Component) },
-      { path: "general-invoice-7", loadComponent: () => import("./chunk-2FDYEB4L.js").then((m) => m.GeneralInvoice7Component) },
-      { path: "general-invoice-8", loadComponent: () => import("./chunk-ZCRTLZ5G.js").then((m) => m.GeneralInvoice8Component) },
-      { path: "general-invoice-9", loadComponent: () => import("./chunk-VEVXFKYU.js").then((m) => m.GeneralInvoice9Component) },
-      { path: "general-invoice-10", loadComponent: () => import("./chunk-M3KZCULS.js").then((m) => m.GeneralInvoice10Component) },
-      { path: "bus-booking-invoice", loadComponent: () => import("./chunk-R4JYVSJ2.js").then((m) => m.BusBookingInvoiceComponent) },
-      { path: "car-booking-invoice", loadComponent: () => import("./chunk-QIXV4SRB.js").then((m) => m.CarBookingInvoiceComponent) },
-      { path: "coffee-shop-invoice", loadComponent: () => import("./chunk-OPJSXT7B.js").then((m) => m.CoffeeShopInvoiceComponent) },
-      { path: "domain-hosting-invoice", loadComponent: () => import("./chunk-OPH3SRLW.js").then((m) => m.DomainHostingInvoiceComponent) },
-      { path: "ecommerce-invoice", loadComponent: () => import("./chunk-EFOPA6VJ.js").then((m) => m.EcommerceInvoiceComponent) },
-      { path: "fitness-center-invoice", loadComponent: () => import("./chunk-PYCD227T.js").then((m) => m.FitnessCenterInvoiceComponent) },
-      { path: "flight-booking-invoice", loadComponent: () => import("./chunk-OA2LMMBG.js").then((m) => m.FlightBookingInvoiceComponent) },
-      { path: "hotel-booking-invoice", loadComponent: () => import("./chunk-T2HI4ETW.js").then((m) => m.HotelBookingInvoiceComponent) },
-      { path: "internet-billing-invoice", loadComponent: () => import("./chunk-277BPE75.js").then((m) => m.InternetBillingInvoiceComponent) },
-      { path: "invoice-medical", loadComponent: () => import("./chunk-EZXIK3DZ.js").then((m) => m.InvoiceMedicalComponent) },
-      { path: "money-exchange-invoice", loadComponent: () => import("./chunk-V73KVOQW.js").then((m) => m.MoneyExchangeInvoiceComponent) },
-      { path: "movie-ticket-booking-invoice", loadComponent: () => import("./chunk-V7EXGEBR.js").then((m) => m.MovieTicketBookingInvoiceComponent) },
-      { path: "restaurants-invoice", loadComponent: () => import("./chunk-IBYYSUED.js").then((m) => m.RestaurantsInvoiceComponent) },
-      { path: "student-billing-invoice", loadComponent: () => import("./chunk-2LYPJHJK.js").then((m) => m.StudentBillingInvoiceComponent) },
-      { path: "train-ticket-invoice", loadComponent: () => import("./chunk-NWMOIBTK.js").then((m) => m.TrainTicketInvoiceComponent) },
-      { path: "receipt-invoice-1", loadComponent: () => import("./chunk-EYEKCXM7.js").then((m) => m.ReceiptInvoice1Component) },
-      { path: "receipt-invoice-2", loadComponent: () => import("./chunk-GRZKDIBI.js").then((m) => m.ReceiptInvoice2Component) },
-      { path: "receipt-invoice-3", loadComponent: () => import("./chunk-SZ7H2Z2C.js").then((m) => m.ReceiptInvoice3Component) },
-      { path: "receipt-invoice-", loadComponent: () => import("./chunk-667VG6QL.js").then((m) => m.ReceiptInvoice4Component) }
+      { path: "general-invoice-1", loadComponent: () => import("./chunk-OJTY5BFL.js").then((m) => m.GeneralInvoice1Component) },
+      { path: "general-invoice-2", loadComponent: () => import("./chunk-F3LHI4GH.js").then((m) => m.GeneralInvoice2Component) },
+      { path: "general-invoice-3", loadComponent: () => import("./chunk-QPAIB7RT.js").then((m) => m.GeneralInvoice3Component) },
+      { path: "general-invoice-4", loadComponent: () => import("./chunk-W6SUPJPZ.js").then((m) => m.GeneralInvoice4Component) },
+      { path: "general-invoice-5", loadComponent: () => import("./chunk-QIVHWPXX.js").then((m) => m.GeneralInvoice5Component) },
+      { path: "general-invoice-6", loadComponent: () => import("./chunk-MD4DNCFY.js").then((m) => m.GeneralInvoice6Component) },
+      { path: "general-invoice-7", loadComponent: () => import("./chunk-VW52WCMS.js").then((m) => m.GeneralInvoice7Component) },
+      { path: "general-invoice-8", loadComponent: () => import("./chunk-X2NHG6UX.js").then((m) => m.GeneralInvoice8Component) },
+      { path: "general-invoice-9", loadComponent: () => import("./chunk-6E32TFI7.js").then((m) => m.GeneralInvoice9Component) },
+      { path: "general-invoice-10", loadComponent: () => import("./chunk-OR3MXO4O.js").then((m) => m.GeneralInvoice10Component) },
+      { path: "bus-booking-invoice", loadComponent: () => import("./chunk-H6V2AAL3.js").then((m) => m.BusBookingInvoiceComponent) },
+      { path: "car-booking-invoice", loadComponent: () => import("./chunk-4H6QXOO7.js").then((m) => m.CarBookingInvoiceComponent) },
+      { path: "coffee-shop-invoice", loadComponent: () => import("./chunk-3OTKIECL.js").then((m) => m.CoffeeShopInvoiceComponent) },
+      { path: "domain-hosting-invoice", loadComponent: () => import("./chunk-AN3PSCZ3.js").then((m) => m.DomainHostingInvoiceComponent) },
+      { path: "ecommerce-invoice", loadComponent: () => import("./chunk-ACAWIGDF.js").then((m) => m.EcommerceInvoiceComponent) },
+      { path: "fitness-center-invoice", loadComponent: () => import("./chunk-ZUN74DO3.js").then((m) => m.FitnessCenterInvoiceComponent) },
+      { path: "flight-booking-invoice", loadComponent: () => import("./chunk-63SAK67C.js").then((m) => m.FlightBookingInvoiceComponent) },
+      { path: "hotel-booking-invoice", loadComponent: () => import("./chunk-ERRIOOLL.js").then((m) => m.HotelBookingInvoiceComponent) },
+      { path: "internet-billing-invoice", loadComponent: () => import("./chunk-76H7CLP2.js").then((m) => m.InternetBillingInvoiceComponent) },
+      { path: "invoice-medical", loadComponent: () => import("./chunk-Q2432WRW.js").then((m) => m.InvoiceMedicalComponent) },
+      { path: "money-exchange-invoice", loadComponent: () => import("./chunk-LBUGHWKZ.js").then((m) => m.MoneyExchangeInvoiceComponent) },
+      { path: "movie-ticket-booking-invoice", loadComponent: () => import("./chunk-6KPMTIBK.js").then((m) => m.MovieTicketBookingInvoiceComponent) },
+      { path: "restaurants-invoice", loadComponent: () => import("./chunk-SR2OWCEZ.js").then((m) => m.RestaurantsInvoiceComponent) },
+      { path: "student-billing-invoice", loadComponent: () => import("./chunk-GO5CQFZI.js").then((m) => m.StudentBillingInvoiceComponent) },
+      { path: "train-ticket-invoice", loadComponent: () => import("./chunk-V3Q2M5WF.js").then((m) => m.TrainTicketInvoiceComponent) },
+      { path: "receipt-invoice-1", loadComponent: () => import("./chunk-LUIPGBJZ.js").then((m) => m.ReceiptInvoice1Component) },
+      { path: "receipt-invoice-2", loadComponent: () => import("./chunk-FTVR2J3P.js").then((m) => m.ReceiptInvoice2Component) },
+      { path: "receipt-invoice-3", loadComponent: () => import("./chunk-V6C673JV.js").then((m) => m.ReceiptInvoice3Component) },
+      { path: "receipt-invoice-", loadComponent: () => import("./chunk-LI4LVWFP.js").then((m) => m.ReceiptInvoice4Component) }
     ]
   },
-  { path: "coming-soon", loadComponent: () => import("./chunk-S7XEQNBG.js").then((m) => m.ComingSoonComponent) },
-  { path: "under-maintenance", loadComponent: () => import("./chunk-NVFF7SYN.js").then((m) => m.UnderMaintenanceComponent) },
-  { path: "under-construction", loadComponent: () => import("./chunk-LWKVCOIK.js").then((m) => m.UnderConstructionComponent) },
+  { path: "coming-soon", loadComponent: () => import("./chunk-2JFY5LRD.js").then((m) => m.ComingSoonComponent) },
+  { path: "under-maintenance", loadComponent: () => import("./chunk-W57HW555.js").then((m) => m.UnderMaintenanceComponent) },
+  { path: "under-construction", loadComponent: () => import("./chunk-HBYGZRW5.js").then((m) => m.UnderConstructionComponent) },
   {
     path: "error",
-    loadComponent: () => import("./chunk-6AFY4U4N.js").then((m) => m.ErrorComponent),
+    loadComponent: () => import("./chunk-JLYDWQ5N.js").then((m) => m.ErrorComponent),
     children: [
-      { path: "error-404", loadComponent: () => import("./chunk-BMOHAZCY.js").then((m) => m.Error404Component) },
-      { path: "error-500", loadComponent: () => import("./chunk-IYBR6HMG.js").then((m) => m.Error500Component) }
+      { path: "error-404", loadComponent: () => import("./chunk-2LHR3BAW.js").then((m) => m.Error404Component) },
+      { path: "error-500", loadComponent: () => import("./chunk-3XWIIOBC.js").then((m) => m.Error500Component) }
     ]
   },
   {
@@ -7984,13 +7988,15 @@ var AuthUtils = class {
 // src/app/core/interceptor/auth/auth.interceptor.ts
 var AuthInterceptor = class _AuthInterceptor {
   _authService;
+  _toasterService;
   isRefreshing = false;
   refreshTokenSubject = new BehaviorSubject(null);
   /**
    * Constructor
    */
-  constructor(_authService) {
+  constructor(_authService, _toasterService) {
     this._authService = _authService;
+    this._toasterService = _toasterService;
   }
   /**
    * Intercept
@@ -8013,6 +8019,13 @@ var AuthInterceptor = class _AuthInterceptor {
         console.log("AuthInterceptor: Error occurred", error);
         if (error instanceof HttpErrorResponse && error.status === 401) {
           console.log("AuthInterceptor: 401 Unauthorized - attempting token refresh");
+          return this.handle401Error(req, next);
+        }
+        if (error instanceof HttpErrorResponse && error.status === 403) {
+          this._toasterService.typeError(error.message ?? "Acc\xE8s refus\xE9", "");
+        }
+        if (error instanceof HttpErrorResponse && error.status === 0) {
+          this._toasterService.typeError("Verifier votre connexion \xE0 internet", "Connexion Internet");
           return this.handle401Error(req, next);
         }
         return throwError(() => error);
@@ -8092,14 +8105,14 @@ var AuthInterceptor = class _AuthInterceptor {
     }
   }
   static \u0275fac = function AuthInterceptor_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _AuthInterceptor)(\u0275\u0275inject(AuthService));
+    return new (__ngFactoryType__ || _AuthInterceptor)(\u0275\u0275inject(AuthService), \u0275\u0275inject(ToasterService));
   };
   static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _AuthInterceptor, factory: _AuthInterceptor.\u0275fac });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AuthInterceptor, [{
     type: Injectable
-  }], () => [{ type: AuthService }], null);
+  }], () => [{ type: AuthService }, { type: ToasterService }], null);
 })();
 
 // src/app/app.config.ts
@@ -8108,6 +8121,7 @@ var appConfig = {
     provideRouter(routes2),
     BsDatepickerModule.forRoot().providers,
     provideAnimations(),
+    provideToastr(),
     provideHttpClient(withInterceptorsFromDi()),
     NgxMaskModule.forRoot({
       showMaskTyped: false

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { routes } from '../../../../src/app/core/core.index';
+import { routes } from '../../core/core.index';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 

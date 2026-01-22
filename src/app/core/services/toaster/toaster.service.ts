@@ -8,16 +8,16 @@ export class ToasterService {
   constructor(private toaster: ToastrService) {}
 
   typeSuccess(message: string, tittle?: string) {
-    this.toaster.success(message, tittle || 'Kanakku', {
-      timeOut: 1000,
+    this.toaster.success(message, tittle || 'OCM', {
+      timeOut: 5000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-top-right',
     });
   }
   typeInfo(message: string, tittle?: string) {
-    this.toaster.info(message, tittle || 'Kanakku', {
-      timeOut: 1000,
+    this.toaster.info(message, tittle || 'OCM', {
+      timeOut: 5000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-top-right',
@@ -25,8 +25,8 @@ export class ToasterService {
   }
 
   typeWarning(message: string, tittle?: string) {
-    this.toaster.warning(message, tittle || 'Kanakku', {
-      timeOut: 1000,
+    this.toaster.warning(message, tittle || 'OCM', {
+      timeOut: 5000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-top-right',
@@ -34,8 +34,8 @@ export class ToasterService {
   }
 
   typeError(message: string, tittle?: string) {
-    this.toaster.error(message, tittle || 'Kanakku', {
-      timeOut: 1000,
+    this.toaster.error(message, tittle || 'OCM', {
+      timeOut: 5000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-top-right',
@@ -43,16 +43,16 @@ export class ToasterService {
   }
 
   topLeft(message: string, tittle?: string) {
-    this.toaster.info(message, tittle || 'Kanakku', {
-      timeOut: 1000,
+    this.toaster.info(message, tittle || 'OCM', {
+      timeOut: 5000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-top-left',
     });
   }
   topCenter(message: string, tittle?: string) {
-    this.toaster.info(message, tittle || 'Kanakku', {
-      timeOut: 1000,
+    this.toaster.info(message, tittle || 'OCM', {
+      timeOut: 5000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-top-center',
@@ -60,16 +60,16 @@ export class ToasterService {
   }
 
   topRight(message: string, tittle?: string) {
-    this.toaster.info(message, tittle || 'Kanakku', {
-      timeOut: 1000,
+    this.toaster.info(message, tittle || 'OCM', {
+      timeOut: 5000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-top-right',
     });
   }
   topFullWidth(message: string, tittle?: string) {
-    this.toaster.info(message, tittle || 'Kanakku', {
-      timeOut: 1000,
+    this.toaster.info(message, tittle || 'OCM', {
+      timeOut: 5000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-top-full-width',
@@ -77,8 +77,8 @@ export class ToasterService {
   }
 
   bottomLeft(message: string, tittle?: string) {
-    this.toaster.info(message, tittle || 'Kanakku', {
-      timeOut: 1000,
+    this.toaster.info(message, tittle || 'OCM', {
+      timeOut: 5000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-bottom-left',
@@ -86,8 +86,8 @@ export class ToasterService {
   }
 
   bottomCenter(message: string, tittle?: string) {
-    this.toaster.info(message, tittle || 'Kanakku', {
-      timeOut: 1000,
+    this.toaster.info(message, tittle || 'OCM', {
+      timeOut: 5000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-bottom-center',
@@ -95,8 +95,8 @@ export class ToasterService {
   }
 
   bottomRight(message: string, tittle?: string) {
-    this.toaster.info(message, tittle || 'Kanakku', {
-      timeOut: 1000,
+    this.toaster.info(message, tittle || 'OCM', {
+      timeOut: 5000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-bottom-right',
@@ -104,7 +104,7 @@ export class ToasterService {
   }
 
   bottomFullWidth(message: string, tittle?: string) {
-    this.toaster.info(message, tittle || 'Kanakku', {
+    this.toaster.info(message, tittle || 'OCM', {
       timeOut: 1000,
       progressBar: true,
       progressAnimation: 'increasing',
@@ -113,13 +113,13 @@ export class ToasterService {
   }
 
   notification(message: string, tittle?: string) {
-    this.toaster.success(message, tittle || 'Kanakku', {
+    this.toaster.success(message, tittle || 'OCM', {
       timeOut: 1000,
     });
   }
 
   closeButton(message: string, tittle?: string) {
-    this.toaster.success(message, tittle || 'Kanakku', {
+    this.toaster.success(message, tittle || 'OCM', {
       closeButton: true,
       positionClass: 'toast-top-right',
       timeOut: 5000,
@@ -127,7 +127,7 @@ export class ToasterService {
   }
 
   progressBar(message: string, tittle?: string) {
-    this.toaster.success(message, tittle || 'Kanakku', {
+    this.toaster.success(message, tittle || 'OCM', {
       closeButton: true,
       positionClass: 'toast-top-right',
       progressBar: true,
@@ -137,7 +137,7 @@ export class ToasterService {
   }
 
   clearToast(message: string, tittle?: string) {
-    this.toaster.info(message, tittle || 'Kanakku', {
+    this.toaster.info(message, tittle || 'OCM', {
       closeButton: true,
       positionClass: 'toast-top-right',
       timeOut: 5000,
@@ -145,7 +145,7 @@ export class ToasterService {
   }
 
   showRemove(message: string, tittle?: string) {
-    this.toaster.warning(message, tittle || 'Kanakku', {
+    this.toaster.warning(message, tittle || 'OCM', {
       disableTimeOut: true,
       timeOut: 5000,
       positionClass: 'toast-top-right',
@@ -157,28 +157,28 @@ export class ToasterService {
   }
 
   fastDuration(message: string, tittle: string, duration: number) {
-    this.toaster.info(message, tittle || 'Kanakku', {
+    this.toaster.info(message, tittle || 'OCM', {
       timeOut: duration,
       positionClass: 'toast-top-right',
     });
   }
 
   slowDuration(message: string, tittle: string, duration: number) {
-    this.toaster.warning(message, tittle || 'Kanakku', {
+    this.toaster.warning(message, tittle || 'OCM', {
       timeOut: duration,
       positionClass: 'toast-top-right',
     });
   }
 
   timeouts(message: string, tittle: string, durationTimeOut: number) {
-    this.toaster.error(message, tittle || 'Kanakku', {
+    this.toaster.error(message, tittle || 'OCM', {
       timeOut: durationTimeOut,
       positionClass: 'toast-top-right',
     });
   }
 
   stickys(message: string, tittle: string, duration: number) {
-    this.toaster.success(message, tittle || 'Kanakku', {
+    this.toaster.success(message, tittle || 'OCM', {
       disableTimeOut: true,
       timeOut: duration,
       positionClass: 'toast-top-right',

@@ -1,0 +1,262 @@
+import {
+  CommonModule
+} from "./chunk-LNSVVXVJ.js";
+import {
+  Component,
+  setClassMetadata,
+  ɵsetClassDebugInfo,
+  ɵɵdefineComponent,
+  ɵɵdomElementEnd,
+  ɵɵdomElementStart,
+  ɵɵtext
+} from "./chunk-HKG6HBOI.js";
+import "./chunk-TXDUYLVM.js";
+
+// src/app/features/ui-interface/base-ui/tabs/tabs.component.ts
+var TabsComponent = class _TabsComponent {
+  static \u0275fac = function TabsComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _TabsComponent)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TabsComponent, selectors: [["app-tabs"]], decls: 292, vars: 0, consts: [[1, ""], [1, "d-flex", "align-items-sm-center", "flex-sm-row", "flex-column", "gap-2", "pb-3"], [1, "flex-grow-1"], [1, "fs-18", "fw-semibold", "mb-0"], [1, "text-end"], [1, "breadcrumb", "m-0", "py-0"], [1, "breadcrumb-item"], ["href", "javascript: void(0);"], [1, "breadcrumb-item", "active"], [1, "row"], [1, "col-xl-6"], [1, "card"], [1, "card-header"], [1, "card-title"], [1, "card-body"], [1, "nav", "nav-tabs", "mb-3"], [1, "nav-item"], ["href", "#home", "data-bs-toggle", "tab", "aria-expanded", "false", 1, "nav-link"], ["href", "#profile", "data-bs-toggle", "tab", "aria-expanded", "true", 1, "nav-link", "active"], ["href", "#message", "data-bs-toggle", "tab", "aria-expanded", "false", 1, "nav-link"], ["href", "javascript:void(0);", "data-bs-toggle", "tab", "aria-expanded", "false", 1, "nav-link", "disabled"], [1, "tab-content"], ["id", "home", 1, "tab-pane"], [1, "mb-0"], ["id", "profile", 1, "tab-pane", "show", "active"], ["id", "message", 1, "tab-pane"], [1, "nav", "nav-pills", "bg-nav-pills", "nav-justified", "mb-3"], ["href", "#home2", "data-bs-toggle", "tab", "aria-expanded", "false", 1, "nav-link", "rounded-0"], ["href", "#profile2", "data-bs-toggle", "tab", "aria-expanded", "true", 1, "nav-link", "rounded-0", "active"], ["href", "#messages2", "data-bs-toggle", "tab", "aria-expanded", "false", 1, "nav-link", "rounded-0"], ["id", "home2", 1, "tab-pane"], ["id", "profile2", 1, "tab-pane", "show", "active"], ["id", "messages2", 1, "tab-pane"], [1, "nav", "nav-tabs", "nav-solid-primary", "mb-3"], ["href", "#solid-tab1", "data-bs-toggle", "tab", 1, "nav-link", "active"], ["href", "#solid-tab2", "data-bs-toggle", "tab", 1, "nav-link"], ["href", "#solid-tab3", "data-bs-toggle", "tab", 1, "nav-link"], ["id", "solid-tab1", 1, "tab-pane", "show", "active"], ["id", "solid-tab2", 1, "tab-pane"], ["id", "solid-tab3", 1, "tab-pane"], [1, "col-md-6"], [1, "nav", "nav-tabs", "nav-solid-primary", "nav-justified", "mb-3"], ["href", "#solid-justified-tab1", "data-bs-toggle", "tab", 1, "nav-link", "active"], ["href", "#solid-justified-tab2", "data-bs-toggle", "tab", 1, "nav-link"], ["href", "#solid-justified-tab3", "data-bs-toggle", "tab", 1, "nav-link"], ["id", "solid-justified-tab1", 1, "tab-pane", "show", "active"], ["id", "solid-justified-tab2", 1, "tab-pane"], ["id", "solid-justified-tab3", 1, "tab-pane"], [1, "nav", "nav-tabs", "nav-solid-success", "nav-tabs-rounded", "mb-3"], ["href", "#solid-rounded-tab1", "data-bs-toggle", "tab", 1, "nav-link", "active"], ["href", "#solid-rounded-tab2", "data-bs-toggle", "tab", 1, "nav-link"], ["href", "#solid-rounded-tab3", "data-bs-toggle", "tab", 1, "nav-link"], ["id", "solid-rounded-tab1", 1, "tab-pane", "show", "active"], ["id", "solid-rounded-tab2", 1, "tab-pane"], ["id", "solid-rounded-tab3", 1, "tab-pane"], [1, "nav", "nav-tabs", "nav-solid-success", "nav-tabs-rounded", "nav-justified", "mb-3"], ["href", "#solid-rounded-justified-tab1", "data-bs-toggle", "tab", 1, "nav-link", "active"], ["href", "#solid-rounded-justified-tab2", "data-bs-toggle", "tab", 1, "nav-link"], ["href", "#solid-rounded-justified-tab3", "data-bs-toggle", "tab", 1, "nav-link"], ["id", "solid-rounded-justified-tab1", 1, "tab-pane", "show", "active"], ["id", "solid-rounded-justified-tab2", 1, "tab-pane"], ["id", "solid-rounded-justified-tab3", 1, "tab-pane"], [1, "nav", "nav-tabs", "nav-bordered", "mb-3"], ["href", "#home-b1", "data-bs-toggle", "tab", "aria-expanded", "false", 1, "nav-link"], [1, "d-none", "d-md-inline-block"], ["href", "#profile-b1", "data-bs-toggle", "tab", "aria-expanded", "true", 1, "nav-link", "active"], ["href", "#messages-b1", "data-bs-toggle", "tab", "aria-expanded", "false", 1, "nav-link"], ["id", "home-b1", 1, "tab-pane"], ["id", "profile-b1", 1, "tab-pane", "show", "active"], ["id", "messages-b1", 1, "tab-pane"], [1, "nav", "nav-tabs", "nav-justified", "nav-bordered", "nav-bordered-success", "mb-3"], ["href", "#home-b2", "data-bs-toggle", "tab", "aria-expanded", "false", 1, "nav-link"], ["href", "#profile-b2", "data-bs-toggle", "tab", "aria-expanded", "true", 1, "nav-link", "active"], ["href", "#messages-b2", "data-bs-toggle", "tab", "aria-expanded", "false", 1, "nav-link"], ["id", "home-b2", 1, "tab-pane"], ["id", "profile-b2", 1, "tab-pane", "show", "active"], ["id", "messages-b2", 1, "tab-pane"], [1, "col-sm-3", "mb-2", "mb-sm-0"], ["id", "v-pills-tab", "role", "tablist", "aria-orientation", "vertical", 1, "nav", "flex-column", "nav-pills"], ["id", "v-pills-home-tab", "data-bs-toggle", "pill", "href", "#v-pills-home", "role", "tab", "aria-controls", "v-pills-home", "aria-selected", "true", 1, "nav-link", "active", "show"], ["id", "v-pills-profile-tab", "data-bs-toggle", "pill", "href", "#v-pills-profile", "role", "tab", "aria-controls", "v-pills-profile", "aria-selected", "false", 1, "nav-link"], ["id", "v-pills-messages-tab", "data-bs-toggle", "pill", "href", "#v-pills-messages", "role", "tab", "aria-controls", "v-pills-messages", "aria-selected", "false", 1, "nav-link"], [1, "col-sm-9"], ["id", "v-pills-tabContent", 1, "tab-content"], ["id", "v-pills-home", "role", "tabpanel", "aria-labelledby", "v-pills-home-tab", 1, "tab-pane", "fade", "active", "show"], ["id", "v-pills-profile", "role", "tabpanel", "aria-labelledby", "v-pills-profile-tab", 1, "tab-pane", "fade"], ["id", "v-pills-messages", "role", "tabpanel", "aria-labelledby", "v-pills-messages-tab", 1, "tab-pane", "fade"], ["id", "v-pills-tabContent-right", 1, "tab-content"], ["id", "v-pills-home2", "role", "tabpanel", "aria-labelledby", "v-pills-home-tab", 1, "tab-pane", "fade", "active", "show"], ["id", "v-pills-profile2", "role", "tabpanel", "aria-labelledby", "v-pills-profile-tab", 1, "tab-pane", "fade"], ["id", "v-pills-messages2", "role", "tabpanel", "aria-labelledby", "v-pills-messages-tab", 1, "tab-pane", "fade"], [1, "col-sm-3", "mt-2", "mt-sm-0"], ["id", "v-pills-tab2", "role", "tablist", "aria-orientation", "vertical", 1, "nav", "flex-column", "nav-pills", "nav-pills-secondary"], ["id", "v-pills-home-tab2", "data-bs-toggle", "pill", "href", "#v-pills-home2", "role", "tab", "aria-controls", "v-pills-home2", "aria-selected", "true", 1, "nav-link", "active", "show"], ["id", "v-pills-profile-tab2", "data-bs-toggle", "pill", "href", "#v-pills-profile2", "role", "tab", "aria-controls", "v-pills-profile2", "aria-selected", "false", 1, "nav-link"], ["id", "v-pills-messages-tab2", "data-bs-toggle", "pill", "href", "#v-pills-messages2", "role", "tab", "aria-controls", "v-pills-messages2", "aria-selected", "false", 1, "nav-link"]], template: function TabsComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275domElementStart(0, "div", 0)(1, "div", 1)(2, "div", 2)(3, "h4", 3);
+      \u0275\u0275text(4, "Tabs");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(5, "div", 4)(6, "ol", 5)(7, "li", 6)(8, "a", 7);
+      \u0275\u0275text(9, "Home");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(10, "li", 6)(11, "a", 7);
+      \u0275\u0275text(12, "Base UI");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(13, "li", 8);
+      \u0275\u0275text(14, "Tabs");
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(15, "div", 9)(16, "div", 10)(17, "div", 11)(18, "div", 12)(19, "h5", 13);
+      \u0275\u0275text(20, "Default Tabs");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(21, "div", 14)(22, "ul", 15)(23, "li", 16)(24, "a", 17);
+      \u0275\u0275text(25, " Home ");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(26, "li", 16)(27, "a", 18);
+      \u0275\u0275text(28, " Profile ");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(29, "li", 16)(30, "a", 19);
+      \u0275\u0275text(31, " Settings ");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(32, "li", 16)(33, "a", 20);
+      \u0275\u0275text(34, " Disabled ");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(35, "div", 21)(36, "div", 22)(37, "p", 23);
+      \u0275\u0275text(38, "Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(39, "div", 24)(40, "p", 23);
+      \u0275\u0275text(41, "Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(42, "div", 25)(43, "p", 23);
+      \u0275\u0275text(44, "View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.");
+      \u0275\u0275domElementEnd()()()()()();
+      \u0275\u0275domElementStart(45, "div", 10)(46, "div", 11)(47, "div", 12)(48, "h5", 13);
+      \u0275\u0275text(49, "Tabs Justified");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(50, "div", 14)(51, "ul", 26)(52, "li", 16)(53, "a", 27);
+      \u0275\u0275text(54, " Home ");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(55, "li", 16)(56, "a", 28);
+      \u0275\u0275text(57, " Profile ");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(58, "li", 16)(59, "a", 29);
+      \u0275\u0275text(60, " Settings ");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(61, "div", 21)(62, "div", 30)(63, "p", 23);
+      \u0275\u0275text(64, "Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(65, "div", 31)(66, "p", 23);
+      \u0275\u0275text(67, "Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(68, "div", 32)(69, "p", 23);
+      \u0275\u0275text(70, "View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates. ");
+      \u0275\u0275domElementEnd()()()()()()();
+      \u0275\u0275domElementStart(71, "div", 9)(72, "div", 10)(73, "div", 11)(74, "div", 12)(75, "h5", 13);
+      \u0275\u0275text(76, "Solid Tabs");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(77, "div", 14)(78, "ul", 33)(79, "li", 16)(80, "a", 34);
+      \u0275\u0275text(81, "Home");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(82, "li", 16)(83, "a", 35);
+      \u0275\u0275text(84, "Profile");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(85, "li", 16)(86, "a", 36);
+      \u0275\u0275text(87, "Messages");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(88, "div", 21)(89, "div", 37)(90, "p", 23);
+      \u0275\u0275text(91, "Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(92, "div", 38)(93, "p", 23);
+      \u0275\u0275text(94, "Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(95, "div", 39)(96, "p", 23);
+      \u0275\u0275text(97, "View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.");
+      \u0275\u0275domElementEnd()()()()()();
+      \u0275\u0275domElementStart(98, "div", 40)(99, "div", 11)(100, "div", 12)(101, "h5", 13);
+      \u0275\u0275text(102, "Solid Justified");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(103, "div", 14)(104, "ul", 41)(105, "li", 16)(106, "a", 42);
+      \u0275\u0275text(107, "Home");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(108, "li", 16)(109, "a", 43);
+      \u0275\u0275text(110, "Profile");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(111, "li", 16)(112, "a", 44);
+      \u0275\u0275text(113, "Messages");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(114, "div", 21)(115, "div", 45)(116, "p", 23);
+      \u0275\u0275text(117, "Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(118, "div", 46)(119, "p", 23);
+      \u0275\u0275text(120, "Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(121, "div", 47)(122, "p", 23);
+      \u0275\u0275text(123, "View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.");
+      \u0275\u0275domElementEnd()()()()()()();
+      \u0275\u0275domElementStart(124, "div", 9)(125, "div", 40)(126, "div", 11)(127, "div", 12)(128, "h5", 13);
+      \u0275\u0275text(129, "Solid Rounded");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(130, "div", 14)(131, "ul", 48)(132, "li", 16)(133, "a", 49);
+      \u0275\u0275text(134, "Home");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(135, "li", 16)(136, "a", 50);
+      \u0275\u0275text(137, "Profile");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(138, "li", 16)(139, "a", 51);
+      \u0275\u0275text(140, "Messages");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(141, "div", 21)(142, "div", 52)(143, "p", 23);
+      \u0275\u0275text(144, "Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(145, "div", 53)(146, "p", 23);
+      \u0275\u0275text(147, "Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(148, "div", 54)(149, "p", 23);
+      \u0275\u0275text(150, "View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.");
+      \u0275\u0275domElementEnd()()()()()();
+      \u0275\u0275domElementStart(151, "div", 40)(152, "div", 11)(153, "div", 12)(154, "h5", 13);
+      \u0275\u0275text(155, "Rounded Justified");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(156, "div", 14)(157, "ul", 55)(158, "li", 16)(159, "a", 56);
+      \u0275\u0275text(160, "Home");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(161, "li", 16)(162, "a", 57);
+      \u0275\u0275text(163, "Profile");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(164, "li", 16)(165, "a", 58);
+      \u0275\u0275text(166, "Messages");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(167, "div", 21)(168, "div", 59)(169, "p", 23);
+      \u0275\u0275text(170, "Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(171, "div", 60)(172, "p", 23);
+      \u0275\u0275text(173, "Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(174, "div", 61)(175, "p", 23);
+      \u0275\u0275text(176, "View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.");
+      \u0275\u0275domElementEnd()()()()()()();
+      \u0275\u0275domElementStart(177, "div", 9)(178, "div", 10)(179, "div", 11)(180, "div", 12)(181, "h5", 13);
+      \u0275\u0275text(182, "Tabs Bordered");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(183, "div", 14)(184, "ul", 62)(185, "li", 16)(186, "a", 63)(187, "span", 64);
+      \u0275\u0275text(188, "Home");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(189, "li", 16)(190, "a", 65)(191, "span", 64);
+      \u0275\u0275text(192, "Profile");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(193, "li", 16)(194, "a", 66)(195, "span", 64);
+      \u0275\u0275text(196, "Messages");
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(197, "div", 21)(198, "div", 67)(199, "p", 23);
+      \u0275\u0275text(200, "Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(201, "div", 68)(202, "p", 23);
+      \u0275\u0275text(203, "Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(204, "div", 69)(205, "p", 23);
+      \u0275\u0275text(206, "View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.");
+      \u0275\u0275domElementEnd()()()()()();
+      \u0275\u0275domElementStart(207, "div", 10)(208, "div", 11)(209, "div", 12)(210, "h5", 13);
+      \u0275\u0275text(211, "Tabs Bordered Justified");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(212, "div", 14)(213, "ul", 70)(214, "li", 16)(215, "a", 71)(216, "span", 64);
+      \u0275\u0275text(217, "Home");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(218, "li", 16)(219, "a", 72)(220, "span", 64);
+      \u0275\u0275text(221, "Profile");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(222, "li", 16)(223, "a", 73)(224, "span", 64);
+      \u0275\u0275text(225, "Messages");
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(226, "div", 21)(227, "div", 74)(228, "p", 23);
+      \u0275\u0275text(229, "Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(230, "div", 75)(231, "p", 23);
+      \u0275\u0275text(232, "Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(233, "div", 76)(234, "p", 23);
+      \u0275\u0275text(235, "View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.");
+      \u0275\u0275domElementEnd()()()()()()();
+      \u0275\u0275domElementStart(236, "div", 9)(237, "div", 10)(238, "div", 11)(239, "div", 12)(240, "h5", 13);
+      \u0275\u0275text(241, "Tabs Vertical Left");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(242, "div", 14)(243, "div", 9)(244, "div", 77)(245, "div", 78)(246, "a", 79);
+      \u0275\u0275text(247, " Home ");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(248, "a", 80);
+      \u0275\u0275text(249, " Profile ");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(250, "a", 81);
+      \u0275\u0275text(251, " messages ");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(252, "div", 82)(253, "div", 83)(254, "div", 84)(255, "p", 23);
+      \u0275\u0275text(256, "Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(257, "div", 85)(258, "p", 23);
+      \u0275\u0275text(259, "Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(260, "div", 86)(261, "p", 23);
+      \u0275\u0275text(262, "View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.");
+      \u0275\u0275domElementEnd()()()()()()()();
+      \u0275\u0275domElementStart(263, "div", 10)(264, "div", 11)(265, "div", 12)(266, "h5", 13);
+      \u0275\u0275text(267, "Tabs Vertical Right");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(268, "div", 14)(269, "div", 9)(270, "div", 82)(271, "div", 87)(272, "div", 88)(273, "p", 23);
+      \u0275\u0275text(274, "Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(275, "div", 89)(276, "p", 23);
+      \u0275\u0275text(277, "Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(278, "div", 90)(279, "p", 23);
+      \u0275\u0275text(280, "View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.");
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(281, "div", 91)(282, "div", 92)(283, "a", 93)(284, "span", 64);
+      \u0275\u0275text(285, "Home");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(286, "a", 94)(287, "span", 64);
+      \u0275\u0275text(288, "Profile");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(289, "a", 95)(290, "span", 64);
+      \u0275\u0275text(291, "Messages");
+      \u0275\u0275domElementEnd()()()()()()()()()();
+    }
+  }, dependencies: [CommonModule], encapsulation: 2 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TabsComponent, [{
+    type: Component,
+    args: [{ selector: "app-tabs", imports: [CommonModule], template: '			<!-- Start Content -->\n      <div class="">\n\n        <!-- Page Header -->\n        <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3">\n            <div class="flex-grow-1">\n                <h4 class="fs-18 fw-semibold mb-0">Tabs</h4>\n            </div>\n\n            <div class="text-end">\n                <ol class="breadcrumb m-0 py-0">\n                    <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>\n                    \n                    <li class="breadcrumb-item"><a href="javascript: void(0);">Base UI</a></li>\n                    \n                    <li class="breadcrumb-item active">Tabs</li>\n                </ol>\n            </div>\n</div>\n<!-- End Page Header -->\n\n        <!-- start row -->\n        <div class="row">\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Default Tabs</h5>\n                    </div>\n                    <div class="card-body">\n                        <ul class="nav nav-tabs mb-3">\n                            <li class="nav-item">\n                                <a href="#home" data-bs-toggle="tab" aria-expanded="false" class="nav-link">\n                                    Home\n                                </a>\n                            </li>\n                            <li class="nav-item">\n                                <a href="#profile" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">\n                                    Profile\n                                </a>\n                            </li>\n                            <li class="nav-item">\n                                <a href="#message" data-bs-toggle="tab" aria-expanded="false" class="nav-link">\n                                    Settings\n                                </a>\n                            </li>\n                            <li class="nav-item">\n                                <a href="javascript:void(0);" data-bs-toggle="tab" aria-expanded="false" class="nav-link disabled">\n                                    Disabled\n                                </a>\n                            </li>\n                        </ul>\n\n                        <div class="tab-content">\n                            <div class="tab-pane" id="home">\n                                <p class="mb-0">Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.</p>\n                            </div>\n                            <div class="tab-pane show active" id="profile">\n                                <p class="mb-0">Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.</p>\n                            </div>\n                            <div class="tab-pane" id="message">\n                                <p class="mb-0">View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.</p>\n                            </div>\n                        </div>\n\n                    </div> <!-- end card-body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Tabs Justified</h5>\n                    </div>\n                    <div class="card-body">\n                        <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">\n                            <li class="nav-item">\n                                <a href="#home2" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">\n                                    Home\n                                </a>\n                            </li>\n                            <li class="nav-item">\n                                <a href="#profile2" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0 active">\n                                    Profile\n                                </a>\n                            </li>\n                            <li class="nav-item">\n                                <a href="#messages2" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">\n                                    Settings\n                                </a>\n                            </li>\n                        </ul>\n\n                        <div class="tab-content">\n                            <div class="tab-pane" id="home2">\n                                <p class="mb-0">Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.</p>\n                            </div>\n                            <div class="tab-pane show active" id="profile2">\n                                <p class="mb-0">Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.</p>\n                            </div>\n                            <div class="tab-pane" id="messages2">\n                                <p class="mb-0">View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates. </p>\n                            </div>\n                        </div>\n\n                    </div> <!-- end card-body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n        </div>\n        <!-- end row -->\n\n        <!-- start row -->\n        <div class="row">\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Solid Tabs</h5>\n                    </div>\n                    <div class="card-body">\n                        <ul class="nav nav-tabs nav-solid-primary mb-3">\n                            <li class="nav-item"><a class="nav-link active" href="#solid-tab1" data-bs-toggle="tab">Home</a></li>\n                            <li class="nav-item"><a class="nav-link" href="#solid-tab2" data-bs-toggle="tab">Profile</a></li>\n                            <li class="nav-item"><a class="nav-link" href="#solid-tab3" data-bs-toggle="tab">Messages</a></li>\n                        </ul>\n                        <div class="tab-content">\n                            <div class="tab-pane show active" id="solid-tab1">\n                                <p class="mb-0">Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.</p>\n                            </div>\n                            <div class="tab-pane" id="solid-tab2">\n                                <p class="mb-0">Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.</p>\n                            </div>\n                            <div class="tab-pane" id="solid-tab3">\n                                <p class="mb-0">View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.</p>\n                            </div>\n                        </div>\n                    </div><!-- end card body -->\n                </div><!-- end card -->\n            </div><!-- end col -->\n            <div class="col-md-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Solid Justified</h5>\n                    </div>\n                    <div class="card-body">\n                        <ul class="nav nav-tabs nav-solid-primary nav-justified mb-3">\n                            <li class="nav-item"><a class="nav-link active" href="#solid-justified-tab1" data-bs-toggle="tab">Home</a></li>\n                            <li class="nav-item"><a class="nav-link" href="#solid-justified-tab2" data-bs-toggle="tab">Profile</a></li>\n                            <li class="nav-item"><a class="nav-link" href="#solid-justified-tab3" data-bs-toggle="tab">Messages</a></li>\n                        </ul>\n                        <div class="tab-content">\n                            <div class="tab-pane show active" id="solid-justified-tab1">\n                                <p class="mb-0">Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.</p>\n                            </div>\n                            <div class="tab-pane" id="solid-justified-tab2">\n                                <p class="mb-0">Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.</p>\n                            </div>\n                            <div class="tab-pane" id="solid-justified-tab3">\n                                <p class="mb-0">View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.</p>\n                            </div>\n                        </div>\n                    </div><!-- end card body -->\n                </div><!-- end card -->\n            </div><!-- end col -->\n        </div>\n        <!-- end row -->\n\n        <!-- start row -->\n        <div class="row">\n            <div class="col-md-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Solid Rounded</h5>\n                    </div>\n                    <div class="card-body">\n                        <ul class="nav nav-tabs nav-solid-success nav-tabs-rounded mb-3">\n                            <li class="nav-item"><a class="nav-link active" href="#solid-rounded-tab1" data-bs-toggle="tab">Home</a></li>\n                            <li class="nav-item"><a class="nav-link" href="#solid-rounded-tab2" data-bs-toggle="tab">Profile</a></li>\n                            <li class="nav-item"><a class="nav-link" href="#solid-rounded-tab3" data-bs-toggle="tab">Messages</a></li>\n                        </ul>\n                        <div class="tab-content">\n                            <div class="tab-pane show active" id="solid-rounded-tab1">\n                                <p class="mb-0">Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.</p>\n                            </div>\n                            <div class="tab-pane" id="solid-rounded-tab2">\n                                <p class="mb-0">Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.</p>\n                            </div>\n                            <div class="tab-pane" id="solid-rounded-tab3">\n                                <p class="mb-0">View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.</p>\n                            </div>\n                        </div>\n                    </div><!-- end card body -->\n                </div><!-- end card -->\n            </div><!-- end col -->\n            <div class="col-md-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Rounded Justified</h5>\n                    </div>\n                    <div class="card-body">\n                        <ul class="nav nav-tabs nav-solid-success nav-tabs-rounded nav-justified mb-3">\n                            <li class="nav-item"><a class="nav-link active" href="#solid-rounded-justified-tab1" data-bs-toggle="tab">Home</a></li>\n                            <li class="nav-item"><a class="nav-link" href="#solid-rounded-justified-tab2" data-bs-toggle="tab">Profile</a></li>\n                            <li class="nav-item"><a class="nav-link" href="#solid-rounded-justified-tab3" data-bs-toggle="tab">Messages</a></li>\n                        </ul>\n                        <div class="tab-content">\n                            <div class="tab-pane show active" id="solid-rounded-justified-tab1">\n                                <p class="mb-0">Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.</p>\n                            </div>\n                            <div class="tab-pane" id="solid-rounded-justified-tab2">\n                                <p class="mb-0">Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.</p>\n                            </div>\n                            <div class="tab-pane" id="solid-rounded-justified-tab3">\n                                <p class="mb-0">View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.</p>\n                            </div>\n                        </div>\n                    </div><!-- end card body -->\n                </div><!-- end card -->\n            </div><!-- end col -->\n        </div>\n        <!-- end row -->\n\n        <!-- start row -->\n        <div class="row">\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Tabs Bordered</h5>\n                    </div>\n                    <div class="card-body">\n                        <ul class="nav nav-tabs nav-bordered mb-3">\n                            <li class="nav-item">\n                                <a href="#home-b1" data-bs-toggle="tab" aria-expanded="false" class="nav-link">\n                                    <span class="d-none d-md-inline-block">Home</span>\n                                </a>\n                            </li>\n                            <li class="nav-item">\n                                <a href="#profile-b1" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">\n                                    <span class="d-none d-md-inline-block">Profile</span>\n                                </a>\n                            </li>\n                            <li class="nav-item">\n                                <a href="#messages-b1" data-bs-toggle="tab" aria-expanded="false" class="nav-link">\n                                    <span class="d-none d-md-inline-block">Messages</span>\n                                </a>\n                            </li>\n                        </ul>\n\n                        <div class="tab-content">\n                            <div class="tab-pane" id="home-b1">\n                                <p class="mb-0">Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.</p>\n                            </div>\n                            <div class="tab-pane show active" id="profile-b1">\n                                <p class="mb-0">Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.</p>\n                            </div>\n                            <div class="tab-pane" id="messages-b1">\n                                <p class="mb-0">View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.</p>\n                            </div>\n                        </div>\n\n                    </div> <!-- end card-body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Tabs Bordered Justified</h5>\n                    </div>\n\n                    <div class="card-body">\n                        <ul class="nav nav-tabs nav-justified nav-bordered nav-bordered-success mb-3">\n                            <li class="nav-item">\n                                <a href="#home-b2" data-bs-toggle="tab" aria-expanded="false" class="nav-link">\n                                    <span class="d-none d-md-inline-block">Home</span>\n                                </a>\n                            </li>\n                            <li class="nav-item">\n                                <a href="#profile-b2" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">\n                                    <span class="d-none d-md-inline-block">Profile</span>\n                                </a>\n                            </li>\n                            <li class="nav-item">\n                                <a href="#messages-b2" data-bs-toggle="tab" aria-expanded="false" class="nav-link">\n                                    <span class="d-none d-md-inline-block">Messages</span>\n                                </a>\n                            </li>\n                        </ul>\n\n                        <div class="tab-content">\n                            <div class="tab-pane" id="home-b2">\n                                <p class="mb-0">Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.</p>\n                            </div>\n                            <div class="tab-pane show active" id="profile-b2">\n                                <p class="mb-0">Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.</p>\n                            </div>\n                            <div class="tab-pane" id="messages-b2">\n                                <p class="mb-0">View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.</p>\n                            </div>\n                        </div>\n\n                    </div> <!-- end card-body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n        </div>\n        <!-- end row -->\n\n        <!-- start row -->\n        <div class="row">\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Tabs Vertical Left</h5>\n                    </div>\n\n                    <div class="card-body">\n                        <div class="row">\n                            <div class="col-sm-3 mb-2 mb-sm-0">\n                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">\n                                    <a class="nav-link active show" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">\n                                        Home\n                                    </a>\n                                    <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">\n                                        Profile\n                                    </a>\n                                    <a class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">\n                                        messages\n                                    </a>\n                                </div>\n                            </div> <!-- end col -->\n\n                            <div class="col-sm-9">\n                                <div class="tab-content" id="v-pills-tabContent">\n                                    <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">\n                                        <p class="mb-0">Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.</p>\n                                    </div>\n                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">\n                                        <p class="mb-0">Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.</p>\n                                    </div>\n                                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">\n                                        <p class="mb-0">View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.</p>\n                                    </div>\n                                </div> <!-- end tab-content-->\n                            </div> <!-- end col -->\n                        </div>\n                        <!-- end row -->\n\n                    </div> <!-- end card-body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n\n            <div class="col-xl-6">\n                <div class="card">\n                    <div class="card-header">\n                        <h5 class="card-title">Tabs Vertical Right</h5>\n                    </div>\n\n                    <div class="card-body">\n                        <div class="row">\n                            <div class="col-sm-9">\n                                <div class="tab-content" id="v-pills-tabContent-right">\n                                    <div class="tab-pane fade active show" id="v-pills-home2" role="tabpanel" aria-labelledby="v-pills-home-tab">\n                                        <p class="mb-0">Welcome to the dashboard! Access key metrics, recent updates, and quick links to manage your activity. Use this panel to stay on top of your workflow and performance goals.</p>\n                                    </div>\n                                    <div class="tab-pane fade" id="v-pills-profile2" role="tabpanel" aria-labelledby="v-pills-profile-tab">\n                                        <p class="mb-0">Manage your profile details, update your contact info, and review your login activity. Keeping your account information accurate ensures a smooth and secure experience.</p>\n                                    </div>\n                                    <div class="tab-pane fade" id="v-pills-messages2" role="tabpanel" aria-labelledby="v-pills-messages-tab">\n                                        <p class="mb-0">View recent messages, send new replies, and stay connected with your team. The messaging center helps you manage conversations efficiently and never miss important updates.</p>\n                                    </div>\n                                </div> <!-- end tabcontent-->\n                            </div> <!-- end col -->\n\n                            <div class="col-sm-3 mt-2 mt-sm-0">\n                                <div class="nav flex-column nav-pills nav-pills-secondary" id="v-pills-tab2" role="tablist" aria-orientation="vertical">\n                                    <a class="nav-link active show" id="v-pills-home-tab2" data-bs-toggle="pill" href="#v-pills-home2" role="tab" aria-controls="v-pills-home2" aria-selected="true">\n                                        <span class="d-none d-md-inline-block">Home</span>\n                                    </a>\n                                    <a class="nav-link" id="v-pills-profile-tab2" data-bs-toggle="pill" href="#v-pills-profile2" role="tab" aria-controls="v-pills-profile2" aria-selected="false">\n                                        <span class="d-none d-md-inline-block">Profile</span>\n                                    </a>\n                                    <a class="nav-link" id="v-pills-messages-tab2" data-bs-toggle="pill" href="#v-pills-messages2" role="tab" aria-controls="v-pills-messages2" aria-selected="false">\n                                        <span class="d-none d-md-inline-block">Messages</span>\n                                    </a>\n                                </div>\n                            </div> <!-- end col -->\n                        </div> <!-- end row -->\n\n                    </div> <!-- end card-body -->\n                </div> <!-- end card -->\n            </div> <!-- end col -->\n        </div>\n        <!-- end row -->\n\n    </div> \n    <!-- End Content -->' }]
+  }], null, null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TabsComponent, { className: "TabsComponent", filePath: "src/app/features/ui-interface/base-ui/tabs/tabs.component.ts", lineNumber: 10 });
+})();
+export {
+  TabsComponent
+};
+//# sourceMappingURL=chunk-FYKCIXOW.js.map

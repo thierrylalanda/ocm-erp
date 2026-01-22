@@ -1,0 +1,247 @@
+// Styles pour le composant notifications
+.notifications-container {
+  .notification-item {
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: rgba(var(--bs-primary-rgb), 0.05);
+    }
+    
+    &.unread {
+      background-color: rgba(var(--bs-primary-rgb), 0.1);
+      border-left: 3px solid var(--bs-primary);
+    }
+    
+    &.recent {
+      animation: pulse 2s infinite;
+    }
+  }
+  
+  .notification-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    
+    &.priority-info {
+      background-color: rgba(var(--bs-primary-rgb), 0.1);
+      color: var(--bs-primary);
+    }
+    
+    &.priority-warning {
+      background-color: rgba(var(--bs-warning-rgb), 0.1);
+      color: var(--bs-warning);
+    }
+    
+    &.priority-error {
+      background-color: rgba(var(--bs-danger-rgb), 0.1);
+      color: var(--bs-danger);
+    }
+    
+    &.priority-critical {
+      background-color: rgba(var(--bs-dark-rgb), 0.1);
+      color: var(--bs-dark);
+    }
+  }
+  
+  .notification-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    
+    &.status-en-attente {
+      background-color: rgba(var(--bs-warning-rgb), 0.1);
+      color: var(--bs-warning);
+    }
+    
+    &.status-envoye {
+      background-color: rgba(var(--bs-info-rgb), 0.1);
+      color: var(--bs-info);
+    }
+    
+    &.status-delivre {
+      background-color: rgba(var(--bs-primary-rgb), 0.1);
+      color: var(--bs-primary);
+    }
+    
+    &.status-lu {
+      background-color: rgba(var(--bs-success-rgb), 0.1);
+      color: var(--bs-success);
+    }
+    
+    &.status-echec {
+      background-color: rgba(var(--bs-danger-rgb), 0.1);
+      color: var(--bs-danger);
+    }
+  }
+  
+  .notification-actions {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    
+    .notification-item:hover & {
+      opacity: 1;
+    }
+  }
+  
+  .stats-card {
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .filters-modal {
+    .modal-content {
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .modal-header {
+      border-bottom: 1px solid var(--bs-border-color);
+      padding: 1.5rem;
+      
+      .modal-title {
+        font-weight: 600;
+        color: var(--bs-heading-color);
+      }
+    }
+    
+    .modal-body {
+      padding: 1.5rem;
+    }
+    
+    .modal-footer {
+      border-top: 1px solid var(--bs-border-color);
+      padding: 1rem 1.5rem;
+    }
+  }
+  
+  .confirmation-modal {
+    .modal-content {
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .modal-body {
+      padding: 2rem;
+      
+      img {
+        max-width: 80px;
+        margin: 0 auto 1.5rem;
+      }
+      
+      h6 {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--bs-heading-color);
+      }
+      
+      p {
+        color: var(--bs-secondary-color);
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+}
+
+// Animation pour les notifications récentes
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(var(--bs-primary-rgb), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .notifications-container {
+    .stats-card {
+      margin-bottom: 1rem;
+    }
+    
+    .table-responsive {
+      font-size: 0.875rem;
+      
+      th, td {
+        padding: 0.5rem;
+      }
+      
+      .notification-actions {
+        opacity: 1; // Toujours visible sur mobile
+      }
+    }
+    
+    .modal-dialog {
+      margin: 0.5rem;
+      
+      &.modal-dialog-centered {
+        min-height: calc(100% - 1rem);
+      }
+    }
+  }
+}
+
+// Dark mode support
+[data-bs-theme="dark"] {
+  .notifications-container {
+    .notification-item {
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+      
+      &.unread {
+        background-color: rgba(var(--bs-primary-rgb), 0.15);
+      }
+    }
+    
+    .notification-icon {
+      &.priority-info {
+        background-color: rgba(var(--bs-primary-rgb), 0.2);
+      }
+      
+      &.priority-warning {
+        background-color: rgba(var(--bs-warning-rgb), 0.2);
+      }
+      
+      &.priority-error {
+        background-color: rgba(var(--bs-danger-rgb), 0.2);
+      }
+      
+      &.priority-critical {
+        background-color: rgba(var(--bs-dark-rgb), 0.2);
+      }
+    }
+    
+    .notification-badge {
+      &.status-en-attente {
+        background-color: rgba(var(--bs-warning-rgb), 0.2);
+      }
+      
+      &.status-envoye {
+        background-color: rgba(var(--bs-info-rgb), 0.2);
+      }
+      
+      &.status-delivre {
+        background-color: rgba(var(--bs-primary-rgb), 0.2);
+      }
+      
+      &.status-lu {
+        background-color: rgba(var(--bs-success-rgb), 0.2);
+      }
+      
+      &.status-echec {
+        background-color: rgba(var(--bs-danger-rgb), 0.2);
+      }
+    }
+  }
+}

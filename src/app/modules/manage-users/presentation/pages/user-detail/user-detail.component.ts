@@ -45,7 +45,7 @@ import { UserResponseDto } from '../../../application/dto/create-user.dto';
 import { SiteService } from '../../../../setting/application/services/site.service';
 import { DepartementService } from '../../../../setting/application/services/departement.service';
 import { AuthService } from '../../../../../core/services/auth/auth.service';
-import { UserRoleService, UserRoleResponseDto, ChangePasswordRequestDto } from '../../../application/services/user-role.service';
+import { UserRoleService, UserRoleResponseDto,UserRolePageResponseDto,  ChangePasswordRequestDto, } from '../../../application/services/user-role.service';
 import { routes } from '../../../../../core/core.index';
 @Component({
   selector: 'app-user-detail',
@@ -187,7 +187,7 @@ export class UserDetailComponent implements OnInit {
     // Formulaire ajout de rôle
     this.roleForm = this.fb.group({
       roleId: ['', [Validators.required]],
-      dateExpiration: ['', [Validators.required]],
+      dateExpiration: [null, []],
       actif: [true]
     });
   }
@@ -317,7 +317,7 @@ export class UserDetailComponent implements OnInit {
 
     this.loadingRoles = true;
     try {
-      const roles = await this.userRoleService.getUserRoles(this.user.id).toPromise();
+      var roles = await this.userRoleService.getUserRoles(this.user.id).toPromise();
       this.userRoles = roles || [];
     } catch (error) {
       console.error('Erreur lors du chargement des rôles:', error);

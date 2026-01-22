@@ -3,17 +3,18 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { BehaviorSubject, catchError, filter, Observable, switchMap, take, throwError, from, of } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { AuthUtils } from '../../utils/auth.utils';
+import { ToasterService } from '../../services/toaster/toaster.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor
 {
     private isRefreshing = false;
     private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-
+    
     /**
      * Constructor
      */
-    constructor(private _authService: AuthService)
+    constructor(private _authService: AuthService,private _toasterService:ToasterService)
     {
     }
 
@@ -55,6 +56,17 @@ export class AuthInterceptor implements HttpInterceptor
                     if ( error instanceof HttpErrorResponse && error.status === 401 )
                     {
                         console.log('AuthInterceptor: 401 Unauthorized - attempting token refresh');
+                        // Attempt to refresh token
+                        return this.handle401Error(req, next);
+                    }
+                    if ( error instanceof HttpErrorResponse && error.status === 403 )
+                    {
+                        this._toasterService.typeError(error.message ??"Accès refusé","");
+                    }
+
+                     if ( error instanceof HttpErrorResponse && error.status === 0 )
+                    {
+                       this._toasterService.typeError("Verifier votre connexion à internet","Connexion Internet")
                         // Attempt to refresh token
                         return this.handle401Error(req, next);
                     }

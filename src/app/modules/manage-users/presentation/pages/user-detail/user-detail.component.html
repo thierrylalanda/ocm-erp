@@ -301,7 +301,7 @@
                       <td>{{ formatDate(role.dateAttribution) }}</td>
                       <td>{{ formatDate(role.dateExpiration) }}</td>
                       <td>
-                        <span class="badge" [class.badge-success]="role.actif" [class.badge-danger]="!role.actif">
+                        <span class="badge d-inline-flex align-items-center" [class.bg-success]="role.actif" [class.bg-danger]="!role.actif">
                           {{ role.actif ? ('common.active' | translate) : ('common.inactive' | translate) }}
                         </span>
                       </td>
@@ -316,6 +316,10 @@
                           {{ 'pages.userDetail.roleManagement.activate' | translate }}
                         </button>
                       </td>
+
+                      
+                      
+                    
                     </tr>
                   </tbody>
                 </table>

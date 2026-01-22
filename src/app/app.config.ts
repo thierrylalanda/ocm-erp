@@ -10,12 +10,14 @@ import { NgxMaskModule } from 'ngx-mask';
 import { USER_REPOSITORY } from './modules/_shared/domain/repositories/user.repository';
 import { InMemoryUserRepository } from './modules/_shared/infrastructure/repositories/in-memory-user.repository';
 import { AuthInterceptor } from './core/interceptor/auth/auth.interceptor';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     BsDatepickerModule.forRoot().providers!,
     provideAnimations(),
+    provideToastr(),
     provideHttpClient(
       withInterceptorsFromDi()
     ),

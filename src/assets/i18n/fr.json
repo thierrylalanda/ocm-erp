@@ -17,7 +17,9 @@
     "yes": "Oui",
     "no": "Non",
     "ok": "OK",
-    "retry": "Réessayer"
+    "retry": "Réessayer",
+    "active":"Actif",
+    "inactive":"Inactif"
   },
   "login": {
     "title": "Connexion",

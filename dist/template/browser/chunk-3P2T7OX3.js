@@ -1,0 +1,257 @@
+import {
+  Component,
+  setClassMetadata,
+  ɵsetClassDebugInfo,
+  ɵɵdefineComponent,
+  ɵɵdomElement,
+  ɵɵdomElementEnd,
+  ɵɵdomElementStart,
+  ɵɵtext
+} from "./chunk-HKG6HBOI.js";
+import "./chunk-TXDUYLVM.js";
+
+// src/app/modules/setting/presentation/pages/website-settings/authentication-settings/authentication-settings.component.ts
+var AuthenticationSettingsComponent = class _AuthenticationSettingsComponent {
+  static \u0275fac = function AuthenticationSettingsComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _AuthenticationSettingsComponent)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AuthenticationSettingsComponent, selectors: [["app-authentication-settings"]], decls: 224, vars: 0, consts: [[1, "mb-3", "pb-2"], [1, "mb-3", "pb-3", "border-bottom"], [1, "fw-bold", "mb-0"], [1, "row"], [1, "col-md-6"], [1, "card", "shadow-none"], [1, "card-body"], [1, "d-flex", "align-items-center", "border-0", "mb-3", "pb-0"], [1, "d-flex", "align-items-center"], [1, "avatar", "avatar-lg", "p-2", "bg-light", "rounded", "flex-shrink-0", "me-2"], ["src", "assets/img/icons/google.svg", "alt", "Img"], [1, "fw-medium", "text-gray-9"], [1, "text-truncate", "line-clamb-2"], [1, "card-footer", "bg-light", "d-flex", "align-items-center", "justify-content-between"], ["href", "javascript:void(0);", 1, "btn", "btn-sm", "btn-dark", "rounded-2", "d-inline-flex", "align-items-center", "justify-content-center", "p-1", "me-2"], ["data-bs-toggle", "modal", "data-bs-target", "#delete_modal", 1, "isax", "isax-trash"], ["href", "javascript:void(0);", "data-bs-toggle", "modal", "data-bs-target", "#google_login", 1, "btn", "btn-sm", "btn-dark", "rounded-2", "d-inline-flex", "align-items-center", "justify-content-center", "p-1"], [1, "isax", "isax-setting-2"], [1, "form-check", "form-switch"], ["type", "checkbox", "checked", "", 1, "form-check-input", "m-0"], ["src", "assets/img/icons/facebook.svg", "alt", "Img"], ["href", "javascript:void(0);", "data-bs-toggle", "modal", "data-bs-target", "#facebook_login", 1, "btn", "btn-sm", "btn-dark", "rounded-2", "d-inline-flex", "align-items-center", "justify-content-center", "p-1"], ["src", "assets/img/icons/apple.svg", "alt", "Img"], ["href", "javascript:void(0);", "data-bs-toggle", "modal", "data-bs-target", "#apple_login", 1, "btn", "btn-sm", "btn-dark", "rounded-2", "d-inline-flex", "align-items-center", "justify-content-center", "p-1"], ["src", "assets/img/icons/sso.svg", "alt", "Img"], ["href", "javascript:void(0);", "data-bs-toggle", "modal", "data-bs-target", "#delete_modal", 1, "btn", "btn-sm", "btn-dark", "rounded-2", "d-inline-flex", "align-items-center", "justify-content-center", "p-1", "me-2"], [1, "isax", "isax-trash"], ["href", "javascript:void(0);", "data-bs-toggle", "modal", "data-bs-target", "#sso_login", 1, "btn", "btn-sm", "btn-dark", "rounded-2", "d-inline-flex", "align-items-center", "justify-content-center", "p-1"], ["id", "google_login", 1, "modal", "fade"], [1, "modal-dialog", "modal-dialog-centered", "modal-md"], [1, "modal-content"], [1, "modal-header"], [1, "mb-0"], ["type", "button", "data-bs-dismiss", "modal", "aria-label", "Close", 1, "btn-close", "btn-close-modal", "custom-btn-close"], [1, "fa-solid", "fa-x"], [1, "modal-body"], [1, "mb-3"], [1, "form-label"], [1, "text-danger", "ms-1"], ["type", "text", 1, "form-control"], [1, "modal-footer", "justify-content-between", "align-items-center"], ["href", "javascript:void(0);", "data-bs-dismiss", "modal", 1, "btn", "btn-outline-white", "me-3"], ["href", "javascript:void(0);", "data-bs-dismiss", "modal", 1, "btn", "btn-primary"], ["id", "facebook_login", 1, "modal", "fade"], ["id", "apple_login", 1, "modal", "fade"], ["id", "sso_login", 1, "modal", "fade"], ["id", "delete_modal", 1, "modal", "fade"], [1, "modal-dialog", "modal-dialog-centered", "modal-sm"], [1, "modal-body", "text-center"], ["src", "assets/img/icons/delete.svg", "alt", "img"], [1, "mb-1"], [1, "d-flex", "justify-content-center"]], template: function AuthenticationSettingsComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275domElementStart(0, "div", 0)(1, "div", 1)(2, "h6", 2);
+      \u0275\u0275text(3, "Authentication");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(4, "div", 3)(5, "div", 4)(6, "div", 5)(7, "div", 6)(8, "div", 7)(9, "div", 8)(10, "span", 9);
+      \u0275\u0275domElement(11, "img", 10);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(12, "p", 11);
+      \u0275\u0275text(13, "Google");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(14, "p", 12);
+      \u0275\u0275text(15, "Streamline your access using your Google account for secure and efficient login to your account.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(16, "div", 13)(17, "div", 8)(18, "a", 14);
+      \u0275\u0275domElement(19, "i", 15);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(20, "a", 16);
+      \u0275\u0275domElement(21, "i", 17);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(22, "div", 18);
+      \u0275\u0275domElement(23, "input", 19);
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(24, "div", 4)(25, "div", 5)(26, "div", 6)(27, "div", 7)(28, "div", 8)(29, "span", 9);
+      \u0275\u0275domElement(30, "img", 20);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(31, "p", 11);
+      \u0275\u0275text(32, "Facebook");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(33, "p", 12);
+      \u0275\u0275text(34, "Quickly log in or register using your Facebook account, easy to manage operations.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(35, "div", 13)(36, "div", 8)(37, "a", 14);
+      \u0275\u0275domElement(38, "i", 15);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(39, "a", 21);
+      \u0275\u0275domElement(40, "i", 17);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(41, "div", 18);
+      \u0275\u0275domElement(42, "input", 19);
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(43, "div", 4)(44, "div", 5)(45, "div", 6)(46, "div", 7)(47, "div", 8)(48, "span", 9);
+      \u0275\u0275domElement(49, "img", 22);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(50, "p", 11);
+      \u0275\u0275text(51, "Apple");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(52, "p", 12);
+      \u0275\u0275text(53, "Allows users to sign in using their Apple ID, offering secure and privacy-focused access to account.");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(54, "div", 13)(55, "div", 8)(56, "a", 14);
+      \u0275\u0275domElement(57, "i", 15);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(58, "a", 23);
+      \u0275\u0275domElement(59, "i", 17);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(60, "div", 18);
+      \u0275\u0275domElement(61, "input", 19);
+      \u0275\u0275domElementEnd()()()();
+      \u0275\u0275domElementStart(62, "div", 4)(63, "div", 5)(64, "div", 6)(65, "div", 7)(66, "div", 8)(67, "span", 9);
+      \u0275\u0275domElement(68, "img", 24);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(69, "p", 11);
+      \u0275\u0275text(70, "SSO");
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(71, "p", 12);
+      \u0275\u0275text(72, "Enables users to access multiple applications or systems with one set of login credentials");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(73, "div", 13)(74, "div", 8)(75, "a", 25);
+      \u0275\u0275domElement(76, "i", 26);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(77, "a", 27);
+      \u0275\u0275domElement(78, "i", 17);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(79, "div", 18);
+      \u0275\u0275domElement(80, "input", 19);
+      \u0275\u0275domElementEnd()()()()()();
+      \u0275\u0275domElementStart(81, "div", 28)(82, "div", 29)(83, "div", 30)(84, "div", 31)(85, "h6", 32);
+      \u0275\u0275text(86, "Google Login Settings");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(87, "button", 33);
+      \u0275\u0275domElement(88, "i", 34);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(89, "div", 35)(90, "div", 36)(91, "label", 37);
+      \u0275\u0275text(92, "Client ID");
+      \u0275\u0275domElementStart(93, "span", 38);
+      \u0275\u0275text(94, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(95, "input", 39);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(96, "div", 36)(97, "label", 37);
+      \u0275\u0275text(98, "Client Secret Key");
+      \u0275\u0275domElementStart(99, "span", 38);
+      \u0275\u0275text(100, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(101, "input", 39);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(102, "div", 32)(103, "label", 37);
+      \u0275\u0275text(104, "Login Redirect URL");
+      \u0275\u0275domElementStart(105, "span", 38);
+      \u0275\u0275text(106, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(107, "input", 39);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(108, "div", 40)(109, "a", 41);
+      \u0275\u0275text(110, "Cancel");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(111, "a", 42);
+      \u0275\u0275text(112, "Submit");
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(113, "div", 43)(114, "div", 29)(115, "div", 30)(116, "div", 31)(117, "h6", 32);
+      \u0275\u0275text(118, "Facebook Login Settings");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(119, "button", 33);
+      \u0275\u0275domElement(120, "i", 34);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(121, "div", 35)(122, "div", 36)(123, "label", 37);
+      \u0275\u0275text(124, "API ID");
+      \u0275\u0275domElementStart(125, "span", 38);
+      \u0275\u0275text(126, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(127, "input", 39);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(128, "div", 36)(129, "label", 37);
+      \u0275\u0275text(130, "API Secret Key");
+      \u0275\u0275domElementStart(131, "span", 38);
+      \u0275\u0275text(132, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(133, "input", 39);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(134, "div", 32)(135, "label", 37);
+      \u0275\u0275text(136, "Login Redirect URL");
+      \u0275\u0275domElementStart(137, "span", 38);
+      \u0275\u0275text(138, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(139, "input", 39);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(140, "div", 40)(141, "a", 41);
+      \u0275\u0275text(142, "Cancel");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(143, "a", 42);
+      \u0275\u0275text(144, "Submit");
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(145, "div", 44)(146, "div", 29)(147, "div", 30)(148, "div", 31)(149, "h6", 32);
+      \u0275\u0275text(150, "Apple Login Settings");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(151, "button", 33);
+      \u0275\u0275domElement(152, "i", 34);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(153, "div", 35)(154, "div", 36)(155, "label", 37);
+      \u0275\u0275text(156, "Client ID");
+      \u0275\u0275domElementStart(157, "span", 38);
+      \u0275\u0275text(158, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(159, "input", 39);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(160, "div", 36)(161, "label", 37);
+      \u0275\u0275text(162, "Client Secret Key");
+      \u0275\u0275domElementStart(163, "span", 38);
+      \u0275\u0275text(164, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(165, "input", 39);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(166, "div", 32)(167, "label", 37);
+      \u0275\u0275text(168, "Login Redirect URL");
+      \u0275\u0275domElementStart(169, "span", 38);
+      \u0275\u0275text(170, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(171, "input", 39);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(172, "div", 40)(173, "a", 41);
+      \u0275\u0275text(174, "Cancel");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(175, "a", 42);
+      \u0275\u0275text(176, "Submit");
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(177, "div", 45)(178, "div", 29)(179, "div", 30)(180, "div", 31)(181, "h6", 32);
+      \u0275\u0275text(182, "SSO Login Settings");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(183, "button", 33);
+      \u0275\u0275domElement(184, "i", 34);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(185, "div", 35)(186, "div", 36)(187, "label", 37);
+      \u0275\u0275text(188, "Client ID");
+      \u0275\u0275domElementStart(189, "span", 38);
+      \u0275\u0275text(190, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(191, "input", 39);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(192, "div", 36)(193, "label", 37);
+      \u0275\u0275text(194, "Client Secret Key");
+      \u0275\u0275domElementStart(195, "span", 38);
+      \u0275\u0275text(196, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(197, "input", 39);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(198, "div", 32)(199, "label", 37);
+      \u0275\u0275text(200, "Login Redirect URL");
+      \u0275\u0275domElementStart(201, "span", 38);
+      \u0275\u0275text(202, "*");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElement(203, "input", 39);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(204, "div", 40)(205, "a", 41);
+      \u0275\u0275text(206, "Cancel");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(207, "a", 42);
+      \u0275\u0275text(208, "Submit");
+      \u0275\u0275domElementEnd()()()()();
+      \u0275\u0275domElementStart(209, "div", 46)(210, "div", 47)(211, "div", 30)(212, "div", 48)(213, "div", 36);
+      \u0275\u0275domElement(214, "img", 49);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(215, "h6", 50);
+      \u0275\u0275text(216, "Delete");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(217, "p", 36);
+      \u0275\u0275text(218, "Are you sure, you want to delete?");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(219, "div", 51)(220, "a", 41);
+      \u0275\u0275text(221, "Cancel");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(222, "a", 42);
+      \u0275\u0275text(223, "Yes, Delete");
+      \u0275\u0275domElementEnd()()()()()();
+    }
+  }, encapsulation: 2 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AuthenticationSettingsComponent, [{
+    type: Component,
+    args: [{ selector: "app-authentication-settings", imports: [], template: '<div class="mb-3 pb-2">\n    <div class="mb-3 pb-3 border-bottom">\n        <h6 class="fw-bold mb-0">Authentication</h6>\n    </div>\n    \n    <!-- start row -->\n    <div class="row">\n        <div class="col-md-6">\n            <div class="card shadow-none">\n                <div class="card-body">\n                    <div class="d-flex align-items-center border-0 mb-3 pb-0">\n                        <div class="d-flex align-items-center">\n                            <span class="avatar avatar-lg p-2 bg-light rounded flex-shrink-0 me-2"><img src="assets/img/icons/google.svg" alt="Img"></span>\n                            <p class="fw-medium text-gray-9">Google</p>\n                        </div>\n                    </div>\n                    <p class="text-truncate line-clamb-2">Streamline your access using your Google account for secure and efficient login to your account.</p>\n                </div>\n                <!-- end card body -->\n                <div class="card-footer bg-light d-flex align-items-center justify-content-between ">\n                    <div class="d-flex align-items-center">\n                        <a class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" href="javascript:void(0);"><i class="isax isax-trash" data-bs-toggle="modal" data-bs-target="#delete_modal"></i></a>\n                        <a class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#google_login"><i class="isax isax-setting-2"></i></a>\n                    </div>\n                    <div class="form-check form-switch">\n                        <input class="form-check-input m-0" type="checkbox" checked="">\n                    </div>\n                </div>\n                <!-- end card footer -->\n            </div>\n            <!-- end card -->\n        </div><!-- end col -->\n        <div class="col-md-6">\n            <div class="card shadow-none">\n                <div class="card-body">\n                    <div class="d-flex align-items-center border-0 mb-3 pb-0">\n                        <div class="d-flex align-items-center">\n                            <span class="avatar avatar-lg p-2 bg-light rounded flex-shrink-0 me-2"><img src="assets/img/icons/facebook.svg" alt="Img"></span>\n                            <p class="fw-medium text-gray-9">Facebook</p>\n                        </div>\n                    </div>\n                    <p class="text-truncate line-clamb-2">Quickly log in or register using your Facebook account, easy to manage operations.</p>\n                </div>\n                <!-- end card body -->\n                <div class="card-footer bg-light d-flex align-items-center justify-content-between ">\n                    <div class="d-flex align-items-center">\n                        <a class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" href="javascript:void(0);"><i class="isax isax-trash" data-bs-toggle="modal" data-bs-target="#delete_modal"></i></a>\n                        <a class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#facebook_login"><i class="isax isax-setting-2"></i></a>\n                    </div>\n                    <div class="form-check form-switch">\n                        <input class="form-check-input m-0" type="checkbox" checked="">\n                    </div>\n                </div>\n                <!-- end card footer -->\n            </div>\n            <!-- end card -->\n        </div><!-- end col -->\n        <div class="col-md-6">\n            <div class="card shadow-none">\n                <div class="card-body">\n                    <div class="d-flex align-items-center border-0 mb-3 pb-0">\n                        <div class="d-flex align-items-center">\n                            <span class="avatar avatar-lg p-2 bg-light rounded flex-shrink-0 me-2"><img src="assets/img/icons/apple.svg" alt="Img"></span>\n                            <p class="fw-medium text-gray-9">Apple</p>\n                        </div>\n                    </div>\n                    <p class="text-truncate line-clamb-2">Allows users to sign in using their Apple ID, offering secure and privacy-focused access to account.</p>\n                </div>\n                <!-- end card body -->\n                <div class="card-footer bg-light d-flex align-items-center justify-content-between ">\n                    <div class="d-flex align-items-center">\n                        <a class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" href="javascript:void(0);"><i class="isax isax-trash" data-bs-toggle="modal" data-bs-target="#delete_modal"></i></a>\n                        <a class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#apple_login"><i class="isax isax-setting-2"></i></a>\n                    </div>\n                    <div class="form-check form-switch">\n                        <input class="form-check-input m-0" type="checkbox" checked="">\n                    </div>\n                </div>\n                <!-- end card footer -->\n            </div>\n            <!-- end card -->\n        </div><!-- end col -->\n        <div class="col-md-6">\n            <div class="card shadow-none">\n                <div class="card-body">\n                    <div class="d-flex align-items-center border-0 mb-3 pb-0">\n                        <div class="d-flex align-items-center">\n                            <span class="avatar avatar-lg p-2 bg-light rounded flex-shrink-0 me-2"><img src="assets/img/icons/sso.svg" alt="Img"></span>\n                            <p class="fw-medium text-gray-9">SSO</p>\n                        </div>\n                    </div>\n                    <p class="text-truncate line-clamb-2">Enables users to access multiple applications or systems with one set of login credentials</p>\n                </div>\n                <!-- end card body -->\n                <div class="card-footer bg-light d-flex align-items-center justify-content-between ">\n                    <div class="d-flex align-items-center">\n                        <a class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1 me-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>\n                        <a class="btn btn-sm btn-dark rounded-2 d-inline-flex align-items-center justify-content-center p-1" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#sso_login"><i class="isax isax-setting-2"></i></a>\n                    </div>\n                    <div class="form-check form-switch">\n                        <input class="form-check-input m-0" type="checkbox" checked="">\n                    </div>\n                </div>\n                <!-- end card footer -->\n            </div>\n            <!-- end card -->\n        </div><!-- end col -->\n    </div>\n    <!-- end row -->\n\n</div><!-- end col -->\n\n\n        <!-- Start Google Login Settings -->\n        <div class="modal fade" id="google_login">\n            <div class="modal-dialog modal-dialog-centered modal-md">\n                <div class="modal-content">\n                    <div class="modal-header">\n                        <h6 class="mb-0">Google Login Settings</h6>\n                        <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal" aria-label="Close">\n                            <i class="fa-solid fa-x"></i>\n                        </button>\n                    </div>\n                    <div class="modal-body">\n                        <div class="mb-3">\n                            <label class="form-label">Client ID<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                        <div class="mb-3">\n                            <label class="form-label">Client Secret Key<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                        <div class="mb-0">\n                            <label class="form-label">Login Redirect URL<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                    </div>\n                    <div class="modal-footer justify-content-between align-items-center">\n                        <a href="javascript:void(0);" class="btn btn-outline-white me-3" data-bs-dismiss="modal">Cancel</a>\n                        <a href="javascript:void(0);" class="btn btn-primary" data-bs-dismiss="modal">Submit</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- End Google Login Settings -->\n        <!-- Start Facebook Login Settings -->\n        <div class="modal fade" id="facebook_login">\n            <div class="modal-dialog modal-dialog-centered modal-md">\n                <div class="modal-content">\n                    <div class="modal-header">\n                        <h6 class="mb-0">Facebook Login Settings</h6>\n                        <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal" aria-label="Close">\n                            <i class="fa-solid fa-x"></i>\n                        </button>\n                    </div>\n                    <div class="modal-body">\n                        <div class="mb-3">\n                            <label class="form-label">API ID<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                        <div class="mb-3">\n                            <label class="form-label">API Secret Key<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                        <div class="mb-0">\n                            <label class="form-label">Login Redirect URL<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                    </div>\n                    <div class="modal-footer justify-content-between align-items-center">\n                        <a href="javascript:void(0);" class="btn btn-outline-white me-3" data-bs-dismiss="modal">Cancel</a>\n                        <a href="javascript:void(0);" class="btn btn-primary" data-bs-dismiss="modal">Submit</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- End Facebook Login Settings -->\n\n        <!-- Start Apple Login Settings -->\n        <div class="modal fade" id="apple_login">\n            <div class="modal-dialog modal-dialog-centered modal-md">\n                <div class="modal-content">\n                    <div class="modal-header">\n                        <h6 class="mb-0">Apple Login Settings</h6>\n                        <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal" aria-label="Close">\n                            <i class="fa-solid fa-x"></i>\n                        </button>\n                    </div>\n                    <div class="modal-body">\n                        <div class="mb-3">\n                            <label class="form-label">Client ID<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                        <div class="mb-3">\n                            <label class="form-label">Client Secret Key<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                        <div class="mb-0">\n                            <label class="form-label">Login Redirect URL<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                    </div>\n                    <div class="modal-footer justify-content-between align-items-center">\n                        <a href="javascript:void(0);" class="btn btn-outline-white me-3" data-bs-dismiss="modal">Cancel</a>\n                        <a href="javascript:void(0);" class="btn btn-primary" data-bs-dismiss="modal">Submit</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- End Apple Login Settings -->\n\n        <!-- Start Sso Login Settings -->\n        <div class="modal fade" id="sso_login">\n            <div class="modal-dialog modal-dialog-centered modal-md">\n                <div class="modal-content">\n                    <div class="modal-header">\n                        <h6 class="mb-0">SSO Login Settings</h6>\n                        <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal" aria-label="Close">\n                            <i class="fa-solid fa-x"></i>\n                        </button>\n                    </div>\n                    <div class="modal-body">\n                        <div class="mb-3">\n                            <label class="form-label">Client ID<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                        <div class="mb-3">\n                            <label class="form-label">Client Secret Key<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                        <div class="mb-0">\n                            <label class="form-label">Login Redirect URL<span class="text-danger ms-1">*</span></label>\n                            <input type="text" class="form-control">\n                        </div>\n                    </div>\n                    <div class="modal-footer justify-content-between align-items-center">\n                        <a href="javascript:void(0);" class="btn btn-outline-white me-3" data-bs-dismiss="modal">Cancel</a>\n                        <a href="javascript:void(0);" class="btn btn-primary" data-bs-dismiss="modal">Submit</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- End Sso Login Settings -->\n\n        <!-- Start Delete Modal  -->\n		<div class="modal fade" id="delete_modal">\n			<div class="modal-dialog modal-dialog-centered modal-sm">\n				<div class="modal-content">\n					<div class="modal-body text-center">\n						<div class="mb-3">\n							<img src="assets/img/icons/delete.svg" alt="img">\n						</div>\n						<h6 class="mb-1">Delete</h6>\n						<p class="mb-3">Are you sure,  you want to delete?</p>\n						<div class="d-flex justify-content-center">\n							<a href="javascript:void(0);" class="btn btn-outline-white me-3" data-bs-dismiss="modal">Cancel</a>\n							<a href="javascript:void(0);" class="btn btn-primary" data-bs-dismiss="modal">Yes, Delete</a>\n						</div>\n					</div><!-- End modal body -->\n				</div><!-- End modal content -->\n			</div><!-- End modal dialog -->\n		</div>\n		<!-- End Delete Modal  -->' }]
+  }], null, null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AuthenticationSettingsComponent, { className: "AuthenticationSettingsComponent", filePath: "src/app/modules/setting/presentation/pages/website-settings/authentication-settings/authentication-settings.component.ts", lineNumber: 9 });
+})();
+export {
+  AuthenticationSettingsComponent
+};
+//# sourceMappingURL=chunk-3P2T7OX3.js.map

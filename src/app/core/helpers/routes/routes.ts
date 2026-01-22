@@ -20,7 +20,7 @@ export const routes = {
   lock_screen: '/auth/lock-screen',
   index: '/index',
   AdminDashboard2: '/admin-dashboard',
-  notifications:'/notifications',
+  notifications:defaultRoute+'notifications',
 
   //configuration
     configSociete: defaultRoute+'societe',
@@ -31,6 +31,8 @@ export const routes = {
     allUsers: defaultRoute+'manage-users/users',
     permissions: defaultRoute+'manage-users/permission',
   //deleteAccountRequest: '/manage-users/delete-account-request',
+
+
   // Customer Module
   customerDashboard: '/customer/dashboard',
   customerQuotations: '/customer/quotations',
