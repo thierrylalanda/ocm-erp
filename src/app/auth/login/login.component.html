@@ -1,107 +1,115 @@
-<div class="main-wrapper auth-bg">
-  <div class="container-fuild">
-    <div class="w-100 overflow-hidden position-relative flex-wrap d-block vh-100">
-      <div class="row justify-content-center align-items-center vh-100 overflow-auto flex-wrap ">
-        <div class="col-lg-4 mx-auto">
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="d-flex justify-content-center align-items-center">
-            <div class="d-flex flex-column justify-content-lg-center p-4 p-lg-0 pb-0 flex-fill">
-              <div class="mx-auto mb-5 text-center">
-                <img src="assets/img/logo.svg" class="img-fluid mb-3" alt="Logo">
-                <div class="d-flex justify-content-end">
-                  <app-language-selector></app-language-selector>
-                </div>
-              </div>
-              <div class="card border-0 p-lg-3 shadow-lg">
-                <div class="card-body">
-<div class="text-center mb-3">
-  <h5 class="mb-2">{{ 'login.title' | translate }}</h5>
-  <p class="mb-0">{{ 'login.subtitle' | translate }}</p>
-</div>
-                  <div class="mb-3">
-                    <label class="form-label">{{ 'login.username' | translate }}</label>
-                    <div class="input-group">
-                      <span class="input-group-text border-end-0">
-                        <i class="isax isax-user"></i>
-                      </span>
-                      <input type="text" formControlName="username" class="form-control border-start-0 ps-0" [placeholder]="'login.usernamePlaceholder' | translate">
-                    </div>
-<div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="text-danger small mt-1">
-  {{ 'login.usernameRequired' | translate }}
-</div>
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">{{ 'login.password' | translate }}</label>
-                    <div class="pass-group input-group">
-                      <span class="input-group-text border-end-0">
-                        <i class="isax isax-lock"></i>
-                      </span>
-                      <input [type]="show_password ? 'password' : 'text'" formControlName="password" class="pass-inputs form-control border-start-0 ps-0" [placeholder]="'login.passwordPlaceholder' | translate">
-                      <span class="isax toggle-password" (click)="show_password = !show_password"
-                        [ngClass]="
-                        show_password === true
-                          ? 'toggle-password isax-eye-slash'
-                          : 'toggle-password isax-eye'
-                      "></span>
-                    </div>
-<div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger small mt-1">
-  {{ 'login.passwordRequired' | translate }}
-</div>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between mb-3">
-                    <div class="d-flex align-items-center">
-                      <div class="form-check form-check-md mb-0">
-                        <input class="form-check-input" id="remember_me" type="checkbox" formControlName="rememberMe">
-                        <label for="remember_me" class="form-check-label mt-0">{{ 'login.rememberMe' | translate }}</label>
-                      </div>
-                    </div>
-                    <div class="text-end">
-                      <a [routerLink]="routes.forgot_password">{{ 'login.forgotPassword' | translate }}</a>
-                    </div>
-                  </div>
-                  <!-- Error message -->
-                  <div *ngIf="errorMessage" class="alert alert-danger py-2 mb-3">
-                    {{ errorMessage }}
-                  </div>
-                  
-                  <div class="mb-1">
-<button type="submit" class="btn bg-primary-gradient text-white w-100" [disabled]="loginForm.invalid || isLoading">
-  <span *ngIf="!isLoading">{{ 'login.signIn' | translate }}</span>
-  <span *ngIf="isLoading">
-    <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
-    {{ 'login.signingIn' | translate }}
-  </span>
-</button>
-                  </div>
-                  <!-- <div class="login-or">
-                    <span class="span-or">{{ 'login.or' | translate }}</span>
-                  </div>
-                  <div class="mb-3">
-                    <div class="d-flex align-items-center justify-content-center flex-wrap">
-                      <div class="text-center me-2 flex-fill">
-                        <a href="javascript:void(0);"
-                          class="br-10 p-1 btn btn-light d-flex align-items-center justify-content-center">
-                          <img class="img-fluid m-1" src="assets/img/icons/facebook-logo.svg" alt="Facebook">
-                        </a>
-                      </div>
-                      <div class="text-center me-2 flex-fill">
-                        <a href="javascript:void(0);"
-                          class="br-10 p-1 btn btn-light d-flex align-items-center justify-content-center">
-                          <img class="img-fluid m-1" src="assets/img/icons/google-logo.svg" alt="Google">
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="text-center">
-                    <h6 class="fw-normal fs-14 text-dark mb-0">{{ 'login.dontHaveAccount' | translate }}
-                      <a [routerLink]="routes.register" class="hover-a"> {{ 'login.register' | translate }}</a>
-                    </h6>
-                  </div> -->
-                </div>
-              </div>
-            </div>
-          </form>
+<div class="login-wrapper">
+  <div class="row g-0 h-100 min-vh-100">
+
+    <!-- Left Side: Hero Section (Themed) -->
+    <div class="col-lg-7 d-none d-lg-flex login-hero">
+      <div class="hero-content">
+        <div class="mb-4">
+          <!-- Optional: Large Icon or Illustration -->
+          <i class="isax isax-cloud-change display-1 opacity-50"></i>
+        </div>
+        <h1>OCM ERP</h1>
+        <p>La plateforme professionnelle pour gérer votre activité en toute simplicité.</p>
+
+        <div class="hero-features">
+          <div class="feature-item">
+            <i class="isax isax-shield-tick"></i> Sécurisé
+          </div>
+          <div class="feature-item">
+            <i class="isax isax-flash-1"></i> Rapide
+          </div>
+          <div class="feature-item">
+            <i class="isax isax-chart-21"></i> Analytique
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- Right Side: Login Form -->
+    <div class="col-lg-5 login-form-section">
+
+      <!-- Language Selector Top Right -->
+      <app-language-selector></app-language-selector>
+
+      <div class="login-content">
+        <div class="auth-header">
+          <img src="assets/img/logo.png" alt="Logo" class="logo-img">
+          <h3>{{ 'login.title' | translate }}</h3>
+          <p>{{ 'login.subtitle' | translate }}</p>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+          <!-- Error Message -->
+          <div *ngIf="errorMessage" class="alert alert-danger d-flex align-items-center mb-4 border-0 shadow-sm"
+            role="alert">
+            <i class="isax isax-warning-2 me-2"></i>
+            <div class="small">{{ errorMessage }}</div>
+          </div>
+
+          <!-- Username -->
+          <div class="form-floating">
+            <input type="text" class="form-control" id="username" formControlName="username"
+              [placeholder]="'login.usernamePlaceholder' | translate"
+              [class.is-invalid]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+            <label for="username">{{ 'login.username' | translate }}</label>
+            <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
+              class="invalid-feedback text-start">
+              {{ 'login.usernameRequired' | translate }}
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-floating position-relative">
+            <input [type]="show_password ? 'password' : 'text'" class="form-control" id="password"
+              formControlName="password" [placeholder]="'login.passwordPlaceholder' | translate"
+              [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+              style="padding-right: 2.5rem;">
+            <label for="password">{{ 'login.password' | translate }}</label>
+
+            <!-- Eye Icon -->
+            <span class="position-absolute top-50 end-0 translate-middle-y me-3 cursor-pointer text-muted"
+              (click)="show_password = !show_password">
+              <i class="isax" [ngClass]="show_password ? 'isax-eye-slash' : 'isax-eye'" style="font-size: 1.2rem;"></i>
+            </span>
+
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+              class="invalid-feedback text-start">
+              {{ 'login.passwordRequired' | translate }}
+            </div>
+          </div>
+
+          <!-- Remember Me & Forgot Password -->
+          <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="rememberMe" formControlName="rememberMe">
+              <label class="form-check-label user-select-none small" for="rememberMe">
+                {{ 'login.rememberMe' | translate }}
+              </label>
+            </div>
+            <a [routerLink]="routes.forgot_password" class="forgot-link small">
+              {{ 'login.forgotPassword' | translate }}
+            </a>
+          </div>
+
+          <!-- Submit Action -->
+          <button type="submit" class="btn btn-primary w-100 py-3 mb-3 shadow-sm"
+            [disabled]="loginForm.invalid || isLoading">
+            <span *ngIf="!isLoading">{{ 'login.signIn' | translate }}</span>
+            <div *ngIf="isLoading" class="d-flex align-items-center justify-content-center">
+              <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              {{ 'login.signingIn' | translate }}
+            </div>
+          </button>
+
+        </form>
+      </div>
+
+      <!-- Copyright -->
+      <div class="copyright-text">
+        &copy; {{ currentYear }} OCM ERP. Tous droits réservés.
+      </div>
+
     </div>
   </div>
 </div>

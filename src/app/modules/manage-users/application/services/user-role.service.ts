@@ -137,16 +137,16 @@ export class UserRoleService {
    * GET /api/security/utilisateurs-roles/utilisateur/{utilisateurId}/page
    */
   getUserRolesWithPagination(
-    utilisateurId: number, 
-    page: number = 0, 
-    size: number = 20, 
+    utilisateurId: number,
+    page: number = 0,
+    size: number = 20,
     sort: string = ''
   ): Observable<UserRolePageResponseDto> {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString())
       .set('sort', sort);
-      
+
     return this.http.get<UserRolePageResponseDto>(
       `${this.apiUrl}security/utilisateurs-roles/utilisateur/${utilisateurId}/page`,
       { params }
@@ -210,6 +210,16 @@ export class UserRoleService {
     return this.http.post(
       `${this.apiUrl}security/utilisateurs/${userId}/change-password`,
       passwordData
+    );
+  }
+
+
+  /**
+   * Supprime un rôle utilisateur
+   */
+  deleteUserRole(roleId: number): Observable<any> {
+    return this.http.delete<any>(
+      `${this.apiUrl}security/utilisateurs-roles/${roleId}`
     );
   }
 }

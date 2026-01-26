@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/common/side-menus/side-menu-two/side-menu-two.component.scss"],
-  "sourcesContent": ["::ng-deep {  // <= add this if you are customizing the style from the component's stylesheet\n    .custom-scrollbars {\n      background-color: rgb(117, 57, 255) !important;\n  \n      &:hover, &:active {\n        background-color: rgb(117, 57, 255)!important;\n      }\n    }\n  }"],
-  "mappings": ";AACI,UAAA,CAAA;AACE,oBAAA,IAAA,GAAA,EAAA,EAAA,EAAA;;AAEA,UAAA,CAHF,iBAGE;AAAA,UAAA,CAHF,iBAGE;AACE,oBAAA,IAAA,GAAA,EAAA,EAAA,EAAA;;",
-  "names": []
-}

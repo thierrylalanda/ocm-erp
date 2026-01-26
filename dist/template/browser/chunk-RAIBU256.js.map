@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/ui-interface/forms/forms.component.ts", "src/app/features/ui-interface/forms/forms.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n\n@Component({\n    selector: 'app-forms',\n    templateUrl: './forms.component.html',\n    styleUrls: ['./forms.component.scss'],\n    imports: [RouterModule]\n})\nexport class FormsComponent  {\n  public innerHeight!: number;\n\n}\n", "  <router-outlet></router-outlet>\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;AAUM,IAAO,iBAAP,MAAO,gBAAc;EAClB;;qCADI,iBAAc;EAAA;yEAAd,iBAAc,WAAA,CAAA,CAAA,WAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,wBAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACVzB,MAAA,oBAAA,GAAA,eAAA;;oBDQY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAEb,gBAAc,CAAA;UAN1B;uBACa,aAAW,SAGZ,CAAC,YAAY,GAAC,UAAA,sCAAA,CAAA;;;;6EAEd,gBAAc,EAAA,WAAA,kBAAA,UAAA,0DAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

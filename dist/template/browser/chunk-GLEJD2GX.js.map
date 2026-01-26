@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/finance/bank-accounts/bank-accounts.component.ts", "src/app/features/finance/bank-accounts/bank-accounts.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-bank-accounts',\n  imports: [RouterModule],\n  templateUrl: './bank-accounts.component.html',\n  styleUrls: [ './bank-accounts.component.scss']\n})\nexport class BankAccountsComponent {\n\n}\n", "<router-outlet></router-outlet>"],
-  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,wBAAP,MAAO,uBAAqB;;qCAArB,wBAAqB;EAAA;yEAArB,wBAAqB,WAAA,CAAA,CAAA,mBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,+BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACTlC,MAAA,oBAAA,GAAA,eAAA;;oBDKY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIX,uBAAqB,CAAA;UANjC;uBACW,qBAAmB,SACpB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIZ,uBAAqB,EAAA,WAAA,yBAAA,UAAA,qEAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/invantory-sales/credit-notes/credit-notes.component.ts", "src/app/features/invantory-sales/credit-notes/credit-notes.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-credit-notes',\n  imports:[RouterModule],\n  templateUrl: './credit-notes.component.html',\n  styleUrls: [ './credit-notes.component.scss']\n})\nexport class CreditNotesComponent {\n\n}\n", "<router-outlet></router-outlet>"],
-  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,uBAAP,MAAO,sBAAoB;;qCAApB,uBAAoB;EAAA;yEAApB,uBAAoB,WAAA,CAAA,CAAA,kBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,8BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACTjC,MAAA,oBAAA,GAAA,eAAA;;oBDKW,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIV,sBAAoB,CAAA;UANhC;uBACW,oBAAkB,SACpB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIX,sBAAoB,EAAA,WAAA,wBAAA,UAAA,2EAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

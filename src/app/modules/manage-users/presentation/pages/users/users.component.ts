@@ -26,6 +26,7 @@ import { AuthService } from '../../../../../core/services/auth/auth.service';
 
 // Import de la traduction
 import { TranslatePipe } from '../../../../../core/services/translation/translate.pipe';
+import { ToasterService } from '../../../../../core/core.index';
 
 @Component({
   selector: 'app-users',
@@ -44,7 +45,7 @@ export class UsersComponent implements OnInit {
   // Use cases injectés
   private getUsersUseCase = inject(GET_USERS_USE_CASE);
   private createUserUseCase = inject(CREATE_USER_USE_CASE);
-  
+
   // Repository injecté
   private userRepository = inject<UserRepository>(USER_REPOSITORY);
 
@@ -53,6 +54,7 @@ export class UsersComponent implements OnInit {
   private departementService = inject(DepartementService);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private toastService = inject(ToasterService);
 
   // Référence à la modale
   @ViewChild('userFormModal') userFormModal!: ElementRef;
@@ -65,7 +67,7 @@ export class UsersComponent implements OnInit {
   // Gestion de la modal
   selectedUser: UserResponseDto | null = null;
   isEditMode = false;
-  modalTitle =  'Créer un nouvel utilisateur';
+  modalTitle = 'Créer un nouvel utilisateur';
 
   // Pagination
   currentPage = 0;
@@ -78,13 +80,13 @@ export class UsersComponent implements OnInit {
   statusFilter = '';
   siteFilter: number | null = null;
   departmentFilter: number | null = null;
-  
+
   // Données pour les filtres
   sites: any[] = [];
   departments: any[] = [];
   loadingFilters = false;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     this.loadUsers();
@@ -108,7 +110,7 @@ export class UsersComponent implements OnInit {
       };
 
       let response;
-      
+
       // Déterminer quelle API utiliser en fonction des filtres
       if (this.siteFilter) {
         // Utiliser l'API spécifique pour le site
@@ -120,11 +122,11 @@ export class UsersComponent implements OnInit {
         // Utiliser l'API par défaut (filtrée par société de l'utilisateur connecté)
         response = await this.getUsersUseCase.execute(options);
       }
-      
+
       this.users = response.content;
       this.totalElements = response.totalElements;
       this.totalPages = response.totalPages;
-      
+
     } catch (error) {
       console.error('Erreur lors du chargement des utilisateurs:', error);
       this.error = 'Impossible de charger la liste des utilisateurs. Veuillez réessayer.';
@@ -143,7 +145,7 @@ export class UsersComponent implements OnInit {
       // Récupérer l'ID de la société de l'utilisateur connecté
       const user = this.authService.user;
       const societeId = user?.societeId;
-      
+
       if (!societeId) {
         console.warn('Aucune société trouvée pour l\'utilisateur connecté');
         this.sites = [];
@@ -312,13 +314,12 @@ export class UsersComponent implements OnInit {
       // Utiliser le repository pour activer l'utilisateur
       await this.userRepository.activateUser({ value: user.id });
       await this.loadUsers(); // Recharger la liste
-      
+
       // Afficher un message de succès
-      alert(`L'utilisateur ${user.nomPrenom} a été activé avec succès.`);
+      this.toastService.typeSuccess(`L'utilisateur ${user.nomPrenom} a été activé avec succès.`);
     } catch (error) {
-      console.error('Erreur lors de l\'activation:', error);
       this.error = 'Impossible d\'activer l\'utilisateur.';
-      alert('Erreur lors de l\'activation de l\'utilisateur.');
+      this.toastService.typeError('Erreur lors de l\'activation de l\'utilisateur.');
     }
   }
 
@@ -330,13 +331,12 @@ export class UsersComponent implements OnInit {
       // Utiliser le repository pour désactiver l'utilisateur
       await this.userRepository.deactivateUser({ value: user.id });
       await this.loadUsers(); // Recharger la liste
-      
+
       // Afficher un message de succès
-      alert(`L'utilisateur ${user.nomPrenom} a été désactivé avec succès.`);
+      this.toastService.typeSuccess(`L'utilisateur ${user.nomPrenom} a été désactivé avec succès.`);
     } catch (error) {
-      console.error('Erreur lors de la désactivation:', error);
       this.error = 'Impossible de désactiver l\'utilisateur.';
-      alert('Erreur lors de la désactivation de l\'utilisateur.');
+      this.toastService.typeError('Erreur lors de la désactivation de l\'utilisateur.');
     }
   }
 
@@ -347,11 +347,10 @@ export class UsersComponent implements OnInit {
     if (confirm(`Êtes-vous sûr de vouloir supprimer l'utilisateur ${user.nomPrenom} ?`)) {
       try {
         // TODO: Implémenter la suppression via un use case dédié
-        console.log('Supprimer utilisateur:', user);
         await this.loadUsers(); // Recharger la liste
       } catch (error) {
-        console.error('Erreur lors de la suppression:', error);
         this.error = 'Impossible de supprimer l\'utilisateur.';
+        this.toastService.typeError('Erreur lors de la suppression de l\'utilisateur.');
       }
     }
   }
@@ -361,8 +360,7 @@ export class UsersComponent implements OnInit {
    */
   exportUsers(): void {
     // TODO: Implémenter l'exportation
-    console.log('Exporter la liste des utilisateurs');
-    alert('Fonctionnalité d\'exportation à implémenter');
+    this.toastService.typeSuccess('Exporter la liste des utilisateurs');
   }
 
   /**
@@ -370,8 +368,7 @@ export class UsersComponent implements OnInit {
    */
   importUsers(): void {
     // TODO: Implémenter l'importation
-    console.log('Importer des utilisateurs');
-    alert('Fonctionnalité d\'importation à implémenter');
+    this.toastService.typeSuccess('Importer des utilisateurs');
   }
 
   /**
@@ -379,8 +376,7 @@ export class UsersComponent implements OnInit {
    */
   generateReport(): void {
     // TODO: Implémenter la génération de rapport
-    console.log('Générer un rapport d\'utilisateurs');
-    alert('Fonctionnalité de rapport à implémenter');
+    this.toastService.typeSuccess('Générer un rapport d\'utilisateurs');
   }
 
   /**
@@ -397,13 +393,10 @@ export class UsersComponent implements OnInit {
   copyEmail(user: UserResponseDto): void {
     navigator.clipboard.writeText(user.email)
       .then(() => {
-        console.log('Email copié:', user.email);
-        // TODO: Afficher un message de succès
-        alert('Email copié dans le presse-papier');
+        this.toastService.typeSuccess('Email copié dans le presse-papier');
       })
       .catch(err => {
-        console.error('Erreur lors de la copie:', err);
-        alert('Erreur lors de la copie de l\'email');
+        this.toastService.typeError('Erreur lors de la copie de l\'email');
       });
   }
 
@@ -488,11 +481,11 @@ export class UsersComponent implements OnInit {
     const maxVisiblePages = 5;
     let startPage = Math.max(0, this.currentPage - Math.floor(maxVisiblePages / 2));
     let endPage = Math.min(this.totalPages - 1, startPage + maxVisiblePages - 1);
-    
+
     if (endPage - startPage + 1 < maxVisiblePages) {
       startPage = Math.max(0, endPage - maxVisiblePages + 1);
     }
-    
+
     for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
@@ -503,7 +496,7 @@ export class UsersComponent implements OnInit {
    * Gère la sauvegarde d'un utilisateur
    */
   onUserSaved(user: UserResponseDto): void {
-    console.log('Utilisateur sauvegardé:', user);
+    this.toastService.typeSuccess('Utilisateur sauvegardé');
     this.loadUsers();
     this.closeModal();
   }
@@ -512,7 +505,6 @@ export class UsersComponent implements OnInit {
    * Gère l'annulation du formulaire
    */
   onFormCancelled(): void {
-    console.log('Formulaire annulé');
     this.closeModal();
   }
 

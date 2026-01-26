@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/manage/membership/membership.component.ts", "src/app/features/manage/membership/membership.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-membership',\n  imports: [RouterModule],\n  templateUrl: './membership.component.html',\n  styleUrls: [ './membership.component.scss']\n})\nexport class MembershipComponent {\n\n}\n", "<router-outlet></router-outlet>"],
-  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,sBAAP,MAAO,qBAAmB;;qCAAnB,sBAAmB;EAAA;yEAAnB,sBAAmB,WAAA,CAAA,CAAA,gBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,6BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACThC,MAAA,oBAAA,GAAA,eAAA;;oBDKY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIX,qBAAmB,CAAA;UAN/B;uBACW,kBAAgB,SACjB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIZ,qBAAmB,EAAA,WAAA,uBAAA,UAAA,8DAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

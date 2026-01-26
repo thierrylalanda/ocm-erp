@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/reports/item-report/item-report.component.ts", "src/app/features/reports/item-report/item-report.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-item-report',\n  imports:[RouterModule],\n  templateUrl: './item-report.component.html',\n  styleUrls: [ './item-report.component.scss']\n})\nexport class ItemReportComponent {\n\n}\n", "<router-outlet></router-outlet>"],
-  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,sBAAP,MAAO,qBAAmB;;qCAAnB,sBAAmB;EAAA;yEAAnB,sBAAmB,WAAA,CAAA,CAAA,iBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,6BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACThC,MAAA,oBAAA,GAAA,eAAA;;oBDKW,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIV,qBAAmB,CAAA;UAN/B;uBACW,mBAAiB,SACnB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIX,qBAAmB,EAAA,WAAA,uBAAA,UAAA,iEAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

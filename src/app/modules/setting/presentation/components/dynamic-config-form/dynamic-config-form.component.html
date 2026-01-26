@@ -1,0 +1,70 @@
+<div class="config-form-container">
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Chargement...</span>
+        </div>
+        <p class="mt-2">Chargement des configurations...</p>
+    </div>
+
+    <div *ngIf="!loading && configurations.length === 0" class="no-data">
+        <i class="fas fa-info-circle fa-2x mb-2"></i>
+        <p>Aucune configuration disponible pour cette catégorie.</p>
+    </div>
+
+    <form [formGroup]="configForm" *ngIf="!loading && configurations.length > 0">
+        <div class="config-grid">
+            <div *ngFor="let config of configurations" class="config-item">
+                <div class="mb-3">
+                    <label class="form-label">
+                        {{ config.mpNom }}
+                        <span *ngIf="config.mpObligatoire" class="text-danger">*</span>
+                    </label>
+
+                    <!-- String input -->
+                    <input *ngIf="config.mpTypeDonnee === 'STRING'" type="text" class="form-control"
+                        [formControlName]="config.mpCle" [placeholder]="config.mpValeurDefaut">
+
+                    <!-- Integer input -->
+                    <input *ngIf="config.mpTypeDonnee === 'INTEGER'" type="number" class="form-control"
+                        [formControlName]="config.mpCle" [placeholder]="config.mpValeurDefaut">
+
+                    <!-- Decimal input -->
+                    <input *ngIf="config.mpTypeDonnee === 'DECIMAL'" type="number" step="0.01" class="form-control"
+                        [formControlName]="config.mpCle" [placeholder]="config.mpValeurDefaut">
+
+                    <!-- Date input -->
+                    <input *ngIf="config.mpTypeDonnee === 'DATE'" type="date" class="form-control"
+                        [formControlName]="config.mpCle">
+
+                    <!-- Boolean select -->
+                    <select *ngIf="config.mpTypeDonnee === 'BOOLEAN'" class="form-select"
+                        [formControlName]="config.mpCle">
+                        <option [value]="true">Oui</option>
+                        <option [value]="false">Non</option>
+                    </select>
+
+                    <!-- Description -->
+                    <div *ngIf="config.mpDescription" class="form-text">
+                        {{ config.mpDescription }}
+                    </div>
+
+                    <!-- Aide contextuelle -->
+                    <div *ngIf="config.mpAideContextuelle" class="form-text text-muted">
+                        <i class="fas fa-info-circle"></i> {{ config.mpAideContextuelle }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="saveConfigurations()">
+                <i class="fas fa-save me-2"></i>
+                Enregistrer
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="resetForm()">
+                <i class="fas fa-undo me-2"></i>
+                Réinitialiser
+            </button>
+        </div>
+    </form>
+</div>

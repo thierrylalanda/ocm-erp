@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/reports/accounting-report/accounting-report.component.ts", "src/app/features/reports/accounting-report/accounting-report.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-accounting-report',\n  imports:[RouterModule],\n  templateUrl: './accounting-report.component.html',\n  styleUrls: [ './accounting-report.component.scss']\n})\nexport class AccountingReportComponent {\n\n}\n", "<router-outlet></router-outlet>"],
-  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,4BAAP,MAAO,2BAAyB;;qCAAzB,4BAAyB;EAAA;yEAAzB,4BAAyB,WAAA,CAAA,CAAA,uBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,mCAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACTtC,MAAA,oBAAA,GAAA,eAAA;;oBDKW,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIV,2BAAyB,CAAA;UANrC;uBACW,yBAAuB,SACzB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIX,2BAAyB,EAAA,WAAA,6BAAA,UAAA,6EAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/invantory-sales/delivery-challans/delivery-challans.component.ts", "src/app/features/invantory-sales/delivery-challans/delivery-challans.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-delivery-challans',\n  templateUrl: './delivery-challans.component.html',\n  styleUrls: ['./delivery-challans.component.scss'],\n  imports: [RouterModule],\n})\nexport class DeliveryChallansComponent {\n\n}\n", "<router-outlet></router-outlet>\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,4BAAP,MAAO,2BAAyB;;qCAAzB,4BAAyB;EAAA;yEAAzB,4BAAyB,WAAA,CAAA,CAAA,uBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,mCAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACTtC,MAAA,oBAAA,GAAA,eAAA;;oBDOY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAEX,2BAAyB,CAAA;UANrC;uBACW,yBAAuB,SAGxB,CAAC,YAAY,GAAC,UAAA,oCAAA,CAAA;;;;6EAEZ,2BAAyB,EAAA,WAAA,6BAAA,UAAA,qFAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

@@ -6,10 +6,10 @@ import { AuthService, routes } from '../../../../src/app/core/core.index';
 import { TranslatePipe, LanguageSelectorComponent } from '../../core/services/translation';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    imports: [CommonModule, RouterLink, ReactiveFormsModule, TranslatePipe, LanguageSelectorComponent]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, TranslatePipe, LanguageSelectorComponent]
 })
 export class LoginComponent {
   public routes = routes;
@@ -17,6 +17,7 @@ export class LoginComponent {
   public loginForm: FormGroup;
   public isLoading = false;
   public errorMessage = '';
+  public currentYear = new Date().getFullYear();
 
   constructor(
     private router: Router,

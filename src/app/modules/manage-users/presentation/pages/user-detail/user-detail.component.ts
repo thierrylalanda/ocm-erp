@@ -45,8 +45,8 @@ import { UserResponseDto } from '../../../application/dto/create-user.dto';
 import { SiteService } from '../../../../setting/application/services/site.service';
 import { DepartementService } from '../../../../setting/application/services/departement.service';
 import { AuthService } from '../../../../../core/services/auth/auth.service';
-import { UserRoleService, UserRoleResponseDto,UserRolePageResponseDto,  ChangePasswordRequestDto, } from '../../../application/services/user-role.service';
-import { routes } from '../../../../../core/core.index';
+import { UserRoleService, UserRoleResponseDto, UserRolePageResponseDto, ChangePasswordRequestDto, } from '../../../application/services/user-role.service';
+import { routes, ToasterService } from '../../../../../core/core.index';
 @Component({
   selector: 'app-user-detail',
   standalone: true,
@@ -54,7 +54,7 @@ import { routes } from '../../../../../core/core.index';
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
-    
+
     // Angular Material modules
     MatFormFieldModule,
     MatInputModule,
@@ -68,7 +68,7 @@ import { routes } from '../../../../../core/core.index';
     MatCardModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    
+
     // Traduction
     TranslatePipe
   ],
@@ -104,17 +104,18 @@ export class UserDetailComponent implements OnInit {
   private router = inject(Router);
   private fb = inject(FormBuilder);
   private snackBar = inject(MatSnackBar);
-  
+
   // Use cases
   private getUsersUseCase = inject(GET_USERS_USE_CASE);
   private updateUserUseCase = inject(UPDATE_USER_USE_CASE);
   private getRolesUseCase = inject(GET_ROLES_USE_CASE);
-  
+
   // Services
   private siteService = inject(SiteService);
   private departementService = inject(DepartementService);
   private authService = inject(AuthService);
   private userRoleService = inject(UserRoleService);
+  private toasterService = inject(ToasterService);
   routes = routes;
 
   // Données
@@ -145,6 +146,7 @@ export class UserDetailComponent implements OnInit {
   availableRoles: any[] = [];
   loadingRoles = false;
   roleForm!: FormGroup;
+  roleToDelete: UserRoleResponseDto | null = null;
 
   constructor() {
     this.initForms();
@@ -154,7 +156,7 @@ export class UserDetailComponent implements OnInit {
     this.loadUser();
     this.loadSites();
     this.loadDepartements();
-    
+
   }
 
   /**
@@ -207,7 +209,7 @@ export class UserDetailComponent implements OnInit {
       this.loading = true;
       const options = { page: 0, size: 1, search: userId };
       const response = await this.getUsersUseCase.execute(options);
-      
+
       if (response.content.length > 0) {
         this.user = response.content[0];
         this.populateBasicInfoForm();
@@ -288,7 +290,7 @@ export class UserDetailComponent implements OnInit {
   private loadAvailableRoles(): void {
     // Utilise le GetRolesUseCase pour charger les rôles depuis le module role
     const societeId = this.user?.societeId || 1; // Utilise l'ID de la société de l'utilisateur ou 1 par défaut
-    
+
     this.getRolesUseCase.execute(societeId).subscribe({
       next: (roles) => {
         this.availableRoles = roles.map(role => ({
@@ -381,7 +383,7 @@ export class UserDetailComponent implements OnInit {
       };
 
       await this.userRoleService.changeUserPassword(this.user.id, passwordData).toPromise();
-      
+
       this.showSuccess('Mot de passe changé avec succès');
       this.passwordForm.reset();
     } catch (error: any) {
@@ -410,7 +412,7 @@ export class UserDetailComponent implements OnInit {
       };
 
       await this.userRoleService.addUserRole(requestData).toPromise();
-      
+
       this.showSuccess('Rôle ajouté avec succès');
       this.roleForm.reset({ actif: true });
       await this.loadUserRoles();
@@ -426,11 +428,10 @@ export class UserDetailComponent implements OnInit {
   async activateRole(roleId: number): Promise<void> {
     try {
       await this.userRoleService.activateUserRole(roleId).toPromise();
-      
+
       this.showSuccess('Rôle activé avec succès');
       await this.loadUserRoles();
     } catch (error: any) {
-      console.error('Erreur lors de l\'activation du rôle:', error);
       this.showError(error.message || 'Erreur lors de l\'activation du rôle');
     }
   }
@@ -441,12 +442,37 @@ export class UserDetailComponent implements OnInit {
   async deactivateRole(roleId: number): Promise<void> {
     try {
       await this.userRoleService.deactivateUserRole(roleId).toPromise();
-      
+
       this.showSuccess('Rôle désactivé avec succès');
       await this.loadUserRoles();
     } catch (error: any) {
-      console.error('Erreur lors de la désactivation du rôle:', error);
       this.showError(error.message || 'Erreur lors de la désactivation du rôle');
+    }
+  }
+
+  /**
+   * Supprime un rôle
+   */
+  /**
+   * Prépare la suppression d'un rôle
+   */
+  prepareDeleteRole(role: UserRoleResponseDto): void {
+    this.roleToDelete = role;
+  }
+
+  /**
+   * Confirme la suppression d'un rôle
+   */
+  async confirmDeleteRole(): Promise<void> {
+    if (!this.roleToDelete) return;
+
+    try {
+      await this.userRoleService.deleteUserRole(this.roleToDelete.id).toPromise();
+      this.showSuccess('Rôle supprimé avec succès');
+      this.roleToDelete = null;
+      await this.loadUserRoles();
+    } catch (error: any) {
+      this.showError(error.message || 'Erreur lors de la suppression du rôle');
     }
   }
 
@@ -461,20 +487,14 @@ export class UserDetailComponent implements OnInit {
    * Affiche un message de succès
    */
   private showSuccess(message: string): void {
-    this.snackBar.open(message, 'Fermer', {
-      duration: 3000,
-      panelClass: ['success-snackbar']
-    });
+    this.toasterService.typeSuccess(message);
   }
 
   /**
    * Affiche un message d'erreur
    */
   private showError(message: string): void {
-    this.snackBar.open(message, 'Fermer', {
-      duration: 5000,
-      panelClass: ['error-snackbar']
-    });
+    this.toasterService.typeError(message);
   }
 
   /**

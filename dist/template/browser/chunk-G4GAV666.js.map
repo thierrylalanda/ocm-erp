@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/application/application.component.ts", "src/app/features/application/application.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n    selector: 'app-application',\n    templateUrl: './application.component.html',\n    styleUrls: ['./application.component.scss'],\n    imports: [RouterModule]\n})\nexport class ApplicationComponent  {\n\n \n\n}\n", "\n  <router-outlet></router-outlet>\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,uBAAP,MAAO,sBAAoB;;qCAApB,uBAAoB;EAAA;yEAApB,uBAAoB,WAAA,CAAA,CAAA,iBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,8BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACR/B,MAAA,oBAAA,GAAA,eAAA;;oBDMY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAEb,sBAAoB,CAAA;UANhC;uBACa,mBAAiB,SAGlB,CAAC,YAAY,GAAC,UAAA,wCAAA,CAAA;;;;6EAEd,sBAAoB,EAAA,WAAA,wBAAA,UAAA,yDAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

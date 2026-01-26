@@ -1,0 +1,1 @@
+import{g as e,ia as i}from"./chunk-ODQYRIBQ.js";var r=class a{tablePageSize=new e({skip:0,limit:10,pageSize:10});calculatePageSize=new e({totalData:0,pageSize:10,tableData:[],serialNumberArray:[]});changePagesize=new e({pageSize:10});static \u0275fac=function(t){return new(t||a)};static \u0275prov=i({token:a,factory:a.\u0275fac,providedIn:"root"})};export{r as a};

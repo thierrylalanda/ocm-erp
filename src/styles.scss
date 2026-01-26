@@ -4,11 +4,18 @@
 @use "./assets/scss/main.scss";
 @use "./assets/material/material.scss";
 
+
+
 /* Importing Datepicker SCSS file. */
 @use "../node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
 // regular style toast
 @use "../node_modules/ngx-toastr/toastr";
+
+html, body {
+  overflow-x: hidden;
+  height: 100%;
+}
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only

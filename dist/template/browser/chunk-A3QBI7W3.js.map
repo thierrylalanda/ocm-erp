@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/ui-interface/maps/maps.component.ts", "src/app/features/ui-interface/maps/maps.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n    selector: 'app-maps',\n    templateUrl: './maps.component.html',\n    styleUrls: ['./maps.component.scss'],\n    imports: [RouterModule]\n})\nexport class MapsComponent {\n\n}\n", "<router-outlet></router-outlet>\n\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,gBAAP,MAAO,eAAa;;qCAAb,gBAAa;EAAA;yEAAb,gBAAa,WAAA,CAAA,CAAA,UAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,uBAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACT1B,MAAA,oBAAA,GAAA,eAAA;;oBDOc,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAEb,eAAa,CAAA;UANzB;uBACa,YAAU,SAGX,CAAC,YAAY,GAAC,UAAA,sCAAA,CAAA;;;;6EAEd,eAAa,EAAA,WAAA,iBAAA,UAAA,wDAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/application/calender/calender.component.scss"],
-  "sourcesContent": [".margin-drop {\n  margin-right: 5px;\n}\n.fc-header-toolbar.fc-toolbar .fc-button {\n  background-color: #eeeeee;\n  border: 1px solid #eeeeee;\n}\n\n.fc .fc-button-primary:not(:disabled).fc-button-active,\n.fc .fc-button-primary:not(:disabled):active {\n  opacity: 0.8;\n  background-color: #7638ff;\n  border: 1px solid #7638ff;\n  color:white !important\n}\n.fc .fc-button:disabled {\n  opacity: .8;\n  background-color: #7638ff;\n  border: 1px solid #7638ff;\n  color:white !important\n}\n\n#drop-remove\n{\n    margin: 1;\n}"],
-  "mappings": ";AAAA,CAAA;AACE,gBAAA;;AAEF,CAAA,iBAAA,CAAA,WAAA,CAAA;AACE,oBAAA;AACA,UAAA,IAAA,MAAA;;AAGF,CAAA,GAAA,CAAA,iBAAA,KAAA,UAAA,CAAA;AAAA,CAAA,GAAA,CAAA,iBAAA,KAAA,UAAA;AAEE,WAAA;AACA,oBAAA;AACA,UAAA,IAAA,MAAA;AACA,SAAA;;AAEF,CAPA,GAOA,CAZA,SAYA;AACE,WAAA;AACA,oBAAA;AACA,UAAA,IAAA,MAAA;AACA,SAAA;;AAGF,CAAA;AAEI,UAAA;;",
-  "names": []
-}

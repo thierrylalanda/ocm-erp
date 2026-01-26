@@ -20,7 +20,7 @@
     {{ successMessage }}
     <button type="button" class="btn-close" (click)="successMessage = ''"></button>
   </div>
-  
+
   <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
     <i class="fas fa-exclamation-circle me-2"></i>
     {{ errorMessage }}
@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-xl-3 col-sm-6">
       <div class="card">
         <div class="card-body">
@@ -60,7 +60,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-xl-3 col-sm-6">
       <div class="card">
         <div class="card-body">
@@ -76,14 +76,15 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-xl-3 col-sm-6">
       <div class="card">
         <div class="card-body">
           <div class="d-flex align-items-center justify-content-between">
             <div>
               <span class="d-block mb-1">{{ 'departementSettings.activationRate' | translate }}</span>
-              <h4 class="mb-0">{{ statistics.total > 0 ? Math.round((statistics.actifs / statistics.total) * 100) : 0 }}%</h4>
+              <h4 class="mb-0">{{ statistics.total > 0 ? Math.round((statistics.actifs / statistics.total) * 100) : 0
+                }}%</h4>
             </div>
             <div class="avatar avatar-lg bg-info-light rounded-circle">
               <i class="fas fa-percentage text-info"></i>
@@ -100,15 +101,11 @@
       <div class="row g-3">
         <div class="col-md-4">
           <label class="form-label">{{ 'common.search' | translate }}</label>
-          <input 
-            type="text" 
-            class="form-control" 
-            placeholder="{{ 'departementSettings.search' | translate }}" 
-            [(ngModel)]="searchTerm"
-            (input)="onSearch($any($event.target).value)">
+          <input type="text" class="form-control" placeholder="{{ 'departementSettings.search' | translate }}"
+            [(ngModel)]="searchTerm" (input)="onSearch($any($event.target).value)">
         </div>
-        
-        
+
+
         <div class="col-md-4">
           <label class="form-label">{{ 'departementSettings.status' | translate }}</label>
           <select class="form-select" [(ngModel)]="filterStatus" (change)="onFilterChange()">
@@ -158,7 +155,7 @@
                 </p>
               </td>
             </tr>
-            
+
             <tr *ngFor="let departement of paginatedDepartements">
               <td>
                 <div class="d-flex align-items-center">
@@ -183,11 +180,8 @@
               <td>{{ formatDate(departement.dateCreation) }}</td>
               <td class="text-end">
                 <div class="dropdown">
-                  <button 
-                    class="btn btn-sm btn-outline-secondary dropdown-toggle" 
-                    type="button" 
-                    data-bs-toggle="dropdown"
-                  >
+                  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
                     <i class="fas fa-ellipsis-v"></i>
                   </button>
                   <ul class="dropdown-menu">
@@ -200,7 +194,8 @@
                     <li>
                       <a class="dropdown-item" (click)="toggleDepartementStatus(departement)">
                         <i [class]="departement.actif ? 'fas fa-toggle-off me-2' : 'fas fa-toggle-on me-2'"></i>
-                        {{ departement.actif ? ('departementSettings.dropdownActions.deactivate' | translate) : ('departementSettings.dropdownActions.activate' | translate) }}
+                        {{ departement.actif ? ('departementSettings.dropdownActions.deactivate' | translate) :
+                        ('departementSettings.dropdownActions.activate' | translate) }}
                       </a>
                     </li>
                     <li>
@@ -218,9 +213,11 @@
       </div>
 
       <!-- Pagination -->
-      <div *ngIf="!isLoading && paginatedDepartements.length > 0" class="d-flex justify-content-between align-items-center mt-3">
+      <div *ngIf="!isLoading && paginatedDepartements.length > 0"
+        class="d-flex justify-content-between align-items-center mt-3">
         <div>
-          {{ 'departementSettings.paginationText' | translate:{start: (currentPage * pageSize) + 1, end: Math.min((currentPage + 1) * pageSize, totalElements), total: totalElements} }}
+          {{ 'departementSettings.paginationText' | translate:{start: (currentPage * pageSize) + 1, end:
+          Math.min((currentPage + 1) * pageSize, totalElements), total: totalElements} }}
         </div>
         <nav>
           <ul class="pagination mb-0">
@@ -229,11 +226,7 @@
                 <i class="fas fa-chevron-left"></i>
               </a>
             </li>
-            <li 
-              *ngFor="let page of paginationPages" 
-              class="page-item" 
-              [class.active]="page === currentPage"
-            >
+            <li *ngFor="let page of paginationPages" class="page-item" [class.active]="page === currentPage">
               <a class="page-link" (click)="goToPage(page)">{{ page + 1 }}</a>
             </li>
             <li class="page-item" [class.disabled]="currentPage >= totalPages - 1">
@@ -254,11 +247,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
-          {{ isEditMode ? ('departementSettings.modal.editTitle' | translate) : ('departementSettings.modal.createTitle' | translate) }}
+          {{ isEditMode ? ('departementSettings.modal.editTitle' | translate) : ('departementSettings.modal.createTitle'
+          | translate) }}
         </h5>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
-      
+
       <form [formGroup]="departementForm" (ngSubmit)="onSubmit()">
         <div class="modal-body">
           <!-- Message d'erreur dans le modal -->
@@ -269,14 +263,11 @@
 
           <div class="row g-3">
             <div class="col-md-12">
-              <label class="form-label">{{ 'departementSettings.modal.nameLabel' | translate }} <span class="text-danger">*</span></label>
-              <input 
-                type="text" 
-                class="form-control" 
-                formControlName="nom"
-                [class.is-invalid]="isFieldInvalid('nom')"
+              <label class="form-label">{{ 'departementSettings.modal.nameLabel' | translate }} <span
+                  class="text-danger">*</span></label>
+              <input type="text" class="form-control" formControlName="nom" [class.is-invalid]="isFieldInvalid('nom')"
                 placeholder="{{ 'departementSettings.modal.namePlaceholder' | translate }}">
-              
+
               <div *ngIf="hasError('nom', 'required')" class="invalid-feedback">
                 {{ 'departementSettings.modal.nameRequired' | translate }}
               </div>
@@ -287,17 +278,14 @@
                 {{ 'departementSettings.modal.nameMaxLength' | translate }}
               </div>
             </div>
-            
+
             <div class="col-md-12">
               <label class="form-label">{{ 'departementSettings.modal.descriptionLabel' | translate }}</label>
-              <textarea 
-                class="form-control" 
-                formControlName="description"
-                [class.is-invalid]="isFieldInvalid('description')"
-                rows="3"
+              <textarea class="form-control" formControlName="description"
+                [class.is-invalid]="isFieldInvalid('description')" rows="3"
                 placeholder="{{ 'departementSettings.modal.descriptionPlaceholder' | translate }}"
                 maxlength="500"></textarea>
-              
+
               <small class="text-muted">
                 {{ departementForm.get('description')?.value?.length || 0 }} / 500 {{ 'common.characters' | translate }}
               </small>
@@ -305,41 +293,34 @@
                 {{ 'departementSettings.modal.descriptionMaxLength' | translate }}
               </div>
             </div>
-         
-            
+
+
             <div class="col-md-12">
               <label class="form-label">{{ 'departementSettings.modal.statusLabel' | translate }}</label>
               <div class="form-check form-switch">
-                <input 
-                  class="form-check-input" 
-                  type="checkbox" 
-                  formControlName="actif">
+                <input class="form-check-input" type="checkbox" formControlName="actif">
                 <label class="form-check-label">
-                  {{ departementForm.get('actif')?.value ? ('departementSettings.modal.active' | translate) : ('departementSettings.modal.inactive' | translate) }}
+                  {{ departementForm.get('actif')?.value ? ('departementSettings.modal.active' | translate) :
+                  ('departementSettings.modal.inactive' | translate) }}
                 </label>
               </div>
             </div>
           </div>
         </div>
-        
+
         <div class="modal-footer">
-          <button 
-            type="button" 
-            class="btn btn-secondary" 
-            (click)="closeModal()"
-            [disabled]="isSaving">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()" [disabled]="isSaving">
             {{ 'departementSettings.modal.cancel' | translate }}
           </button>
-          <button 
-            type="submit" 
-            class="btn btn-primary"
-            [disabled]="departementForm.invalid || isSaving">
+          <button type="submit" class="btn btn-primary" [disabled]="departementForm.invalid || isSaving">
             <span *ngIf="!isSaving">
-              {{ isEditMode ? ('departementSettings.modal.update' | translate) : ('departementSettings.modal.create' | translate) }}
+              {{ isEditMode ? ('departementSettings.modal.update' | translate) : ('departementSettings.modal.create' |
+              translate) }}
             </span>
             <span *ngIf="isSaving">
               <span class="spinner-border spinner-border-sm me-1"></span>
-              {{ isEditMode ? ('departementSettings.modal.updating' | translate) : ('departementSettings.modal.creating' | translate) }}
+              {{ isEditMode ? ('departementSettings.modal.updating' | translate) : ('departementSettings.modal.creating'
+              | translate) }}
             </span>
           </button>
         </div>
@@ -347,6 +328,6 @@
     </div>
   </div>
 </div>
-
+<app-global-configuration></app-global-configuration>
 <!-- Backdrop du modal -->
 <div class="modal-backdrop fade" [class.show]="showModal" *ngIf="showModal"></div>

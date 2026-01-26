@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/ui-interface/advanced-ui/scrollbar/scrollbar.component.scss"],
-  "sourcesContent": [".scroll-demo {\n  height: 300px;\n  scroll-behavior: smooth;\n  scrollbar-width: thin;\n\n}\n.horizontal-scroll {\n  overflow-y: hidden !important;\n}\n"],
-  "mappings": ";AAAA,CAAA;AACE,UAAA;AACA,mBAAA;AACA,mBAAA;;AAGF,CAAA;AACE,cAAA;;",
-  "names": []
-}

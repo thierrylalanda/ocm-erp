@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/invoice-modals/invoice-modals.component.ts", "src/app/features/invoice-modals/invoice-modals.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n@Component({\n  selector: 'app-invoice-modals',\n  imports: [RouterModule],\n  templateUrl: './invoice-modals.component.html',\n  styleUrls: [ './invoice-modals.component.scss']\n})\nexport class InvoiceModalsComponent {\n\n}\n", "<router-outlet></router-outlet>"],
-  "mappings": ";;;;;;;;;;;;;;;;;AASM,IAAO,yBAAP,MAAO,wBAAsB;;qCAAtB,yBAAsB;EAAA;yEAAtB,yBAAsB,WAAA,CAAA,CAAA,oBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,gCAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACTnC,MAAA,oBAAA,GAAA,eAAA;;oBDKY,cAAY,YAAA,GAAA,eAAA,EAAA,CAAA;;;sEAIX,wBAAsB,CAAA;UANlC;uBACW,sBAAoB,SACrB,CAAC,YAAY,GAAC,UAAA,kCAAA,CAAA;;;;6EAIZ,wBAAsB,EAAA,WAAA,0BAAA,UAAA,+DAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}
