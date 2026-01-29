@@ -1,179 +1,310 @@
-<div class="company-management">
-  <!-- Header -->
-  <div class="page-header">
-    <div class="header-content">
-      <h1>Gestion des Sociétés</h1>
-      <p>Créez et gérez les sociétés de votre organisation</p>
-    </div>
-    <div class="header-actions">
-      <button class="btn btn-primary" (click)="showForm = !showForm">
-        {{ showForm ? 'Masquer le formulaire' : 'Nouvelle société' }}
-      </button>
-    </div>
+<!-- Page Header -->
+<div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3">
+  <div class="flex-grow-1">
+    <h4 class="fs-18 fw-semibold mb-0">Gestion des Sociétés</h4>
   </div>
+  <div class="text-end">
+    <ol class="breadcrumb m-0 py-0">
+      <li class="breadcrumb-item"><a href="javascript: void(0);">Configuration</a></li>
+      <li class="breadcrumb-item active">Sociétés</li>
+    </ol>
+  </div>
+</div>
+<!-- End Page Header -->
 
-  <!-- Stats -->
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-icon">🏢</div>
-      <div class="stat-content">
-        <h3>{{ companies.length }}</h3>
-        <p>Sociétés totales</p>
-      </div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">✅</div>
-      <div class="stat-content">
-        <h3>{{ activeCompanies }}</h3>
-        <p>Sociétés actives</p>
-      </div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">📅</div>
-      <div class="stat-content">
-        <h3>{{ todayCompanies }}</h3>
-        <p>Créées aujourd'hui</p>
-      </div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">🌍</div>
-      <div class="stat-content">
-        <h3>{{ uniqueCountries }}</h3>
-        <p>Pays différents</p>
+<!-- Stats Cards -->
+<div class="row mb-4">
+  <div class="col-xl-3 col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <h2 class="mb-1 fw-bold">{{ companies.length }}</h2>
+            <p class="text-muted mb-0">Sociétés totales</p>
+          </div>
+          <div class="avatar avatar-lg bg-primary-transparent rounded-circle">
+            <i class="ti ti-building fs-24"></i>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Modal for Creation Form -->
-  <div *ngIf="showForm" class="modal-overlay" (click)="onCancel()">
-    <div class="modal-content" (click)="$event.stopPropagation()">
+  <div class="col-xl-3 col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <h2 class="mb-1 fw-bold text-success">{{ activeCompanies }}</h2>
+            <p class="text-muted mb-0">Sociétés actives</p>
+          </div>
+          <div class="avatar avatar-lg bg-success-transparent rounded-circle">
+            <i class="ti ti-check fs-24"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <h2 class="mb-1 fw-bold text-info">{{ todayCompanies }}</h2>
+            <p class="text-muted mb-0">Créées aujourd'hui</p>
+          </div>
+          <div class="avatar avatar-lg bg-info-transparent rounded-circle">
+            <i class="ti ti-calendar fs-24"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <h2 class="mb-1 fw-bold text-warning">{{ uniqueCountries }}</h2>
+            <p class="text-muted mb-0">Pays différents</p>
+          </div>
+          <div class="avatar avatar-lg bg-warning-transparent rounded-circle">
+            <i class="ti ti-world fs-24"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content Card -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-3">
+        <div>
+          <h4 class="card-title mb-1">Liste des sociétés</h4>
+          <p class="text-muted mb-0">Gérez toutes les sociétés de votre organisation</p>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="btn btn-primary btn-sm" (click)="showForm = !showForm">
+            <i class="ti ti-plus me-1"></i>
+            {{ showForm ? 'Masquer' : 'Nouvelle société' }}
+          </button>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <!-- Search and Filter -->
+        <div class="row mb-4">
+          <div class="col-md-8">
+            <div class="input-group">
+              <span class="input-group-text bg-white">
+                <i class="ti ti-search"></i>
+              </span>
+              <input type="text" class="form-control" placeholder="Rechercher par nom, email, NC ou RCCM..."
+                [(ngModel)]="searchTerm" (input)="filterCompanies()">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <select class="form-select" [(ngModel)]="filterStatus" (change)="filterCompanies()">
+              <option value="">Tous les statuts</option>
+              <option value="active">Actives uniquement</option>
+              <option value="inactive">Inactives uniquement</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="filteredCompanies.length === 0" class="text-center py-5">
+          <div class="avatar avatar-xxl bg-light rounded-circle mx-auto mb-3">
+            <i class="ti ti-building fs-48 text-muted"></i>
+          </div>
+          <h5 class="mb-2">Aucune société trouvée</h5>
+          <p class="text-muted mb-3" *ngIf="searchTerm || filterStatus">
+            Aucune société ne correspond à vos critères de recherche.
+          </p>
+          <p class="text-muted mb-3" *ngIf="!searchTerm && !filterStatus">
+            Commencez par créer votre première société.
+          </p>
+          <button class="btn btn-primary" (click)="showForm = true">
+            <i class="ti ti-plus me-1"></i>
+            Créer une société
+          </button>
+        </div>
+
+        <!-- Companies Table -->
+        <div *ngIf="filteredCompanies.length > 0" class="table-responsive">
+          <table class="table table-hover table-striped datatable">
+            <thead>
+              <tr>
+                <th>Société</th>
+                <th>Activité</th>
+                <th>Contact</th>
+                <th>Identifiants fiscaux</th>
+                <th>Localisation</th>
+                <th>Statut</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let company of filteredCompanies">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-md bg-primary-transparent rounded me-2">
+                      <span class="fw-bold">{{ company.nom.substring(0, 2).toUpperCase() }}</span>
+                    </div>
+                    <div>
+                      <h6 class="mb-0">{{ company.nom }}</h6>
+                      <small class="text-muted">ID: {{ company.id }}</small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="text-truncate d-inline-block" style="max-width: 200px;">
+                    {{ company.activite }}
+                  </span>
+                </td>
+                <td>
+                  <div>
+                    <div class="mb-1">
+                      <i class="ti ti-mail me-1 text-muted"></i>
+                      <small>{{ company.email }}</small>
+                    </div>
+                    <div *ngIf="company.telephone">
+                      <i class="ti ti-phone me-1 text-muted"></i>
+                      <small>{{ company.telephone }}</small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex flex-column gap-1">
+                    <span class="badge bg-light text-dark">
+                      <small>NC: {{ company.nc }}</small>
+                    </span>
+                    <span class="badge bg-light text-dark">
+                      <small>RCCM: {{ company.rccm }}</small>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <i class="ti ti-map-pin me-1 text-muted"></i>
+                    <span>{{ company.pays }}</span>
+                  </div>
+                </td>
+                <td>
+                  <span class="badge" [ngClass]="company.actif ? 'bg-success' : 'bg-danger'">
+                    {{ company.actif ? 'Active' : 'Inactive' }}
+                  </span>
+                </td>
+                <td>
+                  <div class="d-flex gap-2 justify-content-end">
+                    <button class="btn btn-sm btn-icon btn-light" title="Voir les détails">
+                      <i class="ti ti-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-icon btn-light" title="Modifier">
+                      <i class="ti ti-edit"></i>
+                    </button>
+                    <button class="btn btn-sm btn-icon btn-light text-danger" title="Supprimer">
+                      <i class="ti ti-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div *ngIf="filteredCompanies.length > 0" class="d-flex align-items-center justify-content-between mt-4">
+          <div class="text-muted">
+            Affichage de {{ (currentPage - 1) * 10 + 1 }} à {{ Math.min(currentPage * 10, filteredCompanies.length) }}
+            sur {{ filteredCompanies.length }} sociétés
+          </div>
+          <nav>
+            <ul class="pagination mb-0">
+              <li class="page-item" [class.disabled]="currentPage === 1">
+                <a class="page-link" (click)="previousPage()" href="javascript:void(0)">
+                  <i class="ti ti-chevron-left"></i>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="javascript:void(0)">{{ currentPage }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <a class="page-link" (click)="nextPage()" href="javascript:void(0)">
+                  <i class="ti ti-chevron-right"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Actions Card -->
+<div class="row mt-4">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Actions rapides</h5>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-xl-3 col-sm-6">
+            <button class="btn btn-light w-100 d-flex align-items-center justify-content-center gap-2 py-3">
+              <i class="ti ti-file-analytics fs-24 text-primary"></i>
+              <span>Générer un rapport</span>
+            </button>
+          </div>
+          <div class="col-xl-3 col-sm-6">
+            <button class="btn btn-light w-100 d-flex align-items-center justify-content-center gap-2 py-3">
+              <i class="ti ti-file-export fs-24 text-success"></i>
+              <span>Exporter les données</span>
+            </button>
+          </div>
+          <div class="col-xl-3 col-sm-6">
+            <button class="btn btn-light w-100 d-flex align-items-center justify-content-center gap-2 py-3">
+              <i class="ti ti-refresh fs-24 text-info"></i>
+              <span>Synchroniser</span>
+            </button>
+          </div>
+          <div class="col-xl-3 col-sm-6">
+            <button class="btn btn-light w-100 d-flex align-items-center justify-content-center gap-2 py-3">
+              <i class="ti ti-settings fs-24 text-warning"></i>
+              <span>Paramètres</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Creation Form -->
+<div *ngIf="showForm" class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
       <div class="modal-header">
-        <h2>Créer une nouvelle société</h2>
-        <button class="modal-close" (click)="onCancel()">×</button>
+        <h5 class="modal-title">
+          <i class="ti ti-building me-2"></i>
+          Créer une nouvelle société
+        </h5>
+        <button type="button" class="btn-close" (click)="onCancel()"></button>
       </div>
       <div class="modal-body">
-        <p class="modal-description">Remplissez le formulaire ci-dessous pour ajouter une nouvelle société à votre organisation</p>
-        <app-company-form
-          (companyCreated)="onCompanyCreated($event)"
-          (cancel)="onCancel()">
+        <div class="alert alert-info d-flex align-items-center mb-3">
+          <i class="ti ti-info-circle me-2 fs-20"></i>
+          <span>Remplissez le formulaire ci-dessous pour ajouter une nouvelle société à votre organisation</span>
+        </div>
+        <app-company-form (companyCreated)="onCompanyCreated($event)" (cancel)="onCancel()">
         </app-company-form>
       </div>
-    </div>
-  </div>
-
-  <!-- Companies List -->
-  <div class="list-section">
-    <div class="section-header">
-      <h2>Liste des sociétés</h2>
-      <div class="list-controls">
-        <div class="search-box">
-          <input 
-            type="text" 
-            placeholder="Rechercher une société..." 
-            [(ngModel)]="searchTerm"
-            (input)="filterCompanies()"
-          >
-          <span class="search-icon">🔍</span>
-        </div>
-        <select [(ngModel)]="filterStatus" (change)="filterCompanies()">
-          <option value="">Tous les statuts</option>
-          <option value="active">Actives</option>
-          <option value="inactive">Inactives</option>
-        </select>
-      </div>
-    </div>
-
-    <div *ngIf="filteredCompanies.length === 0" class="empty-state">
-      <div class="empty-icon">🏢</div>
-      <h3>Aucune société trouvée</h3>
-      <p *ngIf="searchTerm || filterStatus">
-        Aucune société ne correspond à vos critères de recherche.
-      </p>
-      <p *ngIf="!searchTerm && !filterStatus">
-        Commencez par créer votre première société.
-      </p>
-      <button class="btn btn-primary" (click)="showForm = true">
-        Créer une société
-      </button>
-    </div>
-
-    <div *ngIf="filteredCompanies.length > 0" class="companies-table">
-      <table>
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Activité</th>
-            <th>Email</th>
-            <th>NC/RCCM</th>
-            <th>Pays</th>
-            <th>Statut</th>
-            <th>Créée le</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let company of filteredCompanies">
-            <td>
-              <div class="company-info">
-                <div class="company-name">{{ company.nom }}</div>
-                <div class="company-id">ID: {{ company.id }}</div>
-              </div>
-            </td>
-            <td>{{ company.activite }}</td>
-            <td>{{ company.email }}</td>
-            <td>
-              <div class="tax-info">
-                <div>NC: {{ company.nc }}</div>
-                <div>RCCM: {{ company.rccm }}</div>
-              </div>
-            </td>
-            <td>{{ company.pays }}</td>
-            <td>
-              <span class="status-badge" [class.active]="company.actif">
-                {{ company.actif ? 'Active' : 'Inactive' }}
-              </span>
-            </td>
-            <td>{{ formatDate(company.createdAt) }}</td>
-            <td>
-              <div class="action-buttons">
-                <button class="btn-icon" title="Voir les détails">👁️</button>
-                <button class="btn-icon" title="Modifier">✏️</button>
-                <button class="btn-icon" title="Supprimer">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Pagination -->
-    <div *ngIf="filteredCompanies.length > 0" class="pagination">
-      <button [disabled]="currentPage === 1" (click)="previousPage()">← Précédent</button>
-      <span>Page {{ currentPage }} sur {{ totalPages }}</span>
-      <button [disabled]="currentPage === totalPages" (click)="nextPage()">Suivant →</button>
-    </div>
-  </div>
-
-  <!-- Quick Actions -->
-  <div class="quick-actions">
-    <h3>Actions rapides</h3>
-    <div class="actions-grid">
-      <button class="action-card">
-        <span class="action-icon">📊</span>
-        <span class="action-text">Rapports</span>
-      </button>
-      <button class="action-card">
-        <span class="action-icon">📁</span>
-        <span class="action-text">Exporter</span>
-      </button>
-      <button class="action-card">
-        <span class="action-icon">🔄</span>
-        <span class="action-text">Synchroniser</span>
-      </button>
-      <button class="action-card">
-        <span class="action-icon">⚙️</span>
-        <span class="action-text">Paramètres</span>
-      </button>
     </div>
   </div>
 </div>

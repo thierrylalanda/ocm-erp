@@ -1,0 +1,41 @@
+<div class="tree-view" [class.show-lines]="config.showLines">
+    <div class="tree-node" *ngFor="let node of nodes">
+        <div class="node-content" [class.selected]="node.selected" [class.disabled]="node.disabled"
+            [class]="node.customClass" (click)="selectNode(node, $event)">
+
+            <!-- Expand/Collapse Icon -->
+            <span class="node-toggle" (click)="toggleNode(node); $event.stopPropagation()">
+                <i *ngIf="hasChildren(node)" class="isax"
+                    [ngClass]="node.expanded ? 'isax-arrow-down-1' : 'isax-arrow-right-3'">
+                </i>
+                <span *ngIf="!hasChildren(node)" class="node-spacer"></span>
+            </span>
+
+            <!-- Icon -->
+            <span *ngIf="config.showIcons && node.icon" class="node-icon">
+                <i class="isax" [ngClass]="node.icon"></i>
+            </span>
+
+            <!-- Label -->
+            <span class="node-label">{{ node.label }}</span>
+
+            <!-- Actions -->
+            <span *ngIf="config.showActions" class="node-actions">
+                <button type="button" class="btn-action" (click)="onAction(node, 'edit', $event)" title="Modifier">
+                    <i class="isax isax-edit-2"></i>
+                </button>
+                <button type="button" class="btn-action" (click)="onAction(node, 'delete', $event)" title="Supprimer">
+                    <i class="isax isax-trash"></i>
+                </button>
+            </span>
+        </div>
+
+        <!-- Children -->
+        <div *ngIf="hasChildren(node) && node.expanded" class="node-children">
+            <app-tree-view [nodes]="node.children!" [config]="config" (nodeSelected)="nodeSelected.emit($event)"
+                (nodeExpanded)="nodeExpanded.emit($event)" (nodeCollapsed)="nodeCollapsed.emit($event)"
+                (nodeAction)="nodeAction.emit($event)">
+            </app-tree-view>
+        </div>
+    </div>
+</div>

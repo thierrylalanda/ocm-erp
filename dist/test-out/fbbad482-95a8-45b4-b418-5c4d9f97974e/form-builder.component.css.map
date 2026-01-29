@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/modules/_shared/presentation/components/form-builder/form-builder.component.scss"],
+  "sourcesContent": [".form-builder {\n  width: 100%;\n\n  // Required field indicator\n  .form-label.required {\n    font-weight: 600;\n  }\n\n  // Radio group\n  .form-radio-group {\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n  }\n\n  // Horizontal layout\n  &.form-horizontal {\n    .form-radio-group {\n      flex-direction: row;\n      flex-wrap: wrap;\n    }\n  }\n\n  // Form actions\n  .form-actions {\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    padding-top: 1rem;\n    border-top: 1px solid var(--bs-border-color);\n\n    button {\n      min-width: 120px;\n    }\n  }\n\n  // Invalid feedback\n  .invalid-feedback {\n    font-size: 0.875rem;\n    margin-top: 0.25rem;\n  }\n\n  // Responsive\n  @media (max-width: 768px) {\n    .form-actions {\n      flex-direction: column;\n      width: 100%;\n\n      button {\n        width: 100%;\n      }\n    }\n  }\n}\n"],
+  "mappings": ";AAAA,CAAA;AACE,SAAA;;AAGA,CAJF,aAIE,CAAA,UAAA,CAAA;AACE,eAAA;;AAIF,CATF,aASE,CAAA;AACE,WAAA;AACA,kBAAA;AACA,OAAA;;AAKA,CAjBJ,YAiBI,CAAA,gBAAA,CARF;AASI,kBAAA;AACA,aAAA;;AAKJ,CAxBF,aAwBE,CAAA;AACE,WAAA;AACA,eAAA;AACA,OAAA;AACA,eAAA;AACA,cAAA,IAAA,MAAA,IAAA;;AAEA,CA/BJ,aA+BI,CAPF,aAOE;AACE,aAAA;;AAKJ,CArCF,aAqCE,CAAA;AACE,aAAA;AACA,cAAA;;AAIF,OAAA,CAAA,SAAA,EAAA;AACE,GA5CJ,aA4CI,CApBF;AAqBI,oBAAA;AACA,WAAA;;AAEA,GAhDN,aAgDM,CAxBJ,aAwBI;AACE,WAAA;;;",
+  "names": []
+}

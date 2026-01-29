@@ -9,6 +9,7 @@ import { SuperAdminRoute } from '../../../features/super-admin/super-admin.route
 import { ConfigurationRoute } from '../../../modules/configuration/configuration.route';
 import { ManageUsersRoute } from '../../../modules/manage-users/manage-users.route';
 import { SettingRoute } from '../../../modules/setting/setting.route';
+import { StockRoute } from '../../../modules/stock/stock.route';
 
 @Injectable({
   providedIn: 'root',
@@ -940,6 +941,9 @@ export class DataService {
       menu: [
         ...SuperAdminRoute,
         ...ConfigurationRoute,
+        ...ManageUsersRoute,
+        //...SettingRoute,
+        ...StockRoute,
         {
           menuValue: 'Super Admin',
           hasSubRoute: true,
@@ -1119,8 +1123,9 @@ export class DataService {
 
       ],
     },
-     ...ManageUsersRoute,
-     ...SettingRoute,
+    ...ManageUsersRoute,
+    ...StockRoute,
+    ...SettingRoute,
     {
       tittle: 'Inventory & Sales',
       active: false,
@@ -1370,8 +1375,8 @@ export class DataService {
         },
       ],
     },
-    
-    
+
+
     {
       tittle: 'Layouts',
       active: false,

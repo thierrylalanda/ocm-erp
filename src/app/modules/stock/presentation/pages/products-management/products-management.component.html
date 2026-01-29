@@ -1,0 +1,48 @@
+<div class="products-management">
+    <!-- Header -->
+    <div class="page-header">
+        <div>
+            <h2>{{ 'stock.products.title' | translate }}</h2>
+            <p class="text-muted">{{ 'stock.products.subtitle' | translate }}</p>
+        </div>
+        <div class="header-actions">
+            <button type="button" class="btn btn-outline-info me-2" (click)="downloadTemplate()">
+                <i class="isax isax-document-download me-2"></i>
+                Modèle
+            </button>
+            <button type="button" class="btn btn-outline-success me-2" (click)="triggerImport()">
+                <i class="isax isax-import me-2"></i>
+                Importer
+            </button>
+            <button type="button" class="btn btn-primary" (click)="openCreateModal()">
+                <i class="isax isax-add me-2"></i>
+                {{ 'stock.products.create' | translate }}
+            </button>
+        </div>
+    </div>
+
+    <!-- DataTable -->
+    <div class="card">
+        <div class="card-body">
+            <app-data-table [data]="products" [columns]="tableColumns" [config]="tableConfig" [loading]="loading"
+                (export)="onExport()">
+                <!-- Custom template for type column -->
+                <ng-template #customCell let-column="column" let-row="row">
+                    <span *ngIf="column.key === 'type'" class="badge" [ngClass]="getTypeClass(row.type)">
+                        {{ getTypeLabel(row.type) | translate }}
+                    </span>
+                </ng-template>
+            </app-data-table>
+        </div>
+    </div>
+
+    <!-- Modal Création/Édition -->
+    <app-modal [isOpen]="showModal" [config]="modalConfig" (close)="showModal = false">
+
+        <div modal-body>
+            <app-form-builder [config]="formConfig" [initialValues]="currentProduct" (formSubmit)="onFormSubmit($event)"
+                (formCancel)="onFormCancel()">
+            </app-form-builder>
+        </div>
+    </app-modal>
+</div>

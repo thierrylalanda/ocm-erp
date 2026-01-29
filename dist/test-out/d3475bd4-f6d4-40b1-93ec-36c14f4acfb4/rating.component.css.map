@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/ui-interface/advanced-ui/rating/rating.component.scss"],
+  "sourcesContent": [".rating.rating-custom-icon img {\n  margin: 2px;\n}\n"],
+  "mappings": ";AAAA,CAAA,MAAA,CAAA,mBAAA;AACE,UAAA;;",
+  "names": []
+}

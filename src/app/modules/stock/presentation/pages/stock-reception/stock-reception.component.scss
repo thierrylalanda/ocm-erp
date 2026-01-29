@@ -1,0 +1,17 @@
+.stock-reception-page {
+    padding: 1.5rem;
+
+    .page-header {
+        h2 {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+    }
+
+    .card-table {
+        border: none;
+        box-shadow: var(--card-shadow);
+        border-radius: var(--card-radius);
+        overflow: hidden;
+    }
+}

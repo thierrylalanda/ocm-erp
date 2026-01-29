@@ -1,0 +1,62 @@
+<div class="wizard" [class.vertical]="config.orientation === 'vertical'">
+    <!-- Progress Bar -->
+    <div *ngIf="config.showProgress" class="wizard-progress">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" [style.width.%]="progress" [attr.aria-valuenow]="progress"
+                aria-valuemin="0" aria-valuemax="100">
+                {{ progress | number:'1.0-0' }}%
+            </div>
+        </div>
+    </div>
+
+    <!-- Steps Header -->
+    <div class="wizard-steps">
+        <div *ngFor="let step of steps; let i = index" class="wizard-step" [ngClass]="getStepClass(i)"
+            (click)="goToStep(i)">
+
+            <div class="step-indicator">
+                <span *ngIf="config.showStepNumbers && !step.completed" class="step-number">
+                    {{ i + 1 }}
+                </span>
+                <i *ngIf="step.completed" class="isax isax-tick-circle step-icon"></i>
+                <i *ngIf="step.icon && !step.completed && !config.showStepNumbers" class="isax step-icon"
+                    [ngClass]="step.icon">
+                </i>
+            </div>
+
+            <div class="step-content">
+                <div class="step-title">{{ step.title }}</div>
+                <div *ngIf="step.description" class="step-description">
+                    {{ step.description }}
+                </div>
+            </div>
+
+            <!-- Connector Line -->
+            <div *ngIf="i < steps.length - 1" class="step-connector"></div>
+        </div>
+    </div>
+
+    <!-- Step Content -->
+    <div class="wizard-content">
+        <ng-content></ng-content>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="wizard-actions">
+        <button type="button" class="btn btn-secondary" (click)="cancel()">
+            {{ 'wizard.cancel' | translate }}
+        </button>
+
+        <div class="actions-right">
+            <button *ngIf="!isFirstStep" type="button" class="btn btn-outline-primary" (click)="previous()">
+                <i class="isax isax-arrow-left-2 me-2"></i>
+                {{ 'wizard.previous' | translate }}
+            </button>
+
+            <button type="button" class="btn btn-primary" (click)="next()">
+                {{ isLastStep ? ('wizard.finish' | translate) : ('wizard.next' | translate) }}
+                <i *ngIf="!isLastStep" class="isax isax-arrow-right-3 ms-2"></i>
+            </button>
+        </div>
+    </div>
+</div>

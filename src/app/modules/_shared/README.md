@@ -1,132 +1,194 @@
-# Module _shared - Core ERP
+# Module _shared - Clean Architecture Patterns
 
-## 🏗️ Architecture Clean Architecture
+## 📋 Vue d'Ensemble
 
-Ce module implémente les fondations de l'ERP selon les principes de Clean Architecture :
-
-### **Structure du Module**
-
-```
-modules/_shared/
-├── domain/                    # Couche Domain (Business Logic)
-│   ├── entities/             # Entités métier
-│   │   ├── user.entity.ts    # Utilisateur avec logique métier
-│   │   ├── tenant.entity.ts  # Société/locataire
-│   │   └── permission.entity.ts # Permissions RBAC
-│   ├── value-objects/        # Value Objects
-│   │   ├── money.vo.ts       # Gestion monétaire OHADA
-│   │   └── date-range.vo.ts  # Périodes temporelles
-│   └── repositories/         # Interfaces Repository
-│       ├── user.repository.ts
-│       └── tenant.repository.ts
-│
-├── application/              # Couche Application (Use Cases)
-│   └── use-cases/
-│       └── authenticate-user.use-case.ts
-│
-├── infrastructure/           # Couche Infrastructure (Frameworks)
-│   └── mappers/
-│       └── user.mapper.ts
-│
-├── _shared.module.ts         # Module Angular
-├── index.ts                  # Barrel exports
-└── README.md                 # Documentation
-```
-
-## 🎯 **Entités Core Implémentées**
-
-### **1. UserEntity**
-- Gestion complète des utilisateurs
-- Logique métier : authentification, permissions
-- Commands : create, update, delete
-- Domain logic : recordLogin, hasPermission, etc.
-
-### **2. TenantEntity**
-- Gestion multi-sociétés
-- Abonnements et limites
-- Domain logic : canAddMoreUsers, isSubscriptionActive
-
-### **3. PermissionEntity**
-- Système RBAC complet
-- Types : READ, WRITE, CREATE, UPDATE, DELETE, VALIDATE, etc.
-- Génération automatique des permissions stock/ventes
-
-### **4. Value Objects**
-- **MoneyVO** : Opérations monétaires, TVA OHADA, arrondis
-- **DateRangeVO** : Périodes temporelles, calculs OHADA
-
-## 🔧 **Use Cases Implémentés**
-
-### **AuthenticateUserUseCase**
-- Login/Logout avec tokens
-- Registration utilisateur
-- Changement de mot de passe
-- Reset password
-- Refresh token
-
-## 📊 **Système de Permissions**
-
-Basé sur vos spécifications détaillées :
-
-### **Permissions Stock (30+)**
-- `article.view`, `article.create`, `article.update`, `article.delete`
-- `warehouse.view`, `warehouse.create`, `warehouse.update`, `warehouse.delete`
-- `stockEntry.create`, `stockEntry.validate`, `stockEntry.delete`
-
-### **Permissions Ventes (25+)**
-- `devis.view`, `devis.create`, `devis.update`, `devis.validate`
-- `devis.delete`, `devis.convert`
-
-## 🚀 **Utilisation**
-
-### **Import dans d'autres modules**
-```typescript
-import { 
-  UserEntity, 
-  TenantEntity, 
-  PermissionEntity,
-  AuthenticateUserUseCase,
-  MoneyVO,
-  DateRangeVO
-} from '../_shared';
-```
-
-### **Exemple d'utilisation**
-```typescript
-// Création d'un utilisateur
-const user = UserEntity.create({
-  username: 'john.doe',
-  email: 'john@example.com',
-  password: 'secure',
-  firstName: 'John',
-  lastName: 'Doe',
-  tenantId: 'tenant_123'
-});
-
-// Vérification des permissions
-if (user.hasPermission('article.create')) {
-  // Créer un article
-}
-
-// Opérations monétaires
-const amount = MoneyVO.create(15000, 'XAF');
-const ttc = amount.calculateTTC(19.25); // TVA OHADA
-```
-
-## 🔒 **Sécurité & Conformité**
-
-- **OHADA** : Calculs TVA, arrondis conformes
-- **RBAC** : Permissions granulaires par module
-- **Multi-tenant** : Isolation des données
-- **Audit** : Timestamps et historique
-
-## 📈 **Prochaines Étapes**
-
-1. **NgRx Store** : State management centralisé
-2. **Layout ERP** : Interface professionnelle
-3. **Modules métier** : Stock, Ventes, Comptabilité
-4. **Infrastructure** : API services, storage
+Le module `_shared` contient tous les patterns et utilitaires Clean Architecture réutilisables à travers l'application.
 
 ---
 
-**✅ Structure modules/_shared/ complète et fonctionnelle**
+## 🎯 Contenu
+
+### Value Objects
+- **Email** - Validation et normalisation des emails
+- **PhoneNumber** - Validation et formatage des numéros de téléphone
+- **UserName** - Validation des noms d'utilisateur avec noms réservés
+- **UserStatus** - Statuts utilisateur typés (ACTIF, INACTIF, SUSPENDU, BLOQUE)
+
+### Result Pattern
+- **Result<T, E>** - Gestion fonctionnelle des erreurs sans exceptions
+
+### Domain Errors
+- **ValidationError** - Erreurs de validation
+- **NotFoundError** - Entité introuvable
+- **AlreadyExistsError** - Entité déjà existante
+- **UnauthorizedError** - Accès non autorisé
+- **BusinessRuleViolationError** - Violation de règle métier
+- **InfrastructureError** - Erreurs d'infrastructure
+
+### ApplicationContext
+- **ApplicationContext** - Interface pour accéder au contexte applicatif
+- **LocalStorageContextAdapter** - Implémentation basée sur localStorage
+
+---
+
+## 📚 Documentation
+
+Pour une documentation complète avec exemples, consultez:
+
+**[PATTERNS.md](./PATTERNS.md)** - Guide complet des patterns avec exemples d'utilisation
+
+---
+
+## 🚀 Utilisation Rapide
+
+### Importer les Patterns
+
+```typescript
+import {
+  // Value Objects
+  Email,
+  PhoneNumber,
+  UserName,
+  UserStatus,
+  
+  // Result Pattern
+  Result,
+  
+  // Domain Errors
+  ValidationError,
+  NotFoundError,
+  AlreadyExistsError,
+  UnauthorizedError,
+  BusinessRuleViolationError,
+  InfrastructureError,
+  
+  // ApplicationContext
+  APPLICATION_CONTEXT,
+  ApplicationContext,
+  LocalStorageContextAdapter
+} from '../_shared';
+```
+
+### Exemple: Créer un Email
+
+```typescript
+const emailResult = Email.create('user@example.com');
+
+if (emailResult.isSuccess) {
+  const email = emailResult.value;
+  console.log(email.getValue()); // 'user@example.com'
+} else {
+  console.error(emailResult.error.message);
+}
+```
+
+### Exemple: Use Case avec Result Pattern
+
+```typescript
+@Injectable()
+export class MyUseCase {
+  async execute(data: any): Promise<Result<MyData, DomainError>> {
+    // Validation
+    if (!data.email) {
+      return Result.fail(new ValidationError('Email requis'));
+    }
+
+    // Logique métier
+    const result = await this.repository.save(data);
+    
+    return Result.ok(result);
+  }
+}
+```
+
+### Exemple: ApplicationContext
+
+```typescript
+@Injectable()
+export class MyUseCase {
+  constructor(
+    @Inject(APPLICATION_CONTEXT) private context: ApplicationContext
+  ) {}
+
+  async execute(): Promise<Result<Data, DomainError>> {
+    const userId = this.context.getUserId();
+    const societeId = this.context.getSocieteId();
+    
+    // Utiliser les IDs...
+  }
+}
+```
+
+---
+
+## 📁 Structure
+
+```
+_shared/
+├── domain/
+│   ├── base/
+│   │   └── value-object.base.ts
+│   ├── value-objects/
+│   │   ├── email.vo.ts
+│   │   ├── phone-number.vo.ts
+│   │   ├── user-name.vo.ts
+│   │   └── user-status.vo.ts
+│   ├── errors/
+│   │   └── domain.error.ts
+│   └── types/
+│       └── result.type.ts
+├── application/
+│   └── ports/
+│       └── application-context.port.ts
+├── infrastructure/
+│   ├── adapters/
+│   │   └── local-storage-context.adapter.ts
+│   └── testing/
+│       ├── factories/
+│       └── mocks/
+├── index.ts
+├── README.md
+└── PATTERNS.md
+```
+
+---
+
+## ✅ Tests
+
+Tous les Value Objects et patterns sont testés unitairement:
+
+- `email.vo.spec.ts` - 10 tests
+- `phone-number.vo.spec.ts` - 12 tests
+- `user-name.vo.spec.ts` - 15 tests
+- `user-status.vo.spec.ts` - 15 tests
+
+**Couverture**: 100% des Value Objects
+
+---
+
+## 🎯 Principes
+
+### Immutabilité
+Tous les Value Objects sont immutables. Une fois créés, ils ne peuvent pas être modifiés.
+
+### Validation
+La validation est effectuée à la création via le pattern `Result`. Pas d'exceptions.
+
+### Type Safety
+TypeScript garantit la sécurité des types à la compilation.
+
+### Testabilité
+Tous les patterns sont conçus pour être facilement testables avec des mocks.
+
+---
+
+## 📖 Ressources
+
+- [PATTERNS.md](./PATTERNS.md) - Documentation complète
+- [ARCHITECTURE.md](../ARCHITECTURE.md) - Architecture globale
+- [Component Integration Guide](file:///Users/a1/.gemini/antigravity/brain/6f4dc08d-1c26-4f9f-b95c-14176c477c93/component_integration_guide.md)
+
+---
+
+**Version**: 1.0  
+**Date**: 2026-01-27

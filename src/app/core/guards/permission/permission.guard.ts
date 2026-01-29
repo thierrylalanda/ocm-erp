@@ -2,12 +2,14 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { PermissionService } from '../../services/auth/permission.service';
+import { ToasterService } from '../../services/toaster/toaster.service';
 
 @Injectable({ providedIn: 'root' })
 export class PermissionGuard implements CanActivate {
 
     constructor(
         private permissionService: PermissionService,
+        private toasterService: ToasterService,
         private router: Router
     ) { }
 
@@ -25,7 +27,8 @@ export class PermissionGuard implements CanActivate {
 
         if (!hasPermissions) {
             // redirection si pas autorisé
-            this.router.navigate(['/forbidden']);
+            //this.router.navigate(['/forbidden']);
+            this.toasterService.typeInfo('Impossible d\'accéder à cette page', 'Erreur');
             return false;
         }
 

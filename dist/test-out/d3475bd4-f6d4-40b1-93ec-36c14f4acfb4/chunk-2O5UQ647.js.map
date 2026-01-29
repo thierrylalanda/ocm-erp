@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/core/services/common/common.service.ts"],
+  "sourcesContent": ["import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class CommonService {\n  public baseRoute: BehaviorSubject<string> = new BehaviorSubject<string>('');\n  public pageRoute: BehaviorSubject<string> = new BehaviorSubject<string>('');\n  public lastRoute: BehaviorSubject<string> = new BehaviorSubject<string>('');\n  public currentRoute: BehaviorSubject<string> = new BehaviorSubject<string>(\n    ''\n  );\n\n \n}\n"],
+  "mappings": ";;;;;;;;;;;;;IAMa;;;;;AANb;AACA;AAKO,IAAM,gBAAN,MAAMA,eAAa;MACjB,YAAqC,IAAI,gBAAwB,EAAE;MACnE,YAAqC,IAAI,gBAAwB,EAAE;MACnE,YAAqC,IAAI,gBAAwB,EAAE;MACnE,eAAwC,IAAI,gBACjD,EAAE;;AALO,oBAAa,WAAA;MAHzB,WAAW;QACV,YAAY;OACb;OACY,aAAa;;;",
+  "names": ["CommonService"]
+}

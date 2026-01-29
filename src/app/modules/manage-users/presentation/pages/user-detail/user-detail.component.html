@@ -53,7 +53,7 @@
           {{ 'pages.userDetail.tabs.passwordChange' | translate }}
         </a>
       </li>
-      <li class="nav-item" role="presentation">
+      <li class="nav-item" role="presentation" *hasPermissions="{ permissions: ['SECURITY:USER_ROLE:LIST'] }">
         <a class="nav-link" [class.active]="selectedTabIndex === 2" (click)="selectedTabIndex = 2"
           href="javascript:void(0);">
           {{ 'pages.userDetail.tabs.roleManagement' | translate }}
@@ -221,9 +221,10 @@
       </div>
 
       <!-- Onglet 3: Gestion des rôles -->
-      <div class="tab-pane" [class.active]="selectedTabIndex === 2">
+      <div class="tab-pane" [class.active]="selectedTabIndex === 2"
+        *hasPermissions="{ permissions: ['SECURITY:USER_ROLE:LIST'] }">
         <!-- Formulaire d'ajout de rôle -->
-        <div class="card add-role-card">
+        <div class="card add-role-card" *hasPermissions="{ permissions: ['SECURITY:USER_ROLE:ASSIGN'] }">
           <div class="card-header">
             <h3>{{ 'pages.userDetail.roleManagement.addRole' | translate }}</h3>
           </div>
@@ -320,20 +321,22 @@
                       <ul class="dropdown-menu">
 
                         <li *ngIf="role.actif">
-                          <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center text-warning"
+                          <a *hasPermissions="{ permissions: ['SECURITY:USER_ROLE:TOGGLE'] }" href="javascript:void(0);"
+                            class="dropdown-item d-flex align-items-center text-warning"
                             (click)="deactivateRole(role.id)">
                             <i class="isax isax-pause-circle me-2"></i>{{ 'pages.userDetail.roleManagement.deactivate' |
                             translate }}
                           </a>
                         </li>
                         <li *ngIf="!role.actif">
-                          <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center text-success"
+                          <a *hasPermissions="{ permissions: ['SECURITY:USER_ROLE:TOGGLE'] }" href="javascript:void(0);"
+                            class="dropdown-item d-flex align-items-center text-success"
                             (click)="activateRole(role.id)">
                             <i class="isax isax-play-circle me-2"></i>{{ 'pages.userDetail.roleManagement.activate' |
                             translate }}
                           </a>
                         </li>
-                        <li>
+                        <li *hasPermissions="{ permissions: ['SECURITY:USER_ROLE:REVOKE'] }">
                           <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center text-danger"
                             data-bs-toggle="modal" data-bs-target="#delete_modal" (click)="prepareDeleteRole(role)">
                             <i class="isax isax-trash me-2"></i>Supprimer

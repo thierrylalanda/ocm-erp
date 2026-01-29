@@ -1,0 +1,24 @@
+<div class="warehouses-page">
+    <div class="page-header d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0">{{ 'stock.warehouses.title' | translate }}</h2>
+        <button class="btn btn-primary" (click)="openCreateModal()">
+            <i class="isax isax-add-circle me-2"></i>
+            {{ 'stock.warehouses.create' | translate }}
+        </button>
+    </div>
+
+    <!-- Data Table -->
+    <div class="card">
+        <div class="card-body p-0">
+            <app-data-table [columns]="columns" [data]="warehouses" [loading]="loading" [config]="tableConfig">
+            </app-data-table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <app-modal [isOpen]="showModal" [config]="modalConfig" (closed)="onFormCancel()">
+        <app-form-builder *ngIf="showModal" [config]="formConfig" (submit)="onFormSubmit($event)"
+            (cancel)="onFormCancel()">
+        </app-form-builder>
+    </app-modal>
+</div>

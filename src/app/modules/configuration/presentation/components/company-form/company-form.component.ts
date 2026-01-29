@@ -394,27 +394,30 @@ export class CompanyFormComponent {
     this.errorMessage = '';
     this.successMessage = '';
 
-    try {
-      const companyData: CreateCompanyDto = this.companyForm.value;
-      const result = await this.createCompanyUseCase.execute(companyData);
-      
-      this.successMessage = `Société "${result.nom}" créée avec succès ! ID: ${result.id}`;
-      this.companyCreated.emit(result);
-      
-      // Réinitialiser le formulaire après un délai
-      setTimeout(() => {
-        this.companyForm.reset({
-          pays: 'Cameroun',
-          devise: 'XAF',
-          actif: true
-        });
-      }, 2000);
-    } catch (error: any) {
-      this.errorMessage = error.message || 'Une erreur est survenue lors de la création de la société';
-      console.error('Erreur création société:', error);
-    } finally {
+    const companyData: CreateCompanyDto = this.companyForm.value;
+    const result = await this.createCompanyUseCase.execute(companyData);
+
+    if (result.isFailure) {
+      this.errorMessage = result.error.message || 'Une erreur est survenue lors de la création de la société';
       this.isLoading = false;
+      return;
     }
+
+    // Succès
+    this.successMessage = `Société "${result.value.nom}" créée avec succès ! ID: ${result.value.id}`;
+    this.companyCreated.emit(result.value);
+
+    // Réinitialiser le formulaire après un délai
+    setTimeout(() => {
+      this.companyForm.reset({
+        pays: 'Cameroun',
+        devise: 'XAF',
+        actif: true
+      });
+      this.successMessage = '';
+    }, 2000);
+
+    this.isLoading = false;
   }
 
   onCancel(): void {

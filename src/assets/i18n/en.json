@@ -18,8 +18,12 @@
     "no": "No",
     "ok": "OK",
     "retry": "Retry",
-    "active":"Activate",
-    "inactive":"Deactivate"
+    "active": "Activate",
+    "inactive": "Deactivate",
+    "select": "Select",
+    "all": "All",
+    "notes": "Notes",
+    "status": "Status"
   },
   "login": {
     "title": "Sign In",
@@ -201,7 +205,7 @@
     "siteTypes": {
       "ENTREPOT": "Warehouse",
       "SUCCURSALE": "Branch",
-      "SIEGE":"Headquarters",
+      "SIEGE": "Headquarters",
       "MAGASIN": "Store",
       "BUREAU": "Office",
       "USINE": "Factory",
@@ -234,7 +238,7 @@
     "of": "of",
     "roles": "role(s)",
     "perPage": "per page",
-    "export":"Export",
+    "export": "Export",
     "exportPdf": "Download PDF",
     "exportExcel": "Download Excel",
     "filterAll": "All",
@@ -246,7 +250,7 @@
     "copyRole": "Copy role",
     "roleDetails": "Role details",
     "permissionManagement": "Permission management",
-    "level":"Level",
+    "level": "Level",
     "selectAll": "Select all",
     "deselectAll": "Deselect all",
     "save": "Save",
@@ -447,7 +451,7 @@
     "company": "Company",
     "status": "Status",
     "creationDate": "Creation Date",
-    "actions": "Actions",
+    "actionsTitle": "Actions",
     "noDepartements": "No departments found",
     "loading": "Loading departments...",
     "showing": "Showing",
@@ -653,6 +657,240 @@
         "roleActivate": "Role activated successfully",
         "roleDeactivate": "Role deactivated successfully"
       }
+    }
+  },
+  "stock": {
+    "title": "Stock Management",
+    "subtitle": "Manage your products and stock movements",
+    "dashboard": {
+      "title": "Stock Dashboard",
+      "totalValue": "Total Value",
+      "productsCount": "Products Count",
+      "lowStockAlerts": "Low Stock Alerts",
+      "todayMovements": "Today's Movements"
+    },
+    "categories": {
+      "title": "Product Categories",
+      "create": "Create Category",
+      "edit": "Edit Category",
+      "name": "Name",
+      "description": "Description",
+      "parent": "Parent Category",
+      "order": "Order",
+      "code": "Code"
+    },
+    "products": {
+      "title": "Products",
+      "subtitle": "Manage your product catalog",
+      "list": "Products List",
+      "create": "Create Product",
+      "edit": "Edit Product",
+      "delete": "Delete Product",
+      "reference": "Reference",
+      "name": "Name",
+      "description": "Description",
+      "category": "Category",
+      "unit": "Unit",
+      "unitPrice": "Unit Price",
+      "unitCost": "Unit Cost",
+      "price": "Price",
+      "stock": "Stock",
+      "minStock": "Minimum Stock",
+      "maxStock": "Maximum Stock",
+      "barcode": "Barcode",
+      "sku": "SKU",
+      "type": "Product Type",
+      "trackStock": "Track Stock",
+      "types": {
+        "stockable": "Stockable",
+        "service": "Service",
+        "consumable": "Consumable"
+      },
+      "typeDescriptions": {
+        "stockable": "Physical product with stock tracking",
+        "service": "Service without physical stock",
+        "consumable": "Single-use item"
+      },
+      "trackByLot": "Track by lot",
+      "trackBySerial": "Track by serial number",
+      "product": "Product",
+      "warehouse": "Warehouse"
+    },
+    "movements": {
+      "title": "Stock Movements",
+      "entry": "Entry",
+      "exit": "Exit",
+      "transfer": "Transfer",
+      "adjustment": "Adjustment",
+      "date": "Date",
+      "quantity": "Quantity",
+      "warehouse": "Warehouse",
+      "reason": "Reason",
+      "notes": "Notes",
+      "product": "Product",
+      "type": "Type",
+      "create": "Create Movement",
+      "reference": "Reference",
+      "destination": "Destination"
+    },
+    "inventory": {
+      "title": "Inventory",
+      "stockLevel": "Stock Level",
+      "available": "Available",
+      "reserved": "Reserved",
+      "value": "Value"
+    },
+    "warehouses": {
+      "title": "Warehouses",
+      "create": "Create Warehouse",
+      "edit": "Edit Warehouse",
+      "name": "Name",
+      "code": "Code",
+      "type": "Type",
+      "address": "Address",
+      "city": "City",
+      "country": "Country",
+      "description": "Description"
+    },
+    "lots": {
+      "title": "Lot Management",
+      "create": "Create Lot",
+      "edit": "Edit Lot",
+      "number": "Lot Number",
+      "manufacturingDate": "Manufacturing Date",
+      "expirationDate": "Expiration Date",
+      "alertDate": "Alert Date",
+      "quantity": "Quantity",
+      "daysRemaining": "Days Remaining",
+      "daysBeforeExpiration": "Days before expiration",
+      "expiringReport": "Expiring Lots Report",
+      "status": {
+        "active": "Active",
+        "alert": "Alert",
+        "expired": "Expired",
+        "blocked": "Blocked"
+      }
+    },
+    "home": {
+      "title": "Stock Home",
+      "quickActions": "Quick Actions",
+      "reception": "Supplier Reception",
+      "receptionDesc": "Record a reception",
+      "shipment": "Customer Shipment",
+      "shipmentDesc": "Prepare a shipment",
+      "inventory": "Inventory",
+      "inventoryDesc": "View stock levels",
+      "createStock": "Create Stock",
+      "createStockDesc": "Manual adjustment",
+      "lowStockAlerts": "Low Stock Alerts",
+      "pendingReceptions": "Pending Receptions",
+      "pendingShipments": "Pending Shipments",
+      "viewDashboard": "Detailed Dashboard",
+      "dashboardDesc": "Complete statistics and analysis",
+      "noAlerts": "No stock alerts",
+      "noPendingReceptions": "No pending receptions",
+      "noPendingShipments": "No pending shipments",
+      "reference": "Reference",
+      "supplier": "Supplier",
+      "customer": "Customer",
+      "expectedDate": "Expected Date",
+      "items": "Items",
+      "status": "Status"
+    },
+    "reception": {
+      "title": "Supplier Receipt",
+      "subtitle": "Record incoming stock",
+      "create": "New Receipt",
+      "supplier": "Supplier",
+      "documentReference": "Doc. Ref (Delivery Note)",
+      "status": {
+        "pending": "Pending",
+        "partial": "Partial",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      }
+    },
+    "shipment": {
+      "title": "Customer Shipment",
+      "subtitle": "Manage outgoing stock",
+      "create": "New Shipment",
+      "customer": "Customer",
+      "documentReference": "Doc. Ref (Order)",
+      "status": {
+        "pending": "Pending",
+        "preparing": "Preparing",
+        "ready": "Ready",
+        "shipped": "Shipped",
+        "delivered": "Delivered",
+        "cancelled": "Cancelled"
+      }
+    },
+    "reports": {
+      "title": "Reports & Analytics",
+      "subtitle": "Detailed analysis of stock and movements",
+      "backToHub": "Back to Reports",
+      "valuation": {
+        "title": "Stock Valuation",
+        "description": "Total stock value by product"
+      },
+      "lotHistory": {
+        "title": "Lot History",
+        "description": "Complete traceability of a lot (Entry -> Exit)"
+      },
+      "lowStock": {
+        "title": "Low Stock Alerts",
+        "description": "Products below alert threshold"
+      },
+      "expiring": {
+        "title": "Expiring Lots",
+        "description": "Lots approaching expiration date"
+      }
+    },
+    "creation": {
+      "title": "Stock Creation",
+      "subtitle": "Positive stock adjustments",
+      "create": "Create Stock",
+      "reason": "Creation Reason",
+      "reasons": {
+        "internalProduction": "Internal Production",
+        "initialInventory": "Initial Inventory",
+        "correction": "Error Correction",
+        "found": "Product Found",
+        "return": "Customer Return",
+        "other": "Other"
+      }
+    },
+    "consumption": {
+      "title": "Stock Consumption",
+      "subtitle": "Negative stock adjustments",
+      "create": "Consume Stock",
+      "reason": "Consumption Reason",
+      "availableStock": "Available stock",
+      "reasons": {
+        "scrap": "Scrap / Disposal",
+        "internalUse": "Internal Use",
+        "loss": "Loss",
+        "damage": "Damage / Deterioration",
+        "sample": "Sample",
+        "expired": "Expired",
+        "theft": "Theft",
+        "correction": "Error Correction",
+        "other": "Other"
+      }
+    },
+    "settings": {
+      "title": "Stock Settings",
+      "general": "General Settings",
+      "alerts": "Alerts",
+      "valuation": "Valuation Method",
+      "currency": "Default Currency",
+      "unit": "Default Unit",
+      "lowStockThreshold": "Low Stock Threshold",
+      "valuationMethod": "Valuation Method",
+      "allowNegativeStock": "Allow Negative Stock",
+      "enforceBatchTracking": "Enforce Batch Tracking",
+      "notifications": "Enable Email Notifications",
+      "autoUpdate": "Auto Update Stock"
     }
   }
 }

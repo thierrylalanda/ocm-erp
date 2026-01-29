@@ -1,0 +1,99 @@
+<div class="stock-dashboard">
+    <!-- Header -->
+    <div class="page-header">
+        <h2>{{ 'stock.dashboard.title' | translate }}</h2>
+    </div>
+
+    <!-- KPIs Cards -->
+    <div class="row g-3 mb-4" *ngIf="stats">
+        <!-- Valeur Totale -->
+        <div class="col-xl-3 col-sm-6">
+            <div class="card stats-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <p class="stats-label">{{ 'stock.dashboard.totalValue' | translate }}</p>
+                            <h3 class="stats-value">{{ formatCurrency(stats.totalValue) }}</h3>
+                        </div>
+                        <div class="stats-icon bg-primary">
+                            <i class="isax isax-wallet-money"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nombre de Produits -->
+        <div class="col-xl-3 col-sm-6">
+            <div class="card stats-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <p class="stats-label">{{ 'stock.dashboard.productsCount' | translate }}</p>
+                            <h3 class="stats-value">{{ stats.totalProducts }}</h3>
+                        </div>
+                        <div class="stats-icon bg-success">
+                            <i class="isax isax-box"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alertes Stock Faible -->
+        <div class="col-xl-3 col-sm-6">
+            <div class="card stats-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <p class="stats-label">{{ 'stock.dashboard.lowStockAlerts' | translate }}</p>
+                            <h3 class="stats-value text-warning">{{ stats.lowStockCount }}</h3>
+                        </div>
+                        <div class="stats-icon bg-warning">
+                            <i class="isax isax-warning-2"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mouvements du Jour -->
+        <div class="col-xl-3 col-sm-6">
+            <div class="card stats-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <p class="stats-label">{{ 'stock.dashboard.todayMovements' | translate }}</p>
+                            <h3 class="stats-value">{{ stats.todayMovements }}</h3>
+                        </div>
+                        <div class="stats-icon bg-info">
+                            <i class="isax isax-arrow-swap-horizontal"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row g-3">
+        <!-- Graphique des Mouvements -->
+        <div class="col-xl-8">
+            <app-chart [config]="movementsChartConfig" [series]="movementsSeries">
+            </app-chart>
+        </div>
+
+        <!-- Graphique de Répartition -->
+        <div class="col-xl-4">
+            <app-chart [config]="distributionChartConfig" [series]="distributionSeries">
+            </app-chart>
+        </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">{{ 'common.loading' | translate }}</span>
+        </div>
+    </div>
+</div>

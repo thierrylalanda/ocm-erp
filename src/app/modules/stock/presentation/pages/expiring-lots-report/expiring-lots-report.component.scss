@@ -1,0 +1,27 @@
+.expiring-lots-page {
+    padding: 1.5rem;
+
+    .page-header {
+        margin-bottom: 1.5rem;
+
+        h2 {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+    }
+
+    .alert-warning {
+        display: flex;
+        align-items: center;
+        
+        i {
+            font-size: 1.25rem;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .expiring-lots-page {
+        padding: 1rem;
+    }
+}

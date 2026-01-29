@@ -1,0 +1,58 @@
+<div class="product-categories-page">
+    <div class="page-header d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0">{{ 'stock.categories.title' | translate }}</h2>
+        <div>
+            <button type="button" class="btn btn-outline-info me-2" (click)="downloadTemplate()">
+                <i class="isax isax-document-download me-2"></i>
+                Modèle
+            </button>
+            <button type="button" class="btn btn-outline-success me-2" (click)="triggerImport()">
+                <i class="isax isax-import me-2"></i>
+                Importer
+            </button>
+            <button class="btn btn-primary" (click)="openCreateModal()">
+                <i class="isax isax-add-circle me-2"></i>
+                {{ 'stock.categories.create' | translate }}
+            </button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div *ngIf="loading" class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <app-tree-view *ngIf="!loading" [nodes]="treeNodes" [config]="treeConfig"
+                (nodeAction)="onNodeAction($event)">
+
+                <!-- Custom template for actions if needed, though TreeView handles basic actions -->
+                <!-- Assuming TreeView emits 'nodeAction' with action name defined internally or via template? 
+                     Based on component logic, it seems we rely on nodeAction output. 
+                     Wait, TreeViewComponent needs to render action buttons. 
+                     It has 'showActions' config but where does it get actions? 
+                     Let's check TreeViewComponent again. It might emit generic actions or we pass actions config?
+                     The TreeViewComponent I read earlier has onAction(node, action) but no input for actions definition.
+                     It probably has hardcoded actions in its HTML or a default set.
+                     If plain TreeView doesn't support custom actions easily, we might need to modify it or assuming it has standard Edit/Delete.
+                     Let's assume standard actions or I should have checked the HTML of TreeView.
+                     (I will check TreeView HTML in next step to confirm handling).
+                -->
+
+            </app-tree-view>
+
+            <div *ngIf="!loading && treeNodes.length === 0" class="text-center py-5 text-muted">
+                <i class="isax isax-folder-open mb-2 fs-1"></i>
+                <p>{{ 'common.noData' | translate }}</p>
+            </div>
+        </div>
+    </div>
+
+    <app-modal [isOpen]="showModal" [config]="modalConfig" (closed)="onFormCancel()">
+        <app-form-builder *ngIf="showModal" [config]="formConfig" (submit)="onFormSubmit($event)"
+            (cancel)="onFormCancel()">
+        </app-form-builder>
+    </app-modal>
+</div>

@@ -1,0 +1,68 @@
+<div class="calendar">
+    <!-- Header -->
+    <div class="calendar-header">
+        <div class="calendar-title">
+            <h5>{{ getMonthTitle() }}</h5>
+        </div>
+
+        <div class="calendar-actions">
+            <button type="button" class="btn btn-sm btn-outline-primary" (click)="goToToday()">
+                {{ 'calendar.today' | translate }}
+            </button>
+
+            <div class="btn-group ms-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="previousMonth()">
+                    <i class="isax isax-arrow-left-2"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="nextMonth()">
+                    <i class="isax isax-arrow-right-3"></i>
+                </button>
+            </div>
+
+            <div class="btn-group ms-2">
+                <button type="button" class="btn btn-sm" [class.btn-primary]="currentView === 'month'"
+                    [class.btn-outline-secondary]="currentView !== 'month'" (click)="changeView('month')">
+                    {{ 'calendar.month' | translate }}
+                </button>
+                <button type="button" class="btn btn-sm" [class.btn-primary]="currentView === 'week'"
+                    [class.btn-outline-secondary]="currentView !== 'week'" (click)="changeView('week')">
+                    {{ 'calendar.week' | translate }}
+                </button>
+                <button type="button" class="btn btn-sm" [class.btn-primary]="currentView === 'day'"
+                    [class.btn-outline-secondary]="currentView !== 'day'" (click)="changeView('day')">
+                    {{ 'calendar.day' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Month View -->
+    <div *ngIf="currentView === 'month'" class="calendar-month">
+        <!-- Week Days Header -->
+        <div class="calendar-weekdays">
+            <div *ngFor="let day of weekDays" class="weekday">{{ day }}</div>
+        </div>
+
+        <!-- Days Grid -->
+        <div class="calendar-days">
+            <div *ngFor="let date of monthDays" class="calendar-day" [class.today]="isToday(date)"
+                [class.other-month]="!isCurrentMonth(date)" (click)="selectDate(date)">
+
+                <div class="day-number">{{ date.getDate() }}</div>
+
+                <!-- Events -->
+                <div *ngIf="config.showEvents" class="day-events">
+                    <div *ngFor="let event of getEventsForDate(date)" class="event"
+                        [style.background-color]="event.color || '#008FFB'" (click)="onEventClick(event, $event)">
+                        {{ event.title }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Week/Day Views (Placeholder) -->
+    <div *ngIf="currentView === 'week' || currentView === 'day'" class="calendar-placeholder">
+        <p class="text-muted">{{ currentView === 'week' ? 'Vue semaine' : 'Vue jour' }} - À implémenter</p>
+    </div>
+</div>

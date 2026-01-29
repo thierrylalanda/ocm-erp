@@ -2,7 +2,8 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ConfigurationService } from '../../../application/services/configuration.service';
-import { ConfigurationParameter } from '../../../domain/entities/configuration-parameter';
+import { ConfigurationParameterDto, PaginatedResponse } from '../../../domain/dto/configuration.dto';
+import { ToasterService } from '../../../../../core/core.index';
 
 @Component({
   selector: 'app-dynamic-config-form',
@@ -18,10 +19,12 @@ export class DynamicConfigFormComponent implements OnInit {
   @Input() category!: string;
 
   private configService = inject(ConfigurationService);
+
+  private toasterService = inject(ToasterService);
   private fb = inject(FormBuilder);
 
   configForm!: FormGroup;
-  configurations: ConfigurationParameter[] = [];
+  configurations: ConfigurationParameterDto[] = [];
   loading = true;
 
   ngOnInit() {
@@ -30,14 +33,14 @@ export class DynamicConfigFormComponent implements OnInit {
 
   private loadConfigurations() {
     this.loading = true;
-    this.configService.getConfigurationsByCategory(this.category).subscribe({
-      next: (configs) => {
-        this.configurations = configs;
+    this.configService.getConfigurationsByCategory(this.category, 0, 500).subscribe({
+      next: (response: PaginatedResponse<ConfigurationParameterDto>) => {
+        this.configurations = response.content;
         this.buildForm();
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error loading configurations:', error);
+        this.toasterService.typeError('Erreur lors du chargement des configurations', 'Erreur');
         this.loading = false;
       }
     });
@@ -47,18 +50,18 @@ export class DynamicConfigFormComponent implements OnInit {
     const formControls: { [key: string]: any } = {};
 
     this.configurations.forEach(config => {
-      const validators = config.mpObligatoire ? [Validators.required] : [];
+      const validators = config.obligatoire ? [Validators.required] : [];
 
       // Set initial value based on type
-      let initialValue: any = config.mpValeurDefaut;
+      let initialValue: any = config.valeurDefaut;
 
-      if (config.mpTypeDonnee === 'BOOLEAN') {
-        initialValue = config.mpValeurDefaut === 'true';
-      } else if (config.mpTypeDonnee === 'INTEGER' || config.mpTypeDonnee === 'DECIMAL') {
-        initialValue = config.mpValeurDefaut ? parseFloat(config.mpValeurDefaut) : null;
+      if (config.typeDonnee === 'BOOLEAN') {
+        initialValue = config.valeurDefaut === 'true';
+      } else if (config.typeDonnee === 'INTEGER' || config.typeDonnee === 'DECIMAL') {
+        initialValue = config.valeurDefaut ? parseFloat(config.valeurDefaut) : null;
       }
 
-      formControls[config.mpCle] = [initialValue, validators];
+      formControls[config.cle] = [initialValue, validators];
     });
 
     this.configForm = this.fb.group(formControls);
@@ -67,14 +70,13 @@ export class DynamicConfigFormComponent implements OnInit {
   saveConfigurations() {
     if (this.configForm.valid) {
       const formValues = this.configForm.value;
-      console.log('Saving configurations:', formValues);
       // TODO: Implement actual save logic via service
       this.configService.saveConfigurations(formValues).subscribe({
         next: (response) => {
-          console.log('Configuration saved successfully:', response);
+          this.toasterService.typeSuccess('Configuration sauvegardée avec succès', 'Succès');
         },
         error: (error) => {
-          console.error('Error saving configuration:', error);
+          this.toasterService.typeError('Erreur lors de la sauvegarde de la configuration', 'Erreur');
         }
       });
     }

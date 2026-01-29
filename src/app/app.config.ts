@@ -11,6 +11,8 @@ import { USER_REPOSITORY } from './modules/_shared/domain/repositories/user.repo
 import { InMemoryUserRepository } from './modules/_shared/infrastructure/repositories/in-memory-user.repository';
 import { AuthInterceptor } from './core/interceptor/auth/auth.interceptor';
 import { provideToastr } from 'ngx-toastr';
+import { APPLICATION_CONTEXT } from './modules/_shared/application/ports/application-context.port';
+import { LocalStorageContextAdapter } from './modules/_shared/infrastructure/adapters/local-storage-context.adapter';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +27,9 @@ export const appConfig: ApplicationConfig = {
       showMaskTyped: false,
     }).providers!,
     { provide: USER_REPOSITORY, useClass: InMemoryUserRepository },
+    // Application Context
+    { provide: 'LOCAL_STORAGE', useFactory: () => window.localStorage },
+    { provide: APPLICATION_CONTEXT, useClass: LocalStorageContextAdapter },
     // Enregistrer l'intercepteur avec le token HTTP_INTERCEPTORS
     {
       provide: HTTP_INTERCEPTORS,

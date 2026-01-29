@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/custom-pagination/custom-pagination.component.spec.ts"],
+  "sourcesContent": ["import { ComponentFixture, TestBed } from '@angular/core/testing';\n\nimport { CustomPaginationComponent } from './custom-pagination.component';\n\ndescribe('CustomPaginationComponent', () => {\n  let component: CustomPaginationComponent;\n  let fixture: ComponentFixture<CustomPaginationComponent>;\n\n  beforeEach(async () => {\n    await TestBed.configureTestingModule({\n      declarations: [ CustomPaginationComponent ]\n    })\n    .compileComponents();\n\n    fixture = TestBed.createComponent(CustomPaginationComponent);\n    component = fixture.componentInstance;\n    fixture.detectChanges();\n  });\n\n  it('should create', () => {\n    expect(component).toBeTruthy();\n  });\n});\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAA;;;AAEA;AAEA,aAAS,6BAA6B,MAAK;AACzC,UAAI;AACJ,UAAI;AAEJ,iBAAW,MAAW;AACpB,cAAM,QAAQ,uBAAuB;UACnC,cAAc,CAAE,yBAAyB;SAC1C,EACA,kBAAiB;AAElB,kBAAU,QAAQ,gBAAgB,yBAAyB;AAC3D,oBAAY,QAAQ;AACpB,gBAAQ,cAAa;MACvB,EAAC;AAED,SAAG,iBAAiB,MAAK;AACvB,eAAO,SAAS,EAAE,WAAU;MAC9B,CAAC;IACH,CAAC;;;",
+  "names": []
+}

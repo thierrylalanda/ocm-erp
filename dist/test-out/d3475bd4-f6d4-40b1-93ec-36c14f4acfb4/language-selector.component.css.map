@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/core/services/translation/language-selector.component.ts"],
+  "sourcesContent": ["\n    .language-selector {\n      display: inline-block;\n    }\n    .dropdown-item {\n      cursor: pointer;\n      display: flex;\n      align-items: center;\n      gap: 8px;\n    }\n  "],
+  "mappings": ";AACI,CAAA;AACE,WAAA;;AAEF,CAAA;AACE,UAAA;AACA,WAAA;AACA,eAAA;AACA,OAAA;;",
+  "names": []
+}

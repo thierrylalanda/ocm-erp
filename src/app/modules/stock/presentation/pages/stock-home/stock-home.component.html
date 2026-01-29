@@ -1,0 +1,118 @@
+<div class="stock-home-page">
+    <!-- Header -->
+    <div class="page-header mb-4">
+        <h2 class="h3 mb-0">{{ 'stock.home.title' | translate }}</h2>
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="section mb-4">
+        <h5 class="section-title mb-3">{{ 'stock.home.quickActions' | translate }}</h5>
+        <div class="row g-3">
+            <div class="col-12 col-sm-6 col-lg-3" *ngFor="let action of quickActions">
+                <div class="action-card" [ngClass]="getActionColorClass(action.color)"
+                    (click)="navigateToAction(action)">
+                    <div class="action-icon">
+                        <i [class]="action.icon"></i>
+                    </div>
+                    <div class="action-content">
+                        <h6 class="action-title">{{ action.title | translate }}</h6>
+                        <p class="action-description">{{ action.description | translate }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Widgets Grid -->
+    <div class="row g-4">
+        <!-- Low Stock Alerts Widget -->
+        <div class="col-12 col-lg-6">
+            <div class="card widget-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">
+                        <i class="isax isax-warning-2 text-warning me-2"></i>
+                        {{ 'stock.home.lowStockAlerts' | translate }}
+                    </h6>
+                    <span class="badge bg-warning">{{ lowStockProducts.length }}</span>
+                </div>
+                <div class="card-body p-0">
+                    <app-data-table *ngIf="lowStockProducts.length > 0" [columns]="lowStockColumns"
+                        [data]="lowStockProducts" [loading]="loading" [config]="lowStockTableConfig">
+                    </app-data-table>
+                    <div *ngIf="lowStockProducts.length === 0 && !loading" class="text-center p-4 text-muted">
+                        <i class="isax isax-tick-circle" style="font-size: 3rem;"></i>
+                        <p class="mt-2">{{ 'stock.home.noAlerts' | translate }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Receptions Widget -->
+        <div class="col-12 col-lg-6">
+            <div class="card widget-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">
+                        <i class="isax isax-box-add text-primary me-2"></i>
+                        {{ 'stock.home.pendingReceptions' | translate }}
+                    </h6>
+                    <span class="badge bg-primary">{{ pendingReceptions.length }}</span>
+                </div>
+                <div class="card-body p-0">
+                    <app-data-table *ngIf="pendingReceptions.length > 0" [columns]="receptionColumns"
+                        [data]="pendingReceptions" [loading]="loadingReceptions" [config]="lowStockTableConfig">
+                        <ng-template #customCell let-column="column" let-row="row">
+                            <span *ngIf="column.key === 'status'" class="badge"
+                                [ngClass]="getReceptionStatusClass(row.status)">
+                                {{ 'stock.receptions.status.' + row.status.toLowerCase() | translate }}
+                            </span>
+                        </ng-template>
+                    </app-data-table>
+                    <div *ngIf="pendingReceptions.length === 0 && !loadingReceptions"
+                        class="text-center p-4 text-muted">
+                        <i class="isax isax-box-tick" style="font-size: 3rem;"></i>
+                        <p class="mt-2">{{ 'stock.home.noPendingReceptions' | translate }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Shipments Widget -->
+        <div class="col-12 col-lg-6">
+            <div class="card widget-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">
+                        <i class="isax isax-box-remove text-danger me-2"></i>
+                        {{ 'stock.home.pendingShipments' | translate }}
+                    </h6>
+                    <span class="badge bg-danger">{{ pendingShipments.length }}</span>
+                </div>
+                <div class="card-body p-0">
+                    <app-data-table *ngIf="pendingShipments.length > 0" [columns]="shipmentColumns"
+                        [data]="pendingShipments" [loading]="loadingShipments" [config]="lowStockTableConfig">
+                        <ng-template #customCell let-column="column" let-row="row">
+                            <span *ngIf="column.key === 'status'" class="badge"
+                                [ngClass]="getShipmentStatusClass(row.status)">
+                                {{ 'stock.shipments.status.' + row.status.toLowerCase() | translate }}
+                            </span>
+                        </ng-template>
+                    </app-data-table>
+                    <div *ngIf="pendingShipments.length === 0 && !loadingShipments" class="text-center p-4 text-muted">
+                        <i class="isax isax-truck-fast" style="font-size: 3rem;"></i>
+                        <p class="mt-2">{{ 'stock.home.noPendingShipments' | translate }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Link Widget -->
+        <div class="col-12 col-lg-6">
+            <div class="card widget-card dashboard-link-card" (click)="navigateToDashboard()">
+                <div class="card-body text-center p-5">
+                    <i class="isax isax-chart-21" style="font-size: 4rem; color: var(--primary);"></i>
+                    <h5 class="mt-3 mb-2">{{ 'stock.home.viewDashboard' | translate }}</h5>
+                    <p class="text-muted mb-0">{{ 'stock.home.dashboardDesc' | translate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

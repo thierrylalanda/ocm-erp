@@ -25,8 +25,8 @@ import { CreateCompanyUseCaseImpl } from '../../../application/use-cases/create-
     CreateCompanyUseCaseImpl,
     HttpCompanyRepository,
   ],
-  templateUrl:'./company-management.component.html',
-  styleUrl:'./company-management.component.scss',
+  templateUrl: './company-management.component.html',
+  styleUrl: './company-management.component.scss',
 })
 export class CompanyManagementComponent implements OnInit {
   companies: CreateCompanyResponseDto[] = [];
@@ -37,8 +37,9 @@ export class CompanyManagementComponent implements OnInit {
   currentPage = 1;
   pageSize = 10;
   isLoading = false;
+  Math = Math; // Make Math available in template
 
-  constructor(private companyRepository: HttpCompanyRepository) {}
+  constructor(private companyRepository: HttpCompanyRepository) { }
 
   ngOnInit(): void {
     // Charger les sociétés existantes depuis l'API
@@ -52,7 +53,7 @@ export class CompanyManagementComponent implements OnInit {
       console.log(tenants);
       // Convertir les tenants en DTO pour l'affichage
       this.companies = tenants.map(tenant => ({
-        id: tenant.id||1,
+        id: tenant.id || 1,
         nom: tenant.nom,
         activite: tenant.activite || '',
         adresse: tenant.address || '',
@@ -69,8 +70,8 @@ export class CompanyManagementComponent implements OnInit {
         logo: tenant.logoUrl || '',
         favicon: tenant.faviconUrl || '',
         actif: tenant.isActive,
-        createdAt: tenant.createdAt !=null ? tenant.createdAt.toISOString(): '',
-        updatedAt: tenant.updatedAt !=null ? tenant.updatedAt.toISOString():''
+        createdAt: tenant.createdAt != null ? tenant.createdAt.toISOString() : '',
+        updatedAt: tenant.updatedAt != null ? tenant.updatedAt.toISOString() : ''
       }));
       this.filterCompanies();
     } catch (error) {
@@ -163,7 +164,7 @@ export class CompanyManagementComponent implements OnInit {
 
     if (this.searchTerm) {
       const term = this.searchTerm.toLowerCase();
-      filtered = filtered.filter(c => 
+      filtered = filtered.filter(c =>
         c.nom.toLowerCase().includes(term) ||
         c.activite.toLowerCase().includes(term) ||
         c.email.toLowerCase().includes(term) ||

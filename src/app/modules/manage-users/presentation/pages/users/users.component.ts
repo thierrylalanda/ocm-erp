@@ -9,9 +9,12 @@ import { GetUsersUseCase } from '../../../application/use-cases/get-users.use-ca
 import { CreateUserUseCase } from '../../../application/use-cases/create-user.use-case';
 import { CREATE_USER_USE_CASE } from '../../../application/use-cases/create-user.use-case.token';
 import { GET_USERS_USE_CASE } from '../../../application/use-cases/get-users.use-case.token';
+import { ACTIVATE_USER_USE_CASE, ActivateUserUseCase } from '../../../application/use-cases/activate-user.use-case';
+import { DEACTIVATE_USER_USE_CASE, DeactivateUserUseCase } from '../../../application/use-cases/deactivate-user.use-case';
+import { DELETE_USER_USE_CASE, DeleteUserUseCase } from '../../../application/use-cases/delete-user.use-case';
 
-// Import du repository
-import { USER_REPOSITORY, UserRepository } from '../../../domain/repositories/user.repository';
+// Import du ViewModel
+import { UsersViewModel } from './users.view-model';
 
 // Import des DTOs
 import { UserResponseDto, UsersPaginationOptionsDto } from '../../../application/dto/create-user.dto';
@@ -28,6 +31,17 @@ import { AuthService } from '../../../../../core/services/auth/auth.service';
 import { TranslatePipe } from '../../../../../core/services/translation/translate.pipe';
 import { ToasterService } from '../../../../../core/core.index';
 
+// Import des implémentations et providers
+import { GetUsersUseCaseImpl } from '../../../application/use-cases/get-users.use-case';
+import { CreateUserUseCaseImpl } from '../../../application/use-cases/create-user.use-case';
+import { ActivateUserUseCaseImpl } from '../../../application/use-cases/activate-user.use-case';
+import { DeactivateUserUseCaseImpl } from '../../../application/use-cases/deactivate-user.use-case';
+import { DeleteUserUseCaseImpl } from '../../../application/use-cases/delete-user.use-case';
+import { APPLICATION_CONTEXT, LocalStorageContextAdapter } from '../../../../_shared';
+import { USER_REPOSITORY } from '../../../domain/repositories/user.repository';
+import { HttpUserRepository } from '../../../infrastructure/repositories/http-user.repository';
+import { FormBuilderExampleComponent } from '../../../../_shared/presentation/components/form-builder/form-builder-example.component';
+
 @Component({
   selector: 'app-users',
   standalone: true,
@@ -38,6 +52,44 @@ import { ToasterService } from '../../../../../core/core.index';
     UserFormComponent,
     TranslatePipe
   ],
+  providers: [
+    // ApplicationContext
+    {
+      provide: APPLICATION_CONTEXT,
+      useClass: LocalStorageContextAdapter
+    },
+    // Repository
+    {
+      provide: USER_REPOSITORY,
+      useClass: HttpUserRepository
+    },
+    // Use Cases
+    {
+      provide: GET_USERS_USE_CASE,
+      useClass: GetUsersUseCaseImpl
+    },
+    {
+      provide: CREATE_USER_USE_CASE,
+      useClass: CreateUserUseCaseImpl
+    },
+    {
+      provide: ACTIVATE_USER_USE_CASE,
+      useClass: ActivateUserUseCaseImpl
+    },
+    {
+      provide: DEACTIVATE_USER_USE_CASE,
+      useClass: DeactivateUserUseCaseImpl
+    },
+    {
+      provide: DELETE_USER_USE_CASE,
+      useClass: DeleteUserUseCaseImpl
+    },
+    // Services
+    SiteService,
+    DepartementService,
+    AuthService,
+    ToasterService
+  ],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
@@ -45,9 +97,12 @@ export class UsersComponent implements OnInit {
   // Use cases injectés
   private getUsersUseCase = inject(GET_USERS_USE_CASE);
   private createUserUseCase = inject(CREATE_USER_USE_CASE);
+  private activateUserUseCase = inject(ACTIVATE_USER_USE_CASE);
+  private deactivateUserUseCase = inject(DEACTIVATE_USER_USE_CASE);
+  private deleteUserUseCase = inject(DELETE_USER_USE_CASE);
 
-  // Repository injecté
-  private userRepository = inject<UserRepository>(USER_REPOSITORY);
+  // ViewModel pour la logique de présentation
+  viewModel = new UsersViewModel();
 
   // Services injectés
   private siteService = inject(SiteService);
@@ -310,34 +365,30 @@ export class UsersComponent implements OnInit {
    * Active un utilisateur
    */
   async activateUser(user: UserResponseDto): Promise<void> {
-    try {
-      // Utiliser le repository pour activer l'utilisateur
-      await this.userRepository.activateUser({ value: user.id });
-      await this.loadUsers(); // Recharger la liste
+    const result = await this.activateUserUseCase.execute(user.id);
 
-      // Afficher un message de succès
-      this.toastService.typeSuccess(`L'utilisateur ${user.nomPrenom} a été activé avec succès.`);
-    } catch (error) {
-      this.error = 'Impossible d\'activer l\'utilisateur.';
-      this.toastService.typeError('Erreur lors de l\'activation de l\'utilisateur.');
+    if (result.isFailure) {
+      this.toastService.typeError(result.error.message);
+      return;
     }
+
+    this.toastService.typeSuccess(`L'utilisateur ${user.nomPrenom} a été activé avec succès.`);
+    await this.loadUsers(); // Recharger la liste
   }
 
   /**
    * Désactive un utilisateur
    */
   async deactivateUser(user: UserResponseDto): Promise<void> {
-    try {
-      // Utiliser le repository pour désactiver l'utilisateur
-      await this.userRepository.deactivateUser({ value: user.id });
-      await this.loadUsers(); // Recharger la liste
+    const result = await this.deactivateUserUseCase.execute(user.id);
 
-      // Afficher un message de succès
-      this.toastService.typeSuccess(`L'utilisateur ${user.nomPrenom} a été désactivé avec succès.`);
-    } catch (error) {
-      this.error = 'Impossible de désactiver l\'utilisateur.';
-      this.toastService.typeError('Erreur lors de la désactivation de l\'utilisateur.');
+    if (result.isFailure) {
+      this.toastService.typeError(result.error.message);
+      return;
     }
+
+    this.toastService.typeSuccess(`L'utilisateur ${user.nomPrenom} a été désactivé avec succès.`);
+    await this.loadUsers(); // Recharger la liste
   }
 
   /**

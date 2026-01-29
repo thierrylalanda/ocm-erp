@@ -16,41 +16,40 @@
             <div *ngFor="let config of configurations" class="config-item">
                 <div class="mb-3">
                     <label class="form-label">
-                        {{ config.mpNom }}
-                        <span *ngIf="config.mpObligatoire" class="text-danger">*</span>
+                        {{ config.cle }}
+                        <span *ngIf="config.obligatoire" class="text-danger">*</span>
                     </label>
 
                     <!-- String input -->
-                    <input *ngIf="config.mpTypeDonnee === 'STRING'" type="text" class="form-control"
-                        [formControlName]="config.mpCle" [placeholder]="config.mpValeurDefaut">
+                    <input *ngIf="config.typeDonnee === 'STRING'" type="text" class="form-control"
+                        [formControlName]="config.cle" [placeholder]="config.valeurDefaut || ''">
 
                     <!-- Integer input -->
-                    <input *ngIf="config.mpTypeDonnee === 'INTEGER'" type="number" class="form-control"
-                        [formControlName]="config.mpCle" [placeholder]="config.mpValeurDefaut">
+                    <input *ngIf="config.typeDonnee === 'INTEGER'" type="number" class="form-control"
+                        [formControlName]="config.cle" [placeholder]="config.valeurDefaut || ''">
 
                     <!-- Decimal input -->
-                    <input *ngIf="config.mpTypeDonnee === 'DECIMAL'" type="number" step="0.01" class="form-control"
-                        [formControlName]="config.mpCle" [placeholder]="config.mpValeurDefaut">
+                    <input *ngIf="config.typeDonnee === 'DECIMAL'" type="number" step="0.01" class="form-control"
+                        [formControlName]="config.cle" [placeholder]="config.valeurDefaut || ''">
 
                     <!-- Date input -->
-                    <input *ngIf="config.mpTypeDonnee === 'DATE'" type="date" class="form-control"
-                        [formControlName]="config.mpCle">
+                    <input *ngIf="config.typeDonnee === 'DATE'" type="date" class="form-control"
+                        [formControlName]="config.cle">
 
                     <!-- Boolean select -->
-                    <select *ngIf="config.mpTypeDonnee === 'BOOLEAN'" class="form-select"
-                        [formControlName]="config.mpCle">
+                    <select *ngIf="config.typeDonnee === 'BOOLEAN'" class="form-select" [formControlName]="config.cle">
                         <option [value]="true">Oui</option>
                         <option [value]="false">Non</option>
                     </select>
 
                     <!-- Description -->
-                    <div *ngIf="config.mpDescription" class="form-text">
-                        {{ config.mpDescription }}
+                    <div *ngIf="config.description" class="form-text">
+                        {{ config.description }}
                     </div>
 
                     <!-- Aide contextuelle -->
-                    <div *ngIf="config.mpAideContextuelle" class="form-text text-muted">
-                        <i class="fas fa-info-circle"></i> {{ config.mpAideContextuelle }}
+                    <div *ngIf="config.aideContextuelle" class="form-text text-muted">
+                        <i class="fas fa-info-circle"></i> {{ config.aideContextuelle }}
                     </div>
                 </div>
             </div>

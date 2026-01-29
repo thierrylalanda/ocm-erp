@@ -1,0 +1,85 @@
+<div class="file-uploader" [class.disabled]="disabled">
+    <!-- Drop Zone -->
+    <div class="drop-zone" [class.drag-over]="isDragOver" (click)="openFileSelector()" (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+
+        <div class="drop-zone-content">
+            <i class="isax isax-document-upload fs-1 text-primary mb-3"></i>
+            <h5>{{ 'fileUploader.dropZoneTitle' | translate }}</h5>
+            <p class="text-muted">
+                {{ 'fileUploader.dropZoneText' | translate }}
+                <br>
+                <small *ngIf="config.maxFileSize">
+                    {{ 'fileUploader.maxSize' | translate }}: {{ formatFileSize(config.maxFileSize) }}
+                </small>
+            </p>
+            <button type="button" class="btn btn-primary" [disabled]="disabled">
+                <i class="isax isax-folder-open me-2"></i>
+                {{ 'fileUploader.browseFiles' | translate }}
+            </button>
+        </div>
+
+        <!-- Hidden file input -->
+        <input #fileInput type="file" [accept]="config.accept" [multiple]="config.multiple"
+            (change)="onFileSelected($event)" style="display: none" />
+    </div>
+
+    <!-- Files List -->
+    <div *ngIf="files.length > 0" class="files-list mt-3">
+        <div class="files-header mb-2">
+            <h6 class="mb-0">
+                {{ 'fileUploader.selectedFiles' | translate }} ({{ files.length }})
+            </h6>
+            <button *ngIf="!config.autoUpload && hasPendingFiles()" type="button" class="btn btn-sm btn-primary"
+                (click)="uploadAll()">
+                <i class="isax isax-document-upload me-1"></i>
+                {{ 'fileUploader.uploadAll' | translate }}
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-danger ms-2" (click)="clearAll()">
+                <i class="isax isax-trash me-1"></i>
+                {{ 'fileUploader.clearAll' | translate }}
+            </button>
+        </div>
+
+        <div class="file-item" *ngFor="let file of files">
+            <!-- File Preview/Icon -->
+            <div class="file-preview">
+                <img *ngIf="file.preview" [src]="file.preview" [alt]="file.name" class="preview-image" />
+                <i *ngIf="!file.preview" class="isax isax-{{ getFileIcon(file) }} fs-2 text-primary">
+                </i>
+            </div>
+
+            <!-- File Info -->
+            <div class="file-info">
+                <div class="file-name" [title]="file.name">{{ file.name }}</div>
+                <div class="file-meta">
+                    <span class="file-size">{{ formatFileSize(file.size) }}</span>
+                    <span *ngIf="file.status === 'success'" class="badge bg-success ms-2">
+                        <i class="isax isax-tick-circle me-1"></i>
+                        {{ 'fileUploader.uploaded' | translate }}
+                    </span>
+                    <span *ngIf="file.status === 'error'" class="badge bg-danger ms-2">
+                        <i class="isax isax-close-circle me-1"></i>
+                        {{ file.error || ('fileUploader.error' | translate) }}
+                    </span>
+                </div>
+
+                <!-- Progress Bar -->
+                <div *ngIf="file.status === 'uploading'" class="progress mt-2" style="height: 4px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                        [style.width.%]="file.progress" [attr.aria-valuenow]="file.progress" aria-valuemin="0"
+                        aria-valuemax="100">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="file-actions">
+                <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeFile(file)"
+                    [disabled]="file.status === 'uploading'">
+                    <i class="isax isax-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

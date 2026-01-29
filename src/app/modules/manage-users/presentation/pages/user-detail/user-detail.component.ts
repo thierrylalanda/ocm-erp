@@ -37,6 +37,7 @@ import { CreateUserUseCaseImpl } from '../../../application/use-cases/create-use
 import { UpdateUserUseCaseImpl } from '../../../application/use-cases/update-user.use-case';
 import { GetUsersUseCaseImpl } from '../../../application/use-cases/get-users.use-case';
 import { GetRolesUseCaseImpl } from '../../../application/use-cases/get-roles.use-case';
+import { APPLICATION_CONTEXT, LocalStorageContextAdapter } from '../../../../_shared';
 
 // Import des DTOs
 import { UserResponseDto } from '../../../application/dto/create-user.dto';
@@ -47,6 +48,7 @@ import { DepartementService } from '../../../../setting/application/services/dep
 import { AuthService } from '../../../../../core/services/auth/auth.service';
 import { UserRoleService, UserRoleResponseDto, UserRolePageResponseDto, ChangePasswordRequestDto, } from '../../../application/services/user-role.service';
 import { routes, ToasterService } from '../../../../../core/core.index';
+import { HasPermissionsDirective } from '../../../../../core/directives/has-permissions.directive';
 @Component({
   selector: 'app-user-detail',
   standalone: true,
@@ -70,9 +72,15 @@ import { routes, ToasterService } from '../../../../../core/core.index';
     MatSnackBarModule,
 
     // Traduction
-    TranslatePipe
+    TranslatePipe,
+    HasPermissionsDirective
   ],
   providers: [
+    // ApplicationContext
+    {
+      provide: APPLICATION_CONTEXT,
+      useClass: LocalStorageContextAdapter
+    },
     // Providers pour les repositories
     {
       provide: USER_REPOSITORY,

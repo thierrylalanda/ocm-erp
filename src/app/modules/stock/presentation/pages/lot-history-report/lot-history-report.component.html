@@ -1,0 +1,63 @@
+<div class="lot-history-page">
+    <div class="page-header mb-4">
+        <a routerLink="/app/stock/reports" class="btn btn-sm btn-light mb-2">
+            <i class="isax isax-arrow-left-2 me-2"></i>
+            {{ 'stock.reports.backToHub' | translate }}
+        </a>
+        <h2 class="h3 mb-1">{{ 'stock.reports.lotHistory.title' | translate }}</h2>
+        <p class="text-muted mb-0">{{ 'stock.reports.lotHistory.description' | translate }}</p>
+    </div>
+
+    <!-- Search Section -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="input-group">
+                <input type="text" class="form-control" [(ngModel)]="searchLotNumber"
+                    placeholder="Entrez un numéro de lot (ex: LOT-2024-001)" (keyup.enter)="onSearch()">
+                <button class="btn btn-primary" (click)="onSearch()" [disabled]="loading">
+                    <i class="isax isax-search-normal-1 me-2"></i>
+                    {{ 'common.search' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div *ngIf="lotFound" class="row">
+        <!-- Timeline -->
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-transparent">
+                    <h5 class="card-title mb-0">Timeline</h5>
+                </div>
+                <div class="card-body">
+                    <div class="timeline">
+                        <div class="timeline-item" *ngFor="let item of timeline">
+                            <div class="timeline-marker bg-{{item.color}}">
+                                <i class="isax isax-{{item.icon}}"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h6 class="mb-0">{{ item.title }}</h6>
+                                <p class="text-muted small mb-1">{{ item.description }}</p>
+                                <span class="text-xs text-muted">{{ item.date | date:'medium' }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Table -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header bg-transparent">
+                    <h5 class="card-title mb-0">Détails des Mouvements</h5>
+                </div>
+                <div class="card-body p-0">
+                    <app-data-table [data]="movements" [columns]="columns" [loading]="loading">
+                    </app-data-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

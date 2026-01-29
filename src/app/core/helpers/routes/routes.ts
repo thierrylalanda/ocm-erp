@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 const defaultRoute = '/app/';
 export const routes = {
 
-  
+
   layoutDirection: undefined,
   Url: '',
   rtl: undefined,
@@ -20,16 +20,16 @@ export const routes = {
   lock_screen: '/auth/lock-screen',
   index: '/index',
   AdminDashboard2: '/admin-dashboard',
-  notifications:defaultRoute+'notifications',
+  notifications: defaultRoute + 'notifications',
 
   //configuration
-    configSociete: defaultRoute+'societe',
-    //Manage user 
-    usersList: defaultRoute+'manage-users/users',
-    rolePermissions: defaultRoute+'manage-users/roles-permissions',
-    manageAllUsers: defaultRoute+'manage-users',
-    allUsers: defaultRoute+'manage-users/users',
-    permissions: defaultRoute+'manage-users/permission',
+  configSociete: defaultRoute + 'societe',
+  //Manage user 
+  usersList: defaultRoute + 'manage-users/users',
+  rolePermissions: defaultRoute + 'manage-users/roles-permissions',
+  manageAllUsers: defaultRoute + 'manage-users',
+  allUsers: defaultRoute + 'manage-users/users',
+  permissions: defaultRoute + 'manage-users/permission',
   //deleteAccountRequest: '/manage-users/delete-account-request',
 
 
@@ -186,26 +186,26 @@ export const routes = {
   invoiceDetails: '/invoices/invoice-details',
   recurringInvoices: '/invoices/recurring-invoices',
 
-   // Credit Notes
-   creditNote: '/credit-notes',
-   creditNotes: '/credit-notes/credit-note-list',
-   addCreditNotes: '/credit-notes/add-credit-notes',
-   editCreditNotes: '/credit-notes/edit-credit-notes',
- 
-   // Quotations
-   quotations: '/quotations',
-   quotationList: '/quotations/quotation-list',
-   addQuotations: '/quotations/add-quotation',
-   editQuotations: '/quotations/edit-quotation',
- 
-   // Delivery Challans
-   deliveryChallan: '/delivery-challans',
-   deliveryChallanList: '/delivery-challans/delivery-challan-list',
-   addDeliveryChallan: '/delivery-challans/add-delivery-challan',
-   editDeliveryChallan: '/delivery-challans/edit-delivery-challan',
+  // Credit Notes
+  creditNote: '/credit-notes',
+  creditNotes: '/credit-notes/credit-note-list',
+  addCreditNotes: '/credit-notes/add-credit-notes',
+  editCreditNotes: '/credit-notes/edit-credit-notes',
+
+  // Quotations
+  quotations: '/quotations',
+  quotationList: '/quotations/quotation-list',
+  addQuotations: '/quotations/add-quotation',
+  editQuotations: '/quotations/edit-quotation',
+
+  // Delivery Challans
+  deliveryChallan: '/delivery-challans',
+  deliveryChallanList: '/delivery-challans/delivery-challan-list',
+  addDeliveryChallan: '/delivery-challans/add-delivery-challan',
+  editDeliveryChallan: '/delivery-challans/edit-delivery-challan',
 
 
-   // Customers
+  // Customers
   customers: '/customers',
   customerList: '/customers/customer-list',
   customerDetails: '/customers/customer-details',
@@ -224,14 +224,14 @@ export const routes = {
   addPurchaseOrder: '/purchase-orders/add-purchases-orders',
   editPurchaseOrder: '/purchase-orders/edit-purchases-orders',
 
-    // Debit Notes
-    debitNotes: '/debit-notes',
-    debitNoteList: '/debit-notes/debit-note-list',
-    addDebitNotes: '/debit-notes/add-debit-notes',
-    editDebitNotes: '/debit-notes/edit-debit-notes',
+  // Debit Notes
+  debitNotes: '/debit-notes',
+  debitNoteList: '/debit-notes/debit-note-list',
+  addDebitNotes: '/debit-notes/add-debit-notes',
+  editDebitNotes: '/debit-notes/edit-debit-notes',
 
-    suppliers: '/suppliers',
-    supplierPayments: '/supplier-payments',
+  suppliers: '/suppliers',
+  supplierPayments: '/supplier-payments',
   //Report
   stockSummary: '/reports/item-report/stock-summary',
   inventoryReport: '/reports/item-report/inventory-report',
@@ -260,54 +260,55 @@ export const routes = {
   purchasesOrdersReport: '/reports/transaction-report/purchase-orders-reports',
   quotationReport: '/reports/transaction-report/quotation-report',
   //Setting NEW
-  accountSettings: defaultRoute+'settings/general-settings/account-settings',
-  siteSettings: defaultRoute+'settings/general-settings/site-settings',
-  departementSettings: defaultRoute+'settings/general-settings/departement-settings',
-  securitySettings: defaultRoute+'settings/general-settings/security-settings',
-  plansBillings: defaultRoute+'settings/general-settings/plans-billings',
-  notificationSettings: defaultRoute+'settings/general-settings/notifications-settings',
-  integrationsSettings: defaultRoute+'settings/general-settings/integrations-settings',
+  accountSettings: defaultRoute + 'settings/general-settings/account-settings',
+  siteSettings: defaultRoute + 'settings/general-settings/site-settings',
+  departementSettings: defaultRoute + 'settings/general-settings/departement-settings',
+  securitySettings: defaultRoute + 'settings/general-settings/security-settings',
+  plansBillings: defaultRoute + 'settings/general-settings/plans-billings',
+  notificationSettings: defaultRoute + 'settings/general-settings/notifications-settings',
+  integrationsSettings: defaultRoute + 'settings/general-settings/integrations-settings',
 
-  companySettings: defaultRoute+'settings/website-settings/company-settings',
-  localizationSettings: defaultRoute+'settings/website-settings/localization-settings',
-  prefixesSettings: defaultRoute+'settings/website-settings/prefixes-settings',
-  preferenceSettings: defaultRoute+'settings/website-settings/preference-settings',
-  seoSetup: defaultRoute+'settings/website-settings/seo-setup',
-  languageSettings: defaultRoute+'settings/website-settings/language-settings',
-  languageSettings2: defaultRoute+'settings/website-settings/language-settings2',
-  maintenanceMode: defaultRoute+'settings/website-settings/maintenance-mode',
-  authenticationSettings: defaultRoute+'settings/website-settings/authentication-settings',
-  aiConfigurationSettings: defaultRoute+'settings/website-settings/ai-configuration-settings',
-  appearanceSettings: defaultRoute+'settings/website-settings/appearance-settings',
-  pluginManager: defaultRoute+'settings/website-settings/plugin-manager',
+  companySettings: defaultRoute + 'settings/website-settings/company-settings',
+  generalConfiguration: defaultRoute + 'general-configuration',
+  localizationSettings: defaultRoute + 'settings/website-settings/localization-settings',
+  prefixesSettings: defaultRoute + 'settings/website-settings/prefixes-settings',
+  preferenceSettings: defaultRoute + 'settings/website-settings/preference-settings',
+  seoSetup: defaultRoute + 'settings/website-settings/seo-setup',
+  languageSettings: defaultRoute + 'settings/website-settings/language-settings',
+  languageSettings2: defaultRoute + 'settings/website-settings/language-settings2',
+  maintenanceMode: defaultRoute + 'settings/website-settings/maintenance-mode',
+  authenticationSettings: defaultRoute + 'settings/website-settings/authentication-settings',
+  aiConfigurationSettings: defaultRoute + 'settings/website-settings/ai-configuration-settings',
+  appearanceSettings: defaultRoute + 'settings/website-settings/appearance-settings',
+  pluginManager: defaultRoute + 'settings/website-settings/plugin-manager',
 
-  invoiceSettings: defaultRoute+'settings/app-settings/invoice-settings',
-  invoiceTemplates: defaultRoute+'settings/app-settings/invoice-templates',
-  esignatures: defaultRoute+'settings/app-settings/esignatures',
-  barcodeSettings: defaultRoute+'settings/app-settings/barcode-settings',
-  thermalPrinter: defaultRoute+'settings/app-settings/thermal-printer',
-  customFields: defaultRoute+'settings/app-settings/custom-fields',
-  saasSettings: defaultRoute+'settings/app-settings/saas-settings',
+  invoiceSettings: defaultRoute + 'settings/app-settings/invoice-settings',
+  invoiceTemplates: defaultRoute + 'settings/app-settings/invoice-templates',
+  esignatures: defaultRoute + 'settings/app-settings/esignatures',
+  barcodeSettings: defaultRoute + 'settings/app-settings/barcode-settings',
+  thermalPrinter: defaultRoute + 'settings/app-settings/thermal-printer',
+  customFields: defaultRoute + 'settings/app-settings/custom-fields',
+  saasSettings: defaultRoute + 'settings/app-settings/saas-settings',
 
-  paymentMethods: defaultRoute+'settings/finance-settings/payment-methods',
-  bankAccountsSettings: defaultRoute+'settings/finance-settings/bank-accounts-settings',
-  taxRates: defaultRoute+'settings/finance-settings/tax-rates',
-  currencies: defaultRoute+'settings/finance-settings/currencies',
+  paymentMethods: defaultRoute + 'settings/finance-settings/payment-methods',
+  bankAccountsSettings: defaultRoute + 'settings/finance-settings/bank-accounts-settings',
+  taxRates: defaultRoute + 'settings/finance-settings/tax-rates',
+  currencies: defaultRoute + 'settings/finance-settings/currencies',
 
-  emailSettings: defaultRoute+'settings/system-settings/email-settings',
-  emailTemplates: defaultRoute+'settings/system-settings/email-templates',
-  smsGateways: defaultRoute+'settings/system-settings/sms-gateways',
-  gdprCookies: defaultRoute+'settings/system-settings/gdpr-cookies',
-  
-  customCss: defaultRoute+'settings/other-settings/custom-css',
-  customJs: defaultRoute+'settings/other-settings/custom-js',
-  sitemap: defaultRoute+'settings/other-settings/sitemap',
-  clearCache: defaultRoute+'settings/other-settings/clear-cache',
-  storage: defaultRoute+'settings/other-settings/storage',
-  cronjob: defaultRoute+'settings/other-settings/cronjob',
-  systemBackup: defaultRoute+'settings/other-settings/system-backup',
-  databaseBackup: defaultRoute+'settings/other-settings/database-backup',
-  systemUpdate: defaultRoute+'settings/other-settings/system-update',
+  emailSettings: defaultRoute + 'settings/system-settings/email-settings',
+  emailTemplates: defaultRoute + 'settings/system-settings/email-templates',
+  smsGateways: defaultRoute + 'settings/system-settings/sms-gateways',
+  gdprCookies: defaultRoute + 'settings/system-settings/gdpr-cookies',
+
+  customCss: defaultRoute + 'settings/other-settings/custom-css',
+  customJs: defaultRoute + 'settings/other-settings/custom-js',
+  sitemap: defaultRoute + 'settings/other-settings/sitemap',
+  clearCache: defaultRoute + 'settings/other-settings/clear-cache',
+  storage: defaultRoute + 'settings/other-settings/storage',
+  cronjob: defaultRoute + 'settings/other-settings/cronjob',
+  systemBackup: defaultRoute + 'settings/other-settings/system-backup',
+  databaseBackup: defaultRoute + 'settings/other-settings/database-backup',
+  systemUpdate: defaultRoute + 'settings/other-settings/system-update',
   //Content
   pages: '/pages',
   blogs: '/blogs',
@@ -338,7 +339,7 @@ export const routes = {
   error404: '/error/error-404',
   error500: '/error/error-500',
 
-  
+
   //New General Invoices 
   generalInvoice1: '/invoice-modals/general-invoice-1',
   generalInvoice2: '/invoice-modals/general-invoice-2',
@@ -412,6 +413,24 @@ export const routes = {
   RTL: '/layout-rtl',
   Dark: '/layout-dark',
 
+  // Stock Module
+  stockDashboard: defaultRoute + 'stock/dashboard',
+  stockHome: defaultRoute + 'stock/home',
+  products: defaultRoute + 'stock/products',
+  productCategories: defaultRoute + 'stock/categories',
+  stockMovements: defaultRoute + 'stock/movements',
+  inventory: defaultRoute + 'stock/inventory',
+  warehouses: defaultRoute + 'stock/warehouses',
+  stockSettings: defaultRoute + 'stock/settings',
+  lots: defaultRoute + 'stock/lots',
+  expiringLots: defaultRoute + 'stock/lots/expiring',
+  stockCreation: defaultRoute + 'stock/creation',
+  stockConsumption: defaultRoute + 'stock/consumption',
+  stockReceptions: defaultRoute + 'stock/receptions',
+  stockShipments: defaultRoute + 'stock/shipments',
+  stockReports: defaultRoute + 'stock/reports',
+  stockValuation: defaultRoute + 'stock/reports/valuation',
+  stockLotHistory: defaultRoute + 'stock/reports/lot-history',
 
 
 };

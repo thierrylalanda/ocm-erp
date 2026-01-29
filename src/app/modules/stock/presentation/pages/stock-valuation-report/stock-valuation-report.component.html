@@ -1,0 +1,26 @@
+<div class="valuation-report-page">
+    <div class="page-header d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a routerLink="/app/stock/reports" class="btn btn-sm btn-light mb-2">
+                <i class="isax isax-arrow-left-2 me-2"></i>
+                {{ 'stock.reports.backToHub' | translate }}
+            </a>
+            <h2 class="h3 mb-1">{{ 'stock.reports.valuation.title' | translate }}</h2>
+            <p class="text-muted mb-0">
+                {{ 'stock.settings.valuationMethod' | translate }}: <span class="badge bg-primary">{{ valuationMethod
+                    }}</span>
+            </p>
+        </div>
+        <div class="text-end">
+            <h3 class="mb-0 text-primary">{{ totalValue | number:'1.2-2' }} {{ currency }}</h3>
+            <small class="text-muted">{{ 'stock.inventory.totalValue' | translate }}</small>
+        </div>
+    </div>
+
+    <div class="card card-table">
+        <div class="card-body p-0">
+            <app-data-table [data]="valuationData" [columns]="columns" [config]="tableConfig" [loading]="loading">
+            </app-data-table>
+        </div>
+    </div>
+</div>

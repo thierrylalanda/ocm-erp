@@ -1,0 +1,819 @@
+import {
+  MatSelectModule,
+  init_select
+} from "./chunk-PJP4EZYQ.js";
+import "./chunk-ZLTBFUHR.js";
+import "./chunk-N2Q3HONL.js";
+import "./chunk-ZQVU7KV2.js";
+import "./chunk-Y46UO4F7.js";
+import "./chunk-WYJ2IQUD.js";
+import "./chunk-BDO5G4JQ.js";
+import "./chunk-BAYPUVG5.js";
+import "./chunk-V5QKIDZC.js";
+import {
+  BsDatepickerModule,
+  init_ngx_bootstrap_datepicker
+} from "./chunk-WSBEZP5X.js";
+import "./chunk-46HFNSZZ.js";
+import "./chunk-6XCX22WB.js";
+import "./chunk-I2GXMQDC.js";
+import "./chunk-UJXPUDZY.js";
+import "./chunk-33YSR6MK.js";
+import "./chunk-LKMTQ47C.js";
+import "./chunk-MTEB3W4S.js";
+import "./chunk-SR4JAI3W.js";
+import "./chunk-2RBILSOV.js";
+import {
+  init_core_index,
+  routes
+} from "./chunk-NSLU4XKJ.js";
+import "./chunk-EOPPSJQQ.js";
+import "./chunk-FUOYOFVQ.js";
+import "./chunk-5B5ZAECM.js";
+import "./chunk-2O5UQ647.js";
+import {
+  Router,
+  RouterLink,
+  init_router
+} from "./chunk-EDGRTZKC.js";
+import "./chunk-BIGDKMS7.js";
+import "./chunk-RSLHKDCR.js";
+import "./chunk-H7VTUQ3B.js";
+import {
+  CommonModule,
+  init_common
+} from "./chunk-HQHIWYWO.js";
+import "./chunk-PV6FWBJN.js";
+import {
+  TestBed,
+  init_testing
+} from "./chunk-SXCZ3RJK.js";
+import {
+  Component,
+  __decorate,
+  init_core,
+  init_tslib_es6
+} from "./chunk-W6MIRXHE.js";
+import {
+  __async,
+  __commonJS,
+  __esm
+} from "./chunk-FWMZPJRE.js";
+
+// angular:jit:template:src/app/features/invantory-sales/credit-notes/add-credit-notes/add-credit-notes.component.html
+var add_credit_notes_component_default;
+var init_add_credit_notes_component = __esm({
+  "angular:jit:template:src/app/features/invantory-sales/credit-notes/add-credit-notes/add-credit-notes.component.html"() {
+    add_credit_notes_component_default = `<!-- start row -->
+<div class="row">
+    <div class="col-xxl-10 col-lg-11 mx-auto">
+        <div>
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <h6><a [routerLink]="routes.creditNotes"><i class="isax isax-arrow-left me-2"></i>Credit Notes</a></h6>
+                <a href="javascript:void(0);" class="btn btn-outline-white d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#view_notes"><i class="isax isax-eye me-1"></i>Preview</a>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="mb-3">Credit Note Details</h6>
+                    <form (ngSubmit)="redirectPage()">
+                        <div class="border-bottom mb-3 pb-1">
+                            
+                            <!-- start row -->
+                            <div class="row justify-content-between">
+                                <div class="col-xl-5 col-lg-7">
+                                    <div class="row gx-3">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Credit Note Id</label>
+                                                <input type="text" class="form-control" placeholder="9876543" readonly="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Reference Number</label>
+                                                <input type="text" class="form-control" value="1254569">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label class="form-label">Credit Note Date</label>
+                                            <div class="input-group position-relative mb-3">
+                                                <input type="text" class="form-control datetimepicker rounded-end" bsDatepicker placeholder="dd/mm/yyyy">
+                                                <span class="input-icon-addon fs-16 text-gray-9">
+                                                    <i class="isax isax-calendar-2"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <a href="javascript:void(0);" class="d-inline-flex align-items-center"><i class="isax isax-add-circle5 text-primary me-1"></i>Add Due Date</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end col -->
+                                <div class="col-xl-5 col-lg-5">
+
+                                    <!-- start row -->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="border border-dashed bg-light rounded text-center p-3 mb-3">
+                                                <img src="assets/img/invoice-logo.svg" alt="">
+                                            </div>
+                                        </div><!-- end col -->
+                                        <div class="col-lg-12">
+                                            <div class="row gx-3">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <mat-select class="custom-mat-select select" placeholder="Select Status">
+                                                            <mat-option value="1">Select Status</mat-option>
+                                                            <mat-option value="1">Paid</mat-option>
+                                                            <mat-option value="1">Pending</mat-option>
+                                                            <mat-option value="1">Cancelled</mat-option>
+                                                            <mat-option value="1">Partially Paid</mat-option>
+                                                            <mat-option value="1">Uncollectable</mat-option>
+                                                        </mat-select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <mat-select class="custom-mat-select select" placeholder="Currency">
+                                                            <mat-option value="1">Currency</mat-option>
+                                                            <mat-option value="1">$</mat-option>
+                                                            <mat-option value="1">\u20AC</mat-option>
+                                                            <mat-option value="1">\xA3</mat-option>
+                                                            <mat-option value="1">\u20B9</mat-option>
+                                                        </mat-select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end col -->
+                                        <div class="col-md-12">
+                                            <div class="d-flex align-items-center justify-content-between border rounded p-2 mb-3">
+                                                <div class="form-check form-switch me-4">
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="enabe_tax" checked>
+                                                    <label class="form-check-label" for="enabe_tax">Enable Tax</label>
+                                                </div>
+                                                <div>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-soft-primary"><i class="isax isax-setting-2 text-primary fs-16"></i></a>
+                                                </div>
+                                            </div>
+                                        </div><!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </div><!-- end col -->
+                            </div>
+                            <!-- end row -->
+                        </div>
+
+                        <div class="border-bottom mb-3">
+
+                            <!-- start row -->
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card shadow-none">
+                                        <div class="card-body">
+                                            <h6 class="mb-3">Bill From</h6>
+                                            <div class="mb-3">
+                                                <label class="form-label">Billed By</label>
+                                                <mat-select class="custom-mat-select select" placeholder="Select">
+                                                    <mat-option value="1">Kanakku</mat-option>
+                                                </mat-select>
+                                            </div>
+                                            <div class="p-3 bg-light rounded border">
+                                                <div class="d-flex">
+                                                    <div class="me-3">
+                                                        <span class="p-2 rounded border"><img src="assets/img/logo-small.svg" alt="image" class="img-fluid"></span>
+                                                    </div>
+                                                    <div>
+                                                        <h6 class="fs-14 mb-1 fw-semibold">Kanakku Invoice Management</h6>
+                                                        <p class="mb-1 fs-13">15 Hodges Mews, HP12 3JL, United Kingdom
+                                                        </p>
+                                                        <p class="mb-1 fs-13">Phone : +1 54664 75945</p>
+                                                        <p class="mb-1 fs-13">Email : info&#64;example.com</p>
+                                                        <p class="text-dark mb-0 fs-13">GST : 243E45767889</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end col -->
+                                <div class="col-lg-6">
+                                    <div class="card shadow-none">
+                                        <div class="card-body">
+                                            <h6 class="mb-3">Bill To</h6>
+                                            <div class="mb-3">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <label class="form-label">Customer Name</label>
+                                                    <a href="javascript:void(0);" class="d-inline-flex align-items-center">
+                                                        <i class="isax isax-add-circle5 text-primary me-1"></i>Add New
+                                                    </a>
+                                                </div>
+                                                <mat-select class="custom-mat-select select" placeholder="Select">
+                                                    <mat-option value="1">Timesquare Tech</mat-option>
+                                                </mat-select>
+                                            </div>
+                                            <div class="p-3 bg-light rounded border">
+                                                <div class="d-flex">
+                                                    <div class="me-3">
+                                                        <span><img src="assets/img/icons/timesquare-icon.svg" alt="image" class="img-fluid rounded"></span>
+                                                    </div>
+                                                    <div>
+                                                        <h6 class="fs-14 mb-1 fw-semibold">Timesquare Tech</h6>
+                                                        <p class="mb-1 fs-13">299 Star Trek Drive, Florida, 32405, USA
+                                                        </p>
+                                                        <p class="mb-1 fs-13">Phone : +1 54664 75945</p>
+                                                        <p class="mb-1 fs-13">Email : info&#64;example.com</p>
+                                                        <p class="text-dark mb-0 fs-13">GST : 243E45767889</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end col -->
+                            </div>
+                            <!-- end row -->
+                        </div>
+
+                        <div class="border-bottom mb-3 pb-3">
+
+                            <!-- start row -->
+                            <div class="row">
+                                <div class="col-xl-4 col-md-6">
+                                    <h6 class="mb-3">Items & Details</h6>
+                                    <div>
+                                        <label class="form-label">Item Type</label>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="form-check me-3">
+                                                <input class="form-check-input" type="radio" name="Radio" id="Radio-sm-1" checked="">
+                                                <label class="form-check-label" for="Radio-sm-1">
+                                                    Product
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="Radio" id="Radio-sm-2">
+                                                <label class="form-check-label" for="Radio-sm-2">
+                                                    Service
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Products/Services</label>
+                                        <mat-select class="custom-mat-select select" placeholder="Select">
+                                            <mat-option value="1">Select</mat-option>
+                                            <mat-option value="1">Apple iPhone 15</mat-option>
+                                            <mat-option value="1">Dell XPS 13 9310</mat-option>
+                                            <mat-option value="1">Bose QuietComfort 45</mat-option>
+                                            <mat-option value="1">Nike Dri-FIT T-shirt</mat-option>
+                                            <mat-option value="1">Adidas Ultraboost </mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div><!-- end col -->
+                            </div>
+                            <!-- end row -->
+
+                            <div class="table-responsive rounded table-nowrap border-bottom-0 border mb-3">
+                                <table class="table mb-0 add-table">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Product/Service</th>
+                                            <th>Quantity</th>
+                                            <th>Unit</th>
+                                            <th>Rate</th>
+                                            <th>Discount</th>
+                                            <th>Tax (%)</th>
+                                            <th>Amount</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="add-tbody">
+                                        <tr>
+                                            <td>
+                                                <input type="text" class="form-control" value="Nike Jordon">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="1" style="min-width: 66px;">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="Pcs" style="min-width: 66px;">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="$1360.00" style="min-width: 66px;">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="0%" style="min-width: 66px;">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="18" style="min-width: 66px;">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="$1358.00" style="min-width: 66px;">
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <a href="javascript:void(0);" class="text-danger remove-table"><i class="isax isax-close-circle"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr [ngStyle]="{'display':trash?'none':''}">
+                                            <td>
+                                                <input type="text" class="form-control" value="Enter Product Name">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="Unit">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="0%">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="0" style="min-width: 66px;">
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <a href="javascript:void(0);" class="text-danger remove-table" (click)="isTrash()"><i class="isax isax-close-circle"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <ng-container  *ngFor="let item of formData; let i = index; trackBy: trackByIndex">
+                                            <tr>
+                                                <td>
+                                                    <input type="text" class="form-control" value="Enter Product Name">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" value="0">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" value="Unit">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" value="0">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" value="0%">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" value="0">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" value="0" style="min-width: 66px;">
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <a href="javascript:void(0);" class="text-danger remove-table" (click)="removeRow(i)"><i class="isax isax-close-circle"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <a href="javascript:void(0);" class="d-inline-flex align-items-center add-invoice-data" (click)="addNewRow()"><i class="isax isax-add-circle5 text-primary me-1"></i>Add New</a>
+                            </div>
+                        </div>
+
+                        <div class="border-bottom mb-3">
+
+                            <!-- start row -->
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <div class="mb-3">
+                                        <h6 class="mb-3">Extra Information</h6>
+                                        <div>
+                                            <ul class="nav nav-tabs nav-solid-primary tab-style-1 border-0 p-0 d-flex flex-wrap gap-3 mb-3" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link active d-inline-flex align-items-center border fs-12 fw-semibold rounded-2" data-bs-toggle="tab" data-bs-target="#notes" aria-current="page" href="javascript:void(0);"><i class="isax isax-document-text me-1"></i>Add Notes</a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link d-inline-flex align-items-center border fs-12 fw-semibold rounded-2" data-bs-toggle="tab" data-bs-target="#terms" href="javascript:void(0);"><i class="isax isax-document me-1"></i>Add Terms & Conditions</a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link d-inline-flex align-items-center border fs-12 fw-semibold rounded-2" data-bs-toggle="tab" data-bs-target="#bank" href="javascript:void(0);"><i class="isax isax-bank me-1"></i>Bank Details</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active show" id="notes" role="tabpanel">
+                                                    <label class="form-label">Additional Notes</label>
+                                                    <textarea class="form-control"></textarea>
+                                                </div>
+                                                <div class="tab-pane fade" id="terms" role="tabpanel">
+                                                    <label class="form-label">Terms & Conditions</label>
+                                                    <textarea class="form-control"></textarea>
+                                                </div>
+                                                <div class="tab-pane fade" id="bank" role="tabpanel">
+                                                    <label class="form-label">Account</label>
+                                                    <mat-select class="custom-mat-select select" placeholder="Select">
+                                                        <mat-option value="1">Select</mat-option>
+                                                        <mat-option value="1">Andrew - 5225655545555454 (Swiss Bank)</mat-option>
+                                                        <mat-option value="1">Mark Salween - 4654145644566 (International Bank)</mat-option>
+                                                        <mat-option value="1">Sophia Martinez - 7890123456789012 (Global Finance)</mat-option>
+                                                        <mat-option value="1">David Chen - 2345678901234567 (National Bank)</mat-option>
+                                                        <mat-option value="1">Emily Johnson - 3456789012345678 (Community Credit Union)</mat-option>
+                                                    </mat-select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end col -->
+                                <div class="col-lg-5">
+                                    <div class="mb-3">
+                                        <div class="d-flex align-items-center justify-content-between mb-3">
+                                            <h6 class="fs-14 fw-semibold">Amount</h6>
+                                            <h6 class="fs-14 fw-semibold">$565</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between mb-3">
+                                            <h6 class="fs-14 fw-semibold">CGST (9%)</h6>
+                                            <h6 class="fs-14 fw-semibold">$18</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between mb-3">
+                                            <h6 class="fs-14 fw-semibold">SGST (9%)</h6>
+                                            <h6 class="fs-14 fw-semibold">$18</h6>
+                                        </div>
+                                        <div class="mb-3">
+                                            <a href="javascript:void(0);" class="d-inline-flex align-items-center">
+                                                <i class="isax isax-add-circle5 text-primary me-1"></i>Add Additional Charges
+                                            </a>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between mb-3">
+                                            <h6 class="fs-14 fw-semibold">Discount</h6>
+                                            <input type="text" class="form-control" value="0%" style="width: 106px;">
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
+                                            <div class="form-check form-switch me-4">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="require_check_2" checked="">
+                                                <label class="form-check-label" for="require_check_2">Round Off Total</label>
+                                            </div>
+                                            <h6 class="fs-14 fw-semibold">$596</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
+                                            <h6>Total (USD)</h6>
+                                            <h6>$596</h6>
+                                        </div>
+                                        <div class="border-bottom mb-3 pb-3">
+                                            <h6 class="fs-14 fw-semibold mb-1">Total In Words</h6>
+                                            <p>Five Hundred &amp; Ninety Six Dollars</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="mb-3">
+                                                <mat-select class="custom-mat-select select" placeholder="Select Signature">
+                                                    <mat-option value="1">Select Signature</mat-option>
+                                                    <mat-option value="1">Adrian</mat-option>
+                                                    <mat-option value="1">Emily Clark</mat-option>
+                                                    <mat-option value="1">John Carter</mat-option>
+                                                    <mat-option value="1">Michael Johnson</mat-option>
+                                                    <mat-option value="1">Olivia Harris</mat-option>
+                                                </mat-select>
+                                            </div>
+                                            <p class="mb-0 text-center">OR</p>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Signature Name</label>
+                                            <input type="text" class="form-control" value="Adrian">
+                                        </div>
+                                        <div class="file-upload drag-file w-100 h-auto py-3 d-flex align-items-center justify-content-center flex-column">
+                                            <span class="upload-img d-block"><i class="isax isax-image text-primary me-1"></i>Upload Signature</span>
+                                            <input type="file" accept="video/image">
+                                        </div>
+                                    </div>
+                                </div><!-- end col -->
+                            </div>
+                            <!-- end row -->
+
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between">
+                            <button type="button" class="btn btn-outline-white border">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+
+                    </form>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div>
+    </div><!-- end col -->
+</div>
+<!-- end row -->
+
+
+        <!-- Start view notes -->
+        <div class="modal fade" id="view_notes">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="d-flex mb-3 pb-3 align-items-center justify-content-between border-bottom">
+                            <h5 class="mb-0">Preview</h5>
+                            <button type="button" class="text-danger bg-transparent border-0 outline-0 p-0 lh-sm" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="isax isax-close-circle5 fs-16"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center justify-content-end flex-wrap row-gap-3 mb-3">
+                                <div class="d-flex align-items-center flex-wrap row-gap-3">
+                                    <a href="javascript:void(0);" class="btn btn-outline-white d-inline-flex align-items-center me-3"><i class="isax isax-document-like me-1"></i>Download PDF</a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-white d-inline-flex align-items-center me-3"><i class="isax isax-message-notif me-1"></i>Send Email</a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-white d-inline-flex align-items-center me-3"><i class="isax isax-printer me-1"></i>Print</a>
+                                </div>
+                            </div>
+                            <div class="bg-light p-4 rounded position-relative mb-3">
+                                <div class="position-absolute top-0 end-0">
+                                    <img src="assets/img/bg/card-bg.png" alt="">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between border-bottom flex-wrap mb-3 pb-2">
+                                    <div class="mb-3">
+                                        <h4 class="mb-1">Credit Notes</h4>
+                                        <div class="d-flex align-items-center flex-wrap row-gap-3">
+                                            <div class="me-4">
+                                                <h6 class="fs-14 fw-semibold mb-1">Dreams Technologies Pvt Ltd.,</h6>
+                                                <p>15 Hodges Mews, High Wycombe HP12 3JL, United Kingdom</p>
+                                            </div>
+                                            <span><img src="assets/img/icons/not-paid.png" alt="" width="48" height="48"></span>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <img src="assets/img/invoice-logo.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="row gy-3">
+                                    <div class="col-lg-4">
+                                        <div>
+                                            <h6 class="mb-2 fs-16 fw-semibold">Credit Notes Details Details</h6>
+                                            <div>
+                                                <p class="mb-1">Credit Note Id : <span class="text-dark">9876543</span></p>
+                                                <p class="mb-1">Credit Note Date : <span class="text-dark">25 Jan 2025</span></p>
+                                                <p class="mb-1">Due Date : <span class="text-dark">31 Jan 2025</span></p>
+                                                <span class="badge badge-danger">Due in 8 days</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div>
+                                            <h6 class="mb-2 fs-16 fw-semibold">Billing From</h6>
+                                            <div>
+                                                <h6 class="fs-14 fw-semibold mb-1">Kanakku Invoice Management</h6>
+                                                <p class="mb-1">15 Hodges Mews, HP12 3JL, United Kingdom</p>
+                                                <p class="mb-1">Phone : +1 54664 75945</p>
+                                                <p class="mb-1">Email : info&#64;example.com</p>
+                                                <p class="mb-1">GST : 243E45767889</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div>
+                                            <h6 class="mb-2 fs-16 fw-semibold">Billing To</h6>
+                                            <div class="bg-white rounded p-3">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="me-2">
+                                                        <span><img src="assets/img/icons/timesquare-icon.svg" alt="image" class="img-fluid rounded"></span>
+                                                    </div>
+                                                    <h6 class="fs-14 fw-semibold">Timesquare Tech</h6>
+                                                </div>
+                                                <p class="mb-1">299 Star Trek Drive, Florida, 3240, USA</p>
+                                                <p class="mb-1">Phone : +1 54664 75945</p>
+                                                <p class="mb-1">Email : info&#64;example.com</p>
+                                                <p class="mb-0">GST : 243E45767889</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="mb-3">Product / Service Items</h6>
+                                <div class="table-responsive rounded border-bottom-0 border">
+                                    <table class="table mb-0">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Product/Service</th>
+                                                <th>Quantity</th>
+                                                <th>Unit</th>
+                                                <th>Rate</th>
+                                                <th>Discount</th>
+                                                <th>Tax (%)</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td class="text-dark">T-Shirt</td>
+                                                <td>2</td>
+                                                <td>Pcs</td>
+                                                <td>$200.00</td>
+                                                <td>10%</td>
+                                                <td>$36.00</td>
+                                                <td>$396.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td class="text-dark">Office Chair</td>
+                                                <td>1</td>
+                                                <td>Pcs</td>
+                                                <td>$350.00</td>
+                                                <td>5%</td>
+                                                <td>$33.25</td>
+                                                <td>$365.75</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td class="text-dark">LED Monitor</td>
+                                                <td>1</td>
+                                                <td>Pcs</td>
+                                                <td>$399.00</td>
+                                                <td>2%</td>
+                                                <td>$39.10</td>
+                                                <td>$398.90</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td class="text-dark">Smartphone</td>
+                                                <td>4</td>
+                                                <td>Pcs</td>
+                                                <td>$100.00</td>
+                                                <td>10%</td>
+                                                <td>$36.00</td>
+                                                <td>$396.00</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="border-bottom mb-3">
+                                <div class="row">
+                                    <div class="col-xl-8 col-lg-6">
+                                        <div class="d-flex align-items-center flex-wrap row-gap-3 mb-3">
+                                            <div class="me-3">
+                                                <p class="mb-2">Scan to the pay</p>
+                                                <span><img src="assets/img/icons/qr.png" alt=""></span>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-2">Bank Details</h6>
+                                                <div>
+                                                    <p class="mb-1">Bank Name : <span class="text-dark">ABC Bank</span></p>
+                                                    <p class="mb-1">Account Number : <span class="text-dark">782459739212</span></p>
+                                                    <p class="mb-1">IFSC Code : <span class="text-dark">ABC0001345</span></p>
+                                                    <p class="mb-0">Payment Reference : <span class="text-dark">INV-20250220-001</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6">
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                <h6 class="fs-14 fw-semibold">Amount</h6>
+                                                <h6 class="fs-14 fw-semibold">$1,793.12</h6>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                <h6 class="fs-14 fw-semibold">CGST (9%)</h6>
+                                                <h6 class="fs-14 fw-semibold">$18</h6>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                <h6 class="fs-14 fw-semibold">SGST (9%)</h6>
+                                                <h6 class="fs-14 fw-semibold">$18</h6>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
+                                                <h6 class="fs-14 fw-semibold">Discount</h6>
+                                                <h6 class="fs-14 fw-semibold text-danger">$18</h6>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
+                                                <h6>Total (USD)</h6>
+                                                <h6>$596</h6>
+                                            </div>
+                                            <div>
+                                                <h6 class="fs-14 fw-semibold mb-1">Total In Words</h6>
+                                                <p>Five Hundred &amp; Ninety Six Dollars</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <div class="mb-3">
+                                        <div class="mb-3">
+                                            <h6 class="fs-14 fw-semibold mb-1">Terms and Conditions</h6>
+                                            <p>The Payment must be returned in the same condition.</p>
+                                        </div>
+                                        <div>
+                                            <h6 class="fs-14 fw-semibold mb-1">Notes</h6>
+                                            <p>All charges are final and include applicable taxes, fees, and additional costs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="text-lg-end mb-3">
+                                        <span><img src="assets/img/icons/sign.png" alt=""></span>
+                                        <h6 class="fs-14 fw-semibold mb-1">Ted M. Davis</h6>
+                                        <p>Manager</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-light d-flex align-items-center justify-content-between p-4 rounded card-bg flex-wrap gap-2">
+                                <div>
+                                    <h6 class="fs-14 fw-semibold mb-1">Dreams Technologies Pvt Ltd.,</h6>
+                                    <p>15 Hodges Mews, High Wycombe HP12 3JL, United Kingdom</p>
+                                </div>
+                                <div>
+                                    <img src="assets/img/invoice-logo.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End view notes -->`;
+  }
+});
+
+// angular:jit:style:src/app/features/invantory-sales/credit-notes/add-credit-notes/add-credit-notes.component.scss
+var add_credit_notes_component_default2;
+var init_add_credit_notes_component2 = __esm({
+  "angular:jit:style:src/app/features/invantory-sales/credit-notes/add-credit-notes/add-credit-notes.component.scss"() {
+    add_credit_notes_component_default2 = "/* src/app/features/invantory-sales/credit-notes/add-credit-notes/add-credit-notes.component.scss */\n/*# sourceMappingURL=add-credit-notes.component.css.map */\n";
+  }
+});
+
+// src/app/features/invantory-sales/credit-notes/add-credit-notes/add-credit-notes.component.ts
+var AddCreditNotesComponent;
+var init_add_credit_notes_component3 = __esm({
+  "src/app/features/invantory-sales/credit-notes/add-credit-notes/add-credit-notes.component.ts"() {
+    "use strict";
+    init_tslib_es6();
+    init_add_credit_notes_component();
+    init_add_credit_notes_component2();
+    init_core();
+    init_router();
+    init_core_index();
+    init_select();
+    init_common();
+    init_ngx_bootstrap_datepicker();
+    AddCreditNotesComponent = class AddCreditNotesComponent2 {
+      router;
+      routes = routes;
+      formData = [];
+      trash = false;
+      isTrash() {
+        this.trash = true;
+      }
+      addNewRow() {
+        this.formData.push({});
+      }
+      removeRow(index) {
+        this.formData.splice(index, 1);
+      }
+      trackByIndex(index, item) {
+        return index;
+      }
+      constructor(router) {
+        this.router = router;
+      }
+      redirectPage() {
+        this.router.navigate([routes.creditNotes]);
+      }
+      static ctorParameters = () => [
+        { type: Router }
+      ];
+    };
+    AddCreditNotesComponent = __decorate([
+      Component({
+        selector: "app-add-credit-notes",
+        imports: [MatSelectModule, CommonModule, RouterLink, BsDatepickerModule],
+        template: add_credit_notes_component_default,
+        styles: [add_credit_notes_component_default2]
+      })
+    ], AddCreditNotesComponent);
+  }
+});
+
+// src/app/features/invantory-sales/credit-notes/add-credit-notes/add-credit-notes.component.spec.ts
+var require_add_credit_notes_component_spec = __commonJS({
+  "src/app/features/invantory-sales/credit-notes/add-credit-notes/add-credit-notes.component.spec.ts"(exports) {
+    init_testing();
+    init_add_credit_notes_component3();
+    describe("AddCreditNotesComponent", () => {
+      let component;
+      let fixture;
+      beforeEach(() => __async(null, null, function* () {
+        yield TestBed.configureTestingModule({
+          declarations: [AddCreditNotesComponent]
+        }).compileComponents();
+        fixture = TestBed.createComponent(AddCreditNotesComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      }));
+      it("should create", () => {
+        expect(component).toBeTruthy();
+      });
+    });
+  }
+});
+export default require_add_credit_notes_component_spec();
+//# sourceMappingURL=spec-app-features-invantory-sales-credit-notes-add-credit-notes-add-credit-notes.component.spec.js.map

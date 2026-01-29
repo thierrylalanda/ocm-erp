@@ -1,0 +1,112 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-builder"
+    [class.form-horizontal]="config.layout === 'horizontal'">
+    <div class="row">
+        <ng-container *ngFor="let field of config.fields">
+            <!-- Field container -->
+            <div *ngIf="isFieldVisible(field)" [ngClass]="getFieldWidthClass(field)" class="mb-3">
+
+                <!-- Label -->
+                <label *ngIf="config.showLabels !== false && field.type !== 'hidden'" [for]="field.name"
+                    class="form-label" [class.required]="field.validation?.required">
+                    {{ field.label | translate }}
+                    <span *ngIf="field.validation?.required" class="text-danger">*</span>
+                </label>
+
+                <!-- Text Input -->
+                <input
+                    *ngIf="field.type === 'text' || field.type === 'email' || field.type === 'password' || field.type === 'tel' || field.type === 'url'"
+                    [type]="field.type" [id]="field.name" [formControlName]="field.name"
+                    [placeholder]="field.placeholder ? (field.placeholder | translate) : ''" [readonly]="field.readonly"
+                    class="form-control" [class.is-invalid]="hasError(field.name)" />
+
+                <!-- Number Input -->
+                <input *ngIf="field.type === 'number'" type="number" [id]="field.name" [formControlName]="field.name"
+                    [placeholder]="field.placeholder ? (field.placeholder | translate) : ''" [readonly]="field.readonly"
+                    [min]="field.validation?.min ?? null" [max]="field.validation?.max ?? null" class="form-control"
+                    [class.is-invalid]="hasError(field.name)" />
+
+                <!-- Textarea -->
+                <textarea *ngIf="field.type === 'textarea'" [id]="field.name" [formControlName]="field.name"
+                    [placeholder]="field.placeholder ? (field.placeholder | translate) : ''" [readonly]="field.readonly"
+                    rows="4" class="form-control" [class.is-invalid]="hasError(field.name)">
+        </textarea>
+
+                <!-- Select -->
+                <select *ngIf="field.type === 'select'" [id]="field.name" [formControlName]="field.name"
+                    class="form-select" [class.is-invalid]="hasError(field.name)">
+                    <option value="" disabled selected>
+                        {{ field.placeholder ? (field.placeholder | translate) : ('form.selectOption' | translate) }}
+                    </option>
+                    <option *ngFor="let option of field.options" [value]="option.value"
+                        [disabled]="option.disabled || false">
+                        {{ option.label | translate }}
+                    </option>
+                </select>
+
+                <!-- Radio Buttons -->
+                <div *ngIf="field.type === 'radio'" class="form-radio-group">
+                    <div *ngFor="let option of field.options" class="form-check"
+                        [class.form-check-inline]="config.layout === 'horizontal'">
+                        <input type="radio" [id]="field.name + '_' + option.value" [formControlName]="field.name"
+                            [value]="option.value" [disabled]="option.disabled || false" class="form-check-input" />
+                        <label [for]="field.name + '_' + option.value" class="form-check-label">
+                            {{ option.label | translate }}
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkbox -->
+                <div *ngIf="field.type === 'checkbox'" class="form-check">
+                    <input type="checkbox" [id]="field.name" [formControlName]="field.name" class="form-check-input"
+                        [class.is-invalid]="hasError(field.name)" />
+                    <label [for]="field.name" class="form-check-label">
+                        {{ field.label | translate }}
+                    </label>
+                </div>
+
+                <!-- Date Input -->
+                <input *ngIf="field.type === 'date'" type="date" [id]="field.name" [formControlName]="field.name"
+                    [readonly]="field.readonly" class="form-control" [class.is-invalid]="hasError(field.name)" />
+
+                <!-- Time Input -->
+                <input *ngIf="field.type === 'time'" type="time" [id]="field.name" [formControlName]="field.name"
+                    [readonly]="field.readonly" class="form-control" [class.is-invalid]="hasError(field.name)" />
+
+                <!-- Datetime Input -->
+                <input *ngIf="field.type === 'datetime'" type="datetime-local" [id]="field.name"
+                    [formControlName]="field.name" [readonly]="field.readonly" class="form-control"
+                    [class.is-invalid]="hasError(field.name)" />
+
+                <!-- File Input -->
+                <input *ngIf="field.type === 'file'" type="file" [id]="field.name" class="form-control"
+                    [class.is-invalid]="hasError(field.name)" />
+
+                <!-- Hidden Input -->
+                <input *ngIf="field.type === 'hidden'" type="hidden" [id]="field.name" [formControlName]="field.name" />
+
+                <!-- Help Text -->
+                <small *ngIf="field.helpText && !hasError(field.name)" class="form-text text-muted">
+                    {{ field.helpText | translate }}
+                </small>
+
+                <!-- Error Message -->
+                <div *ngIf="hasError(field.name)" class="invalid-feedback d-block">
+                    {{ getErrorMessage(field) | translate }}
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions mt-4" *ngIf="config.submitButton || config.cancelButton">
+        <button *ngIf="config.submitButton" type="submit" [class]="config.submitButton.class || 'btn btn-primary'"
+            [disabled]="readonly">
+            {{ config.submitButton.label | translate }}
+        </button>
+
+        <button *ngIf="config.cancelButton" type="button"
+            [class]="config.cancelButton.class || 'btn btn-secondary ms-2'" (click)="onCancel()">
+            {{ config.cancelButton.label | translate }}
+        </button>
+    </div>
+</form>

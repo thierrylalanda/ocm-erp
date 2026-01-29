@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/common/side-menus/side-menu-three/side-menu-three.component.spec.ts"],
+  "sourcesContent": ["import { ComponentFixture, TestBed } from '@angular/core/testing';\n\nimport { SideMenuThreeComponent } from './side-menu-three.component';\n\ndescribe('SideMenuThreeComponent', () => {\n  let component: SideMenuThreeComponent;\n  let fixture: ComponentFixture<SideMenuThreeComponent>;\n\n  beforeEach(async () => {\n    await TestBed.configureTestingModule({\n      declarations: [ SideMenuThreeComponent ]\n    })\n    .compileComponents();\n\n    fixture = TestBed.createComponent(SideMenuThreeComponent);\n    component = fixture.componentInstance;\n    fixture.detectChanges();\n  });\n\n  it('should create', () => {\n    expect(component).toBeTruthy();\n  });\n});\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;;;AAEA;AAEA,aAAS,0BAA0B,MAAK;AACtC,UAAI;AACJ,UAAI;AAEJ,iBAAW,MAAW;AACpB,cAAM,QAAQ,uBAAuB;UACnC,cAAc,CAAE,sBAAsB;SACvC,EACA,kBAAiB;AAElB,kBAAU,QAAQ,gBAAgB,sBAAsB;AACxD,oBAAY,QAAQ;AACpB,gBAAQ,cAAa;MACvB,EAAC;AAED,SAAG,iBAAiB,MAAK;AACvB,eAAO,SAAS,EAAE,WAAU;MAC9B,CAAC;IACH,CAAC;;;",
+  "names": []
+}

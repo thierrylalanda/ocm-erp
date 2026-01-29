@@ -20,7 +20,7 @@ import { GlobalConfigurationComponent } from '../../global-configuration/global-
   selector: 'app-departement-settings',
   templateUrl: './departement-settings.component.html',
   styleUrls: ['./departement-settings.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, TranslatePipe, GlobalConfigurationComponent],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, TranslatePipe],
   standalone: true,
 
 })

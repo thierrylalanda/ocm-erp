@@ -1,0 +1,28 @@
+.chart-container {
+  width: 100%;
+  background-color: var(--bs-white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .chart-header {
+    margin-bottom: 1.5rem;
+
+    .chart-title {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--bs-dark);
+    }
+
+    .chart-subtitle {
+      margin: 0.25rem 0 0 0;
+      font-size: 0.875rem;
+      color: var(--bs-secondary);
+    }
+  }
+
+  .chart-element {
+    width: 100%;
+  }
+}

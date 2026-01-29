@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/ui-interface/advanced-ui/drap-drop/drap-drop.component.scss"],
+  "sourcesContent": [".example-custom-placeholder {\n  background: #ccc;\n  border: dotted 3px #999;\n  min-height: 60px;\n  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);\n}\n.list-group-item {\n  background-color: white;\n  border: 1px solid #c8bebe;\n}\n"],
+  "mappings": ";AAAA,CAAA;AACE,cAAA;AACA,UAAA,OAAA,IAAA;AACA,cAAA;AACA,cAAA,UAAA,MAAA,aAAA,CAAA,EAAA,CAAA,EAAA,GAAA,EAAA;;AAEF,CAAA;AACE,oBAAA;AACA,UAAA,IAAA,MAAA;;",
+  "names": []
+}

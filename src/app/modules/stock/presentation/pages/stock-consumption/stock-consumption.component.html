@@ -1,0 +1,39 @@
+<div class="stock-consumption-page">
+    <!-- Header -->
+    <div class="page-header mb-4">
+        <div>
+            <h2 class="h3 mb-1">{{ 'stock.consumption.title' | translate }}</h2>
+            <p class="text-muted mb-0">{{ 'stock.consumption.subtitle' | translate }}</p>
+        </div>
+        <div class="header-actions">
+            <button type="button" class="btn btn-danger" (click)="openCreateModal()">
+                <i class="isax isax-minus-circle me-2"></i>
+                {{ 'stock.consumption.create' | translate }}
+            </button>
+        </div>
+    </div>
+
+    <!-- DataTable -->
+    <div class="card">
+        <div class="card-body">
+            <app-data-table [data]="movements" [columns]="tableColumns" [config]="tableConfig" [loading]="loading"
+                (export)="onExport()">
+                <!-- Custom template for reason column -->
+                <ng-template #customCell let-column="column" let-row="row">
+                    <span *ngIf="column.key === 'consumptionReason'" class="badge"
+                        [ngClass]="getReasonClass(row.consumptionReason)">
+                        {{ getReasonLabel(row.consumptionReason) | translate }}
+                    </span>
+                </ng-template>
+            </app-data-table>
+        </div>
+    </div>
+
+    <!-- Modal Consommation -->
+    <app-modal [isOpen]="showModal" [config]="modalConfig" (close)="showModal = false">
+        <div modal-body>
+            <app-form-builder [config]="formConfig" (formSubmit)="onFormSubmit($event)" (formCancel)="onFormCancel()">
+            </app-form-builder>
+        </div>
+    </app-modal>
+</div>

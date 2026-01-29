@@ -1,0 +1,57 @@
+.stock-reports-page {
+    padding: 1.5rem;
+
+    .page-header {
+        h2 {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+    }
+
+    .report-card {
+        border: none;
+        box-shadow: var(--card-shadow);
+        border-radius: var(--card-radius);
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            
+            .report-icon {
+                transform: scale(1.1);
+            }
+        }
+
+        .report-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: transform 0.2s;
+        }
+
+        .card-title {
+            color: var(--text-primary);
+        }
+
+        .text-muted {
+            color: var(--text-secondary) !important;
+        }
+    }
+}
+
+// Utility classes for background colors (if not already global)
+.bg-light-primary { background-color: rgba(var(--primary-rgb), 0.1); }
+.bg-light-info { background-color: rgba(var(--info-rgb), 0.1); }
+.bg-light-warning { background-color: rgba(var(--warning-rgb), 0.1); }
+.bg-light-danger { background-color: rgba(var(--danger-rgb), 0.1); }
+
+.text-primary { color: var(--primary-color) !important; }
+.text-info { color: var(--info-color) !important; }
+.text-warning { color: var(--warning-color) !important; }
+.text-danger { color: var(--danger-color) !important; }

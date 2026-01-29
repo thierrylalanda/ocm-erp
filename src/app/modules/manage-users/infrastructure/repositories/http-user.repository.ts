@@ -7,16 +7,17 @@ import { UserRepository, BaseUserRepository, UserRepositoryQueryOptions } from '
 import { UserMapper } from '../mappers/user.mapper';
 import { PaginationOptions } from '../../domain/types/paged-response.type';
 import { environment } from '../../../../../environments/environment';
+import { ApplicationContext, APPLICATION_CONTEXT } from '../../../_shared';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpUserRepository extends BaseUserRepository implements UserRepository {
-  private readonly baseUrl = environment.api+'hierarchie/utilisateurs';
+  private readonly baseUrl = environment.api + 'hierarchie/utilisateurs';
 
   constructor(
     private http: HttpClient,
-    @Inject('LOCAL_STORAGE') private localStorage: Storage
+    @Inject(APPLICATION_CONTEXT) private context: ApplicationContext
   ) {
     super();
   }
@@ -52,7 +53,7 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
       user.permissions,
       user.roles
     );
-    
+
     return {
       nomPrenom: userEntity.nomPrenom,
       telephone: userEntity.telephone,
@@ -97,7 +98,7 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
       user.permissions,
       user.roles
     );
-    
+
     return {
       nomPrenom: userEntity.nomPrenom,
       telephone: userEntity.telephone,
@@ -130,7 +131,7 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
     try {
       const params = new HttpParams().set('email', email);
       const response = await this.http.get<any>(this.baseUrl, { params }).toPromise();
-      
+
       if (response.content && response.content.length > 0) {
         const userResponse = UserMapper.fromApiResponse(response.content[0]);
         return UserMapper.fromResponseToEntity(userResponse);
@@ -146,7 +147,7 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
     try {
       const params = new HttpParams().set('userName', username);
       const response = await this.http.get<any>(this.baseUrl, { params }).toPromise();
-      
+
       if (response.content && response.content.length > 0) {
         const userResponse = UserMapper.fromApiResponse(response.content[0]);
         return UserMapper.fromResponseToEntity(userResponse);
@@ -161,23 +162,23 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
   async findAllPaginated(options?: PaginationOptions): Promise<UsersPagedResponse> {
     try {
       let params = new HttpParams();
-      
+
       if (options?.page !== undefined) {
         params = params.set('page', options.page.toString());
       }
-      
+
       if (options?.size !== undefined) {
         params = params.set('size', options.size.toString());
       }
-      
+
       if (options?.sortBy) {
         params = params.set('sortBy', options.sortBy);
       }
-      
+
       if (options?.sortOrder) {
         params = params.set('sortOrder', options.sortOrder);
       }
-      
+
       if (options?.search) {
         params = params.set('search', options.search);
       }
@@ -207,7 +208,7 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
       // Convertir User en UserEntity
       const userEntity = this.convertToUserEntity(user);
       const createData = UserMapper.toApiCreateObject(userEntity);
-      
+
       // S'assurer que societeId est présent (depuis localStorage si non fourni)
       if (!createData.societeId) {
         createData.societeId = this.getSocieteIdFromLocalStorage();
@@ -293,11 +294,11 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
   async searchUsers(query: string, options?: PaginationOptions): Promise<UsersPagedResponse> {
     try {
       let params = new HttpParams().set('search', query);
-      
+
       if (options?.page !== undefined) {
         params = params.set('page', options.page.toString());
       }
-      
+
       if (options?.size !== undefined) {
         params = params.set('size', options.size.toString());
       }
@@ -324,11 +325,11 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
   async findByStatus(status: string, options?: PaginationOptions): Promise<UsersPagedResponse> {
     try {
       let params = new HttpParams().set('statut', status);
-      
+
       if (options?.page !== undefined) {
         params = params.set('page', options.page.toString());
       }
-      
+
       if (options?.size !== undefined) {
         params = params.set('size', options.size.toString());
       }
@@ -355,11 +356,11 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
   async findBySite(siteId: number, options?: PaginationOptions): Promise<UsersPagedResponse> {
     try {
       let params = new HttpParams();
-      
+
       if (options?.page !== undefined) {
         params = params.set('page', options.page.toString());
       }
-      
+
       if (options?.size !== undefined) {
         params = params.set('size', options.size.toString());
       }
@@ -382,11 +383,11 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
   async findByDepartment(departmentId: number, options?: PaginationOptions): Promise<UsersPagedResponse> {
     try {
       let params = new HttpParams();
-      
+
       if (options?.page !== undefined) {
         params = params.set('page', options.page.toString());
       }
-      
+
       if (options?.size !== undefined) {
         params = params.set('size', options.size.toString());
       }
@@ -409,11 +410,11 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
   async findBySociete(societeId: number, options?: PaginationOptions): Promise<UsersPagedResponse> {
     try {
       let params = new HttpParams();
-      
+
       if (options?.page !== undefined) {
         params = params.set('page', options.page.toString());
       }
-      
+
       if (options?.size !== undefined) {
         params = params.set('size', options.size.toString());
       }
@@ -485,17 +486,16 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
 
   private getSocieteIdFromLocalStorage(): number {
     try {
-      const societeId = this.localStorage.getItem('societeId');
-      return societeId ? parseInt(societeId, 10) : 0;
+      return this.context.getSocieteId();
     } catch (error) {
-      console.error('Erreur récupération societeId depuis localStorage:', error);
+      console.error('Erreur récupération societeId depuis ApplicationContext:', error);
       return 0;
     }
   }
 
   private getAuthHeaders(): { [header: string]: string } {
-    // Récupérer le token d'authentification depuis localStorage
-    const token = this.localStorage.getItem('authToken');
+    // Récupérer le token d'authentification depuis ApplicationContext
+    const token = this.context.getToken();
     return token ? { Authorization: `Bearer ${token}` } : {};
   }
 
@@ -506,7 +506,7 @@ export class HttpUserRepository extends BaseUserRepository implements UserReposi
     if (user instanceof UserEntity) {
       return user;
     }
-    
+
     // Créer une nouvelle UserEntity à partir des propriétés de l'objet User
     return new UserEntity(
       user.id,

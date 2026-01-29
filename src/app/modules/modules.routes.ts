@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { SettingComponent } from '../features/setting/setting.component';
 import { LoggedInGuard } from '../core/guards/loggedIn/logged-in.guard';
+import { PermissionGuard } from '../core/guards/permission/permission.guard';
 
 export const MODULES_ROUTES: Routes = [
   {
@@ -8,7 +9,7 @@ export const MODULES_ROUTES: Routes = [
     canActivate: [LoggedInGuard],
     canActivateChild: [LoggedInGuard],
     children: [
-      {        
+      {
         path: 'gestion-societes',
         loadComponent: () => import('./configuration/presentation/pages/company-demo/company-demo.component').then(m => m.CompanyDemoComponent)
       },
@@ -26,6 +27,15 @@ export const MODULES_ROUTES: Routes = [
           { path: 'permission/:roleId', loadComponent: () => import('./manage-users/presentation/pages/permission/permission.component').then(m => m.PermissionComponent) },
           { path: 'delete-account-request', loadComponent: () => import('./manage-users/presentation/pages/delete-account-request/delete-account-request.component').then(m => m.DeleteAccountRequestComponent) }
         ]
+      },
+      {
+        path: 'general-configuration',
+        canActivate: [PermissionGuard],
+        data: {
+          permissions: ['SECURITY:GLOBAL:MANAGE'],
+          mode: 'OR' // au moins une permission suffit
+        },
+        loadComponent: () => import('./setting/presentation/pages/global-configuration/global-configuration.component').then(m => m.GlobalConfigurationComponent)
       },
       //Settings
       {
@@ -107,7 +117,14 @@ export const MODULES_ROUTES: Routes = [
         ],
       },
       //Layout
-      { path: 'notifications', loadComponent: () => import('./notifications/notifications.component').then(m => m.NotificationsComponent) }
+      {
+        path: 'notifications',
+        loadChildren: () => import('./notifications/notifications.route').then(m => m.NOTIFICATIONS_ROUTES)
+      },
+      {
+        path: 'stock',
+        loadChildren: () => import('./stock/stock.routes').then(m => m.StockRoutes)
+      }
     ],
   }
 ];

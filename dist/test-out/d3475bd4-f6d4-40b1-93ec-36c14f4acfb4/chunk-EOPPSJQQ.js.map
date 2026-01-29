@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/core/services/spinner/spinner.service.ts"],
+  "sourcesContent": ["import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class SpinnerService {\n  constructor(private http: HttpClient) {}\n\n  private _loading = new BehaviorSubject<boolean>(false);\n  public readonly loading$ = this._loading.asObservable();\n\n  show() {\n    this._loading.next(true);\n  }\n\n  hide() {\n    this._loading.next(false);\n  }\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;IAOa;;;;;AAPb;AACA;AACA;AAKO,IAAM,iBAAN,MAAMA,gBAAc;MACL;MAApB,YAAoB,MAAgB;AAAhB,aAAA,OAAA;MAAmB;MAE/B,WAAW,IAAI,gBAAyB,KAAK;MACrC,WAAW,KAAK,SAAS,aAAY;MAErD,OAAI;AACF,aAAK,SAAS,KAAK,IAAI;MACzB;MAEA,OAAI;AACF,aAAK,SAAS,KAAK,KAAK;MAC1B;;;;;AAZW,qBAAc,WAAA;MAH1B,WAAW;QACV,YAAY;OACb;OACY,cAAc;;;",
+  "names": ["SpinnerService"]
+}

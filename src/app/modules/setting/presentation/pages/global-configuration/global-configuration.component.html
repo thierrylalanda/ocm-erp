@@ -7,22 +7,24 @@
 
 <div class="card">
     <div class="card-body">
-        <!-- Bootstrap Nav Tabs -->
-        <ul class="nav nav-tabs custom-tabs" role="tablist">
-            <li class="nav-item" *ngFor="let category of categories; let i = index" role="presentation">
-                <button class="nav-link" [class.active]="activeTab === category" (click)="setActiveTab(category)"
-                    type="button" role="tab">
-                    {{ getCategoryLabel(category) }}
-                </button>
-            </li>
-        </ul>
+        <div class="d-flex align-items-start">
+            <!-- Bootstrap Nav Tabs (Vertical) -->
+            <ul class="nav flex-column nav-pills custom-tabs me-3" role="tablist">
+                <li class="nav-item" *ngFor="let category of categories; let i = index" role="presentation">
+                    <button class="nav-link w-100 text-start" [class.active]="activeTab === category"
+                        (click)="setActiveTab(category)" type="button" role="tab">
+                        {{ getCategoryLabel(category) }}
+                    </button>
+                </li>
+            </ul>
 
-        <!-- Tab Content -->
-        <div class="tab-content">
-            <div *ngFor="let category of categories" class="tab-pane fade" [class.show]="activeTab === category"
-                [class.active]="activeTab === category" role="tabpanel">
-                <div class="p-3">
-                    <app-dynamic-config-form [category]="category"></app-dynamic-config-form>
+            <!-- Tab Content -->
+            <div class="tab-content flex-grow-1">
+                <div *ngFor="let category of categories" class="tab-pane fade" [class.show]="activeTab === category"
+                    [class.active]="activeTab === category" role="tabpanel">
+                    <div class="p-3">
+                        <app-dynamic-config-form [category]="category"></app-dynamic-config-form>
+                    </div>
                 </div>
             </div>
         </div>
