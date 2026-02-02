@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 
-const defaultRoute = '/app/';
+export const defaultRoute = '/app/';
 export const routes = {
 
 

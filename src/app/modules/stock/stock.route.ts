@@ -4,15 +4,13 @@ import { routes } from "../../core/helpers/routes/routes";
  * Configuration des routes du module Stock pour le sidebar
  */
 export const StockRoute = [
-
-
     {
         tittle: "Stock",
         active: false,
         icon: "airplay",
         showAsTab: false,
         separateRoute: false,
-        base: "app/stock",
+        //base: "app/stock",
         menu: [
             {
                 menuValue: "Dashboard",
@@ -128,9 +126,9 @@ export const StockRoute = [
                 subMenus: []
             },
             {
-                menuValue: "Settings",
+                menuValue: "Setting",
                 route: routes.stockSettings,
-                base: "settingss",
+                base: "settings",
                 icon: "settings",
                 permissions: [],
                 hasSubRoute: false,
@@ -138,4 +136,4 @@ export const StockRoute = [
                 subMenus: [],
             }
         ]
-    }];
+    }]

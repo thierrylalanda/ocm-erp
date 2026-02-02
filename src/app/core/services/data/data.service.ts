@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { routes } from '../../core.index';
+import { defaultRoute, routes } from '../../core.index';
 import { SideBar, SideBarData, SideBarMenu, apiResultFormat, breadCrumbData } from '../../models/models';
 import { Base } from 'primeng/base';
 import { SuperAdminRoute } from '../../../features/super-admin/super-admin.route';
@@ -10,6 +10,7 @@ import { ConfigurationRoute } from '../../../modules/configuration/configuration
 import { ManageUsersRoute } from '../../../modules/manage-users/manage-users.route';
 import { SettingRoute } from '../../../modules/setting/setting.route';
 import { StockRoute } from '../../../modules/stock/stock.route';
+import { stockBreadCrumbs } from '../../../modules/stock/stock.breadcrumbs';
 
 @Injectable({
   providedIn: 'root',
@@ -942,8 +943,8 @@ export class DataService {
         ...SuperAdminRoute,
         ...ConfigurationRoute,
         ...ManageUsersRoute,
-        //...SettingRoute,
-        ...StockRoute,
+        ...SettingRoute,
+        //...StockRoute,
         {
           menuValue: 'Super Admin',
           hasSubRoute: true,
@@ -2700,26 +2701,13 @@ export class DataService {
       data2: 'All Blogs',
       page: 'all-blogs'
     },
-    {
-      hasSubData: true,
-      data: 'Blogs',
-      route: routes.allBlogs,
-      data2: 'Add Blogs',
-      page: 'add-blogs'
-    },
+    ...stockBreadCrumbs,
     {
       hasSubData: true,
       data: 'Blogs',
       route: routes.allBlogs,
       data2: 'Edit Blogs',
       page: 'edit-blogs'
-    },
-    {
-      hasSubData: true,
-      data: 'Blogs',
-      route: routes.allBlogs,
-      data2: 'Blog Details',
-      page: 'blog-details'
     },
     {
       hasSubData: false,
