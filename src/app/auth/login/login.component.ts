@@ -45,7 +45,6 @@ export class LoginComponent {
       next: (response) => {
         this.isLoading = false;
         // La redirection est gérée par le AuthService dans la méthode login()
-        console.log('Login successful', response);
       },
       error: (error) => {
         this.isLoading = false;
@@ -57,6 +56,6 @@ export class LoginComponent {
 
   // Méthode pour la compatibilité avec l'ancien code
   redirectPage(): void {
-    this.router.navigate([routes.index]);
+    this.router.navigate([routes.home]);
   }
 }

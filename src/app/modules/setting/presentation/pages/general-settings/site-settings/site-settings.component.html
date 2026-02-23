@@ -14,271 +14,262 @@
     </div>
   </div>
 
-    <!-- Messages -->
-    <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
-      <i class="isax isax-tick-circle me-2"></i>
-      {{ successMessage }}
-      <button type="button" class="btn-close" (click)="successMessage = ''"></button>
-    </div>
+  <!-- Messages -->
+  <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="isax isax-tick-circle me-2"></i>
+    {{ successMessage }}
+    <button type="button" class="btn-close" (click)="successMessage = ''"></button>
+  </div>
 
-    <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
-      <i class="isax isax-close-circle me-2"></i>
-      {{ errorMessage }}
-      <button type="button" class="btn-close" (click)="errorMessage = ''"></button>
-    </div>
+  <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <i class="isax isax-close-circle me-2"></i>
+    {{ errorMessage }}
+    <button type="button" class="btn-close" (click)="errorMessage = ''"></button>
+  </div>
 
-    <!-- Statistiques -->
-    <div class="row mb-4">
-      <div class="col-xl-3 col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center justify-content-between">
-                <div>
-                  <span class="d-block mb-1">{{ 'siteSettings.totalSites' | translate }}</span>
-                  <h4 class="mb-0">{{ statistics.total }}</h4>
-                </div>
-              <div class="avatar avatar-lg bg-primary-light rounded-circle">
-                <i class="isax isax-building-4 text-primary"></i>
-              </div>
+  <!-- Statistiques -->
+  <div class="row mb-4">
+    <div class="col-xl-3 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <span class="d-block mb-1">{{ 'siteSettings.totalSites' | translate }}</span>
+              <h4 class="mb-0">{{ statistics.total }}</h4>
             </div>
-          </div>
-        </div>
-      </div>
- 
-      <div class="col-xl-3 col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center justify-content-between">
-                <div>
-                  <span class="d-block mb-1">{{ 'siteSettings.activeSites' | translate }}</span>
-                  <h4 class="mb-0">{{ statistics.actifs }}</h4>
-                </div>
-              <div class="avatar avatar-lg bg-success-light rounded-circle">
-                <i class="isax isax-tick-circle text-success"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xl-3 col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center justify-content-between">
-                <div>
-                  <span class="d-block mb-1">{{ 'siteSettings.inactiveSites' | translate }}</span>
-                  <h4 class="mb-0">{{ statistics.inactifs }}</h4>
-                </div>
-              <div class="avatar avatar-lg bg-danger-light rounded-circle">
-                <i class="isax isax-close-circle text-danger"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xl-3 col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center justify-content-between">
-                <div>
-                  <span class="d-block mb-1">{{ 'siteSettings.types' | translate }}</span>
-                  <h4 class="mb-0">{{ Object.keys(statistics.parType).length }}</h4>
-                </div>
-              <div class="avatar avatar-lg bg-info-light rounded-circle">
-                <i class="isax isax-category text-info"></i>
-              </div>
+            <div class="avatar avatar-lg bg-primary-light rounded-circle">
+              <i class="isax isax-building-4 text-primary"></i>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Filtres et Recherche -->
-    <div class="card mb-4">
-      <div class="card-body">
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label class="form-label">{{ 'common.search' | translate }}</label>
-            <input 
-              type="text" 
-              class="form-control" 
-              placeholder="{{ 'siteSettings.search' | translate }}"
-              [(ngModel)]="searchTerm"
-              (input)="onSearch($any($event.target).value)"
-            >
-          </div>
-
-          <div class="col-md-3">
-            <label class="form-label">{{ 'siteSettings.type' | translate }}</label>
-            <select class="form-select" [(ngModel)]="filterType" (change)="onFilterChange()">
-              <option value="">{{ 'siteSettings.allTypes' | translate }}</option>
-              <option *ngFor="let type of siteTypes" [value]="type.value">
-                {{ 'siteSettings.siteTypes.' + type.value | translate }}
-              </option>
-            </select>
-          </div>
-
-          <div class="col-md-3">
-            <label class="form-label">{{ 'siteSettings.status' | translate }}</label>
-            <select class="form-select" [(ngModel)]="filterStatus" (change)="onFilterChange()">
-              <option value="">{{ 'siteSettings.allStatus' | translate }}</option>
-              <option value="active">{{ 'siteSettings.active' | translate }}</option>
-              <option value="inactive">{{ 'siteSettings.inactive' | translate }}</option>
-            </select>
-          </div>
-
-          <div class="col-md-2">
-            <label class="form-label">{{ 'siteSettings.country' | translate }}</label>
-            <select class="form-select" [(ngModel)]="filterPays" (change)="onFilterChange()">
-              <option value="">{{ 'siteSettings.allCountries' | translate }}</option>
-              <option *ngFor="let country of countries" [value]="country.code">
-                {{ country.name }}
-              </option>
-            </select>
+    <div class="col-xl-3 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <span class="d-block mb-1">{{ 'siteSettings.activeSites' | translate }}</span>
+              <h4 class="mb-0">{{ statistics.actifs }}</h4>
+            </div>
+            <div class="avatar avatar-lg bg-success-light rounded-circle">
+              <i class="isax isax-tick-circle text-success"></i>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Table des sites -->
-    <div class="card">
-      <div class="card-body">
-        <!-- Loader -->
-        <div *ngIf="isLoading" class="text-center py-5">
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Chargement...</span>
+    <div class="col-xl-3 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <span class="d-block mb-1">{{ 'siteSettings.inactiveSites' | translate }}</span>
+              <h4 class="mb-0">{{ statistics.inactifs }}</h4>
+            </div>
+            <div class="avatar avatar-lg bg-danger-light rounded-circle">
+              <i class="isax isax-close-circle text-danger"></i>
+            </div>
           </div>
-          <p class="mt-2">{{ 'siteSettings.loading' | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <span class="d-block mb-1">{{ 'siteSettings.types' | translate }}</span>
+              <h4 class="mb-0">{{ Object.keys(statistics.parType).length }}</h4>
+            </div>
+            <div class="avatar avatar-lg bg-info-light rounded-circle">
+              <i class="isax isax-category text-info"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtres et Recherche -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">{{ 'common.search' | translate }}</label>
+          <input type="text" class="form-control" placeholder="{{ 'siteSettings.search' | translate }}"
+            [(ngModel)]="searchTerm" (input)="onSearch($any($event.target).value)">
         </div>
 
-        <!-- Table -->
-        <div *ngIf="!isLoading" class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>{{ 'siteSettings.code' | translate }}</th>
-                <th>{{ 'siteSettings.name' | translate }}</th>
-                <th>{{ 'siteSettings.type' | translate }}</th>
-                <th>{{ 'siteSettings.city' | translate }}</th>
-                <th>{{ 'siteSettings.country' | translate }}</th>
-                <th>{{ 'siteSettings.manager' | translate }}</th>
-                <th>{{ 'siteSettings.status' | translate }}</th>
-                <th>{{ 'siteSettings.creationDate' | translate }}</th>
-                <th class="text-end">{{ 'siteSettings.actions' | translate }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngIf="paginatedSites.length === 0">
-                <td colspan="9" class="text-center py-4">
-                  <i class="isax isax-search-normal-1 fs-1 text-muted"></i>
-                  <p class="mt-2 mb-0">{{ 'siteSettings.noSites' | translate }}</p>
-                </td>
-              </tr>
-              <tr *ngFor="let site of paginatedSites">
-                <td><strong>{{ site.code }}</strong></td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-sm bg-primary-light me-2">
-                      <i class="isax isax-building-4 text-primary"></i>
-                    </div>
-                    <div>
-                      <div class="fw-medium">{{ site.nom }}</div>
-                      <small class="text-muted" *ngIf="site.description">
-                        {{ site.description | slice:0:50 }}{{ site.description.length > 50 ? '...' : '' }}
-                      </small>
-                    </div>
+        <div class="col-md-3">
+          <label class="form-label">{{ 'siteSettings.type' | translate }}</label>
+          <select class="form-select" [(ngModel)]="filterType" (change)="onFilterChange()">
+            <option value="">{{ 'siteSettings.allTypes' | translate }}</option>
+            <option *ngFor="let type of siteTypes" [value]="type.value">
+              {{ 'siteSettings.siteTypes.' + type.value | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label">{{ 'siteSettings.status' | translate }}</label>
+          <select class="form-select" [(ngModel)]="filterStatus" (change)="onFilterChange()">
+            <option value="">{{ 'siteSettings.allStatus' | translate }}</option>
+            <option value="active">{{ 'siteSettings.active' | translate }}</option>
+            <option value="inactive">{{ 'siteSettings.inactive' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <label class="form-label">{{ 'siteSettings.country' | translate }}</label>
+          <select class="form-select" [(ngModel)]="filterPays" (change)="onFilterChange()">
+            <option value="">{{ 'siteSettings.allCountries' | translate }}</option>
+            <option *ngFor="let country of countries" [value]="country.code">
+              {{ country.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table des sites -->
+  <div class="card">
+    <div class="card-body">
+      <!-- Loader -->
+      <div *ngIf="isLoading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Chargement...</span>
+        </div>
+        <p class="mt-2">{{ 'siteSettings.loading' | translate }}</p>
+      </div>
+
+      <!-- Table -->
+      <div *ngIf="!isLoading" class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>{{ 'siteSettings.code' | translate }}</th>
+              <th>{{ 'siteSettings.name' | translate }}</th>
+              <th>{{ 'siteSettings.type' | translate }}</th>
+              <th>{{ 'siteSettings.city' | translate }}</th>
+              <th>{{ 'siteSettings.country' | translate }}</th>
+              <th>{{ 'siteSettings.manager' | translate }}</th>
+              <th>{{ 'siteSettings.status' | translate }}</th>
+              <th>{{ 'siteSettings.creationDate' | translate }}</th>
+              <th class="text-end">{{ 'siteSettings.actions' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="paginatedSites.length === 0">
+              <td colspan="9" class="text-center py-4">
+                <i class="isax isax-search-normal-1 fs-1 text-muted"></i>
+                <p class="mt-2 mb-0">{{ 'siteSettings.noSites' | translate }}</p>
+              </td>
+            </tr>
+            <tr *ngFor="let site of paginatedSites">
+              <td><strong>{{ site.code }}</strong></td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="avatar avatar-sm bg-primary-light me-2">
+                    <i class="isax isax-building-4 text-primary"></i>
                   </div>
-                </td>
-                <td>
-                  <span class="badge bg-info-light text-info">
-                    {{ 'siteSettings.siteTypes.' + site.type | translate }}
-                  </span>
-                </td>
-                <td>{{ site.ville }}</td>
-                <td>
-                  <span class="badge bg-secondary-light text-secondary">
-                    {{ getCountryName(site.pays) }}
-                  </span>
-                </td>
-                <td>
-                  <span *ngIf="site.responsableNom" class="text-truncate d-inline-block" style="max-width: 150px;">
-                    {{ site.responsableNom }}
-                  </span>
-                  <span *ngIf="!site.responsableNom" class="text-muted">-</span>
-                </td>
-                <td>
-                  <div class="form-check form-switch">
-                    <input 
-                      class="form-check-input" 
-                      type="checkbox" 
-                      [checked]="site.actif"
-                      (change)="toggleSiteStatus(site)"
-                    >
+                  <div>
+                    <div class="fw-medium">{{ site.nom }}</div>
+                    <small class="text-muted" *ngIf="site.description">
+                      {{ site.description | slice:0:50 }}{{ site.description.length > 50 ? '...' : '' }}
+                    </small>
                   </div>
-                </td>
-                <td>{{ formatDate(site.dateCreation) }}</td>
-                <td class="text-end">
-                  <div class="dropdown">
-                    <button 
-                      class="btn btn-sm btn-outline-secondary dropdown-toggle" 
-                      type="button" 
-                      data-bs-toggle="dropdown"
-                    >
-                      <i class="isax isax-more"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" (click)="openEditModal(site)">
-                          <i class="isax isax-edit me-2"></i>
-                          {{ 'siteSettings.edit' | translate }}
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item text-danger" (click)="deleteSite(site)">
-                          <i class="isax isax-trash me-2"></i>
-                          {{ 'siteSettings.delete' | translate }}
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                </div>
+              </td>
+              <td>
+                <span class="badge bg-info-light text-info">
+                  {{ 'siteSettings.siteTypes.' + site.type | translate }}
+                </span>
+              </td>
+              <td>{{ site.ville }}</td>
+              <td>
+                <span class="badge bg-secondary-light text-secondary">
+                  {{ getCountryName(site.pays) }}
+                </span>
+              </td>
+              <td>
+                <span *ngIf="site.responsableNom" class="text-truncate d-inline-block" style="max-width: 150px;">
+                  {{ site.responsableNom }}
+                </span>
+                <span *ngIf="!site.responsableNom" class="text-muted">-</span>
+              </td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" [checked]="site.actif"
+                    (change)="toggleSiteStatus(site)">
+                </div>
+              </td>
+              <td>{{ formatDate(site.dateCreation) }}</td>
+              <td class="text-end">
+                <div class="dropdown">
+                  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                    <i class="isax isax-more"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" [routerLink]="['/app/config/site-detail', site.id]">
+                        <i class="isax isax-eye me-2"></i>
+                        {{ 'common.details' | translate }}
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" (click)="openEditModal(site)">
+                        <i class="isax isax-edit me-2"></i>
+                        {{ 'siteSettings.edit' | translate }}
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item text-danger" (click)="prepareDelete(site)">
+                        <i class="isax isax-trash me-2"></i>
+                        {{ 'siteSettings.delete' | translate }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <!-- Pagination -->
-        <div *ngIf="!isLoading && paginatedSites.length > 0" class="d-flex justify-content-between align-items-center mt-3">
-          <div>
-            {{ 'siteSettings.showing' | translate }} {{ (currentPage * pageSize) + 1 }} - 
-            {{ Math.min((currentPage + 1) * pageSize, totalElements) }} 
-            {{ 'siteSettings.of' | translate }} {{ totalElements }} {{ 'siteSettings.sites' | translate }}
-          </div>
-          <nav>
-            <ul class="pagination mb-0">
-              <li class="page-item" [class.disabled]="currentPage === 0">
-                <a class="page-link" (click)="previousPage()">
-                  <i class="isax isax-arrow-left-2"></i>
-                </a>
-              </li>
-              <li 
-                *ngFor="let page of paginationPages" 
-                class="page-item" 
-                [class.active]="page === currentPage"
-              >
-                <a class="page-link" (click)="goToPage(page)">{{ page + 1 }}</a>
-              </li>
-              <li class="page-item" [class.disabled]="currentPage >= totalPages - 1">
-                <a class="page-link" (click)="nextPage()">
-                  <i class="isax isax-arrow-right-3"></i>
-                </a>
-              </li>
-            </ul>
-          </nav>
+      <!-- Pagination -->
+      <div *ngIf="!isLoading && paginatedSites.length > 0"
+        class="d-flex justify-content-between align-items-center mt-3">
+        <div>
+          {{ 'siteSettings.showing' | translate }} {{ (currentPage * pageSize) + 1 }} -
+          {{ Math.min((currentPage + 1) * pageSize, totalElements) }}
+          {{ 'siteSettings.of' | translate }} {{ totalElements }} {{ 'siteSettings.sites' | translate }}
         </div>
+        <nav>
+          <ul class="pagination mb-0">
+            <li class="page-item" [class.disabled]="currentPage === 0">
+              <a class="page-link" (click)="previousPage()">
+                <i class="isax isax-arrow-left-2"></i>
+              </a>
+            </li>
+            <li *ngFor="let page of paginationPages" class="page-item" [class.active]="page === currentPage">
+              <a class="page-link" (click)="goToPage(page)">{{ page + 1 }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage >= totalPages - 1">
+              <a class="page-link" (click)="nextPage()">
+                <i class="isax isax-arrow-right-3"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
+  </div>
 </div>
 
 <!-- Modal Formulaire -->
@@ -306,12 +297,7 @@
               <label class="form-label">
                 {{ 'siteSettings.siteForm.name' | translate }} <span class="text-danger">*</span>
               </label>
-              <input 
-                type="text" 
-                class="form-control" 
-                formControlName="nom"
-                [class.is-invalid]="isFieldInvalid('nom')"
-              >
+              <input type="text" class="form-control" formControlName="nom" [class.is-invalid]="isFieldInvalid('nom')">
               <div class="invalid-feedback" *ngIf="hasError('nom', 'required')">
                 {{ 'siteSettings.siteForm.nameRequired' | translate }}
               </div>
@@ -325,12 +311,8 @@
               <label class="form-label">
                 {{ 'siteSettings.siteForm.code' | translate }} <span class="text-danger">*</span>
               </label>
-              <input 
-                type="text" 
-                class="form-control text-uppercase" 
-                formControlName="code"
-                [class.is-invalid]="isFieldInvalid('code')"
-              >
+              <input type="text" class="form-control text-uppercase" formControlName="code"
+                [class.is-invalid]="isFieldInvalid('code')">
               <small class="text-muted">{{ 'siteSettings.siteForm.optional' | translate }}</small>
               <div class="invalid-feedback" *ngIf="hasError('code', 'required')">
                 {{ 'siteSettings.siteForm.codeRequired' | translate }}
@@ -345,11 +327,7 @@
               <label class="form-label">
                 {{ 'siteSettings.siteForm.type' | translate }} <span class="text-danger">*</span>
               </label>
-              <select 
-                class="form-select" 
-                formControlName="type"
-                [class.is-invalid]="isFieldInvalid('type')"
-              >
+              <select class="form-select" formControlName="type" [class.is-invalid]="isFieldInvalid('type')">
                 <option *ngFor="let type of siteTypes" [value]="type.value">
                   {{ 'siteSettings.siteTypes.' + type.value | translate }}
                 </option>
@@ -363,13 +341,10 @@
             <div class="col-md-6">
               <label class="form-label">{{ 'siteSettings.siteForm.status' | translate }}</label>
               <div class="form-check form-switch mt-2">
-                <input 
-                  class="form-check-input" 
-                  type="checkbox" 
-                  formControlName="actif"
-                >
+                <input class="form-check-input" type="checkbox" formControlName="actif">
                 <label class="form-check-label">
-                  {{ siteForm.get('actif')?.value ? ('siteSettings.siteForm.active' | translate) : ('siteSettings.siteForm.inactive' | translate) }}
+                  {{ siteForm.get('actif')?.value ? ('siteSettings.siteForm.active' | translate) :
+                  ('siteSettings.siteForm.inactive' | translate) }}
                 </label>
               </div>
             </div>
@@ -379,12 +354,8 @@
               <label class="form-label">
                 {{ 'siteSettings.siteForm.city' | translate }} <span class="text-danger">*</span>
               </label>
-              <input 
-                type="text" 
-                class="form-control" 
-                formControlName="ville"
-                [class.is-invalid]="isFieldInvalid('ville')"
-              >
+              <input type="text" class="form-control" formControlName="ville"
+                [class.is-invalid]="isFieldInvalid('ville')">
               <div class="invalid-feedback" *ngIf="hasError('ville', 'required')">
                 {{ 'siteSettings.siteForm.cityRequired' | translate }}
               </div>
@@ -395,11 +366,7 @@
               <label class="form-label">
                 {{ 'siteSettings.siteForm.country' | translate }} <span class="text-danger">*</span>
               </label>
-              <select 
-                class="form-select" 
-                formControlName="pays"
-                [class.is-invalid]="isFieldInvalid('pays')"
-              >
+              <select class="form-select" formControlName="pays" [class.is-invalid]="isFieldInvalid('pays')">
                 <option value="">{{ 'siteSettings.siteForm.selectCountry' | translate }}</option>
                 <option *ngFor="let country of countries" [value]="country.code">
                   {{ country.name }}
@@ -413,12 +380,8 @@
             <!-- Email -->
             <div class="col-md-6">
               <label class="form-label">{{ 'siteSettings.siteForm.email' | translate }}</label>
-              <input 
-                type="email" 
-                class="form-control" 
-                formControlName="email"
-                [class.is-invalid]="isFieldInvalid('email')"
-              >
+              <input type="email" class="form-control" formControlName="email"
+                [class.is-invalid]="isFieldInvalid('email')">
               <div class="invalid-feedback" *ngIf="hasError('email', 'email')">
                 {{ 'siteSettings.siteForm.emailInvalid' | translate }}
               </div>
@@ -427,13 +390,8 @@
             <!-- Téléphone -->
             <div class="col-md-6">
               <label class="form-label">{{ 'siteSettings.siteForm.phone' | translate }}</label>
-              <input 
-                type="tel" 
-                class="form-control" 
-                formControlName="telephone"
-                placeholder="+237 6 12 34 56 78"
-                [class.is-invalid]="isFieldInvalid('telephone')"
-              >
+              <input type="tel" class="form-control" formControlName="telephone" placeholder="+237 6 12 34 56 78"
+                [class.is-invalid]="isFieldInvalid('telephone')">
               <div class="invalid-feedback" *ngIf="hasError('telephone', 'pattern')">
                 {{ 'siteSettings.siteForm.phoneInvalid' | translate }}
               </div>
@@ -442,13 +400,8 @@
             <!-- Superficie -->
             <div class="col-md-6">
               <label class="form-label">{{ 'siteSettings.siteForm.area' | translate }}</label>
-              <input 
-                type="number" 
-                class="form-control" 
-                formControlName="superficie"
-                min="0"
-                [class.is-invalid]="isFieldInvalid('superficie')"
-              >
+              <input type="number" class="form-control" formControlName="superficie" min="0"
+                [class.is-invalid]="isFieldInvalid('superficie')">
               <div class="invalid-feedback" *ngIf="hasError('superficie', 'min')">
                 La superficie doit être positive.
               </div>
@@ -457,25 +410,15 @@
             <!-- Emplacement (optionnel) -->
             <div class="col-md-6">
               <label class="form-label">ID Emplacement</label>
-              <input 
-                type="number" 
-                class="form-control" 
-                formControlName="getEmplacement"
-                placeholder="Optionnel"
-              >
+              <input type="number" class="form-control" formControlName="getEmplacement" placeholder="Optionnel">
               <small class="text-muted">ID d'emplacement géographique</small>
             </div>
 
             <!-- Description -->
             <div class="col-12">
               <label class="form-label">Description</label>
-              <textarea 
-                class="form-control" 
-                rows="3" 
-                formControlName="description"
-                maxlength="500"
-                [class.is-invalid]="isFieldInvalid('description')"
-              ></textarea>
+              <textarea class="form-control" rows="3" formControlName="description" maxlength="500"
+                [class.is-invalid]="isFieldInvalid('description')"></textarea>
               <small class="text-muted">
                 {{ siteForm.get('description')?.value?.length || 0 }} / 500 caractères
               </small>
@@ -484,19 +427,10 @@
         </div>
 
         <div class="modal-footer">
-          <button 
-            type="button" 
-            class="btn btn-secondary" 
-            (click)="closeModal()"
-            [disabled]="isSaving"
-          >
+          <button type="button" class="btn btn-secondary" (click)="closeModal()" [disabled]="isSaving">
             Annuler
           </button>
-          <button 
-            type="submit" 
-            class="btn btn-primary"
-            [disabled]="siteForm.invalid || isSaving"
-          >
+          <button type="submit" class="btn btn-primary" [disabled]="siteForm.invalid || isSaving">
             <span *ngIf="!isSaving">
               {{ isEditMode ? 'Mettre à jour' : 'Créer' }}
             </span>
@@ -513,3 +447,9 @@
 
 <!-- Backdrop du modal -->
 <div class="modal-backdrop fade" [class.show]="showModal" *ngIf="showModal"></div>
+
+<!-- Confirmation Modal -->
+<app-confirmation-modal [modalId]="'delete_site_modal'" [title]="'Supprimer le site'" [message]="deleteModalMessage"
+  [confirmText]="'Supprimer'" [type]="'danger'" [iconColor]="'text-danger'" [size]="'sm'" [isOpen]="isDeleteModalOpen"
+  (confirm)="onConfirmDelete()" (cancel)="closeDeleteModal()">
+</app-confirmation-modal>

@@ -25,6 +25,8 @@ import { StockMovementDto, CreateStockMovementDto, ProductDto, WarehouseDto } fr
 import { LotDto } from '../../../application/dto/lot.dto';
 import { StockMovementType } from '../../../domain/entities/stock-movement.entity';
 
+import { HasPermissionsDirective } from '../../../../../core/directives/has-permissions.directive';
+
 @Component({
     selector: 'app-stock-movements',
     standalone: true,
@@ -35,7 +37,8 @@ import { StockMovementType } from '../../../domain/entities/stock-movement.entit
         DataTableComponent,
         FormBuilderComponent,
         ModalComponent,
-        CalendarComponent
+        CalendarComponent,
+        HasPermissionsDirective
     ],
     templateUrl: './stock-movements.component.html',
     styleUrls: ['./stock-movements.component.scss']

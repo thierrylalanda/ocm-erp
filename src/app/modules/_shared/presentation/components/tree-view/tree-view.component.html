@@ -21,10 +21,12 @@
 
             <!-- Actions -->
             <span *ngIf="config.showActions" class="node-actions">
-                <button type="button" class="btn-action" (click)="onAction(node, 'edit', $event)" title="Modifier">
+                <button *ngIf="isActionVisible('edit')" type="button" class="btn-action"
+                    (click)="onAction(node, 'edit', $event)" title="Modifier">
                     <i class="isax isax-edit-2"></i>
                 </button>
-                <button type="button" class="btn-action" (click)="onAction(node, 'delete', $event)" title="Supprimer">
+                <button *ngIf="isActionVisible('delete')" type="button" class="btn-action"
+                    (click)="onAction(node, 'delete', $event)" title="Supprimer">
                     <i class="isax isax-trash"></i>
                 </button>
             </span>

@@ -1,0 +1,67 @@
+<div class="mb-3">
+    <!-- Header -->
+    <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom">
+        <div class="d-flex align-items-center">
+            <a [routerLink]="routes.siteSettings" class="btn btn-icon btn-light me-3">
+                <i class="isax isax-arrow-left-2 fs-5"></i>
+            </a>
+            <div>
+                <h4 class="mb-1" *ngIf="site">{{ site.nom }}</h4>
+                <h4 class="mb-1" *ngIf="!site && isLoading">Chargement...</h4>
+                <div class="text-muted" *ngIf="site">
+                    <span class="badge bg-light text-dark me-2">{{ site.code }}</span>
+                    <span class="text-muted"><i class="isax isax-location me-1"></i>{{ site.ville }}, {{ site.pays
+                        }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Messages -->
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        <i class="isax isax-close-circle me-2"></i>
+        {{ errorMessage }}
+    </div>
+
+    <!-- Tabs -->
+    <div class="card">
+        <div class="card-header border-bottom-0 pb-0">
+
+            <ul class="nav nav-tabs nav-bordered">
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="activeTab === 'info'" (click)="setActiveTab('info')">
+                        <i class="isax isax-info-circle me-2"></i>
+                        Infos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="activeTab === 'currencies'"
+                        (click)="setActiveTab('currencies')">
+                        <i class="isax isax-coin me-2"></i>
+                        Devises
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <!-- Info Tab -->
+                <div class="tab-pane fade" [class.show]="activeTab === 'info'" [class.active]="activeTab === 'info'"
+                    *ngIf="activeTab === 'info'">
+                    <app-site-info [site]="site" *ngIf="site"></app-site-info>
+                    <div *ngIf="isLoading && !site" class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Chargement...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Currencies Tab -->
+                <div class="tab-pane fade" [class.show]="activeTab === 'currencies'"
+                    [class.active]="activeTab === 'currencies'" *ngIf="activeTab === 'currencies'">
+                    <app-site-currencies [siteId]="siteId!" *ngIf="siteId"></app-site-currencies>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

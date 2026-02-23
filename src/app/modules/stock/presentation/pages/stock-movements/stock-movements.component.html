@@ -1,88 +1,94 @@
-<div class="stock-movements-page">
-    <div class="page-header d-flex justify-content-between align-items-center mb-4">
-        <h2 class="h3 mb-0">{{ 'stock.movements.title' | translate }}</h2>
-        <div class="d-flex gap-2">
-            <div class="btn-group" role="group">
-                <button type="button" class="btn" [class.btn-primary]="viewMode === 'list'"
-                    [class.btn-outline-primary]="viewMode !== 'list'" (click)="viewMode = 'list'" title="Vue liste">
+<div class="movements-page-container">
+    <!-- Premium Header -->
+    <header class="page-header d-flex justify-content-between align-items-center mb-4">
+        <div class="header-title-area">
+            <h2 class="premium-title">{{ 'stock.movements.title' | translate }}</h2>
+            <p class="text-muted small mb-0">{{ 'stock.movements.subtitle' | translate }}</p>
+        </div>
+
+        <div class="header-actions d-flex gap-3">
+            <!-- View Switcher -->
+            <div class="view-switcher glass-effect p-1 d-flex gap-1"
+                style="border-radius: 12px; background: rgba(255,255,255,0.5);">
+                <button type="button" class="btn btn-icon-sm" [class.active]="viewMode === 'list'"
+                    (click)="viewMode = 'list'" title="Vue liste">
                     <i class="isax isax-task-square"></i>
                 </button>
-                <button type="button" class="btn" [class.btn-primary]="viewMode === 'calendar'"
-                    [class.btn-outline-primary]="viewMode !== 'calendar'" (click)="viewMode = 'calendar'"
-                    title="Vue calendrier">
+                <button type="button" class="btn btn-icon-sm" [class.active]="viewMode === 'calendar'"
+                    (click)="viewMode = 'calendar'" title="Vue calendrier">
                     <i class="isax isax-calendar-1"></i>
                 </button>
             </div>
-            <button class="btn btn-primary" (click)="openCreateModal()">
-                <i class="isax isax-add-circle me-2"></i>
-                {{ 'stock.movements.create' | translate }}
+
+            <!-- Create Movement with Multi-RBAC -->
+            <button
+                *hasPermissions="{ permissions: ['stockEntry.create', 'stockExit.create', 'transfer.create', 'adjustment.create'], mode: 'OR' }"
+                type="button" class="btn btn-primary" (click)="openCreateModal()">
+                <i class="isax isax-add me-2"></i>
+                <span>{{ 'stock.movements.create' | translate }}</span>
             </button>
         </div>
-    </div>
+    </header>
 
-    <!-- Filters -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="row g-3">
-                <div class="col-md-3">
-                    <label class="form-label">{{ 'stock.movements.product' | translate }}</label>
-                    <select class="form-select" [(ngModel)]="filters.productId" (change)="onFilterChange()">
-                        <option [ngValue]="undefined">{{ 'common.all' | translate }}</option>
-                        <option *ngFor="let p of products" [value]="p.id">{{ p.name }}</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">{{ 'stock.movements.warehouse' | translate }}</label>
-                    <select class="form-select" [(ngModel)]="filters.warehouseId" (change)="onFilterChange()">
-                        <option [ngValue]="undefined">{{ 'common.all' | translate }}</option>
-                        <option *ngFor="let w of warehouses" [value]="w.id">{{ w.name }}</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">{{ 'stock.movements.type' | translate }}</label>
-                    <select class="form-select" [(ngModel)]="filters.type" (change)="onFilterChange()">
-                        <option [ngValue]="undefined">{{ 'common.all' | translate }}</option>
-                        <option value="ENTRY">Entrée</option>
-                        <option value="EXIT">Sortie</option>
-                        <option value="TRANSFER">Transfert</option>
-                        <option value="ADJUSTMENT">Ajustement</option>
-                    </select>
-                </div>
-                <!-- TODO: Date Range Picker -->
+    <!-- Filters Area -->
+    <div class="filters-card glass-effect mb-4 p-3">
+        <div class="row g-3">
+            <div class="col-md-4 col-lg-3">
+                <label class="form-label small fw-bold">{{ 'stock.movements.product' | translate }}</label>
+                <select class="form-select form-select-sm" [(ngModel)]="filters.productId" (change)="onFilterChange()">
+                    <option [ngValue]="undefined">{{ 'common.all' | translate }}</option>
+                    <option *ngFor="let p of products" [value]="p.id">{{ p.name }}</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <label class="form-label small fw-bold">{{ 'stock.movements.warehouse' | translate }}</label>
+                <select class="form-select form-select-sm" [(ngModel)]="filters.warehouseId"
+                    (change)="onFilterChange()">
+                    <option [ngValue]="undefined">{{ 'common.all' | translate }}</option>
+                    <option *ngFor="let w of warehouses" [value]="w.id">{{ w.name }}</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <label class="form-label small fw-bold">{{ 'stock.movements.type' | translate }}</label>
+                <select class="form-select form-select-sm" [(ngModel)]="filters.type" (change)="onFilterChange()">
+                    <option [ngValue]="undefined">{{ 'common.all' | translate }}</option>
+                    <option value="ENTRY">Entrée</option>
+                    <option value="EXIT">Sortie</option>
+                    <option value="TRANSFER">Transfert</option>
+                    <option value="ADJUSTMENT">Ajustement</option>
+                </select>
             </div>
         </div>
     </div>
 
-    <!-- Data Table -->
-    <div class="card" *ngIf="viewMode === 'list'">
-        <div class="card-body p-0">
+    <!-- Main Content Card -->
+    <div class="movements-content-card glass-effect">
+        <!-- List View -->
+        <div *ngIf="viewMode === 'list'" class="p-0">
             <app-data-table [columns]="columns" [data]="movements" [loading]="loading" [config]="tableConfig">
-
-                <ng-template #colTemplate let-row="row" let-col="col">
-                    <ng-container [ngSwitch]="col.key">
-                        <span *ngSwitchCase="'type'" [class]="getTypeClass(row.type)">
+                <ng-template #customCell let-row="row" let-column="column">
+                    <ng-container [ngSwitch]="column.key">
+                        <span *ngSwitchCase="'type'" class="badge rounded-pill" [ngClass]="getTypeClass(row.type)">
                             {{ getTypeLabel(row.type) }}
                         </span>
                     </ng-container>
                 </ng-template>
-
             </app-data-table>
         </div>
-    </div>
 
-    <!-- Calendar View -->
-    <div class="card" *ngIf="viewMode === 'calendar'">
-        <div class="card-body">
+        <!-- Calendar View -->
+        <div *ngIf="viewMode === 'calendar'" class="p-4">
             <app-calendar [events]="calendarEvents" [config]="calendarConfig" (eventClicked)="onEventClick($event)">
             </app-calendar>
         </div>
     </div>
 
-
-    <!-- Create Modal -->
-    <app-modal [isOpen]="showModal" [config]="modalConfig" (closed)="onFormCancel()">
-        <app-form-builder *ngIf="showModal" [config]="formConfig" (submit)="onFormSubmit($event)"
-            (cancel)="onFormCancel()">
-        </app-form-builder>
+    <!-- Create Modal Form -->
+    <app-modal [isOpen]="showModal" [config]="modalConfig" (close)="onFormCancel()">
+        <div modal-body>
+            <app-form-builder *ngIf="showModal" [config]="formConfig" (formSubmit)="onFormSubmit($event)"
+                (formCancel)="onFormCancel()">
+            </app-form-builder>
+        </div>
     </app-modal>
 </div>

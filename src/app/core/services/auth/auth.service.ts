@@ -32,7 +32,7 @@ export class AuthService {
   private _user: User | null = null;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private sidebar: SideBarService,
     private http: HttpClient,
     private permissionService: PermissionService
@@ -92,24 +92,24 @@ export class AuthService {
     this._expiresIn = value;
   }
 
-   get user(): User | any {
-        if(localStorage.getItem(this.USER_KEY)){
-            const decodedBytes = new Uint8Array(window.atob(localStorage.getItem(this.USER_KEY)!).split('').map((c) => c.charCodeAt(0)));
-            return JSON.parse(new TextDecoder().decode(decodedBytes));
-        }
-        return null;
+  get user(): User | any {
+    if (localStorage.getItem(this.USER_KEY)) {
+      const decodedBytes = new Uint8Array(window.atob(localStorage.getItem(this.USER_KEY)!).split('').map((c) => c.charCodeAt(0)));
+      return JSON.parse(new TextDecoder().decode(decodedBytes));
     }
-    set user(us: User) {
-        const utf8Bytes = new TextEncoder().encode(JSON.stringify(us));
-        localStorage.setItem(this.USER_KEY, window.btoa(String.fromCharCode(...utf8Bytes)));
-    }
+    return null;
+  }
+  set user(us: User) {
+    const utf8Bytes = new TextEncoder().encode(JSON.stringify(us));
+    localStorage.setItem(this.USER_KEY, window.btoa(String.fromCharCode(...utf8Bytes)));
+  }
 
   get idUser(): string {
-        return window.atob(localStorage.getItem('idUser')!) ?? '';
-    }
-    set idUser(us: string) {
-        localStorage.setItem('idUser', window.btoa(us));
-    }
+    return window.atob(localStorage.getItem('idUser')!) ?? '';
+  }
+  set idUser(us: string) {
+    localStorage.setItem('idUser', window.btoa(us));
+  }
 
   /**
    * Load authentication data from localStorage
@@ -129,7 +129,7 @@ export class AuthService {
     this._expiresAt = '';
     this._expiresIn = 0;
     this._user = null;
-    
+
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.REFRESH_TOKEN_KEY);
     localStorage.removeItem(this.USER_KEY);
@@ -150,7 +150,7 @@ export class AuthService {
     this.checkAuth.next('true');
     localStorage.setItem('authenticated', 'true');
     localStorage.setItem('timeOut', Date());
-    this.router.navigate([routes.index]);
+    this.router.navigate([routes.home]);
     localStorage.setItem('layoutPosition', '1');
   }
 
@@ -163,7 +163,7 @@ export class AuthService {
    */
   public authenticate(username: string, password: string, rememberMe: boolean = false): Observable<LoginResponseDto> {
     const loginData: LoginRequestDto = { username, password, rememberMe };
-    
+
     return new Observable<LoginResponseDto>(observer => {
       this.http.post<LoginResponseDto>(this.baseUrl + 'login', loginData).subscribe({
         next: (response) => {
@@ -174,15 +174,14 @@ export class AuthService {
           this.expiresAt = response.expiresAt;
           this.expiresIn = response.expiresIn;
           this.user = response.user;
-          
+
           if (response.user?.permissions) {
-            console.log('Setting permissions:', response.user.permissions);
             this.permissionService.setPermissions(response.user.permissions);
           }
-          
+
           // Mark as authenticated
           this.login();
-          
+
           observer.next(response);
           observer.complete();
         },
@@ -199,29 +198,29 @@ export class AuthService {
    */
   public refresh(): Observable<LoginResponseDto> {
     const refreshToken = this.refreshToken;
-    
+
     console.log('AuthService.refresh(): Checking refresh token availability');
     console.log('Refresh token exists:', !!refreshToken);
     console.log('Refresh token length:', refreshToken?.length);
     console.log('Refresh token first 10 chars:', refreshToken?.substring(0, 10) + '...');
-    
+
     if (!refreshToken || refreshToken.trim() === '') {
       console.error('AuthService.refresh(): No refresh token available');
       return throwError(() => new Error('No refresh token available'));
     }
-    
+
     // Check if refresh token looks valid (at least 10 characters)
     if (refreshToken.length < 10) {
       console.error('AuthService.refresh(): Refresh token appears invalid (too short)');
       return throwError(() => new Error('Invalid refresh token'));
     }
-    
+
     const refreshData = { refreshToken };
     const refreshUrl = this.baseUrl + 'refresh';
     console.log('AuthService.refresh(): Sending refresh request to', refreshUrl);
     console.log('AuthService.refresh(): Request body:', { refreshToken: '***' + refreshToken.substring(refreshToken.length - 4) });
     console.log('AuthService.refresh(): Full URL:', refreshUrl);
-    
+
     return this.http.post<LoginResponseDto>(refreshUrl, refreshData)
       .pipe(
         timeout(5000), // 5 second timeout for faster feedback
@@ -231,7 +230,7 @@ export class AuthService {
           console.log('New refresh token length:', response.refreshToken?.length);
           console.log('Response has user:', !!response.user);
           console.log('Response has permissions:', !!response.user?.permissions);
-          
+
           // Update authentication data
           this.accessToken = response.accessToken;
           this.tokenType = response.tokenType;
@@ -239,7 +238,7 @@ export class AuthService {
           this.expiresAt = response.expiresAt;
           this.expiresIn = response.expiresIn;
           this.user = response.user;
-          
+
           if (response.user?.permissions) {
             this.permissionService.setPermissions(response.user.permissions);
             console.log('Token refreshed successfully - permissions updated');
@@ -255,35 +254,35 @@ export class AuthService {
           console.error('Error URL:', error.url);
           console.error('Error headers:', error.headers);
           console.error('Error error:', error.error);
-          
+
           if (error.name === 'TimeoutError') {
             console.error('AuthService.refresh(): Timeout after 5 seconds - server is not reachable');
             console.error('AuthService.refresh(): Server URL:', this.baseUrl);
             console.error('AuthService.refresh(): The request timed out before reaching the server');
             console.error('AuthService.refresh(): This means the server is offline or network is blocked');
           }
-          
+
           if (error.status === 401) {
             console.error('AuthService.refresh(): 401 Unauthorized - refresh token may be invalid or expired');
           }
-          
+
           if (error.status === 404) {
             console.error('AuthService.refresh(): 404 Not Found - endpoint may not exist');
             console.error('AuthService.refresh(): Check if endpoint exists:', refreshUrl);
           }
-          
+
           if (error.status === 0) {
             console.error('AuthService.refresh(): Status 0 - Network error or CORS issue');
             console.error('AuthService.refresh(): The request was blocked by browser (CORS)');
             console.error('AuthService.refresh(): Server must allow requests from:', window.location.origin);
           }
-          
+
           // Create a more informative error
           const detailedError = new Error(`Refresh failed: ${error.message || 'Server unreachable'}`);
           (detailedError as any).originalError = error;
           (detailedError as any).serverUrl = this.baseUrl;
           (detailedError as any).isNetworkError = error.status === 0 || error.name === 'TimeoutError';
-          
+
           return throwError(() => detailedError);
         })
       );
@@ -296,7 +295,7 @@ export class AuthService {
   public logout(): void {
     // First call the logout API if we have a token
     const accessToken = this.accessToken;
-    
+
     if (accessToken && accessToken.trim() !== '') {
       this.http.post(this.baseUrl + 'logout', {}, {
         headers: {
@@ -325,7 +324,7 @@ export class AuthService {
    */
   public logoutWithObservable(): Observable<any> {
     const accessToken = this.accessToken;
-    
+
     if (accessToken && accessToken.trim() !== '') {
       return this.http.post(this.baseUrl + 'logout', {}, {
         headers: {

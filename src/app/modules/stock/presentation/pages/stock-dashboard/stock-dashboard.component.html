@@ -1,94 +1,201 @@
-<div class="stock-dashboard">
-    <!-- Header -->
-    <div class="page-header">
-        <h2>{{ 'stock.dashboard.title' | translate }}</h2>
-    </div>
-
-    <!-- KPIs Cards -->
-    <div class="row g-3 mb-4" *ngIf="stats">
-        <!-- Valeur Totale -->
-        <div class="col-xl-3 col-sm-6">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <p class="stats-label">{{ 'stock.dashboard.totalValue' | translate }}</p>
-                            <h3 class="stats-value">{{ formatCurrency(stats.totalValue) }}</h3>
-                        </div>
-                        <div class="stats-icon bg-primary">
-                            <i class="isax isax-wallet-money"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="stock-dashboard-container">
+    <!-- Premium Global Header -->
+    <header class="dashboard-header d-flex align-items-center justify-content-between mb-4">
+        <div class="header-content">
+            <h1 class="page-title">{{ 'stock.dashboard.title' | translate }}</h1>
+            <p class="page-subtitle text-muted">Vue d'ensemble opérationnelle en temps réel</p>
         </div>
 
-        <!-- Nombre de Produits -->
-        <div class="col-xl-3 col-sm-6">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <p class="stats-label">{{ 'stock.dashboard.productsCount' | translate }}</p>
-                            <h3 class="stats-value">{{ stats.totalProducts }}</h3>
-                        </div>
-                        <div class="stats-icon bg-success">
-                            <i class="isax isax-box"></i>
-                        </div>
-                    </div>
-                </div>
+        <div class="header-actions d-flex gap-3 align-items-center">
+            <!-- Customization Trigger -->
+            <button class="btn" [class.btn-primary]="isEditing" (click)="toggleEditing()">
+                <i class="isax" [class.isax-setting-2]="!isEditing" [class.isax-tick-circle]="isEditing"></i>
+                <span class="ms-2 d-none d-md-inline">{{ isEditing ? 'Terminer' : 'Personnaliser' }}</span>
+            </button>
+
+            <!-- Site Context Selector (Multi-site) -->
+            <div class="context-selector glass-effect">
+                <i class="isax isax-global me-2"></i>
+                <select class="site-select" [ngModel]="selectedSiteId" (ngModelChange)="onSiteChange($event)">
+                    <option *ngFor="let site of sites" [value]="site.id">{{ site.name }}</option>
+                </select>
+            </div>
+
+            <!-- Article Filter -->
+            <div class="context-selector glass-effect ms-2">
+                <i class="isax isax-box me-2"></i>
+                <select class="site-select" [ngModel]="selectedArticleId"
+                    (ngModelChange)="selectedArticleId = $event; loadStats()">
+                    <option *ngFor="let art of articles" [value]="art.id">{{ art.name }}</option>
+                </select>
             </div>
         </div>
+    </header>
 
-        <!-- Alertes Stock Faible -->
-        <div class="col-xl-3 col-sm-6">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <p class="stats-label">{{ 'stock.dashboard.lowStockAlerts' | translate }}</p>
-                            <h3 class="stats-value text-warning">{{ stats.lowStockCount }}</h3>
-                        </div>
-                        <div class="stats-icon bg-warning">
-                            <i class="isax isax-warning-2"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Widget Selector (Only in Edit Mode) -->
+    <div class="widget-adder-panel mb-4 p-3 glass-effect" *ngIf="isEditing">
+        <div class="d-flex align-items-center flex-wrap gap-2">
+            <span class="text-muted small fw-bold text-uppercase me-2">Ajouter des widgets :</span>
 
-        <!-- Mouvements du Jour -->
-        <div class="col-xl-3 col-sm-6">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <p class="stats-label">{{ 'stock.dashboard.todayMovements' | translate }}</p>
-                            <h3 class="stats-value">{{ stats.todayMovements }}</h3>
-                        </div>
-                        <div class="stats-icon bg-info">
-                            <i class="isax isax-arrow-swap-horizontal"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <ng-container *ngIf="hasHiddenWidgets; else noWidgets">
+                <ng-container *ngFor="let w of widgets">
+                    <button *ngIf="!w.visible" class="btn btn-xs btn-outline-primary" (click)="addWidget(w.id)">
+                        <i class="isax isax-add-circle me-1"></i> {{ w.title | translate }}
+                    </button>
+                </ng-container>
+            </ng-container>
+
+            <ng-template #noWidgets>
+                <span class="badge bg-light text-muted border fw-normal">Tous les widgets sont affichés</span>
+            </ng-template>
         </div>
     </div>
 
-    <!-- Charts -->
-    <div class="row g-3">
-        <!-- Graphique des Mouvements -->
-        <div class="col-xl-8">
-            <app-chart [config]="movementsChartConfig" [series]="movementsSeries">
-            </app-chart>
-        </div>
+    <!-- Dynamic Dashboard Grid (Gridster) -->
+    <gridster [options]="options" class="dashboard-grid glass-effect" *ngIf="gridWidgets.length > 0">
+        <gridster-item [item]="item" *ngFor="let item of gridWidgets">
 
-        <!-- Graphique de Répartition -->
-        <div class="col-xl-4">
-            <app-chart [config]="distributionChartConfig" [series]="distributionSeries">
-            </app-chart>
-        </div>
-    </div>
+            <!-- Widget Content Container -->
+            <div class="widget-content h-100">
+
+                <!-- KPI Widgets -->
+                <div *ngIf="item.type === 'kpi'" class="kpi-card premium h-100" [class.editing]="isEditing"
+                    [ngClass]="item.name === 'lowStockCount' ? 'alert-warning' : (item.name === 'totalProducts' ? 'highlight-green' : (item.name === 'todayMovements' ? 'activity-blue' : ''))">
+                    <div class="kpi-body">
+                        <div class="kpi-icon-container" [ngClass]="item.bgClass">
+                            <i class="isax" [ngClass]="[item.icon || '', item.colorClass || '']"></i>
+                        </div>
+                        <div class="kpi-info">
+                            <span class="kpi-label">{{ item.title | translate }}</span>
+                            <h2 class="kpi-value" [ngClass]="item.name === 'lowStockCount' ? 'text-warning' : ''">
+                                <ng-container *ngIf="!loading && stats; else mockOrLoading">
+                                    <ng-container [ngSwitch]="item.name">
+                                        <span *ngSwitchCase="'totalValue'">{{ formatCurrency(stats.totalValue) }}</span>
+                                        <span *ngSwitchCase="'totalProducts'">{{ stats.totalProducts }}</span>
+                                        <span *ngSwitchCase="'lowStockCount'">{{ stats.lowStockCount }}</span>
+                                        <span *ngSwitchCase="'todayMovements'">{{ stats.todayMovements }}</span>
+                                        <!-- Mocked Data for New Widgets -->
+                                        <span *ngSwitchCase="'stockTurnover'">4.2</span>
+                                        <span *ngSwitchCase="'pendingReceptions'">8</span>
+                                        <span *ngSwitchCase="'pendingShipments'">12</span>
+                                        <span *ngSwitchCase="'transitTransfers'">3</span>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-template #mockOrLoading>
+                                    <!-- Fallback for mock data if stats not loaded yet (or if purely mocked) -->
+                                    <span *ngIf="item.name === 'stockTurnover'">4.2</span>
+                                    <span *ngIf="item.name === 'pendingReceptions'">8</span>
+                                    <span *ngIf="item.name === 'pendingShipments'">12</span>
+                                    <span *ngIf="item.name === 'transitTransfers'">3</span>
+                                    <span
+                                        *ngIf="['totalValue', 'totalProducts', 'lowStockCount', 'todayMovements'].includes(item.name)">-</span>
+                                </ng-template>
+                            </h2>
+                            <span class="kpi-unit" *ngIf="item.name === 'totalProducts'">SKUs actifs</span>
+                            <span class="kpi-unit" *ngIf="item.name === 'stockTurnover'">Rotations / an</span>
+                            <span class="kpi-unit" *ngIf="item.name === 'pendingReceptions'">Commandes</span>
+                            <span class="kpi-unit" *ngIf="item.name === 'pendingShipments'">Bons de livraison</span>
+                            <span class="kpi-unit" *ngIf="item.name === 'transitTransfers'">En transit</span>
+                            <span class="kpi-badge danger" *ngIf="item.name === 'lowStockCount'">Action requise</span>
+                            <span class="kpi-unit" *ngIf="item.name === 'todayMovements'">Mouvements (24h)</span>
+                        </div>
+                    </div>
+
+                    <!-- Edit Controls (Gridster handled, just delete) -->
+                    <div class="widget-controls" *ngIf="isEditing">
+                        <button class="btn-control delete" (click)="removeWidget(item.id)" title="Supprimer"
+                            (mousedown)="$event.stopPropagation()">
+                            <i class="isax isax-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chart Widgets -->
+                <div *ngIf="item.type === 'chart'" class="chart-wrapper h-100" [class.editing]="isEditing">
+                    <div class="chart-card glass-effect p-4 h-100 position-relative d-flex flex-column">
+
+                        <!-- Chart Header with Filters -->
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3 class="h6 fw-bold text-secondary mb-0">{{ item.title | translate }}</h3>
+
+                            <!-- Date Filter -->
+                            <div class="chart-filters d-flex gap-2" *ngIf="!isEditing">
+                                <input type="date" class="form-control form-control-sm"
+                                    [ngModel]="item.filters?.startDate"
+                                    (ngModelChange)="item.filters = item.filters || {}; item.filters.startDate = $event; onFilterChange(item)"
+                                    title="Date de début">
+                                <span class="text-muted align-self-center">-</span>
+                                <input type="date" class="form-control form-control-sm"
+                                    [ngModel]="item.filters?.endDate"
+                                    (ngModelChange)="item.filters = item.filters || {}; item.filters.endDate = $event; onFilterChange(item)"
+                                    title="Date de fin">
+                            </div>
+                        </div>
+
+                        <div class="flex-grow-1">
+                            <app-chart *ngIf="item.name === 'movements'" [config]="movementsChartConfig"
+                                [series]="movementsSeries"></app-chart>
+                            <app-chart *ngIf="item.name === 'distribution'" [config]="distributionChartConfig"
+                                [series]="distributionSeries"></app-chart>
+                            <app-chart *ngIf="item.name === 'warehouseValue'" [config]="warehouseValueChartConfig"
+                                [series]="warehouseValueSeries"></app-chart>
+                            <app-chart *ngIf="item.name === 'topProducts'" [config]="topProductsChartConfig"
+                                [series]="topProductsSeries"></app-chart>
+                        </div>
+
+                        <!-- Edit Controls -->
+                        <div class="widget-controls" *ngIf="isEditing">
+                            <button class="btn-control delete" (click)="removeWidget(item.id)" title="Supprimer"
+                                (mousedown)="$event.stopPropagation()">
+                                <i class="isax isax-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Widgets -->
+                <div *ngIf="item.type === 'table'"
+                    class="table-widget h-100 glass-effect p-3 position-relative d-flex flex-column"
+                    [class.editing]="isEditing">
+                    <h3 class="h6 fw-bold mb-3 text-secondary border-bottom pb-2">{{ item.title | translate }}</h3>
+
+                    <div class="table-responsive flex-grow-1">
+                        <table class="table table-hover table-sm align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="fw-bold text-muted">Période</th>
+                                    <th class="fw-bold text-muted text-end">Quantité</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let row of (item.name === 'summaryEntries' ? summaryEntries : summaryExits)">
+                                    <td class="text-nowrap">{{ row.period }}</td>
+                                    <td class="text-end fw-bold">{{ row.quantity }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- More Info Button -->
+                    <div class="mt-3">
+                        <button class="btn btn-primary w-100 btn-sm">
+                            Plus d'info
+                        </button>
+                    </div>
+
+                    <!-- Edit Controls -->
+                    <div class="widget-controls" *ngIf="isEditing">
+                        <button class="btn-control delete" (click)="removeWidget(item.id)" title="Supprimer"
+                            (mousedown)="$event.stopPropagation()">
+                            <i class="isax isax-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </gridster-item>
+    </gridster>
 
     <!-- Loading State -->
     <div *ngIf="loading" class="text-center py-5">

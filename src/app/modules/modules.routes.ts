@@ -10,6 +10,10 @@ export const MODULES_ROUTES: Routes = [
     canActivateChild: [LoggedInGuard],
     children: [
       {
+        path: 'home',
+        loadComponent: () => import('./home/home').then(m => m.Home)
+      },
+      {
         path: 'gestion-societes',
         loadComponent: () => import('./configuration/presentation/pages/company-demo/company-demo.component').then(m => m.CompanyDemoComponent)
       },
@@ -29,6 +33,15 @@ export const MODULES_ROUTES: Routes = [
         ]
       },
       {
+        path: 'config',
+        loadComponent: () => import('../features/setting//config.component').then(m => m.ConfigComponent),
+        children: [
+          { path: 'site-detail/:id', loadComponent: () => import('./setting/presentation/pages/general-settings/site-settings/site-detail/site-detail.component').then(m => m.SiteDetailComponent) },
+          { path: 'site-settings', loadComponent: () => import('./setting/presentation/pages/general-settings/site-settings/site-settings.component').then(m => m.SiteSettingsComponent) },
+          { path: 'departement-settings', loadComponent: () => import('./setting/presentation/pages/general-settings/departement-settings/departement-settings.component').then(m => m.DepartementSettingsComponent) },
+        ]
+      },
+      {
         path: 'general-configuration',
         canActivate: [PermissionGuard],
         data: {
@@ -45,8 +58,6 @@ export const MODULES_ROUTES: Routes = [
             path: 'general-settings', loadComponent: () => import('./setting/presentation/pages/general-settings/general-settings.component').then(m => m.GeneralSettingsComponent),
             children: [
               { path: 'account-settings', loadComponent: () => import('./setting/presentation/pages/general-settings/account-settings/account-settings.component').then(m => m.AccountSettingsComponent), },
-              { path: 'site-settings', loadComponent: () => import('./setting/presentation/pages/general-settings/site-settings/site-settings.component').then(m => m.SiteSettingsComponent) },
-              { path: 'departement-settings', loadComponent: () => import('./setting/presentation/pages/general-settings/departement-settings/departement-settings.component').then(m => m.DepartementSettingsComponent) },
               { path: 'security-settings', loadComponent: () => import('./setting/presentation/pages/general-settings/security-settings/security-settings.component').then(m => m.SecuritySettingsComponent) },
               { path: 'plans-billings', loadComponent: () => import('./setting/presentation/pages/general-settings/plans-billings/plans-billings.component').then(m => m.PlansBillingsComponent) },
               { path: 'notifications-settings', loadComponent: () => import('./setting/presentation/pages/general-settings/notifications-settings/notifications-settings.component').then(m => m.NotificationsSettingsComponent) },

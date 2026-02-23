@@ -15,12 +15,13 @@ import {
 } from '../../../../domain/dto/departement.dto';
 import { TranslatePipe } from '../../../../../../core/services/translation/translate.pipe';
 import { GlobalConfigurationComponent } from '../../global-configuration/global-configuration.component';
+import { ConfirmationModalComponent } from '../../../../../_shared/presentation/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-departement-settings',
   templateUrl: './departement-settings.component.html',
   styleUrls: ['./departement-settings.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, TranslatePipe],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, TranslatePipe, ConfirmationModalComponent],
   standalone: true,
 
 })
@@ -269,19 +270,36 @@ export class DepartementSettingsComponent implements OnInit {
     }
   }
 
-  // Suppression d'un département
-  deleteDepartement(departement: DepartementResponseDto): void {
-    if (confirm(`Êtes-vous sûr de vouloir supprimer le département "${departement.nom}" ?`)) {
-      this.departementService.deleteDepartement(departement.id).subscribe({
-        next: () => {
-          this.successMessage = 'Département supprimé avec succès.';
-          this.loadData();
-        },
-        error: (error) => {
-          this.errorMessage = error.message || 'Erreur lors de la suppression du département.';
-        }
-      });
-    }
+  // Delete confirmation
+  departementToDelete: DepartementResponseDto | null = null;
+  deleteModalMessage: string = '';
+  isDeleteModalOpen = false;
+
+  prepareDelete(departement: DepartementResponseDto): void {
+    this.departementToDelete = departement;
+    this.deleteModalMessage = `Êtes-vous sûr de vouloir supprimer le département "${departement.nom}" ?`;
+    this.isDeleteModalOpen = true;
+  }
+
+  closeDeleteModal(): void {
+    this.isDeleteModalOpen = false;
+    this.departementToDelete = null;
+  }
+
+  onConfirmDelete(): void {
+    if (!this.departementToDelete) return;
+
+    this.departementService.deleteDepartement(this.departementToDelete.id).subscribe({
+      next: () => {
+        this.successMessage = 'Département supprimé avec succès.';
+        this.loadData();
+        this.closeDeleteModal();
+      },
+      error: (error) => {
+        this.errorMessage = error.message || 'Erreur lors de la suppression du département.';
+        this.closeDeleteModal();
+      }
+    });
   }
 
   // Activation/désactivation

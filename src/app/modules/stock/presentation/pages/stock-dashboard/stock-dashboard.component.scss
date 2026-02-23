@@ -1,82 +1,290 @@
-.stock-dashboard {
-  padding: 1.5rem;
+.stock-dashboard-container {
+  padding: 2rem;
+  background-color: #f8fafd; // Fond très clair et frais
+  min-height: 100vh;
 
-  .page-header {
-    margin-bottom: 1.5rem;
-
-    h2 {
-      margin: 0;
-      font-size: 1.75rem;
-      font-weight: 600;
-      color: var(--bs-dark);
+  // --- Header Styling ---
+  .dashboard-header {
+    .page-title {
+      font-size: 2.5rem; // Increased to match screenshot
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #1a1d23;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    
+    .page-subtitle {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #8898aa;
     }
   }
 
-  .stats-card {
-    border: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  // --- Header Actions & Selectors (Unified) ---
+  .header-actions {
+    .btn, .context-selector {
+        height: 50px; // Fixed height for alignment
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem;
+        border-radius: 100px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        color: #2d3436;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+
+        &:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        i {
+            font-size: 1.25rem;
+            color: #546DFE;
+        }
+    }
+
+    .btn {
+        // Specific override for the button to reset bootstrap styles if needed
+        &.btn-primary {
+            background: #546DFE;
+            color: white;
+            i { color: white; }
+            border: none;
+            
+            &:hover {
+                background: darken(#546DFE, 5%);
+                transform: translateY(-2px);
+            }
+        }
+    }
+  }
+
+  // --- Multi-site Context Selector (Specifics) ---
+  .context-selector {
+     // Inherits from .header-actions .context-selector above
+     // Just specific inner elements
+    
+    i {
+      color: #546DFE;
+      font-size: 1.25rem;
+    }
+
+    .site-select {
+      border: none;
+      background: transparent;
+      font-weight: 600;
+      color: #2d3436;
+      cursor: pointer;
+      outline: none;
+      padding-right: 1rem;
+      
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+
+  // --- KPI Cards System ---
+  .kpi-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 1.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: transparent;
+    }
 
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
-    .card-body {
-      padding: 1.5rem;
+    .kpi-body {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
     }
 
-    .stats-label {
-      margin: 0 0 0.5rem 0;
-      font-size: 0.875rem;
-      color: var(--bs-secondary);
-      font-weight: 500;
-    }
-
-    .stats-value {
-      margin: 0;
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--bs-dark);
-    }
-
-    .stats-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 12px;
+    .kpi-icon-container {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0.9;
+      flex-shrink: 0;
 
       i {
-        font-size: 1.75rem;
-        color: white;
+        font-size: 1.5rem;
       }
+    }
+
+    .kpi-info {
+      .kpi-label {
+        display: block;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 700;
+        color: #8898aa;
+        margin-bottom: 0.5rem;
+      }
+
+      .kpi-value {
+        font-size: 1.85rem;
+        font-weight: 800;
+        color: #1a1d23;
+        margin-bottom: 0.25rem;
+        line-height: 1;
+      }
+
+      .kpi-unit, .kpi-trend {
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+    }
+
+    // Variations
+    &.highlight-green::after { background: #2dce89; }
+    &.alert-warning::after { background: #fb6340; }
+    &.activity-blue::after { background: #11cdef; }
+
+    .bg-primary-soft { background: rgba(84, 109, 254, 0.1); }
+    .bg-success-soft { background: rgba(45, 206, 137, 0.1); }
+    .bg-warning-soft { background: rgba(251, 99, 64, 0.1); }
+    .bg-info-soft { background: rgba(17, 205, 239, 0.1); }
+  }
+
+  // --- Dashboard Dynamic Grid (Gridster) ---
+  gridster.dashboard-grid {
+    background: transparent;
+    min-height: 600px; // Assure une hauteur minimale pour la zone de drop
+    
+    &.glass-effect {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
     }
   }
 
-  // Responsive
-  @media (max-width: 768px) {
-    padding: 1rem;
-
-    .page-header h2 {
-      font-size: 1.5rem;
+  gridster-item {
+    border-radius: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    
+    &.hidden {
+        display: none;
     }
 
-    .stats-card {
-      .stats-value {
-        font-size: 1.5rem;
-      }
+    // Effet au survol en mode édition
+    &.editing-mode {
+        border: 1px dashed #546DFE;
+        background: rgba(84, 109, 254, 0.05);
+    }
 
-      .stats-icon {
-        width: 50px;
-        height: 50px;
-
-        i {
-          font-size: 1.5rem;
+    // Contenu interne doit remplir la tuile
+    .widget-content {
+        height: 100%;
+        width: 100%;
+        
+        .kpi-card, .chart-card {
+            height: 100%; // Important pour que la card remplisse l'item
         }
-      }
+    }
+  }
+
+  // --- Widget Adder Panel ---
+  .widget-adder-panel {
+    border-radius: 16px;
+    background: rgba(84, 109, 254, 0.05);
+    border: 1px dashed #546DFE;
+    animation: fadeIn 0.3s ease;
+
+    .btn-xs {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 6px;
+    }
+  }
+
+  // --- Widget Editing Mode & Controls ---
+  .editing {
+    border: 1px dashed rgba(84, 109, 254, 0.3) !important;
+    position: relative;
+    
+    &:hover {
+      border-color: #546DFE !important;
+    }
+    
+    &.kpi-card, &.chart-card {
+      cursor: move; // Curseur de déplacement pour Gridster
+    }
+  }
+
+  .widget-controls {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 20; // Au-dessus des handles Gridster
+
+    .btn-control {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: #fee2e2;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #ef4444;
+      transition: all 0.2s ease;
+
+      i { font-size: 0.8rem; }
+      &:hover { transform: scale(1.1); background: #ef4444; color: white; }
+    }
+  }
+
+  // --- Gridster Handles Customization ---
+  .gridster-item-resizable-handler {
+    z-index: 15 !important;
+    
+    &.handle-se { // Coin Sud-Est
+        border-bottom: 2px solid #546DFE;
+        border-right: 2px solid #546DFE;
+        bottom: 4px !important;
+        right: 4px !important;
+        width: 10px !important;
+        height: 10px !important;
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  // --- Charts Adaptation ---
+  .chart-wrapper {
+    height: 100%;
+    &.editing .chart-card {
+      @extend .editing;
     }
   }
 }

@@ -189,6 +189,46 @@ export const SettingRoute = [
         ],
       },
       {
+        menuValue: 'Config',
+        hasSubRouteTwo: true,
+        showSubRoute: false,
+        icon: 'setting-25',
+        base: 'config',
+        permissions: [],
+        subMenus: [
+
+          {
+            menuValue: 'Site',
+            hasSubRoute: true,
+            showSubRoute: false,
+            page: 'site-settings',
+            icon: 'setting-2',
+            subMenus: [
+              {
+                menuValue: 'Site',
+                route: routes.siteSettings,
+                base: 'site-settings',
+              },
+            ]
+          },
+
+          {
+            menuValue: 'Departement',
+            hasSubRoute: true,
+            showSubRoute: false,
+            page: 'departement-settings',
+            icon: 'setting-2',
+            subMenus: [
+              {
+                menuValue: 'Departement',
+                route: routes.departementSettings,
+                base: 'departement-settings',
+              },
+            ]
+          },
+        ]
+      },
+      {
         menuValue: 'Settings',
         hasSubRouteTwo: true,
         showSubRoute: false,
@@ -218,16 +258,6 @@ export const SettingRoute = [
                 menuValue: 'Account Settings',
                 route: routes.accountSettings,
                 base: 'account-settings',
-              },
-              {
-                menuValue: 'Site Settings',
-                route: routes.siteSettings,
-                base: 'site-settings',
-              },
-              {
-                menuValue: 'Départements',
-                route: routes.departementSettings,
-                base: 'departement-settings',
               },
 
               {

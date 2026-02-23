@@ -19,7 +19,9 @@ export const routes = {
   success: '/auth/success',
   lock_screen: '/auth/lock-screen',
   index: '/index',
+
   AdminDashboard2: '/admin-dashboard',
+  home: defaultRoute + 'home',
   notifications: defaultRoute + 'notifications',
 
   //configuration
@@ -261,8 +263,8 @@ export const routes = {
   quotationReport: '/reports/transaction-report/quotation-report',
   //Setting NEW
   accountSettings: defaultRoute + 'settings/general-settings/account-settings',
-  siteSettings: defaultRoute + 'settings/general-settings/site-settings',
-  departementSettings: defaultRoute + 'settings/general-settings/departement-settings',
+  siteSettings: defaultRoute + 'config/site-settings',
+  departementSettings: defaultRoute + 'config/departement-settings',
   securitySettings: defaultRoute + 'settings/general-settings/security-settings',
   plansBillings: defaultRoute + 'settings/general-settings/plans-billings',
   notificationSettings: defaultRoute + 'settings/general-settings/notifications-settings',

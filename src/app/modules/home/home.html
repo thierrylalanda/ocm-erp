@@ -1,0 +1,212 @@
+<div class="home-container p-4">
+    <!-- Main Content Grid -->
+    <div class="row g-4">
+
+        <!-- Left Column: Dashboard & Activities -->
+        <div class="col-lg-3 col-md-12 mb-4 animate__animated animate__fadeInLeft">
+            <!-- Dashboard Shortcuts -->
+            <div class="card shadow-sm border-0 mb-4 dashboard-shortcuts-card glass-panel">
+                <div class="card-header bg-transparent border-0 pt-4">
+                    <h5 class="fw-bold mb-0"><i class="fas fa-chart-line me-2 text-primary"></i>Tableau de Bord</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid grid-2x2 gap-3">
+                        <div *ngFor="let item of dashboardShortcuts"
+                            class="shortcut-item p-3 rounded-4 d-flex flex-column align-items-center justify-content-center text-center text-white"
+                            [style.background-color]="item.color">
+                            <i [class]="'fas ' + item.icon + ' fa-lg mb-2'"></i>
+                            <div class="shortcut-value fw-bold">{{ item.value }}</div>
+                            <div class="shortcut-name x-small opacity-75">{{ item.name }}</div>
+                            <div class="trend-badge mt-1" [class.positive]="item.trend.startsWith('+')">
+                                {{ item.trend }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats & News -->
+            <div class="card shadow-sm border-0 mb-4 stats-news-card glass-panel">
+                <div class="card-body">
+                    <h6 class="fw-bold mb-3">Statistiques Clés</h6>
+                    <div *ngFor="let stat of stats" class="stat-row d-flex align-items-center mb-3 p-2 rounded-3">
+                        <div class="stat-icon-mini me-3" [style.background-color]="stat.color + '20'"
+                            [style.color]="stat.color">
+                            <i [class]="'fas ' + stat.icon"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="small text-muted">{{ stat.label }}</div>
+                            <div class="fw-bold">{{ stat.value }}</div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4 opacity-50">
+
+                    <h6 class="fw-bold mb-3">Actualités</h6>
+                    <div *ngFor="let item of news" class="news-item-mini mb-3">
+                        <div class="d-flex align-items-start">
+                            <div class="news-icon me-2 mt-1">
+                                <i [class]="'fas ' + item.icon + ' text-primary small'"></i>
+                            </div>
+                            <div>
+                                <div class="news-title-mini fw-bold small">{{ item.title }}</div>
+                                <div class="news-date-mini x-small text-muted mb-1">{{ item.date }}</div>
+                                <div class="news-content-mini x-small text-muted text-truncate-2">{{ item.content }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Column: Navigation & Quick Actions -->
+        <div class="col-lg-6 col-md-12 mb-4">
+            <!-- Main Modules Grid -->
+            <div class="card shadow-sm border-0 mb-4 modules-grid-card glass-panel animate__animated animate__fadeInUp">
+                <div class="card-header bg-transparent border-0 pt-4 d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold mb-0">Vos Modules ERP</h5>
+                    <button class="btn btn-link btn-sm text-decoration-none" (click)="toggleModulesModal()">Voir tout <i
+                            class="fas fa-arrow-right ms-1"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="module-grid">
+                        <div *ngFor="let module of modules.slice(0, 7)"
+                            class="module-card-v2 p-3 d-flex flex-column align-items-center justify-content-center"
+                            [routerLink]="module.route">
+                            <div class="icon-sphere mb-3"
+                                [style.background]="'linear-gradient(135deg, ' + module.color + 'dd, ' + module.color + ')'">
+                                <i [class]="'fas ' + module.icon + ' text-white'"></i>
+                            </div>
+                            <span class="module-label fw-bold">{{ module.name }}</span>
+                        </div>
+
+                        <!-- See All Card -->
+                        <div class="module-card-v2 p-3 d-flex flex-column align-items-center justify-content-center see-all-card"
+                            (click)="toggleModulesModal()">
+                            <div class="icon-sphere mb-3 bg-light border">
+                                <i class="fas fa-th text-primary"></i>
+                            </div>
+                            <span class="module-label fw-bold">Voir tout</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div
+                class="card shadow-sm border-0 quick-actions-card glass-panel animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="card-header bg-transparent border-0 pt-4">
+                    <h5 class="fw-bold mb-0">Actions Rapides</h5>
+                </div>
+                <div class="card-body">
+                    <div class="quick-actions-flex d-flex overflow-auto gap-3 pb-2">
+                        <div *ngFor="let action of quickActions"
+                            class="quick-action-item p-3 flex-shrink-0 d-flex align-items-center rounded-4 border"
+                            [routerLink]="action.route">
+                            <div class="action-icon me-3" [style.color]="action.color">
+                                <i [class]="'fas ' + action.icon + ' fa-lg'"></i>
+                            </div>
+                            <div class="action-details">
+                                <div class="action-name fw-bold small text-nowrap">{{ action.label }}</div>
+                                <div class="action-cta x-small text-primary">Lancer <i
+                                        class="fas fa-chevron-right ms-1"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Onboarding -->
+        <div class="col-lg-3 col-md-12 mb-4 animate__animated animate__fadeInRight">
+            <div class="card h-80 shadow-sm border-0 onboarding-card-v2 glass-panel">
+                <div class="card-header bg-transparent border-0 pt-4 text-center">
+                    <div class="onboarding-icon mb-2">
+                        <i
+                            class="fas fa-rocket text-warning fa-2x animate__animated animate__pulse animate__infinite"></i>
+                    </div>
+                    <h5 class="fw-bold mb-1">Prise en main</h5>
+                    <p class="text-muted small">Suivez ces étapes pour bien démarrer</p>
+                </div>
+                <div class="card-body px-4">
+                    <div class="progress-vertical">
+                        <div *ngFor="let step of firstSteps; let i = index; let last = last"
+                            class="step-item d-flex position-relative mb-4" [class.active]="!step.completed"
+                            [routerLink]="step.route">
+                            <div class="step-line" *ngIf="!last" [class.completed]="step.completed"></div>
+                            <div class="step-indicator me-3 flex-shrink-0" [class.completed]="step.completed">
+                                <i *ngIf="step.completed" class="fas fa-check"></i>
+                                <span *ngIf="!step.completed">{{ i + 1 }}</span>
+                            </div>
+                            <div class="step-content">
+                                <div class="step-title fw-bold" [class.text-muted]="step.completed">{{ step.title }}
+                                </div>
+                                <div class="step-desc x-small text-muted">{{ step.description }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0 pb-4 text-center">
+                    <button class="btn btn-primary w-100 rounded-pill">Besoin d'aide ?</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal Full Modules -->
+<div class="modal fade show d-block" *ngIf="showModulesModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content glass-panel border-0 shadow-lg">
+            <div class="modal-header border-0 px-4 pt-4 d-flex flex-column align-items-start">
+                <div class="d-flex justify-content-between w-100 align-items-center mb-3">
+                    <h5 class="modal-title fw-bold fs-3 text-dark">Tous les Modules ERP</h5>
+                    <button type="button" class="btn-close bg-white rounded-circle p-2 shadow-sm"
+                        (click)="toggleModulesModal()"></button>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-container w-100 position-relative mb-2">
+                    <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                    <input type="text" class="form-control ps-5 py-3 glass-input"
+                        placeholder="Rechercher un module (ex: Stock, Clients...)" [(ngModel)]="moduleSearchQuery">
+                </div>
+            </div>
+
+            <div class="modal-body p-4 pt-0">
+                <div class="row g-3 full-grid mt-2" *ngIf="filteredModules.length > 0">
+                    <div class="col-6 col-md-4 col-lg-3" *ngFor="let module of filteredModules">
+                        <div class="module-card-v2 p-4 d-flex flex-column align-items-center text-center h-100 modal-card"
+                            [routerLink]="module.route" (click)="toggleModulesModal()"
+                            [style.background]="module.color + '08'" [style.borderColor]="module.color + '20'">
+                            <div class="icon-wrapper mb-3 p-3 rounded-circle shadow-sm"
+                                [style.backgroundColor]="module.color + '15'" [style.color]="module.color">
+                                <i [class]="'fas ' + module.icon + ' fs-4'"></i>
+                            </div>
+                            <span class="fw-bold mb-2 text-dark">{{module.name}}</span>
+                            <small class="text-muted line-clamp-2 px-1">{{module.description}}</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="text-center py-5" *ngIf="filteredModules.length === 0">
+                    <div class="mb-3">
+                        <i class="fas fa-search fs-1 text-muted opacity-25"></i>
+                    </div>
+                    <h5 class="text-muted">Aucun module ne correspond à votre recherche</h5>
+                    <button class="btn btn-link text-primary mt-2" (click)="moduleSearchQuery = ''">Effacer la
+                        recherche</button>
+                </div>
+            </div>
+
+            <div class="modal-footer border-0 px-4 pb-4">
+                <button type="button" class="btn btn-light rounded-pill px-4 shadow-sm fw-semibold"
+                    (click)="toggleModulesModal()">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show" *ngIf="showModulesModal" (click)="toggleModulesModal()"></div>

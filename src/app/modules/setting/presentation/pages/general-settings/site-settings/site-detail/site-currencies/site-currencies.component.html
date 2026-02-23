@@ -1,0 +1,141 @@
+<div class="card border-0">
+    <div class="card-body p-0">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="mb-0">Devises du site</h5>
+            <button class="btn btn-primary btn-sm" (click)="openAddModal()">
+                <i class="isax isax-add me-2"></i>Ajouter une devise
+            </button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Devise</th>
+                        <th>Code</th>
+                        <th>Symbole</th>
+                        <th>Taux de change</th>
+                        <th>Défaut</th>
+                        <th>Statut</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let currency of paginatedCurrencies">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="avatar avatar-sm bg-light me-2 text-primary">
+                                    <span class="fw-bold">{{ currency.currencySymbolLeft || currency.currencySymbolRight
+                                        || '$' }}</span>
+                                </div>
+                                <span class="fw-medium">{{ currency.currencyTitle }}</span>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-light text-dark border">{{ currency.currencyCode }}</span></td>
+                        <td>{{ currency.currencySymbolLeft }} 100 {{ currency.currencySymbolRight }}</td>
+                        <td>1 {{ currency.currencyCode }} = {{ currency.exchangeRate }}</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="defaultCurrency"
+                                    [checked]="currency.isDefault" (change)="setDefault(currency)"
+                                    title="Définir par défaut">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" [checked]="currency.actif"
+                                    (change)="toggleActive(currency)">
+                            </div>
+                        </td>
+                        <td class="text-end">
+                            <button class="btn btn-icon btn-sm btn-light text-danger" (click)="prepareDelete(currency)">
+                                <i class="isax isax-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="siteCurrencies.length === 0">
+                        <td colspan="7" class="text-center py-5 text-muted">
+                            <i class="isax isax-coin fs-1 d-block mb-2"></i>
+                            Aucune devise configurée pour ce site
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div *ngIf="siteCurrencies.length > 0" class="d-flex justify-content-between align-items-center mt-3">
+            <div class="text-muted small">
+                Affichage {{ (currentPage * pageSize) + 1 }} - {{ Math.min((currentPage + 1) * pageSize, totalElements)
+                }} sur {{ totalElements }}
+            </div>
+            <nav>
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item" [class.disabled]="currentPage === 0">
+                        <a class="page-link" href="javascript:void(0)" (click)="previousPage()">Précédent</a>
+                    </li>
+                    <li class="page-item" *ngFor="let page of paginationPages" [class.active]="currentPage === page">
+                        <a class="page-link" href="javascript:void(0)" (click)="goToPage(page)">{{ page + 1 }}</a>
+                    </li>
+                    <li class="page-item" [class.disabled]="currentPage >= totalPages - 1">
+                        <a class="page-link" href="javascript:void(0)" (click)="nextPage()">Suivant</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- Add Currency Modal -->
+<div class="modal fade" id="add_site_currency_modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ajouter une devise au site</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Devise</label>
+                    <div class="dropdown">
+                        <input type="text" class="form-control" placeholder="Rechercher une devise..."
+                            [(ngModel)]="currencySearchTerm" (input)="onCurrencySearch($any($event.target).value)"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <ul class="dropdown-menu w-100"
+                            [class.show]="currencySearchTerm.length > 0 && !selectedCurrencyId">
+                            <li *ngFor="let currency of filteredSystemCurrencies">
+                                <a class="dropdown-item" href="javascript:void(0)" (click)="selectCurrency(currency)">
+                                    {{ currency.title }} ({{ currency.code }})
+                                </a>
+                            </li>
+                            <li *ngIf="filteredSystemCurrencies.length === 0" class="dropdown-item text-muted">
+                                Aucune devise trouvée
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mb-3 form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="activeCheck" [(ngModel)]="newCurrencyActive">
+                    <label class="form-check-label" for="activeCheck">Actif</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" type="checkbox" id="defaultCheck" [(ngModel)]="newCurrencyDefault">
+                    <label class="form-check-label" for="defaultCheck">Définir par défaut</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" (click)="addCurrency()"
+                    [disabled]="!selectedCurrencyId || isSaving">
+                    {{ isSaving ? 'Ajout...' : 'Ajouter' }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<app-confirmation-modal [modalId]="'delete_site_currency_modal'" [title]="'Supprimer la devise'"
+    [message]="deleteModalMessage" [confirmText]="'Supprimer'" [type]="'danger'" [iconColor]="'text-danger'"
+    [size]="'sm'" [isOpen]="isDeleteModalOpen" (confirm)="onConfirmDelete()" (cancel)="closeDeleteModal()">
+</app-confirmation-modal>

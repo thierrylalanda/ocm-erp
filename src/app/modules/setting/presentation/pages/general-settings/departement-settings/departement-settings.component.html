@@ -199,7 +199,7 @@
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item text-danger" (click)="deleteDepartement(departement)">
+                      <a class="dropdown-item text-danger" (click)="prepareDelete(departement)">
                         <i class="fas fa-trash me-2"></i>
                         {{ 'departementSettings.dropdownActions.delete' | translate }}
                       </a>
@@ -330,3 +330,9 @@
 </div>
 <!-- Backdrop du modal -->
 <div class="modal-backdrop fade" [class.show]="showModal" *ngIf="showModal"></div>
+
+<!-- Confirmation Modal -->
+<app-confirmation-modal [modalId]="'delete_departement_modal'" [title]="'Supprimer le département'"
+  [message]="deleteModalMessage" [confirmText]="'Supprimer'" [type]="'danger'" [iconColor]="'text-danger'" [size]="'sm'"
+  [isOpen]="isDeleteModalOpen" (confirm)="onConfirmDelete()" (cancel)="closeDeleteModal()">
+</app-confirmation-modal>

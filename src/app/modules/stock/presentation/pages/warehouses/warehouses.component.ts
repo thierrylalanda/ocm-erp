@@ -18,6 +18,8 @@ import { UPDATE_WAREHOUSE_USE_CASE, UpdateWarehouseUseCase } from '../../../appl
 import { DELETE_WAREHOUSE_USE_CASE, DeleteWarehouseUseCase } from '../../../application/use-cases/warehouses/delete-warehouse.use-case';
 import { WarehouseDto } from '../../../application/dto/stock.dto';
 
+import { HasPermissionsDirective } from '../../../../../core/directives/has-permissions.directive';
+
 @Component({
     selector: 'app-warehouses',
     standalone: true,
@@ -26,7 +28,8 @@ import { WarehouseDto } from '../../../application/dto/stock.dto';
         TranslatePipe,
         DataTableComponent,
         FormBuilderComponent,
-        ModalComponent
+        ModalComponent,
+        HasPermissionsDirective
     ],
     templateUrl: './warehouses.component.html',
     styleUrls: ['./warehouses.component.scss']
@@ -49,8 +52,19 @@ export class WarehousesComponent implements OnInit {
             label: 'common.actions',
             type: 'custom',
             actions: [
-                { label: 'common.edit', icon: 'isax-edit-2', callback: (row) => this.editWarehouse(row) },
-                { label: 'common.delete', icon: 'isax-trash', class: 'btn-sm btn-light text-danger', callback: (row) => this.deleteWarehouse(row) }
+                {
+                    label: 'common.edit',
+                    icon: 'isax-edit-2',
+                    permissions: ['warehouse.update'],
+                    callback: (row) => this.editWarehouse(row)
+                },
+                {
+                    label: 'common.delete',
+                    icon: 'isax-trash',
+                    class: 'btn-sm btn-light text-danger',
+                    permissions: ['warehouse.delete'],
+                    callback: (row) => this.deleteWarehouse(row)
+                }
             ]
         }
     ];

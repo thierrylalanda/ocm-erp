@@ -1,3 +1,83 @@
-.stock-movements-page {
-    padding: 1.5rem;
+.movements-page-container {
+  padding: 2rem;
+  background-color: #f8fafd;
+  min-height: 100vh;
+
+  .premium-title {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #1a1d23;
+  }
+
+  .view-switcher {
+    .btn-icon-sm {
+      padding: 0.5rem;
+      border-radius: 8px;
+      color: #6c757d;
+      transition: all 0.2s ease;
+      background: none;
+      border: none;
+      
+      &:hover { color: #546DFE; background: rgba(84, 109, 254, 0.05); }
+      &.active {
+        background: #ffffff;
+        color: #546DFE;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .filters-card, .movements-content-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    
+    &.glass-effect {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  .badge {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.75rem;
+    border: none;
+    
+    &.bg-success { background-color: rgba(45, 206, 137, 0.1) !important; color: #2dce89 !important; }
+    &.bg-danger { background-color: rgba(245, 54, 92, 0.1) !important; color: #f5365c !important; }
+    &.bg-info { background-color: rgba(17, 205, 239, 0.1) !important; color: #11cdef !important; }
+    &.bg-warning { background-color: rgba(251, 99, 64, 0.1) !important; color: #fb6340 !important; }
+  }
+
+  .btn-primary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(84, 109, 254, 0.25);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(84, 109, 254, 0.35);
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    padding: 1rem;
+    
+    .page-header {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 1.5rem;
+    }
+    
+    .header-actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
 }

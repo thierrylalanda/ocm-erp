@@ -942,8 +942,8 @@ export class DataService {
       menu: [
         ...SuperAdminRoute,
         ...ConfigurationRoute,
-        ...ManageUsersRoute,
-        ...SettingRoute,
+        //...ManageUsersRoute,
+        // ...SettingRoute,
         //...StockRoute,
         {
           menuValue: 'Super Admin',

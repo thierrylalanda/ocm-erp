@@ -44,6 +44,10 @@ export interface TreeViewConfig {
     draggable?: boolean;
     /** Afficher les actions */
     showActions?: boolean;
+    /** Permissions pour l'action modifier */
+    editPermissions?: string[];
+    /** Permissions pour l'action supprimer */
+    deletePermissions?: string[];
 }
 
 /**
@@ -68,6 +72,13 @@ export interface TreeViewConfig {
  * </app-tree-view>
  * ```
  */
+import { HasPermissionsDirective } from '../../../../../core/directives/has-permissions.directive';
+import { PermissionService } from '../../../../../core/services/auth/permission.service';
+import { Inject } from '@angular/core';
+
+/**
+ * Composant TreeView - Arbre hiérarchique
+ */
 @Component({
     selector: 'app-tree-view',
     standalone: true,
@@ -76,6 +87,7 @@ export interface TreeViewConfig {
     styleUrls: ['./tree-view.component.scss']
 })
 export class TreeViewComponent {
+    constructor(@Inject(PermissionService) private permissionService: PermissionService) { }
     /** Nœuds de l'arbre */
     @Input() nodes: TreeNode[] = [];
 
@@ -101,6 +113,19 @@ export class TreeViewComponent {
 
     /** Événement d'action */
     @Output() nodeAction = new EventEmitter<{ node: TreeNode; action: string }>();
+
+    /**
+     * Vérifier si une action est visible selon les permissions
+     */
+    isActionVisible(action: 'edit' | 'delete'): boolean {
+        if (!this.config.showActions) return false;
+
+        const permissions = action === 'edit' ? this.config.editPermissions : this.config.deletePermissions;
+
+        if (!permissions || permissions.length === 0) return true;
+
+        return this.permissionService.hasSome(permissions);
+    }
 
     /** Nœuds sélectionnés */
     selectedNodes: TreeNode[] = [];

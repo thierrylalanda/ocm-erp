@@ -76,13 +76,15 @@
                         <div *ngIf="column.actions" class="d-flex gap-2"
                             [class.justify-content-center]="column.align === 'center'"
                             [class.justify-content-end]="column.align === 'right'">
-                            <button *ngFor="let action of column.actions" type="button" class="btn"
-                                [class]="action.class || 'btn-sm btn-light'"
-                                (click)="$event.stopPropagation(); action.callback(row)"
-                                [title]="action.label | translate">
-                                <i *ngIf="action.icon" [class]="'isax ' + action.icon"></i>
-                                <span *ngIf="!action.icon" class="ms-1">{{ action.label | translate }}</span>
-                            </button>
+                            <ng-container *ngFor="let action of column.actions">
+                                <button *ngIf="isActionVisible(action)" type="button" class="btn"
+                                    [class]="action.class || 'btn-sm btn-light'"
+                                    (click)="$event.stopPropagation(); action.callback(row)"
+                                    [title]="action.label | translate">
+                                    <i *ngIf="action.icon" [class]="'isax ' + action.icon"></i>
+                                    <span *ngIf="!action.icon" class="ms-1">{{ action.label | translate }}</span>
+                                </button>
+                            </ng-container>
                         </div>
                     </td>
                 </tr>

@@ -19,6 +19,8 @@ import { UPDATE_PRODUCT_CATEGORY_USE_CASE, UpdateProductCategoryUseCase } from '
 import { DELETE_PRODUCT_CATEGORY_USE_CASE, DeleteProductCategoryUseCase } from '../../../application/use-cases/categories/delete-product-category.use-case';
 import { ProductCategoryDto, CreateProductCategoryDto, UpdateProductCategoryDto } from '../../../application/dto/stock.dto';
 
+import { HasPermissionsDirective } from '../../../../../core/directives/has-permissions.directive';
+
 @Component({
     selector: 'app-product-categories',
     standalone: true,
@@ -27,7 +29,8 @@ import { ProductCategoryDto, CreateProductCategoryDto, UpdateProductCategoryDto 
         TranslatePipe,
         TreeViewComponent,
         FormBuilderComponent,
-        ModalComponent
+        ModalComponent,
+        HasPermissionsDirective
     ],
     templateUrl: './product-categories.component.html',
     styleUrls: ['./product-categories.component.scss']
@@ -47,7 +50,9 @@ export class ProductCategoriesComponent implements OnInit {
         showIcons: true,
         showLines: true,
         expandAll: true,
-        showActions: true
+        showActions: true,
+        editPermissions: ['category.manage'],
+        deletePermissions: ['category.manage']
     };
 
     modalConfig: ModalConfig = {

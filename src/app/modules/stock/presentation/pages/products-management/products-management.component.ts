@@ -24,6 +24,8 @@ import { ProductType } from '../../../domain/entities/product-type.enum';
  * Composant Products Management
  * Gestion des produits avec CRUD complet
  */
+import { HasPermissionsDirective } from '../../../../../core/directives/has-permissions.directive';
+
 @Component({
     selector: 'app-products-management',
     standalone: true,
@@ -32,7 +34,8 @@ import { ProductType } from '../../../domain/entities/product-type.enum';
         TranslatePipe,
         DataTableComponent,
         FormBuilderComponent,
-        ModalComponent
+        ModalComponent,
+        HasPermissionsDirective
     ],
     templateUrl: './products-management.component.html',
     styleUrls: ['./products-management.component.scss']
@@ -138,12 +141,14 @@ export class ProductsManagementComponent implements OnInit {
                     icon: 'isax-edit-2',
                     label: 'common.edit',
                     class: 'btn-sm btn-outline-primary',
+                    permissions: ['article.update'],
                     callback: (row) => this.editProduct(row)
                 },
                 {
                     icon: 'isax-trash',
                     label: 'common.delete',
                     class: 'btn-sm btn-outline-danger',
+                    permissions: ['article.delete'],
                     callback: (row) => this.deleteProduct(row)
                 }
             ]

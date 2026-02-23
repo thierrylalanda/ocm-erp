@@ -34,7 +34,32 @@ import {
     GET_CONFIGURATIONS_BY_COMPANY_USE_CASE,
     GetConfigurationsByCompanyUseCaseImpl,
     SAVE_CONFIGURATION_USE_CASE,
-    SaveConfigurationUseCaseImpl
+    SaveConfigurationUseCaseImpl,
+
+    // Currency
+    GET_CURRENCIES_USE_CASE,
+    GetCurrenciesUseCaseImpl,
+    GET_SOCIETE_CURRENCIES_USE_CASE,
+    GetSocieteCurrenciesUseCaseImpl,
+    ADD_SOCIETE_CURRENCY_USE_CASE,
+    AddSocieteCurrencyUseCaseImpl,
+    TOGGLE_SOCIETE_CURRENCY_USE_CASE,
+    ToggleSocieteCurrencyUseCaseImpl,
+    SET_DEFAULT_SOCIETE_CURRENCY_USE_CASE,
+    SetDefaultSocieteCurrencyUseCaseImpl,
+    DELETE_SOCIETE_CURRENCY_USE_CASE,
+    DeleteSocieteCurrencyUseCaseImpl,
+    // Site
+    GET_SITE_CURRENCIES_USE_CASE,
+    GetSiteCurrenciesUseCaseImpl,
+    ADD_SITE_CURRENCY_USE_CASE,
+    AddSiteCurrencyUseCaseImpl,
+    TOGGLE_SITE_CURRENCY_USE_CASE,
+    ToggleSiteCurrencyUseCaseImpl,
+    SET_DEFAULT_SITE_CURRENCY_USE_CASE,
+    SetDefaultSiteCurrencyUseCaseImpl,
+    DELETE_SITE_CURRENCY_USE_CASE,
+    DeleteSiteCurrencyUseCaseImpl
 } from './application/use-cases';
 
 // Shared
@@ -95,6 +120,54 @@ import { APPLICATION_CONTEXT, LocalStorageContextAdapter } from '../_shared';
         {
             provide: SAVE_CONFIGURATION_USE_CASE,
             useClass: SaveConfigurationUseCaseImpl
+        },
+
+        // Currency Use Cases
+        {
+            provide: GET_CURRENCIES_USE_CASE,
+            useClass: GetCurrenciesUseCaseImpl
+        },
+        {
+            provide: GET_SOCIETE_CURRENCIES_USE_CASE,
+            useClass: GetSocieteCurrenciesUseCaseImpl
+        },
+        {
+            provide: ADD_SOCIETE_CURRENCY_USE_CASE,
+            useClass: AddSocieteCurrencyUseCaseImpl
+        },
+        {
+            provide: TOGGLE_SOCIETE_CURRENCY_USE_CASE,
+            useClass: ToggleSocieteCurrencyUseCaseImpl
+        },
+        {
+            provide: SET_DEFAULT_SOCIETE_CURRENCY_USE_CASE,
+            useClass: SetDefaultSocieteCurrencyUseCaseImpl
+        },
+        {
+            provide: DELETE_SOCIETE_CURRENCY_USE_CASE,
+            useClass: DeleteSocieteCurrencyUseCaseImpl
+        },
+
+        // Site Currencies
+        {
+            provide: GET_SITE_CURRENCIES_USE_CASE,
+            useClass: GetSiteCurrenciesUseCaseImpl
+        },
+        {
+            provide: ADD_SITE_CURRENCY_USE_CASE,
+            useClass: AddSiteCurrencyUseCaseImpl
+        },
+        {
+            provide: TOGGLE_SITE_CURRENCY_USE_CASE,
+            useClass: ToggleSiteCurrencyUseCaseImpl
+        },
+        {
+            provide: SET_DEFAULT_SITE_CURRENCY_USE_CASE,
+            useClass: SetDefaultSiteCurrencyUseCaseImpl
+        },
+        {
+            provide: DELETE_SITE_CURRENCY_USE_CASE,
+            useClass: DeleteSiteCurrencyUseCaseImpl
         },
 
         // ApplicationContext

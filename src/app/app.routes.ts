@@ -15,8 +15,8 @@ export const routes: Routes = [
   {
     // Modules Routes - Clean Architecture implementation
     path: 'app',
-    canActivate: [LoggedInGuard],
-    canActivateChild: [LoggedInGuard],
+    // canActivate: [LoggedInGuard],
+    //canActivateChild: [LoggedInGuard],
     loadChildren: () => import('./modules/modules.routes').then(m => m.MODULES_ROUTES)
   },
   {

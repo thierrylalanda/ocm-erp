@@ -61,5 +61,8 @@ export { LocalStorageContextAdapter } from './infrastructure/adapters/local-stor
 // Mappers
 export { UserMapper } from './infrastructure/mappers/user.mapper';
 
+// ==================== COMPONENTS ====================
+export { ConfirmationModalComponent } from './presentation/components/confirmation-modal/confirmation-modal.component';
+
 // ==================== MODULE ====================
 export { SharedModule } from './_shared.module';

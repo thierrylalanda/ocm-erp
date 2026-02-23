@@ -4,7 +4,7 @@
             <h6 class="mb-0">Currencies</h6>
         </div>
         <div class="mb-3">
-            
+
             <!-- start row -->
             <div class="row">
                 <div class="col-md-4">
@@ -18,7 +18,10 @@
                 <div class="col-md-8">
                     <div class="d-flex justify-content-end align-items-center flex-wrap gap-2 mb-3">
                         <div>
-                            <a href="javascript:void(0);" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#add_modal"><i class="isax isax-add-circle5 me-1"></i>New Currency</a>
+                            <a href="javascript:void(0);" class="btn btn-primary d-flex align-items-center"
+                                data-bs-toggle="modal" data-bs-target="#add_modal" (click)="loadSystemCurrencies()">
+                                <i class="isax isax-add-circle5 me-1"></i>New Currency
+                            </a>
                         </div>
                     </div>
                 </div><!-- end col -->
@@ -27,7 +30,7 @@
 
             <!-- Start Table List -->
             <div class="table-responsive border border-bottom-0 rounded">
-                <table class="table mb-0 dataTable" >
+                <table class="table mb-0 dataTable">
                     <thead class="table-light">
                         <tr>
                             <th>Currency</th>
@@ -40,299 +43,223 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let currency of currencies">
                             <td>
-                                <h6 class="fs-14 fw-medium mb-0">Dollar</h6></td>
-                            <td>USD</td>
-                            <td>$</td>
-                            <td>01</td>
+                                <h6 class="fs-14 fw-medium mb-0">{{ currency.currencyTitle }}</h6>
+                            </td>
+                            <td>{{ currency.currencyCode }}</td>
+                            <td>{{ currency.currencySymbolLeft || currency.currencySymbolRight }}</td>
+                            <td>{{ currency.exchangeRate }}</td>
                             <td class="default-star">
-                                <a class="active" href="javascript:void(0);">
-                                    <i class="isax isax-star"></i>
+                                <a [class.active]="currency.isDefault" href="javascript:void(0);"
+                                    (click)="setDefault(currency)">
+                                    <i class="isax" [class.isax-star]="!currency.isDefault"
+                                        [class.isax-star-15]="currency.isDefault"
+                                        [class.text-warning]="currency.isDefault"></i>
                                 </a>
                             </td>
                             <td>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" checked>
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        [checked]="currency.actif" (change)="toggleActive(currency)">
                                 </div>
                             </td>
-                            <td class="action-item">
-                                <a href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <i class="isax isax-more"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#edit_modal"><i class="isax isax-edit me-2"></i>Edit</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-2"></i>Delete</a>
-                                    </li>
-                                </ul>
+                            <td>
+                                <div class="action-item">
+                                    <a href="javascript:void(0);" class="text-danger" (click)="prepareDelete(currency)">
+                                        <i class="isax isax-trash"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <h6 class="fs-14 fw-medium mb-0">Rupee</h6></td>
-                            <td>INR</td>
-                            <td>₹</td>
-                            <td>86.62</td>
-                            <td class="default-star">
-                                <a href="javascript:void(0);">
-                                    <i class="isax isax-star"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" checked>
-                                </div>
-                            </td>
-                            <td class="action-item">
-                                <a href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <i class="isax isax-more"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#edit_modal"><i class="isax isax-edit me-2"></i>Edit</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-2"></i>Delete</a>
-                                    </li>
-                                </ul>
-                            </td>
+                        <tr *ngIf="currencies.length === 0 && !loading">
+                            <td colspan="7" class="text-center py-4">No currencies found.</td>
                         </tr>
-                        <tr>
-                            <td>
-                                <h6 class="fs-14 fw-medium mb-0">Pound</h6></td>
-                            <td>GBP</td>
-                            <td>£</td>
-                            <td>0.81</td>
-                            <td class="default-star">
-                                <a href="javascript:void(0);">
-                                    <i class="isax isax-star"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" checked>
-                                </div>
-                            </td>
-                            <td class="action-item">
-                                <a href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <i class="isax isax-more"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#edit_modal"><i class="isax isax-edit me-2"></i>Edit</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-2"></i>Delete</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h6 class="fs-14 fw-medium mb-0">Euro</h6></td>
-                            <td>EUR</td>
-                            <td>€</td>
-                            <td>0.96</td>
-                            <td class="default-star">
-                                <a href="javascript:void(0);">
-                                    <i class="isax isax-star"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch">
-                                </div>
-                            </td>
-                            <td class="action-item">
-                                <a href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <i class="isax isax-more"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#edit_modal"><i class="isax isax-edit me-2"></i>Edit</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-2"></i>Delete</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h6 class="fs-14 fw-medium mb-0">Dhirams</h6></td>
-                            <td>AED</td>
-                            <td>د.إ</td>
-                            <td>3.67</td>
-                            <td class="default-star">
-                                <a href="javascript:void(0);">
-                                    <i class="isax isax-star"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" checked>
-                                </div>
-                            </td>
-                            <td class="action-item">
-                                <a href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <i class="isax isax-more"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#edit_modal"><i class="isax isax-edit me-2"></i>Edit</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-2"></i>Delete</a>
-                                    </li>
-                                </ul>
-                            </td>
+                        <tr *ngIf="loading">
+                            <td colspan="7" class="text-center py-4">Loading...</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <!-- End Table List -->
 
+            <!-- Pagination -->
+            <div class="d-flex justify-content-between align-items-center mt-3" *ngIf="totalElements > 0">
+                <span class="text-muted">Showing {{ page * pageSize + 1 }} to {{ (page + 1) * pageSize > totalElements ?
+                    totalElements : (page + 1) * pageSize }} of {{ totalElements }} entries</span>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination mb-0">
+                        <li class="page-item" [class.disabled]="page === 0">
+                            <a class="page-link" href="javascript:void(0);"
+                                (click)="onPageChange(page - 1)">Previous</a>
+                        </li>
+                        <li class="page-item" *ngFor="let p of pages" [class.active]="p === page">
+                            <a class="page-link" href="javascript:void(0);" (click)="onPageChange(p)">{{ p + 1 }}</a>
+                        </li>
+                        <li class="page-item" [class.disabled]="page >= totalPages - 1">
+                            <a class="page-link" href="javascript:void(0);" (click)="onPageChange(page + 1)">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- End Pagination -->
+
         </div>
     </div>
 </div><!-- end col -->
 
 
-        <!-- Start Add Modal  -->
-        <div id="add_modal" class="modal fade">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add Currency</h4>
-                        <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x"></i></button>
+<!-- Start Add Modal  -->
+<div id="add_modal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add New Currency</h4>
+                <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"><i class="fa-solid fa-x"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Select Currency</label>
+                    <div class="dropdown">
+                        <a href="javascript:void(0);"
+                            class="dropdown-toggle btn btn-white d-flex align-items-center justify-content-between border"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>{{ selectedCurrencyTitle }}</span>
+                        </a>
+                        <div class="dropdown-menu w-100 p-3">
+                            <div class="mb-3">
+                                <div class="input-icon-start position-relative">
+                                    <span class="input-icon-addon fs-12">
+                                        <i class="isax isax-search-normal"></i>
+                                    </span>
+                                    <input type="text" class="form-control form-control-sm" placeholder="Search"
+                                        [(ngModel)]="searchTerm" (ngModelChange)="filterCurrencies()">
+                                </div>
+                            </div>
+                            <ul class="list-unstyled mb-0 dropdown-list" style="max-height: 200px; overflow-y: auto;">
+                                <li *ngFor="let sysCurr of filteredSystemCurrencies">
+                                    <a href="javascript:void(0);" class="dropdown-item px-2 py-1"
+                                        (click)="selectCurrency(sysCurr)">
+                                        {{ sysCurr.title }} ({{ sysCurr.code }})
+                                    </a>
+                                </li>
+                                <li *ngIf="filteredSystemCurrencies.length === 0" class="text-center text-muted py-2">
+                                    No currencies found
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <form>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">Currency Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">Exchange Rate <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Code <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Symbol <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <label class="form-label mb-0">Make a Default</label>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input m-0" type="checkbox">
-                                        </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" role="switch" id="activeSwitch"
+                                [(ngModel)]="formData.actif">
+                            <label class="form-check-label" for="activeSwitch">Active</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" role="switch" id="defaultSwitch"
+                                [(ngModel)]="formData.isDefault">
+                            <label class="form-check-label" for="defaultSwitch">Default</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex align-items-center justify-content-between gap-1">
+                <button type="button" class="btn btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="addCurrency()" [disabled]="!selectedCurrencyId"
+                    data-bs-dismiss="modal">Add Currency</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Confirmation Modal -->
+<app-confirmation-modal [modalId]="'delete_currency_modal'" [title]="'Delete Currency'" [message]="deleteModalMessage"
+    [confirmText]="'Delete'" [type]="'danger'" [icon]="'isax isax-trash'" [iconColor]="'text-danger'" [size]="'sm'"
+    [isOpen]="isDeleteModalOpen" (confirm)="onConfirmDelete()" (cancel)="closeDeleteModal()">
+</app-confirmation-modal>
+
+<!-- Start Edit Modal  -->
+<div id="edit_modal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Currency</h4>
+                <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"><i class="fa-solid fa-x"></i></button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Currency Name <span class="text-danger">*</span></label>
+                                <input type="text" value="Dhirams" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Exchange Rate <span class="text-danger">*</span></label>
+                                <input type="text" value="3.67" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Code <span class="text-danger">*</span></label>
+                                <input type="text" value="AED" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Symbol <span class="text-danger">*</span></label>
+                                <input type="text" value="د.إ" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div>
+                                <label class="form-label mb-3">Make a Default</label>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label class="form-label mb-0">Status</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" checked>
                                     </div>
                                 </div>
                             </div>
-
-
-                        </div>
-                        <div class="modal-footer d-flex align-items-center justify-content-between gap-1">
-                            <button type="button" class="btn btn-outline-white" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add New</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- End Add Modal -->
-
-        <!-- Start Edit Modal  -->
-        <div id="edit_modal" class="modal fade">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Currency</h4>
-                        <button type="button" class="btn-close btn-close-modal custom-btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x"></i></button>
-                    </div>
-                    <form>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">Currency Name <span class="text-danger">*</span></label>
-                                        <input type="text" value="Dhirams" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">Exchange Rate <span class="text-danger">*</span></label>
-                                        <input type="text" value="3.67" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Code <span class="text-danger">*</span></label>
-                                        <input type="text" value="AED" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Symbol <span class="text-danger">*</span></label>
-                                        <input type="text" value="د.إ" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div>
-                                        <label class="form-label mb-3">Make a Default</label>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <label class="form-label mb-0">Status</label>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" role="switch" checked>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div class="modal-footer d-flex align-items-center justify-content-between gap-1">
-                            <button type="button" class="btn btn-outline-white" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save Changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- End Edit Modal -->
-
-        <!-- Start Delete Modal  -->
-        <div class="modal fade" id="delete_modal">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <div class="modal-content">
-                    <div class="modal-body text-center">
-                        <div class="mb-3">
-                            <img src="assets/img/icons/delete.svg" alt="img">
-                        </div>
-                        <h6 class="mb-1">Delete Currency</h6>
-                        <p class="mb-3">Are you sure, you want to delete Currency?</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="javascript:void(0);" class="btn btn-outline-white me-3" data-bs-dismiss="modal">Cancel</a>
-                            <a href="javascript:void(0);" class="btn btn-primary" data-bs-dismiss="modal">Yes, Delete</a>
                         </div>
                     </div>
+
+
+                </div>
+                <div class="modal-footer d-flex align-items-center justify-content-between gap-1">
+                    <button type="button" class="btn btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Edit Modal -->
+
+<!-- Start Delete Modal  -->
+<div class="modal fade" id="delete_modal">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="mb-3">
+                    <img src="assets/img/icons/delete.svg" alt="img">
+                </div>
+                <h6 class="mb-1">Delete Currency</h6>
+                <p class="mb-3">Are you sure, you want to delete Currency?</p>
+                <div class="d-flex justify-content-center">
+                    <a href="javascript:void(0);" class="btn btn-outline-white me-3" data-bs-dismiss="modal">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-primary" data-bs-dismiss="modal">Yes, Delete</a>
                 </div>
             </div>
         </div>
-        <!-- End Delete Modal  -->
+    </div>
+</div>
+<!-- End Delete Modal  -->

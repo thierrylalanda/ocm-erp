@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '../../../../../core/services/translation';
@@ -13,6 +13,8 @@ export interface DataTableAction {
     label: string;
     /** Classe CSS du bouton */
     class?: string;
+    /** Permissions requises pour afficher cette action */
+    permissions?: string[];
     /** Callback au clic */
     callback: (row: any) => void;
 }
@@ -118,6 +120,11 @@ export interface DataTableSelectionEvent {
  * </app-data-table>
  * ```
  */
+import { PermissionService } from '../../../../../core/services/auth/permission.service';
+
+/**
+ * Composant DataTable réutilisable
+ */
 @Component({
     selector: 'app-data-table',
     standalone: true,
@@ -176,6 +183,18 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     /** Événement de changement de tri */
     @Output() sortChange = new EventEmitter<DataTableSort>();
+
+    constructor(@Inject(PermissionService) private permissionService: PermissionService) { }
+
+    /**
+     * Vérifier si une action doit être affichée selon les permissions
+     */
+    isActionVisible(action: DataTableAction): boolean {
+        if (!action.permissions || action.permissions.length === 0) {
+            return true;
+        }
+        return this.permissionService.hasSome(action.permissions);
+    }
 
     /** Lignes sélectionnées */
     selectedRows: Set<number> = new Set();

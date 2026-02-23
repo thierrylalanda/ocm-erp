@@ -6,16 +6,14 @@ import { AuthUtils } from '../../utils/auth.utils';
 import { ToasterService } from '../../services/toaster/toaster.service';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor
-{
+export class AuthInterceptor implements HttpInterceptor {
     private isRefreshing = false;
     private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-    
+
     /**
      * Constructor
      */
-    constructor(private _authService: AuthService,private _toasterService:ToasterService)
-    {
+    constructor(private _authService: AuthService, private _toasterService: ToasterService) {
     }
 
     /**
@@ -24,28 +22,26 @@ export class AuthInterceptor implements HttpInterceptor
      * @param req
      * @param next
      */
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
-    {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // Get the access token and expiration date
         const accessToken = this._authService.accessToken;
         const expiresAt = this._authService.expiresAt;
         const expiresIn = this._authService.expiresIn;
         // If we have an access token, check if it's expired or about to expire
-        if (accessToken && accessToken.trim() !== '' ) {
-            
+        if (accessToken && accessToken.trim() !== '') {
+
             // Check if token is expired or about to expire (within 60 seconds)
             const isExpired = AuthUtils.isTokenExpiredByDate(expiresAt);
             const isAboutToExpire = AuthUtils.isTokenAboutToExpire(expiresAt, 60); // 60 seconds threshold (1 minute)
-            
+
             if (isExpired || isAboutToExpire) {
-                console.log(`AuthInterceptor: Token ${isExpired ? 'expired' : 'about to expire (within 60s)'} - attempting proactive refresh`);
                 // Token is expired or about to expire, refresh it before sending the request
-              //  return this.refreshTokenAndRetry(req, next);
+                //  return this.refreshTokenAndRetry(req, next);
             }
-            
+
             // Token is still valid, add it to the request
             const authReq = this.addTokenToRequest(req, accessToken);
-        
+
             // Response with the modified request
             return next.handle(authReq).pipe(
                 catchError((error) => {
@@ -53,20 +49,17 @@ export class AuthInterceptor implements HttpInterceptor
                     console.log('AuthInterceptor: Error occurred', error);
 
                     // Catch "401 Unauthorized" responses
-                    if ( error instanceof HttpErrorResponse && error.status === 401 )
-                    {
+                    if (error instanceof HttpErrorResponse && error.status === 401) {
                         console.log('AuthInterceptor: 401 Unauthorized - attempting token refresh');
                         // Attempt to refresh token
                         return this.handle401Error(req, next);
                     }
-                    if ( error instanceof HttpErrorResponse && error.status === 403 )
-                    {
-                        this._toasterService.typeError(error.message ??"Accès refusé","");
+                    if (error instanceof HttpErrorResponse && error.status === 403) {
+                        this._toasterService.typeError(error.message ?? "Accès refusé", "");
                     }
 
-                     if ( error instanceof HttpErrorResponse && error.status === 0 )
-                    {
-                       this._toasterService.typeError("Verifier votre connexion à internet","Connexion Internet")
+                    if (error instanceof HttpErrorResponse && error.status === 0) {
+                        this._toasterService.typeError("Verifier votre connexion à internet", "Connexion Internet")
                         // Attempt to refresh token
                         return this.handle401Error(req, next);
                     }
@@ -82,7 +75,7 @@ export class AuthInterceptor implements HttpInterceptor
                     console.log('AuthInterceptor: Error occurred (no token)', error);
                     return throwError(() => error);
                 })
-            ) ;
+            );
         }
     }
 
@@ -107,13 +100,13 @@ export class AuthInterceptor implements HttpInterceptor
                 switchMap((response) => {
                     this.isRefreshing = false;
                     this.refreshTokenSubject.next(response.accessToken);
-                    
+
                     // Retry the original request with new token
                     return next.handle(this.addTokenToRequest(request, response.accessToken));
                 }),
                 catchError((error) => {
                     this.isRefreshing = false;
-                    
+
                     // If refresh fails with 401, logout user
                     if (error instanceof HttpErrorResponse && error.status === 401) {
                         console.log('AuthInterceptor: Proactive refresh failed with 401 - logging out');
@@ -152,13 +145,13 @@ export class AuthInterceptor implements HttpInterceptor
                 switchMap((response) => {
                     this.isRefreshing = false;
                     this.refreshTokenSubject.next(response.accessToken);
-                    
+
                     // Retry the original request with new token
                     return next.handle(this.addTokenToRequest(request, response.accessToken));
                 }),
                 catchError((error) => {
                     this.isRefreshing = false;
-                    
+
                     // If refresh fails with 401, logout user
                     if (error instanceof HttpErrorResponse && error.status === 401) {
                         console.log('AuthInterceptor: Reactive refresh failed with 401 - logging out');

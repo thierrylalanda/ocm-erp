@@ -20,6 +20,8 @@ import { StockMovementType } from '../../../domain/entities/stock-movement.entit
 import { ImportExportService } from '../../../../_shared/infrastructure/services/import-export.service';
 import { CREATE_STOCK_MOVEMENT_USE_CASE, CreateStockMovementUseCase } from '../../../application/use-cases/movements/create-stock-movement.use-case';
 
+import { HasPermissionsDirective } from '../../../../../core/directives/has-permissions.directive';
+
 @Component({
     selector: 'app-inventory',
     standalone: true,
@@ -29,7 +31,8 @@ import { CREATE_STOCK_MOVEMENT_USE_CASE, CreateStockMovementUseCase } from '../.
         TranslatePipe,
         DataTableComponent,
         ChartComponent,
-        ModalComponent
+        ModalComponent,
+        HasPermissionsDirective
     ],
     templateUrl: './inventory.component.html',
     styleUrls: ['./inventory.component.scss']

@@ -15,6 +15,7 @@ export const FEATURES_ROUTES: Routes = [
         // canActivate: [hasPermissions(['CLIENT_CREATE', 'CLIENT_VALIDATE'], 'AND')],
         loadComponent: () => import('./dashboard/admin-dashboard/admin-dashboard.component').then(m => m.AdminDashboardComponent)
       },
+
       { path: 'admin-dashboard', loadComponent: () => import('./dashboard/admin-dashboard-2/admin-dashboard-2.component').then(m => m.AdminDashboard2Component) },
 
       //Application//

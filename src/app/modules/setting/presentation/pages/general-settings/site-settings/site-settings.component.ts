@@ -19,6 +19,8 @@ import {
   getCountryName
 } from '../../../../domain/dto/site.dto';
 import { TranslatePipe } from '../../../../../../core/services/translation/translate.pipe';
+import { RouterModule } from '@angular/router';
+import { ConfirmationModalComponent } from '../../../../../_shared/presentation/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-site-settings',
@@ -32,7 +34,11 @@ import { TranslatePipe } from '../../../../../../core/services/translation/trans
     MatFormFieldModule,
     MatDialogModule,
     MatButtonModule,
-    TranslatePipe
+    TranslatePipe,
+    MatButtonModule,
+    TranslatePipe,
+    RouterModule,
+    ConfirmationModalComponent
   ],
   templateUrl: './site-settings.component.html',
   styleUrls: ['./site-settings.component.scss']
@@ -42,38 +48,38 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
   sites: SiteResponseDto[] = [];
   filteredSites: SiteResponseDto[] = [];
   paginatedSites: SiteResponseDto[] = [];
-  
+
   // Formulaire
   siteForm: FormGroup;
-  
+
   // États
   isLoading = false;
   isSaving = false;
   showModal = false;
   isEditMode = false;
   currentSiteId?: number;
-  
+
   // Messages
   errorMessage = '';
   successMessage = '';
-  
+
   // Pagination
   currentPage = 0;
   pageSize = 10;
   totalPages = 0;
   totalElements = 0;
-  
+
   // Filtres
   searchTerm = '';
   filterType: SiteType | '' = '';
   filterStatus: 'active' | 'inactive' | '' = '';
   filterPays = '';
-  
+
   // Options
   siteTypes: { value: SiteType; label: string }[] = [];
   countries = COUNTRIES;
   responsables: any[] = [];
-  
+
   // Statistiques
   statistics = {
     total: 0,
@@ -81,10 +87,10 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
     inactifs: 0,
     parType: {} as Record<string, number>
   };
-  
+
   // Société de l'utilisateur
   currentUserSocieteId: number | null = null;
-  
+
   // Unsubscribe
   private destroy$ = new Subject<void>();
 
@@ -102,14 +108,14 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentUserSocieteId = this.siteService.getCurrentUserSocieteId();
-    
+
     if (this.currentUserSocieteId) {
       this.loadSites();
       this.loadStatistics();
     } else {
       this.errorMessage = 'Impossible de récupérer les informations de votre société.';
     }
-    
+
     this.setupCodeGeneration();
   }
 
@@ -171,16 +177,16 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
    */
   loadSites(): void {
     if (!this.currentUserSocieteId) return;
-    
+
     this.isLoading = true;
     this.errorMessage = '';
-    
+
     const params: any = {
       page: this.currentPage,
       size: this.pageSize,
       societeId: this.currentUserSocieteId
     };
-    
+
     if (this.filterType) {
       params.type = this.filterType;
     }
@@ -192,7 +198,7 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
     if (this.filterPays) {
       params.pays = this.filterPays;
     }
-    
+
     this.siteService.getSites(params).subscribe({
       next: (response) => {
         this.sites = response.content;
@@ -213,7 +219,7 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
    */
   loadStatistics(): void {
     if (!this.currentUserSocieteId) return;
-    
+
     this.siteService.getSiteStatistics(this.currentUserSocieteId).subscribe({
       next: (stats) => {
         this.statistics = stats;
@@ -229,7 +235,7 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
    */
   applyClientSideFilters(): void {
     let filtered = [...this.sites];
-    
+
     if (this.searchTerm) {
       const term = this.searchTerm.toLowerCase();
       filtered = filtered.filter(site =>
@@ -239,7 +245,7 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
         (site.email && site.email.toLowerCase().includes(term))
       );
     }
-    
+
     this.filteredSites = filtered;
     this.updatePagination();
   }
@@ -292,7 +298,7 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
   openEditModal(site: SiteResponseDto): void {
     this.isEditMode = true;
     this.currentSiteId = site.id;
-    
+
     this.siteForm.patchValue({
       nom: site.nom,
       code: site.code,
@@ -307,7 +313,7 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
       telephone: site.telephone,
       actif: site.actif
     });
-    
+
     this.showModal = true;
     this.errorMessage = '';
     this.successMessage = '';
@@ -331,19 +337,19 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
       this.markFormGroupTouched(this.siteForm);
       return;
     }
-    
+
     this.isSaving = true;
     this.errorMessage = '';
-    
+
     const formData: CreateSiteDto = {
       ...this.siteForm.value,
       societeId: this.currentUserSocieteId
     };
-    
+
     const operation = this.isEditMode && this.currentSiteId
       ? this.siteService.updateSite(this.currentSiteId, { ...formData, id: this.currentSiteId })
       : this.siteService.createSite(formData);
-    
+
     operation.subscribe({
       next: () => {
         this.successMessage = this.isEditMode
@@ -353,7 +359,7 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
         this.closeModal();
         this.loadSites();
         this.loadStatistics();
-        
+
         setTimeout(() => {
           this.successMessage = '';
         }, 3000);
@@ -365,26 +371,39 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
     });
   }
 
-  /**
-   * Supprime un site
-   */
-  deleteSite(site: SiteResponseDto): void {
-    if (!confirm(`Êtes-vous sûr de vouloir supprimer le site "${site.nom}" ?`)) {
-      return;
-    }
-    
-    this.siteService.deleteSite(site.id).subscribe({
+  // Delete confirmation
+  siteToDelete: SiteResponseDto | null = null;
+  deleteModalMessage: string = '';
+  isDeleteModalOpen = false;
+
+  prepareDelete(site: SiteResponseDto): void {
+    this.siteToDelete = site;
+    this.deleteModalMessage = `Êtes-vous sûr de vouloir supprimer le site "${site.nom}" ?`;
+    this.isDeleteModalOpen = true;
+  }
+
+  closeDeleteModal(): void {
+    this.isDeleteModalOpen = false;
+    this.siteToDelete = null;
+  }
+
+  onConfirmDelete(): void {
+    if (!this.siteToDelete) return;
+
+    this.siteService.deleteSite(this.siteToDelete.id).subscribe({
       next: () => {
         this.successMessage = 'Site supprimé avec succès';
         this.loadSites();
         this.loadStatistics();
-        
+        this.closeDeleteModal();
+
         setTimeout(() => {
           this.successMessage = '';
         }, 3000);
       },
       error: (error) => {
         this.errorMessage = error.message;
+        this.closeDeleteModal();
       }
     });
   }
@@ -394,13 +413,13 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
    */
   toggleSiteStatus(site: SiteResponseDto): void {
     const newStatus = !site.actif;
-    
+
     this.siteService.toggleSiteStatus(site.id, newStatus).subscribe({
       next: () => {
         site.actif = newStatus;
         this.successMessage = `Site ${newStatus ? 'activé' : 'désactivé'} avec succès`;
         this.loadStatistics();
-        
+
         setTimeout(() => {
           this.successMessage = '';
         }, 3000);
@@ -480,18 +499,18 @@ export class SiteSettingsComponent implements OnInit, OnDestroy {
   get paginationPages(): number[] {
     const maxPages = 5;
     const pages: number[] = [];
-    
+
     let startPage = Math.max(0, this.currentPage - Math.floor(maxPages / 2));
     let endPage = Math.min(this.totalPages - 1, startPage + maxPages - 1);
-    
+
     if (endPage - startPage < maxPages - 1) {
       startPage = Math.max(0, endPage - maxPages + 1);
     }
-    
+
     for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
-    
+
     return pages;
   }
 }
